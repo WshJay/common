@@ -18,7 +18,7 @@ import static java.util.UUID.randomUUID;
 public class CreateInsert {
 
     public static void main(String[] args) throws IOException {
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 6; j++) {
             StringBuffer content = new StringBuffer();
             for (int i = 0; i < 100000; i++) {
                 String currentDate = "'2016-09-21 10:30:00'";
@@ -28,7 +28,7 @@ public class CreateInsert {
                 content.append("INSERT INTO audit_withdraw_status (`id`, `billWithdrawId`, `auditType`, `auditStatus`, `auditDesc`, `verifyDesc`, `version`, `createDate`, `updateDate`, `description`, `isdeleted`) VALUES ('" + UUID.randomUUID().toString() + "', '" + id + "', 'MANUAL', 'WAIT_AUDIT', 'null', 'null', '4', " + currentDate + ", " + currentDate + ", NULL, '0');");
                 content.append("\n");
             }
-            FileUtil.genModuleTpl("E:/" + j + ".sql",content.toString());
+            FileUtil.genModuleTpl("E:/insert.sql",content.toString());
         }
     }
 }
