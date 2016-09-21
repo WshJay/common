@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-default">
+		  <div class="panel-body">
+            <form class="form-query" name="topSearchForm" id="topSearchForm" action="/data/user/export.do" method="get">
+            	<div class="row">
+            	  <!--<div class="col-lg-2">
+            	    <div class="input-group">
+            	      <span class="input-group-addon">
+            	      开始时间:
+            	      </span>
+            	      <input name="beginTime" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" placeholder="请输入开始时间" value="$date.format('yyyy-MM-dd HH:mm:ss',$!beginTime)">
+            	    </div>
+            	  </div>
+            	   <div class="col-lg-2">
+            	    <div class="input-group">
+            	      <span class="input-group-addon">
+            	        结束时间:
+            	      </span>
+            	      <input value="$date.format('yyyy-MM-dd HH:mm:ss',$!endTime)" name="endTime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'endTime\')}'})" type="text" placeholder="请输入结束时间" class="form-control" >
+            	    </div>
+            	  </div>-->
+				  <div class="col-lg-2">
+            	    <div class="input-group">
+            	      <span class="input-group-addon">
+            	      查询时间:
+            	      </span>
+            	      <input name="exportDate" type="text" class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'2016-02-01',maxDate:'$!exportDate'})" placeholder="请选择导出时间" value="$!exportDate">
+            	    </div><!-- /input-group -->
+            	  </div><!-- /.col-lg-6 -->
+				  <div class="col-lg-3">
+            	    <div class="input-group">
+            			  <button id="queryButton" type="submit" class="btn btn-primary">导出</button>
+            	    </div>
+            	  </div><!-- /.col-lg-6 -->
+            	</div><!-- /.row -->
+            </form>
+			</div>
+		</div><!-- /.table-responsive -->
+	</div><!-- /span -->
+</div><!-- /row -->
+<script src="/assets/jquery-2.0.3/jquery.min.js"></script>
+<script src="/assets/plugins/My97DatePicker/WdatePicker.js"></script>
+<script src="/assets/plugins/My97DatePicker/lang/zh-cn.js"></script>

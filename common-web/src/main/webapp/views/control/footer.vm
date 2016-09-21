@@ -1,0 +1,57 @@
+<!--=== Footer ===-->
+<div class="footer login-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 md-margin-bottom-40">
+                <!-- About -->
+                <div class="headline"><h2>关于我们</h2></div>  
+                <p class="margin-bottom-25 md-margin-bottom-40">杭州般豆网络科技有限公司的前身为一个虚拟技术团队，该团队组建于成立于2003年，是几位微软最有价值专家（MVP），以及一些来自IBM、Oracel、Microsoft、的IT服务顾问专家创建的一个虚拟IT服务团队。该团队多次参与北京、上海、杭州的一些金融业、电信业、制造业的大型IT信息化、容灾、业务流程再造等项目，获得业界认可。</p>    
+
+            </div><!--/col-md-4-->  
+            
+            <div class="col-md-4 md-margin-bottom-40">
+                <div class="posts">
+                    <div class="headline"><h2>业务范围</h2></div>
+                    <dl class="dl-horizontal">
+                        <dt><img src="${appsAssert}/img/1.png" alt="腾讯QQ充值" /></dt>
+                        <dd>
+                       		<p><a href="javascript:void(0)">腾讯QQ充值</a></p> 
+                    	</dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                    <dt><img src="${appsAssert}/img/2.png" alt="话费充值" /></dt>
+                        <dd>
+                            <p><a href="javascript:void(0)">话费充值</a></p> 
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                    <dt><img src="${appsAssert}/img/3.png" alt="网游充值" /></dt>
+                        <dd>
+                            <p><a href="javascript:void(0)">网游充值</a></p> 
+                        </dd>
+                    </dl>
+                </div>
+            </div><!--/col-md-4-->
+            <div class="col-md-3">
+                <!-- Monthly Newsletter -->
+                <div class="headline"><h2>联系我们</h2></div> 
+                <address class="md-margin-bottom-40">
+                    咨询电话：400-800-0808转825768 <br />
+                    <br />
+                    咨询QQ: <a target="_blank"  rel="nofollow" href="http://wpa.qq.com/msgrd?v=3&uin=2543658098&site=qq&menu=yes"><img border="0" style="vertical-align: middle" src="http://wpa.qq.com/pa?p=2:813972010:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                </address>
+            </div><!--/col-md-4-->
+        </div><!--/row-->   
+    </div><!--/container--> 
+</div><!--/footer-->    
+<!--=== End Footer ===-->
+
+<!--=== Copyright ===-->
+<div class="copyright">
+    <div class="container">
+        <p class="copyright-space" style="text-align:center; margin: auto;">
+           &copy; $dateUtil.getNow('yyyy')&nbsp; 杭州般豆网络科技有限公司 &nbsp; 版权所有 <a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">ICP证：浙ICP备14032080号</a> 
+        </p>
+    </div><!--/container--> 
+</div><!--/copyright--> 
+<!--=== End Copyright ===-->

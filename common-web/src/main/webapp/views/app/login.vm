@@ -1,0 +1,136 @@
+#set($layout = '/layout/blank.vm')
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">  <!-- 网页全屏控制，用于手机端-->
+    <meta name="format-detection" content="telephone=no">  <!--禁止手机号码识别-->
+    <meta name="format-detection" content="address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+ 	<link href="/assets/app/css/mobile_style.css" rel="stylesheet">
+    <link href="/assets/app/css/base.css" rel="stylesheet">
+    <link href="/assets/app/css/font-icon.css" rel="stylesheet">
+<title>登录</title>
+
+<script src="/assets/app/js/jquery.js"></script>
+
+
+</head>
+
+<body>
+
+    
+<i class="fa fa-camera-retro"></i>
+        <header class="navbar">
+                <div class="nav-wrap-left">
+                    <a class="react back" href="javascript:history.back()"><i class="text-icon icon-back glyphicon glyphicon-arrow-left"></i></a>
+                </div>
+                        <span class="nav-header h1">东驰网</span>
+
+            <div class="nav-wrap-right">
+                    <a class="react nav-dropdown-btn" data-com="dropdown" data-target="nav-dropdown">
+                        <span class="nav-btn">
+                            <i class="text-icon glyphicon glyphicon-align-justify"></i>导航
+                        </span>
+                    </a>
+            </div>
+            <div id="nav-dropdown" class="nav-dropdown">
+                <ul>
+                    <li><a class="react" gaevent="imt/hd/index" href="">
+                    	<i class="text-icon glyphicon glyphicon-home"></i>
+                        <space></space>首页</a>
+                    </li>
+                    <li><a class="react" gaevent="imt/hd/account" rel="nofollow" href="">
+                    	<i class="text-icon glyphicon glyphicon-user"></i>
+                        <space></space>我的</a>
+                    </li>
+                    <li><a class="react headSearch" gaevent="imt/hd/search" href="">
+                    	<i class="text-icon glyphicon glyphicon-search"></i>
+                        <space></space>搜索</a>
+               	   </li>
+                </ul>
+            </div>
+        </header>  
+        
+        
+          
+        <div id="tips"></div>
+
+<script>
+$(document).ready(function() {
+	var liw;
+    $(window).resize(function(){
+		liw=$(".usernum").width();
+		$(".slide").css({width:liw});
+		
+	})
+	   liw=$(".usernum").width();
+	   $(".slide").css({width:liw,left:10});
+	   
+	   $(".usernum").click(function() {
+       		$(".slide").css({left:10});
+			
+			$("#normal-login-form").show();
+			$("#quick-login-form").hide();
+       });
+	   $(".mobilecode").click(function() {
+       		$(".slide").css({left:(liw+10)});
+			
+			$("#normal-login-form").hide();
+			$("#quick-login-form").show();
+       });	   
+	  
+});
+</script>      
+	<div id="login">
+        <dl class="list">
+            <dd class="nav">
+                <ul class="taba taban noslide" data-com="tab">
+                    <li class="active usernum" tab-target="normal-login-form" gaevent="imt/login/tab/normal"><a class="react">东驰账号登录</a>
+                    </li>
+                   <li class="mobilecode" tab-target="quick-login-form" gaevent="imt/login/quickBuy/"><a class="react">手机验证登录</a>
+                </li>
+                <div class="slide" ></div>
+                </ul>
+            </dd>
+        </dl>
+    <form id="normal-login-form" action="" autocomplete="off" method="post">
+        <dl class="list list-in"><dd><dl>
+            <dd class="dd-padding"><input id="username" class="input-weak" type="text" placeholder="账户名/手机号/Email" name="email" value="" required></dd>
+            <dd class="dd-padding"><input id="password" class="input-weak" type="password" placeholder="请输入您的密码" name="password" required></dd>
+        </dl></dd></dl>
+        <div class="btn-wrapper">
+<button type="submit" gaevent="imt/login/normal" class="btn btn-larger btn-block mj_login">登录</button>
+        </div>
+        <input type="hidden" name="touchEvents">
+    </form>
+    
+    <form id="quick-login-form" action="" autocomplete="off" method="post" style="display:none;">
+        <dl class="list list-in"><dd><dl>
+            <dd class="kv-line-r dd-padding" data-com="smsBtn" data-requrl="/account/mobilelogincode">
+                <input type="tel" name="mobile" id="login-mobile" class="input-weak kv-k" placeholder="请输入手机号">
+                <button id="smsCode" type="button" class="btn btn-weak kv-v" gaevent="imt/buy/quickBuy/send" disabled="disabled">发送验证码</button>
+            </dd>
+            <dd class="dd-padding">
+                <input class="input-weak J_input_sms" name="code" type="tel" pattern="[0-9]+" placeholder="请输入手机短信中的验证码" disabled="true">
+            </dd>
+        </dl></dd></dl>
+        <div class="btn-wrapper">
+<button type="submit" gaevent="imt/login/quick" class="btn btn-larger btn-block mj_login">登录</button>
+        </div>
+        <input type="hidden" name="touchEvents">
+    </form>
+</div>
+    <ul class="subline">
+        <li><a href="">立即注册</a></li>
+        <li class="pull-right"><a href="">找回密码</a></li>
+    </ul>
+    
+    
+    <div class="top-btn" data-com="gotop" gaevent="imt/ft/backtotop" style="display: none;"><a class="react"><i class="text-icon"></i></a></div>
+	<div id="meituan_check"><br><br><br></div>
+</body>
+</html>

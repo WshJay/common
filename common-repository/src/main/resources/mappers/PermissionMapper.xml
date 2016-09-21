@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.common.repository.dao.PermissionDAO" > 
+	<resultMap id="PermissionMap" type="PermissionDO">
+         <result property="id" column="id"/>
+         <result property="name" column="name"/>
+         <result property="code" column="code"/>
+         <result property="target" column="target"/>
+         <result property="allow" column="allow"/>
+         <result property="type" column="type"/>
+         <result property="moduleId" column="module_id"/>
+         <result property="createUserId" column="create_user_id"/>
+         <result property="gmtCreated" column="gmt_created"/>
+         <result property="gmtModified" column="gmt_modified"/>
+   	</resultMap>
+   	
+   	<sql id="allFields">
+         id,
+         name,
+         code,
+         target,
+         allow,
+         type,
+         module_id,
+         create_user_id,
+         gmt_created,
+         gmt_modified
+   	</sql>
+   	
+   	<!-- 获取所有权限信息 -->
+   	<select id="queryAll" resultMap="PermissionMap">
+   		select <include refid="allFields"/> from permission 
+   	</select>
+   	
+   	<!-- 根据ID查询权限信息 -->
+   	<select id="loadById" parameterType="Long" resultMap="PermissionMap">
+   		select <include refid="allFields"/> from permission where id = #{permissionId}
+   	</select>
+   	
+   	<!-- 根据target查询权限信息 -->
+   	<select id="queryByTarget" parameterType="String" resultMap="PermissionMap">
+   		select <include refid="allFields"/> from permission where target = #{target} limit 1
+   	</select>
+   	
+	<!-- 添加权限信息-->
+	<insert id="insertPermission" parameterType="PermissionDO">
+		<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		insert into permission (name,
+         code,
+         target,
+         allow,
+         type,
+         module_id,
+         create_user_id,
+         gmt_created,
+         gmt_modified) VALUES(#{name},#{code},#{target},#{allow},#{type},#{moduleId},#{createUserId},now(),now())
+	</insert>
+	
+	<!--多条件查询权限信息(分页) -->
+	<select id="queryByParams" parameterType="PermissionDO" resultMap="PermissionMap">
+		select <include refid="allFields"/> from permission 
+		where id > 0
+		<if test="allow > 0">
+			and allow = #{allow}
+		</if>
+		<if test="type > 0">
+			and type = #{type}
+		</if>
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="target != null and target != ''">
+			and target like CONCAT('%',#{target},'%')  
+		</if>
+		<if test="code != null and code != ''">
+			and code like CONCAT('%',#{code},'%')  
+		</if>
+	</select>
+	<select id="queryCountByParams" parameterType="PermissionDO" resultType="int">
+		select count(id) from permission 
+		where id > 0
+		<if test="allow > 0">
+			and allow = #{allow}
+		</if>
+		<if test="type > 0">
+			and type = #{type}
+		</if>
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')  
+		</if>
+		<if test="target != null and target != ''">
+			and target like CONCAT('%',#{target},'%')  
+		</if>
+		<if test="code != null and code != ''">
+			and code like CONCAT('%',#{code},'%')  
+		</if>
+	</select>
+	
+	<!-- 根据角色ID获取此角色下的所有权限信息 -->
+	<select id="queryListByRoleId" parameterType="Long" resultMap="PermissionMap">
+		select p.id,
+         p.name,
+         p.code,
+         p.target,
+         p.allow,
+         p.type,
+         p.module_id,
+         p.create_user_id,
+         p.gmt_created,
+         p.gmt_modified from permission p, role_permission rp where rp.permission_id = p.id and rp.role_id = #{roleId}
+	</select>
+	
+	<!-- 修改权限信息 -->
+	<update id="updatePermission" parameterType="PermissionDO">
+		UPDATE permission set name = #{name}, code = #{code}, target = #{target}, allow=#{allow}, type=#{type}, module_id=#{moduleId}, gmt_modified = now() where id=#{id}
+	</update>
+	
+	<!-- 根据权限ID删除权限信息 -->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM permission WHERE id = #{permissionId}
+	</delete>
+</mapper>  

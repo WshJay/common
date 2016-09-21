@@ -1,0 +1,91 @@
+里氏替换原则
+
+继承的优点：
+代码共享，减少创建类的工作量，每个子类都拥有父类的方法和属性。
+提高代码的重用性。
+子类可以形似父类，但又异于父类。
+提高代码的可扩展性，只需实现父类的方法。
+提高产品或项目的开放性。
+       
+继承的缺点：
+继承是侵入性的。只要继承，就必须拥有父类的所有属性和方法。
+降低代码的灵活性。子类必须拥有父类的属性和方法。
+增强了耦合性。当父类的常量、变量和方法被修改时，必须要考虑子类的修改，而且在缺乏规范的环境下，这种修改可能带来非常糟糕的结果——大片代码需要重构。
+       
+里氏替换原则的定义：
+第一种定义，也是最正宗的定义：If for each object o1 of type S there is an object o2 of type T such that for all programs P defined in terms of T, the behavior of P is unchanged when o1 is substituted for o2 then S is a subtype of T.（如果对每一个类型为S的对象o1，都有类型为T的对象o2，使得以T定义的所有程序P在所在的对象o1都代换为o2时，程序P的行为没有发生变化，那么类型S是类型T的字类型。）
+第二种定义：Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.（所有引用基类的地方必须能透明地使用其子类的对象。）
+
+里氏替换原则包含了4层含义：
+1. 子类必须完全实现父类的方法
+如果子类不能完整地实现父类的方法，或者父类的某些方法在子类中已经发生"畸变"，则建议断开父子继承关系，采用依赖、聚集、组合等关系代替继承。
+2. 子类可以有自己的个性
+子类可以有自己的行为和外观，也就是方法和属性。
+3. 覆盖或实现父类的方法时输入参数可以被放大
+子类的方法可以重载（Overload）父类的方法，并把输入参数设置成为父类的方法的输入参数的父类（即把输入参数放大）。这时，通过父类的引用调用这个方法，实际调用的还是父类的方法，子类的方法由于只是重载而不是覆写（Override），会被隐藏掉。子类可以覆写（Override）父类的方法。
+例如：父类Father中有方法"Collection doSomething(HashMap map)"，同时子类Son中有方法"Collection doSomething(Map map)"，由于Map是HashMap的父类，即把map这个输入参数"放大"了。代码：
+
+public class Father {
+
+	public Collection doSomething(HashMap map) {
+		System.out.println("父类被执行");
+		return map.values();
+	}
+
+}
+
+public class Son extends Father {
+
+	public Collection doSomething(Map map) {
+		System.out.println("子类被执行");
+		return map.values();
+	}
+}
+
+执行：
+Son f = new Son();
+HashMap map = new HashMap();
+f.doSomething(map);
+
+结果：
+父类被执行
+是想要的结果。
+
+如果父类方法的输入参数类型宽于子类方法的输入参数类型，一旦把子类作为参数传入，调用者就很可能进入子类的方法，从而违背了本意。
+如：父类Father中有方法"Collection doSomething(Map map)"，同时子类Son中有方法"Collection doSomething(HashMap map)"。代码：
+
+public class Father {
+
+	public Collection doSomething(Map map) {
+		System.out.println("父类被执行");
+		return map.values();
+	}
+}
+
+public class Son extends Father {
+
+	public Collection doSomething(HashMap map) {
+		System.out.println("子类被执行");
+		return map.values();
+	}
+}
+
+执行：
+Son f = new Son();
+HashMap map = new HashMap();
+f.doSomething(map);
+
+结果：
+子类被执行
+不是想要的结果。
+
+所以，子类中方法的前置条件必须与超类中被覆写的方法的前置条件相同或者更宽松。
+
+4. 覆写或实现父类的方法时输出结果可以被缩小
+父类的方法返回值是一个类型T，子类的相同方法（重载或覆写）的返回值为S，那么里氏替换原则就要求S必须小于等于T，也就是说，要么S和T是同一个类型，要么S是T的子类。
+如果是覆写，父类和子类的同名方法的输入参数相同，两个方法的范围值S小于等于T，这是覆写的要求，这才是重中之重，子类覆写父类的方法，天经地义。
+如果是重载，则要求方法的输入参数类型或数量不相同，在里氏替换原则要求下，就是子类的输入参数宽于或等于父类的输入参数，也就是说你写的这个方法是不会被调用的，参考上面讲的前置条件。
+
+采用里氏替换原则的目的就是增强程序的健壮性，版本升级时也可以保持非常好的兼容性。即使增加子类，原有的子类还可以继续运行。
+
+在项目中，采用里氏替换原则时，尽量避免子类的"个性"，一旦子类有"个性"，这个子类和父类之间的关系就很难调和了，把子类当作父类使用，子类的"个性"会被抹杀。

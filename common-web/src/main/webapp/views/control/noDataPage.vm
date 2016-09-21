@@ -1,0 +1,12 @@
+<div id="searchResultTip" class="">
+    <div class="have-no-result border-b">
+        <div class="module-myrecord-msg fn-clear" align="center">
+            <img src="${appsAssert}/img/1iCyAoUEGv.jpg" alt="没有交易记录" class="fn-left"
+                 seed="moduleMyrecordMsg-iE2011121iCyAoUEGv" smartracker="on">
+
+            <p class="module-myrecord-msg-txt fn-left">
+                没有找到记录，请调整搜索条件。
+            </p>
+        </div>
+    </div>
+</div>

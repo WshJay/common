@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<!-- 定时任务注解驱动 启动对@Scheduled注解的支持（定时任务） -->
+	<task:annotation-driven/> 
+	
+	<!-- properties文件读取 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:/config/system.properties</value>
+				<value>classpath*:/config/jdbc.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding">
+			<value>utf-8</value>
+		</property>
+	</bean>
+	
+	<!-- BoneCP是一个快速,开源的数据库连接池,比C3P0/DBCP连接池快25倍。 -->
+	<bean id="dataSourceTarget" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="idleConnectionTestPeriodInSeconds" value="14400" />
+		<property name="idleMaxAgeInSeconds" value="3600" />
+		<property name="maxConnectionsPerPartition" value="4" />
+		<property name="minConnectionsPerPartition" value="1" />
+		<property name="partitionCount" value="2" />
+		<property name="acquireIncrement" value="3" />
+		<property name="statementsCacheSize" value="100" />
+		<property name="releaseHelperThreads" value="3" />
+	</bean>
+
+	<!-- 加入log4jdbc-remix插件使控制台能输出具体的sql查询日志 -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceTarget" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--dataSource属性指定要用到的连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!--alias包名 -->
+		<property name="typeAliasesPackage" value="com.xxx.common.repository.entity" />
+		<!--configLocation属性指定mybatis的核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<!--mapper文件扫描 -->
+		<property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 使用sqlSessionFactoryBeanName解决properties失效问题 -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<property name="basePackage" value="com.xxx.common.repository.dao" />
+		<!-- 扫描某些类的子类，默认为全部 -->
+		<property name="markerInterface" value="com.xxx.common.repository.base.SqlMapper" />
+	</bean>
+
+	<!-- 定义事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+</beans>

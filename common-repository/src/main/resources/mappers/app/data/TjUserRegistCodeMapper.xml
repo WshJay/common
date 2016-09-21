@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.common.repository.dao.data.TjUserRegistCodeDao" > 
+	<resultMap id="TjUserRegistCodeMap" type="TjUserRegistCode">
+	    <result property="id" column="id"/>
+        <result property="buttonName" column="button_name"/>
+        <result property="deviceNo" column="device_no"/>
+        <result property="deviceType" column="device_type"/>
+        <result property="type" column="type"/>
+        <result property="mobile" column="mobile"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+		button_name,
+		device_no,
+		device_type,
+		type,
+		mobile,
+		create_time
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="loadById" parameterType="int" resultMap="TjUserRegistCodeMap">
+        SELECT <include refid="allSelectionColumn"/> FROM tj_user_regist_code WHERE id = #{value} LIMIT 1
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="TjUserRegistCode">
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+        INSERT INTO tj_user_regist_code (
+		 button_name, 
+		 device_no, 
+		 device_type, 
+		 type, 
+		 mobile, 
+		 create_time
+		 )  VALUES (
+		 #{buttonName}, 
+		 #{deviceNo}, 
+		 #{deviceType}, 
+		 #{type}, 
+		 #{mobile}, 
+		 #{createTime})
+    </insert>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM  tj_user_regist_code WHERE id=#{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO tj_user_regist_code (
+		 id, 
+		 button_name, 
+		 device_no, 
+		 device_type, 
+		 type, 
+		 mobile, 
+		 create_time
+		 )  VALUES 
+		 <foreach collection="list" item="item" index="index" separator=",">
+		(
+		 #{item.id}, 
+		 #{item.buttonName}, 
+		 #{item.deviceNo}, 
+		 #{item.deviceType}, 
+		 #{item.type}, 
+		 #{item.mobile}, 
+		  #{item.createTime})
+		 </foreach>		 
+    </insert>
+</mapper>  

@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1{
+	width:600px;
+	margin:0 auto;
+	font-family:Arial,"黑体","微软雅黑", sans-serif;
+	font-size:30px;
+	text-align:center;
+	margin-top:20px;
+	color:#666;
+	
+}
+#area{
+	width:560px;
+	padding:5px 10px;
+	margin:0 auto;
+	margin-top:30px;
+	background:#4cb1ca;	
+	color:#fff;	
+	line-height:30px;
+	font-size:18px;
+	font-family:Arial, "微软雅黑","幼圆", sans-serif;
+}
+#area li{
+	height:30px;
+}
+#area li:first-child{
+	border-bottom:#ccc 1px solid;	
+}
+#area li span{
+	width:480px;
+	display:inline-block;
+	font-weight:bold;
+	font-size:20px;
+}
+#select{
+	width:600px;
+	margin:0 auto;
+	margin-top:20px;
+}
+#select select{
+	width:180px;
+	height:30px;
+	font-size:18px;
+	font-family:Arial, "微软雅黑","幼圆", sans-serif;
+	margin-left:10px;
+	margin-right:10px;
+	float:left;	
+	disable_search_threshold: 10;
+}

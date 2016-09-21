@@ -1,0 +1,159 @@
+<div class="tab-pane active">
+	<div class="boss-form-box">
+        <input type="hidden" id="allPermission" value="#foreach($!permission in $!permsList)$!permission.id#if($!velocityCount != $!permsList.size()),#end#end">
+	    <input type="hidden" id="allModule" value="#foreach($!module in $!moduleList)$!module.id#if($!velocityCount != $!moduleList.size()),#end#end">
+	     #foreach($!moduleDO in $!moduleList)
+		 	<table class="table table-bordered table-hover" style="width:1000px">
+		    <thead>
+		    <tr>
+		    	#set($endSize = 5 - $!vmUtil.complementation($!moduleDO.permissionList.size(),5))
+		    	<input type="hidden" id="module_$!moduleDO.id" value="#foreach($!permission in $!moduleDO.permissionList)$!permission.id#if($!velocityCount != $!moduleDO.permissionList.size()),#end#end">
+		        <td><input id="module_check_$!moduleDO.id" onclick="mouduleClick(this,$!moduleDO.id)"  type="checkbox"/><strong>$!moduleDO.name</strong></td>
+		    </tr>
+		    </thead>
+		        <tbody>
+		        	<tr>
+		        		#foreach($!permission in $!moduleDO.permissionList)
+			                <td>
+			            		<input id="pmsion_check_$!permission.id" onclick="permClick(this,$!moduleDO.id)" #if($!permission.own) checked #end type="checkbox"/>$!permission.name
+			            	</td>
+			            	#if($!vmUtil.complementation($!velocityCount,5) == 0)
+		        				</tr><tr>
+				        	#end
+		            	#end
+		            	#if($!vmUtil.complementation($!moduleDO.permissionList.size(),5) != 0 && $!moduleDO.permissionList.size() > 5)
+			            	#foreach($!tdIndex in [1..$endSize])
+			            		<td></td>
+			            	#end
+		            	#end
+		    		</tr>
+		        </tbody>
+			</table>
+		#end
+		<button type="button" onclick="setRole($!roleId)" class="btn btn-primary btn-small pull-righ">提交</button>
+    </div>
+</div>
+<script src="/assets/jquery-2.0.3/jquery.min.js"></script>
+<script>
+$(function(){
+	// 获取所有模块Ids
+	var moduleIds = $("#allModule").val();
+	// 转换成数组
+	var moduleArray = moduleIds.split(",");
+	for ( var i = 0; i < moduleArray.length; i++) {
+		var moduleId = moduleArray[i];
+		// 获取模块下所有权限ID
+		var permIds = $("#module_" + moduleId).val();
+		// 转换成数组
+		var permArray = permIds.split(",");
+		// 标记（1表示此模块下权限全部选中，2表示选中部分）
+		var moduleFlage = 1;
+		for ( var j = 0; j < permArray.length; j++) {
+			var permissionId = permArray[j];
+			// 如果此module下有权限未选中，表示选中部分
+			if (document.getElementById("pmsion_check_" + permissionId).checked == false) {
+				moduleFlage = 2;
+				break;
+			}
+		}
+		if (moduleFlage == 1) {
+			// 设置此module为选中状态
+			document.getElementById("module_check_" + moduleId).checked = true;
+		}
+	}
+});
+
+//点击模块
+function mouduleClick(_this,moduleId){
+	if (_this.checked == true) {// 判断是否选中
+		// 获取模块下所有权限ID
+		var permIds = $("#module_" + moduleId).val();
+		// 转换成数组
+		var permArray = permIds.split(",");
+		// 将此模块下所有权限选中
+		for ( var i = 0; i < permArray.length; i++) {
+			var permissionId = permArray[i];
+			document.getElementById("pmsion_check_" + permissionId).checked = true;
+		}
+	}else{// 判断是否选中
+		// 获取模块下所有权限ID
+		var permIds = $("#module_" + moduleId).val();
+		// 转换成数组
+		var permArray = permIds.split(",");
+		// 将此模块下所有权限取消选中
+		for ( var i = 0; i < permArray.length; i++) {
+			var permissionId = permArray[i];
+			document.getElementById("pmsion_check_" + permissionId).checked = false;
+		}
+	}
+}
+
+//点击权限
+function permClick(_this,moduleId){
+	if (_this.checked == true) {// 判断是否选中
+		// 获取模块下所有权限ID
+		var permIds = $("#module_" + moduleId).val();
+		// 转换成数组
+		var permArray = permIds.split(",");
+		// 标记（1表示此模块下权限全部选中，2表示选中部分）
+		var moduleFlage = 1;
+		for ( var i = 0; i < permArray.length; i++) {
+			var permissionId = permArray[i];
+			// 如果此module下有权限未选中，表示选中部分
+			if (document.getElementById("pmsion_check_" + permissionId).checked == false) {
+				moduleFlage = 2;
+			}
+		}
+		if (moduleFlage == 1) {
+			// 设置此module为选中状态
+			document.getElementById("module_check_" + moduleId).checked = true;
+		}
+	}else{// 判断是否选中
+		// 只要有未选中的权限，则设置此module为未选中状态
+		document.getElementById("module_check_" + moduleId).checked = false;
+	}
+}
+
+// 设置角色相对应的权限
+function setRole(roleId){
+	// 获取所有权限ID
+	var permIds = $("#allPermission").val();
+	// 将所有权限ID放入数组（字符串转换为数组）
+	var permArray = permIds.split(",");
+	// 定义一个权限数组用于存储给此角色分配的权限ID
+	var permissonArray = new Array();
+	for ( var i = 0; i < permArray.length; i++) {
+		var permissionId = permArray[i];
+		// 判断是否选择权限
+		if (document.getElementById("pmsion_check_" + permissionId).checked == true) {
+			// 放入数组
+			permissonArray.push(permissionId);
+		}
+	}
+	var permissionIds = permissonArray.join(",");
+	if (roleId == null || roleId == "" || permissionIds == null || permissionIds == "") {
+		alert("参数错误");
+	}
+	$.ajax({
+        url: "/role/addPermission.html",
+        type:'post',
+        async:false,
+        data:{roleId:roleId,permissionIds:permissionIds},
+        success:function(data){
+        	if(data.success){
+        		alert("角色权限设置成功");
+                setTimeout('refreshPage()',1000); //1秒后刷新
+        	}else{
+                alert(data.errorMsg);
+            }
+        }
+    });
+}
+
+/**
+ * 刷新页面
+ */
+function refreshPage(){
+	window.location.reload();
+}
+</script>

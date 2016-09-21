@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td { margin:0; padding:0; }
+
+
+
+a{
+  text-decoration:none;
+  }  /*超级链接，无下划线*/
+a:hover{
+  text-decoration:underline;
+  }  /*鼠标经过时，有下划线*/
+  
+
+input[type="button"],
+button{
+appearance:button;
+-moz-appearance:button; /* Firefox */
+-webkit-appearance:button; /* Safari 和 Chrome 处理ios圆角问题*/
+webkit-appearance:button; 
+-webkit-appearance: none;/*取消自带样式（无法渲染圆角）*/
+-moz-appearance:none;
+moz-appearance:none;
+}
+
+a{
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0.1);
+} /* 点击高亮*/
+select,input,option,textarea{outline:none}  /*清除outline*/
+ul,ol,li{
+	list-style:none;
+}

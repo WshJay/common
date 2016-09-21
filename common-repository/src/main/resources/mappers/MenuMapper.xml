@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.common.repository.dao.MenuDAO" > 
+	<resultMap id="MenuMap" type="MenuDO">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="resId" column="res_id"/>
+        <result property="fatherId" column="father_id"/>
+        <result property="status" column="status"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        
+        <result property="target" column="target"/>
+        <result property="allow" column="allow"/>
+   	</resultMap>
+   	
+   	<sql id="allFields">
+         id,
+         name,
+         res_id,
+         father_id,
+         status,
+         gmt_created,
+         gmt_modified
+   	</sql>
+   	
+   	<!-- 根据ID查询栏目信息 -->
+   <select id="queryById" parameterType="Long" resultMap="MenuMap">
+  		SELECT <include refid="allFields"/> FROM menu WHERE id = #{id}
+   </select>
+   	
+   <!--多条件查询栏目信息(分页) -->
+	<select id="queryByParams" parameterType="MenuDO" resultMap="MenuMap">
+		select <include refid="allFields"/> from menu 
+		where status = 0 
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')  
+		</if>
+	</select>
+	<select id="queryCountByParams" parameterType="MenuDO" resultType="int">
+		select count(id) from menu 
+		where status = 0 
+		<if test="name != null and name != ''">
+			and name like CONCAT('%',#{name},'%')  
+		</if>
+	</select>	
+	
+	<!-- 添加栏目信息-->
+	<insert id="insertMenu" parameterType="MenuDO">
+		<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+		insert into menu (name,
+         res_id,
+         father_id,
+         status,
+         gmt_created,
+         gmt_modified) VALUES(#{name},#{resId},#{fatherId},#{status},now(),now())
+	</insert>
+	
+	<!-- 修改栏目信息 -->
+	<update id="updateMenu" parameterType="MenuDO">
+		UPDATE menu SET name=#{name},res_id=#{resId},father_id=#{fatherId} WHERE id=#{id}
+	</update>
+	
+	<!-- 删除栏目信息 -->
+	<delete id="deleteById" parameterType="Long">
+		DELETE FROM menu where id=#{id}
+	</delete>
+   	
+    <!-- 查询所有一级栏目信息 -->
+    <select id="queryAllFatherMenu" resultMap="MenuMap">
+       SELECT <include refid="allFields"/> FROM menu WHERE status = 0 and father_id = 0
+    </select>
+    
+    <!-- 查询所有非一级栏目信息 -->
+    <select id="queryAllChildrenMenu" resultMap="MenuMap">
+    	SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow 
+    	FROM menu m, permission p 
+    	where p.id = m.res_id and m.status = 0
+    </select>
+    
+    <!-- 根据一级栏目ID查询子栏目信息 -->
+    <select id="queryByFatherId" parameterType="int" resultMap="MenuMap">
+       SELECT <include refid="allFields"/> FROM menu WHERE status = 0 and father_id = #{fatherId}
+    </select>
+    
+</mapper>  

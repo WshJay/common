@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xxx.common.repository.dao.app.order.AppPartyOrderDao" > 
+	<resultMap id="AppPartyOrderMap" type="AppPartyOrder">
+	    <result property="id" column="id"/>
+        <result property="appUserInfoId" column="app_user_info_id"/>
+        <result property="appPartyInfoId" column="app_party_info_id"/>
+        <result property="appPartyPieceId" column="app_party_piece_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="createTime" column="create_time"/>
+        <result property="buyNumber" column="buy_number"/>
+        <result property="price" column="price"/>
+        <result property="totalPrice" column="total_price"/>
+        <result property="status" column="status"/>
+        <result property="isOnlinePay" column="is_online_pay"/>
+        <result property="description" column="description"/>
+        <result property="tradeNo" column="trade_no"/>
+        <result property="tradeWay" column="trade_way"/>
+        <result property="mobile" column="mobile"/>
+        <result property="actualPayPrice" column="actual_pay_price"/>
+        <result property="actualNeedPrice" column="actual_need_price"/>
+        <result property="actualDiscountPrice" column="actual_discount_price"/>
+        <result property="actualDeductPrice" column="actual_deduct_price"/>
+        <result property="exchangeNumber" column="exchange_number"/>
+        <result property="refundNumber" column="refund_number"/>
+        <result property="waitNumber" column="wait_number"/>
+        <result property="isLock" column="is_lock"/>
+        <result property="isUse" column="is_use"/>
+        <result property="isRate" column="is_rate"/>
+        <result property="isClose" column="is_close"/>
+        <result property="jifenCost" column="jifen_cost"/>
+        <result property="isBalance" column="is_balance"/>
+        <result property="refundLimit" column="refund_limit"/>
+        <result property="lastModifyTime" column="last_modify_time"/>
+        <result property="tradeTime" column="trade_time"/>
+        <result property="realName" column="real_name"/>
+        <result property="deleteStatus" column="delete_status"/>
+        <result property="balanceMoney" column="balance_money"/>
+        <result property="useTime" column="use_time"/>
+    </resultMap>
+    
+    <!-- 按钮点击数量 -->
+    <resultMap id="BaseMap" type="SimpleMapDO">
+	    <result property="key" column="key_clm"/>
+        <result property="value" column="value_clm"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+		app_user_info_id,
+		app_party_info_id,
+		app_party_piece_id,
+		order_no,
+		create_time,
+		buy_number,
+		price,
+		total_price,
+		status,
+		is_online_pay,
+		description,
+		trade_no,
+		trade_way,
+		mobile,
+		actual_pay_price,
+		actual_need_price,
+		actual_discount_price,
+		actual_deduct_price,
+		exchange_number,
+		refund_number,
+		wait_number,
+		is_lock,
+		is_use,
+		is_rate,
+		is_close,
+		jifen_cost,
+		is_balance,
+		refund_limit,
+		last_modify_time,
+		trade_time,
+		real_name,
+		delete_status,
+		balance_money,
+		use_time
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="loadById" parameterType="int" resultMap="AppPartyOrderMap">
+        SELECT <include refid="allSelectionColumn"/> FROM app_party_order WHERE id = #{value} LIMIT 1
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="AppPartyOrder">
+		<selectKey resultType="int" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+        INSERT INTO app_party_order (
+		 app_user_info_id, 
+		 app_party_info_id, 
+		 app_party_piece_id, 
+		 order_no, 
+		 create_time, 
+		 buy_number, 
+		 price, 
+		 total_price, 
+		 status, 
+		 is_online_pay, 
+		 description, 
+		 trade_no, 
+		 trade_way, 
+		 mobile, 
+		 actual_pay_price, 
+		 actual_need_price, 
+		 actual_discount_price, 
+		 actual_deduct_price, 
+		 exchange_number, 
+		 refund_number, 
+		 wait_number, 
+		 is_lock, 
+		 is_use, 
+		 is_rate, 
+		 is_close, 
+		 jifen_cost, 
+		 is_balance, 
+		 refund_limit, 
+		 last_modify_time, 
+		 trade_time, 
+		 real_name, 
+		 delete_status, 
+		 balance_money, 
+		 use_time
+		 )  VALUES (
+		 #{appUserInfoId}, 
+		 #{appPartyInfoId}, 
+		 #{appPartyPieceId}, 
+		 #{orderNo}, 
+		 #{createTime}, 
+		 #{buyNumber}, 
+		 #{price}, 
+		 #{totalPrice}, 
+		 #{status}, 
+		 #{isOnlinePay}, 
+		 #{description}, 
+		 #{tradeNo}, 
+		 #{tradeWay}, 
+		 #{mobile}, 
+		 #{actualPayPrice}, 
+		 #{actualNeedPrice}, 
+		 #{actualDiscountPrice}, 
+		 #{actualDeductPrice}, 
+		 #{exchangeNumber}, 
+		 #{refundNumber}, 
+		 #{waitNumber}, 
+		 #{isLock}, 
+		 #{isUse}, 
+		 #{isRate}, 
+		 #{isClose}, 
+		 #{jifenCost}, 
+		 #{isBalance}, 
+		 #{refundLimit}, 
+		 #{lastModifyTime}, 
+		 #{tradeTime}, 
+		 #{realName}, 
+		 #{deleteStatus}, 
+		 #{balanceMoney}, 
+		 #{useTime})
+    </insert>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM  app_party_order WHERE id=#{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO app_party_order (
+		 id, 
+		 app_user_info_id, 
+		 app_party_info_id, 
+		 app_party_piece_id, 
+		 order_no, 
+		 create_time, 
+		 buy_number, 
+		 price, 
+		 total_price, 
+		 status, 
+		 is_online_pay, 
+		 description, 
+		 trade_no, 
+		 trade_way, 
+		 mobile, 
+		 actual_pay_price, 
+		 actual_need_price, 
+		 actual_discount_price, 
+		 actual_deduct_price, 
+		 exchange_number, 
+		 refund_number, 
+		 wait_number, 
+		 is_lock, 
+		 is_use, 
+		 is_rate, 
+		 is_close, 
+		 jifen_cost, 
+		 is_balance, 
+		 refund_limit, 
+		 last_modify_time, 
+		 trade_time, 
+		 real_name, 
+		 delete_status, 
+		 balance_money, 
+		 use_time
+		 )  VALUES 
+		 <foreach collection="list" item="item" index="index" separator=",">
+		(
+		 #{item.id}, 
+		 #{item.appUserInfoId}, 
+		 #{item.appPartyInfoId}, 
+		 #{item.appPartyPieceId}, 
+		 #{item.orderNo}, 
+		 #{item.createTime}, 
+		 #{item.buyNumber}, 
+		 #{item.price}, 
+		 #{item.totalPrice}, 
+		 #{item.status}, 
+		 #{item.isOnlinePay}, 
+		 #{item.description}, 
+		 #{item.tradeNo}, 
+		 #{item.tradeWay}, 
+		 #{item.mobile}, 
+		 #{item.actualPayPrice}, 
+		 #{item.actualNeedPrice}, 
+		 #{item.actualDiscountPrice}, 
+		 #{item.actualDeductPrice}, 
+		 #{item.exchangeNumber}, 
+		 #{item.refundNumber}, 
+		 #{item.waitNumber}, 
+		 #{item.isLock}, 
+		 #{item.isUse}, 
+		 #{item.isRate}, 
+		 #{item.isClose}, 
+		 #{item.jifenCost}, 
+		 #{item.isBalance}, 
+		 #{item.refundLimit}, 
+		 #{item.lastModifyTime}, 
+		 #{item.tradeTime}, 
+		 #{item.realName}, 
+		 #{item.deleteStatus}, 
+		 #{item.balanceMoney}, 
+		  #{item.useTime})
+		 </foreach>		 
+    </insert>
+    
+    <!-- 根据订单状态查询用户购买数量 -->
+    <select id="queryBuyNumberByStatusList" resultMap="BaseMap">
+    	SELECT app_user_info_id AS key_clm, SUM(buy_number) AS value_clm FROM app_party_order 
+    	WHERE status IN(
+    	<foreach collection="list" item="item" index="index" separator=",">
+		 #{item}
+		 </foreach>)		
+    	GROUP BY app_user_info_id 
+    </select>
+</mapper>  

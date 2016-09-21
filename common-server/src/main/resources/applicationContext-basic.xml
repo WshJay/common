@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+   http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+   http://www.springframework.org/schema/jdbc 
+   http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+  http://www.springframework.org/schema/task 
+  http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+	
+	<!-- 如果要引入其他项目的包，注意service和dao的包路径 也要给扫描进来--> 
+	<context:component-scan base-package="com.duoju.app" />
+	
+	<!-- 定时任务注解驱动 启动对@Scheduled注解的支持（定时任务） -->
+	<task:annotation-driven/> 
+	
+	<context:annotation-config />
+
+	<!-- properties -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath*:/config/system.properties</value>
+				<value>classpath*:/config/jdbc.properties</value>
+			</list>
+		</property>
+	<!-- 配置编码可能会导致  Could not resolve placeholder 'jdbc.driverClassName' in string value "${jdbc.driverClassName}" 去掉即可-->
+	 <!-- <property name="fileEncoding"> 
+       		<value>UTF-8</value> 
+     	</property>  -->
+	</bean>
+	
+
+	<!-- dataSource -->
+	<bean id="dataSourceTarget" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		
+		<property name="filters" value="${druid.filters}" />  
+		<property name="initialSize" value="${druid.initialSize}" /> 
+        <property name="maxActive" value="${druid.maxActive}" />  
+        <property name="maxWait" value="${druid.maxWait}" />  
+        <property name="maxIdle" value="${druid.maxIdle}" /> 
+        <property name="minIdle" value="${druid.minIdle}" />  
+  
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />  
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />  
+  
+        <property name="validationQuery" value="${druid.validationQuery}" />  
+        <property name="testWhileIdle" value="${druid.testWhileIdle}" />  
+        <property name="testOnBorrow" value="${druid.testOnBorrow}" />  
+        <property name="testOnReturn" value="${druid.testOnReturn}" /> 
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" /> 
+        <property name="maxOpenPreparedStatements"  value="${druid.maxOpenPreparedStatements}" />  
+        <property name="removeAbandoned" value="${druid.removeAbandoned}" /> 
+        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" /> 
+        <property name="logAbandoned" value="${druid.logAbandoned}" /> 
+    </bean>  
+		
+
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceTarget" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!--mybatis3 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!--alias包名  自动把model生成别名-->
+		<property name="typeAliasesPackage" value="com.duoju.app.model" />
+		<property name="configLocation" value="classpath:/config/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:/mapper/**/*Mapper.xml" />
+	</bean>
+	
+	<!--  事务驱动关闭:查询select-SQL语句对于Atlas生效  Atlas有事务的时候，不管读写都是强制走主库
+	(注意,后期需要把事务驱动开启，只要select查询service方法不走事务，隔离事务级别即可propagation=Propagation.NOT_SUPPORTED) 
+	事务要合理使用，查询语句不要事务，一些业务逻辑需要用到事务在加注解开启事务即可
+	
+	开启事务Mysql会重做日志有一条SQL就重做一下:redo log 曾大IO
+	手动提交事务和自动提交事务区别:
+	手动提交(代码侵入性强，需要声明式事务)：它则把事务处理将由你来完成，在发生异常时，可以进行事务回滚，保持事务的一致。()
+	自动提交（数据库默认）：在做记录更新时，系统会自动提交,不能保持事务的一致性，也就不能保证数据完整。有一条语句就redo log一下
+　　  
+	
+	手动提交事务： 可以控制整个程序的任务完成情况和完成的逻辑。数据添加成功，打印失败，造成的结果就是：数据显示未结账，也没有账单打印出来。数据就是一致的！
+	自动提交：只管你数据库添加是否成功，打印机有没有打印账单就不能控制了，造成的结果就是，数据显示已结账，但是没有账单打印出来。那么就出现数据不一致的情况。
+	手动的话：整个任务完成，就完成，中间任何一个环节出错 就等于什么都没做
+	自动提交：整个任务完成一个是算一个！
+
+	Mysql默认隔离级别 READ-COMMITTED 读提交
+	Spring事务隔离级别:ISOLATION_DEFAULT, 这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别.
+	Spring事务传播:REQUIRED 如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。这是最常见的选择,保证数据一致性.
+	-->
+	<!--<tx:annotation-driven transaction-manager="transactionManager" /> -->
+	
+	<!-- 事务是AOP的，可以把事务切入点换成action层 -->
+	<!--<aop:config>  
+	        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(* com.huifeng.disagree.*.action.*.*(..))"/>  
+	</aop:config> -->
+	
+	<!-- 
+	数据库引擎是InnoDB
+	<tx:annotation-driven transaction-manager="transactionManager"  proxy-target-class="true"/>
+　　 注意：proxy-target-class属性值决定是基于接口的还是基于类的代理被创建。
+	如果proxy-target-class 属性值被设置为true，那么基于类的代理将起作用（这时需要cglib库 cglib-nodep-2.2.jar）。
+	强制使用CGLIB代理  <aop:aspectj-autoproxy proxy-target-class="true" />
+	如果proxy-target-class属值被设置为false或者这个属性被省略，那么标准的JDK 基于接口的代理将起作用。
+	即使你未声明 proxy-target-class="true" ，但运行类没有继承接口，spring也会自动使用CGLIB代理。
+	高版本spring自动根据运行类选择 JDK 或 CGLIB 代理 
+	
+	Spring事务异常回滚，捕获异常不抛出就不会回滚
+	 默认spring事务只在发生未被捕获的 runtimeexcetpion时才回滚。  
+    spring aop  异常捕获原理：被拦截的方法需显式抛出异常，并不能经任何处理，这样aop代理才能捕获到方法的异常，才能进行回滚，默认情况下aop只捕获runtimeexception的异常，但可以通过  
+	配置来捕获特定的异常并回滚  
+	  换句话说在service的方法中不使用try catch 或者在catch中最后加上throw new runtimeexcetpion（），这样程序异常时才能被aop捕获进而回滚 
+	  解决方案： 
+	  方案1.例如service层处理事务，那么service中的方法中不做异常捕获，或者在catch语句中最后增加throw new RuntimeException()语句，以便让aop捕获异常再去回滚，并且在service上层（webservice客户端，view层action）要继续捕获这个异常并处理 
+	  方案2.在service层方法的catch语句中增加：TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();语句，手动回滚，这样上层就无需去处理异常（现在项目的做法）
+	-->
+	<!-- 开启事务驱动 使用annotation定义事务  -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+		
+
+	<!-- 映射器接口文件设置基本的包路径 并自动生成DAO接口DaoImpl的实现 内置已经创建SqlSessionFactory -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.duoju.app.dao,com.duoju.app.easemob.dao" />
+		<property name="processPropertyPlaceHolders" value="true" />
+	</bean>
+	
+	<!-- 创建JobFactory,解决定时任务无法调用Spring bean问题 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobFactory" ref="jobFactory"/>
+	</bean>
+	
+</beans>
