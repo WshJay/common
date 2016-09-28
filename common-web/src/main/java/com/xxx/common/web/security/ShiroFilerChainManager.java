@@ -1,9 +1,11 @@
-package com.xxx.common.server.service.impl;
+package com.xxx.common.web.security;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import javax.annotation.PostConstruct;
+import com.xxx.common.repository.dao.PermissionDAO;
+import com.xxx.common.repository.dao.RoleDAO;
+import com.xxx.common.repository.dao.RolePermissionDAO;
+import com.xxx.common.repository.entity.PermissionDO;
+import com.xxx.common.repository.entity.RoleDO;
+import com.xxx.common.repository.entity.RolePermissionDO;
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
 import org.apache.shiro.web.filter.mgt.NamedFilterList;
@@ -11,15 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.xxx.common.repository.dao.PermissionDAO;
-import com.xxx.common.repository.dao.RoleDAO;
-import com.xxx.common.repository.dao.RolePermissionDAO;
-import com.xxx.common.repository.entity.PermissionDO;
-import com.xxx.common.repository.entity.RoleDO;
-import com.xxx.common.repository.entity.RolePermissionDO;
+
+import javax.annotation.PostConstruct;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 @Service("shiroFilerChainManager")
-public class ShiroFilerChainManager{
+public class ShiroFilerChainManager {
 
 	@Autowired
     private DefaultFilterChainManager filterChainManager;

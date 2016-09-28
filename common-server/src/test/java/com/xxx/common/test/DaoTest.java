@@ -1,14 +1,12 @@
 package com.xxx.common.test;
 
-import java.lang.reflect.Field;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.xxx.common.repository.dao.*;
+import com.xxx.common.repository.entity.MenuDO;
+import com.xxx.common.repository.entity.RoleDO;
+import com.xxx.common.repository.entity.UserBasicDO;
+import com.xxx.common.repository.entity.UserRoleDO;
+import com.xxx.common.repository.entity.app.user.AppUserInfo;
+import com.xxx.common.util.exception.BusinessException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -17,24 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.xxx.common.repository.dao.MenuDAO;
-import com.xxx.common.repository.dao.PermissionDAO;
-import com.xxx.common.repository.dao.RoleDAO;
-import com.xxx.common.repository.dao.UserBasicDAO;
-import com.xxx.common.repository.dao.UserRoleDAO;
-import com.xxx.common.repository.dao.app.user.AppUserInfoDao;
-import com.xxx.common.repository.entity.MenuDO;
-import com.xxx.common.repository.entity.PermissionDO;
-import com.xxx.common.repository.entity.RoleDO;
-import com.xxx.common.repository.entity.UserBasicDO;
-import com.xxx.common.repository.entity.UserRoleDO;
-import com.xxx.common.repository.entity.app.user.AppUserInfo;
-import com.xxx.common.util.exception.BusinessException;
-import com.xxx.common.util.shiro.encrypt.HashPwd;
-import com.xxx.common.util.shiro.encrypt.HashPwd.HashPassword;
+import java.lang.reflect.Field;
+import java.util.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/dal.xml", "classpath:/bean-scan.xml"})
+@ContextConfiguration(locations = { "classpath:/dal.xml"})
 public class DaoTest {
 	
 	@Autowired
@@ -51,9 +36,6 @@ public class DaoTest {
 	
 	@Autowired
 	private MenuDAO menuDAO;
-	
-	@Autowired
-	private AppUserInfoDao appUserInfoDao;
 	
 	private final Logger log = LoggerFactory.getLogger(DaoTest.class);
 	
@@ -87,9 +69,7 @@ public class DaoTest {
 		Set<Integer> userIdSet = new HashSet<Integer>();
 		userIdSet.add(0);
 		userIdSet.add(1);
-		List<AppUserInfo> userList = appUserInfoDao.queryListByUserIdList(new ArrayList<Integer>(userIdSet));
-		Map<String, AppUserInfo> userMap = covertMap("userId", userList);
-		
+
 	}
 	
 	public <T> Map<String, T> covertMap(String key, List<T> list) {
@@ -174,6 +154,12 @@ public class DaoTest {
 //		permissionDO.setCreateUserId(createUserId);
 //		return permissionDAO.insertPermission(permissionDO);
 //	}
+
+	@Test
+	public void collectionTest(){
+		List<MenuDO> menuDOList = menuDAO.queryAllChildrenMenu();
+		System.out.println(menuDOList.size());
+	}
 
 }
 

@@ -1,6 +1,6 @@
 package com.xxx.common.test.eum;
 
-import static com.xxx.common.test.eum.ObjToEnum.objToEnum;
+
 import static com.xxx.common.test.eum.WithdrawStatus.AUDIT_SUCCESS;
 
 /**
@@ -14,10 +14,18 @@ public class Test {
     @org.junit.Test
     public void test(){
         Object obj = "AUDIT_SUCCESS";
-        WithdrawStatus withdrawStatus = ObjToEnum.objToEnum(obj);
+        System.out.println(obj);
+        WithdrawStatus withdrawStatus = EnumUtil.objToEnum(obj);
         System.out.println(withdrawStatus);
         System.out.println(withdrawStatus.equals(AUDIT_SUCCESS));
         System.out.println(withdrawStatus == AUDIT_SUCCESS);
         System.out.println();
+
+        System.out.println(EnumUtil.EnumToString(WithdrawStatus.BADGATEWAY));
+
+        Person person1 = Person.MAN;
+        System.out.println(person1);
+        Person.MAN.work();
+        Person.WOMEN.work();
     }
 }

@@ -10,6 +10,9 @@
 
 	<description>Shiro安全配置</description>
 
+	<!-- 初始化 -->
+	<bean id="shiroFilerChainManager" class="com.xxx.common.web.security.ShiroFilerChainManager"/>
+
 	<!-- 缓存管理器 使用Ehcache实现 -->  
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
 	    <!-- 设置ehcache缓存的配置文件 -->

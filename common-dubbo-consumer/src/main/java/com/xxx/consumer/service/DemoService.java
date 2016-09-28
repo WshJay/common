@@ -8,6 +8,7 @@ package com.xxx.consumer.service;
  * @author wsh(王树辉) [wsh.ck@qq.com]
  * @since Date： 2014-5-23 上午10:55:51
  */
+
 public interface DemoService {
 
 	public String sayHello();

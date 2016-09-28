@@ -1,5 +1,7 @@
 package common.xxx.consumer;
 
+import com.xxx.consumer.service.DemoAService;
+import com.xxx.consumer.service.DemoBService;
 import com.xxx.consumer.service.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,11 +23,20 @@ public class ConsumerTest {
     @Resource
     private DemoService demoService;
 
+    @Resource
+    private DemoAService demoAService;
+
+    @Resource
+    private DemoBService demoBService;
+
     @Test
     public void test(){
         System.out.println("--------Test Start-----------");
         String hello = demoService.sayHello();
         System.out.println(hello);
+
+        demoAService.aMethod();
+        demoBService.bMethod();
         System.out.println("--------Test End-----------");
 
     }

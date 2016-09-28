@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml"})
-public class TestException1 extends Exception1{
+public class TestException1{
 	
 	private final Logger log = LoggerFactory.getLogger(TestException1.class);
 

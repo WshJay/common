@@ -1,10 +1,8 @@
 package org.wsh.dubbo.service.impl;
 
 import com.xxx.consumer.service.DemoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static javafx.scene.input.KeyCode.L;
+import org.springframework.stereotype.Service;
+import org.wsh.dubbo.service.base.BaseService;
 
 /**
  * DemoService实现类
@@ -12,11 +10,9 @@ import static javafx.scene.input.KeyCode.L;
  * @author wsh(王树辉) [wsh.ck@qq.com]
  * @since Date： 2014-5-23 上午10:57:39
  */
-public class DemoServiceImpl implements DemoService {
+@Service("demoService")
+public class DemoServiceImpl extends BaseService implements DemoService {
 
-	Logger log = LoggerFactory.getLogger(DemoServiceImpl.class);
-
-	
 	private int count;
 
 	public String sayHello() {

@@ -13,7 +13,7 @@
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost/common"/>
         <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="wsh0704"/>
         <property name="idleConnectionTestPeriodInSeconds" value="14400"/>
         <property name="idleMaxAgeInSeconds" value="3600"/>
         <property name="maxConnectionsPerPartition" value="4"/>
