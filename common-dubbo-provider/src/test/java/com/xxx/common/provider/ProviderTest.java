@@ -1,6 +1,6 @@
 package com.xxx.common.provider;
 
-import com.xxx.consumer.service.DemoService;
+import org.wsh.common.consumer.service.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

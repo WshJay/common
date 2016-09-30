@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- 使用annotation 自动注册bean,并保证@Required,@Autowired的属性被注入 -->
-	<context:component-scan base-package="com.xxx.common.test.service">
-		  <context:include-filter type="aspectj" expression="com.xxx..*ServiceImpl" /> 
-	</context:component-scan>
+    <!-- <bean class="com.xxx.common.test.order.OfficialPartyOrder" />
+    <bean class="com.xxx.common.test.order.UserPartyOrder" />
+    <bean id="quartzManagerService"
+        class="com.xxx.common.test.service.job.impl.QuartzManagerServiceImpl" />
+    <bean id="userService" class="com.xxx.common.server.service.impl.UserServiceImpl" />
+    <bean id="simpleJob" class="com.xxx.common.test.job.SimpleJob" />
 
-	<!-- <bean class="com.xxx.common.test.order.OfficialPartyOrder" />
-	<bean class="com.xxx.common.test.order.UserPartyOrder" />
-	<bean id="quartzManagerService"
-		class="com.xxx.common.test.service.job.impl.QuartzManagerServiceImpl" />
-	<bean id="userService" class="com.xxx.common.server.service.impl.UserServiceImpl" />
-	<bean id="simpleJob" class="com.xxx.common.test.job.SimpleJob" />
-	
-	<bean id="jobFactory" class="com.xxx.common.test.job.JobFactory"/> -->
-	
-	<!-- 创建JobFactory,解决定时任务无法调用Spring bean问题 -->
-	<bean id="" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="jobFactory" ref="jobFactory"/>
-	</bean>
-	
-	<!-- 强制使用CGLIB代理 -->
-	<aop:aspectj-autoproxy proxy-target-class="true" />
+    <bean id="jobFactory" class="com.xxx.common.test.job.JobFactory"/> -->
 
-	<!-- 普通注入 <bean id="testService" class="com.xxx.common.test.service.impl.TestServiceImpl"></bean> 
-		<bean id="beanTest" class="com.xxx.common.test.spring.ioc.BeanTest"> <property 
-		name="testService" ref="testService"/> <property name="userName" value="123"/> 
-		</bean> -->
+    <!-- 创建JobFactory,解决定时任务无法调用Spring bean问题 -->
+    <!--<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+    <!--<property name="jobFactory" ref="jobFactory"/>-->
+    <!--</bean>-->
 
+    <!-- 强制使用CGLIB代理 -->
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+
+    <!-- 普通注入  -->
+    <bean id="testService" class="org.wsh.common.test.service.impl.TestServiceImpl">
+        <property name="userName" value="123"/>
+    </bean>
 </beans>
 
 

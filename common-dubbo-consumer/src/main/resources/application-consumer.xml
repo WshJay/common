@@ -11,9 +11,9 @@
 
     <dubbo:registry  protocol="zookeeper" address="121.43.116.29:2181" />
     <!-- 要引用的服务 -->
-    <dubbo:reference interface="com.xxx.consumer.service.DemoService" id="demoService"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoService" id="demoService"/>
 
-    <dubbo:reference interface="com.xxx.consumer.service.DemoAService" id="demoAService"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoAService" id="demoAService"/>
 
-    <dubbo:reference interface="com.xxx.consumer.service.DemoBService" id="demoBService"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoBService" id="demoBService"/>
 </beans>

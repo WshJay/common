@@ -43,6 +43,6 @@
 	<tool>
 		<key>vmUtil</key>
 		<scope>application</scope>
-		<class>com.xxx.common.web.util.VmUtil</class>
+		<class>org.wsh.common.web.util.VmUtil</class>
 	</tool>
 </toolbox> 

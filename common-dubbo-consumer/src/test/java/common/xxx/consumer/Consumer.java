@@ -1,10 +1,7 @@
 package common.xxx.consumer;
 
-import com.xxx.consumer.service.DemoService;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.wsh.common.consumer.service.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 
 /**
  * @author wsh
