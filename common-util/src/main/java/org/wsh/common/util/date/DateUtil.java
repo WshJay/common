@@ -181,7 +181,7 @@ public class DateUtil {
 	
 	/**
 	 * 日期转换(Date转为Date)
-	 * @param dateStr
+	 * @param date
 	 * @param format
 	 * @return
 	 */
@@ -200,7 +200,7 @@ public class DateUtil {
 	
 	/**
 	 * 日期转换(Date转为String)
-	 * @param dateStr
+	 * @param date
 	 * @param format
 	 * @return
 	 */
@@ -374,7 +374,6 @@ public class DateUtil {
             formatTimeStr = sdf.format(date);  
         }  
         return formatTimeStr;  
-     }  
-	
+     }
 }
 
