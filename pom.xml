@@ -23,7 +23,6 @@
         <module>common-test</module>
         <module>common-dubbo-provider</module>
         <module>common-dubbo-consumer</module>
-        <module>commmon-doc</module>
         <module>common-resources</module>
         <!--
         <module>common-think-in-java</module>
