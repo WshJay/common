@@ -1,0 +1,9 @@
+#set($layout = '/layout/blank.vm')
+<form id="moduleForm" class="form-horizontal" method="post" role="form">
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1">模块名称</label>
+		<div class="col-sm-9">
+			<input type="text" id="name" name="name" placeholder="请输入模块名称" class="col-xs-10 col-sm-5" />
+		</div>
+	</div>
+</form>

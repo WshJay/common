@@ -1,0 +1,26 @@
+#set($layout='/layout/blank.vm')
+<div>
+	This is Test Page!
+</div>
+<script src="/assets/jquery-2.0.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url:"/test.do",
+		type:"GET",
+		success:function(data){
+			var jsonData = eval(data.data);
+			jQuery.each(jsonData, function(k, v) {
+				jQuery.each(v, function(k1, v1) {
+					jQuery.each(v1, function(k2, v2) {
+						alert(v2.apply_code + " " + v2.content);
+					});
+				});
+			});
+		},
+		error:function(request){
+			alert("请求失败");
+		}
+	},"json");
+});
+</script>

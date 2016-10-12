@@ -1,0 +1,22 @@
+#set($layout='/layout/blank.vm')
+<div>
+    This is Test Page!
+</div>
+<script src="/assets/jquery-2.0.3/jquery.min.js"></script>
+<script src="/assets/plugins/layer-1.9.3/layer/layer.js"></script>
+<script>
+    var str = '<div>申请理由:<textarea id="buyerMsg" class="form-control" rows="3"></textarea></div>';
+    var toRefund = $.layer({
+        area: ['300', '200'],
+        title: '申请退款',
+        dialog: {
+            msg: str,
+            btns: 1,
+            type: 2,
+            btn: ['确定'],
+            yes: function () {
+                layer.msg("yes");
+            }
+        }
+    });
+</script>

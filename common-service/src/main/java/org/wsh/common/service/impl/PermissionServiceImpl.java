@@ -2,6 +2,8 @@ package org.wsh.common.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.wsh.common.dao.RolePermissionDAO;
+import org.wsh.common.model.basic.RolePermissionDO;
 import org.wsh.common.service.api.PermissionService;
 import org.wsh.common.dao.PermissionDAO;
 import org.wsh.common.enums.expection.Errors;
@@ -22,6 +24,9 @@ public class PermissionServiceImpl implements PermissionService {
 	
 	@Autowired
 	private PermissionDAO permissionDAO;
+
+	@Autowired
+	private RolePermissionDAO rolePermissionDAO;
 
 	@Override
 	public int addPermission(PermissionDO permissionDO) {
@@ -46,6 +51,11 @@ public class PermissionServiceImpl implements PermissionService {
 	@Override
 	public List<PermissionDO> getAllPermission() {
 		return permissionDAO.queryAll();
+	}
+
+	@Override
+	public List<RolePermissionDO> getRolePermissionList() {
+		return rolePermissionDAO.getRolePermissionDOList();
 	}
 
 	@SuppressWarnings("unchecked")

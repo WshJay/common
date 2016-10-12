@@ -1,0 +1,17 @@
+#set($layout = '/layout/blank.vm')
+<form id="roleForm" class="form-horizontal" method="post" action="/role/addRole.html" role="form">
+	<input type="hidden" value="$!parameter.id" name="id">
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1">角色名称</label>
+		<div class="col-sm-9">
+			<input type="text" name="roleName" value="$!parameter.roleName" class="col-xs-10 col-sm-5" />
+		</div>
+	</div>
+	<div class="space-4"></div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2">角色代码</label>
+		<div class="col-sm-9">
+			<input type="text" name="roleCode" value="$!parameter.roleCode" class="col-xs-10 col-sm-5" />
+		</div>
+	</div>
+</form>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+	default-lazy-init="true">
+
+	<description>Shiro安全配置</description>
+
+	<!-- 初始化 -->
+	<bean id="shiroFilerChainManager" class="org.wsh.common.rest.security.ShiroFilerChainManager"/>
+
+	<!-- 缓存管理器 使用Ehcache实现 -->  
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+	    <!-- 设置ehcache缓存的配置文件 -->
+	    <property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+	</bean> 
+	
+	<!-- 会话Cookie管理，如果使用rememberMe则用户默认处于登录状态，关闭浏览器也一样，重要页面可以使用authc进行验证 -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+	    <constructor-arg value="rememberMe"/>
+	    <property name="httpOnly" value="true"/>
+	    <!-- Cookie保存30天 -->
+	    <property name="maxAge" value="2592000"/>
+	</bean> 
+	
+	<!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- 设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期 -->
+        <property name="globalSessionTimeout" value="1800000"/>
+        <!-- 回话过期后是否删除数据 -->
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>  
+	
+	<!-- 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+	    <property name="realms">
+			<list>
+				<ref bean="shiroDbRealm" />
+			</list>
+		</property>
+	    <!-- <property name="cacheManager" ref="cacheManager"/> -->
+	</bean>
+	
+	<!-- 項目自定义的Realm,用于用户登录及权限验证 -->
+	<bean id="shiroDbRealm" class="org.wsh.common.rest.security.ShiroDbRealm">
+		<!-- 启用缓存，默认false(当用户信息或权限改变时则需要清除缓存) -->
+	    <property name="cachingEnabled" value="true"/>
+	    <!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
+	    <property name="authenticationCachingEnabled" value="true"/>
+	    <!-- 启用授权缓存，即缓存AuthorizationInfo信息，默认false -->
+	    <property name="authorizationCachingEnabled" value="true"/>
+	</bean>
+	
+	<!-- 并发登录人数控制 -->
+	<bean id="kickoutSessionControlFilter" class="org.wsh.common.rest.filter.KickoutSessionControlFilter">
+	    <property name="cacheManager" ref="cacheManager"/>  
+	    <!-- 用于根据会话ID，获取会话进行踢出操作的 -->
+	    <property name="sessionManager" ref="sessionManager"/>  
+	    <!-- 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户 -->
+	    <property name="kickoutAfter" value="false"/>  
+	    <!-- 同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录 -->
+	    <property name="maxSession" value="1"/>  
+	    <!-- 被踢出后重定向到的地址 -->
+	    <property name="kickoutUrl" value="/login.html?kickout=1"/>  
+	</bean>   
+
+	<!-- 登录失败次数限制 -->
+	<bean id="passwordMatcher" class="org.wsh.common.rest.security.LoginRetryLimit"/>
+
+	<!-- 登录成功后调用 -->
+	<bean id="loginSuccessFilter" class="org.wsh.common.rest.filter.LoginSuccessFilter"/>
+	<bean id="myUserFilter" class="org.wsh.common.rest.filter.MyUserFilter"/>
+	<!--  -->
+	<bean id="filterChainManager" class="org.wsh.common.rest.security.shiro.CustomDefaultFilterChainManager">
+        <property name="loginUrl" value="/login.html"/>
+        <property name="successUrl" value="/index.html"/>
+        <property name="unauthorizedUrl" value="/403.html"/>
+        <property name="customFilters">
+			<util:map>
+				<entry key="authc" value-ref="loginSuccessFilter" />
+				<entry key="user" value-ref="myUserFilter" />
+			</util:map>
+		</property>
+        <property name="defaultFilterChainDefinitions">
+            <value>
+            	/assets/** = anon
+            	/login.html = authc
+            	/index.html = authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="filterChainResolver" class="org.wsh.common.rest.security.shiro.CustomPathMatchingFilterChainResolver">
+        <property name="customDefaultFilterChainManager" ref="filterChainManager"/>
+    </bean>
+
+    <!-- Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="shiroFilter"/>
+        <property name="targetMethod" value="setFilterChainResolver"/>
+        <property name="arguments" ref="filterChainResolver"/>
+    </bean>
+    
+		<!-- Shiro的Web过滤器
+		<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+			<property name="securityManager" ref="securityManager" />
+			<property name="loginUrl" value="/login.html" />
+			<property name="successUrl" value="/user/list.html" />
+			<property name="unauthorizedUrl" value="/nopermission.htm" />
+			<property name="filters">
+				<map>
+					<entry key="authc" value-ref="loginSuccessFilter" />
+					<entry key="user" value-ref="myUserFilter" />
+					<entry key="kickout" value-ref="kickoutSessionControlFilter"/>
+				</map>
+			</property>
+			<property name="filterChainDefinitions">
+				<value>
+					/login.html = authc
+	                /user/* = user
+	                /role/* = perms["JSGL"]
+				</value>
+			</property>
+		</bean>  --> 
+		
+		<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+			<property name="securityManager" ref="securityManager" />
+		</bean>
+		
+		<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+		<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+		<!-- AOP式方法级权限检查 -->
+		<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+			<property name="proxyTargetClass" value="true" />
+		</bean>
+		
+		<!-- 开启Shiro Spring AOP权限注解的支持 -->
+		<aop:config proxy-target-class="true"/>
+		
+</beans>

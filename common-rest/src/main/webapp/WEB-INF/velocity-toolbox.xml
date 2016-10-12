@@ -1,0 +1,48 @@
+
+<toolbox>
+	<!-- 参考网址:http://www.cnblogs.com/opaljc/archive/2012/04/20/2459685.html 
+		http://velocity.apache.org/tools/devel/generic/index.html -->
+	<!--<tool> <key>velocityUtil</key> <scope>application</scope> <class>com.wenzheng.diamond.common.VelocityUtil</class> 
+		</tool> -->
+	<tool>
+		<key>stringUtils</key>
+		<scope>application</scope>
+		<class>org.apache.commons.lang.StringUtils</class>
+	</tool>
+	<tool>
+		<key>comparisonDate</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.ComparisonDateTool</class>
+		<parameter name="format" value="yyyy-MM-dd" />
+		<parameter name="depth" value="2" />
+		<parameter name="skip" value="month" />
+	</tool>
+	<tool>
+		<key>math</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.MathTool</class>
+	</tool>
+	<tool>
+		<key>number</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.NumberTool</class>
+		<parameter name="format" value="#0.0" />
+	</tool>
+	<tool>
+		<key>sorter</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.SortTool</class>
+	</tool>
+	<tool>
+		<key>esc</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.EscapeTool</class>
+	</tool>
+	
+	<!-- 自定义的工具类 -->
+	<tool>
+		<key>vmUtil</key>
+		<scope>application</scope>
+		<class>org.wsh.common.rest.util.VmUtil</class>
+	</tool>
+</toolbox> 

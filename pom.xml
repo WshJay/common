@@ -24,6 +24,7 @@
         <module>common-dubbo-provider</module>
         <module>common-dubbo-consumer</module>
         <module>common-resources</module>
+        <module>common-rest</module>
         <!--
         <module>common-think-in-java</module>
         <module>common-deploy</module>

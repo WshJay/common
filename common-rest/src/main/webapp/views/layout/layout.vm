@@ -1,0 +1,34 @@
+#parse("/control/header.vm" )
+<body>
+#parse("/control/navbar.vm" )	
+<div class="main-container" id="main-container">
+	<script type="text/javascript">
+		try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+	</script>
+	<div class="main-container-inner">
+		<a class="menu-toggler" id="menu-toggler" href="#">
+			<span class="menu-text"></span>
+		</a>
+		#parse("/control/slider.vm" )
+		#parse("/control/menu.vm" )
+	<div class="main-content">
+		#parse("/control/breadcrumbs.vm" )	
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+					$screen_content
+					<!-- PAGE CONTENT END -->
+				</div>
+			</div>
+		</div>
+	</div><!-- /.main-content -->
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+	<i class="icon-double-angle-up icon-only bigger-110"></i>
+</a>
+</div><!-- /.main-container -->
+#parse("/control/globalJs.vm" )
+<!-- <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div> -->
+</body>
+</html>
+

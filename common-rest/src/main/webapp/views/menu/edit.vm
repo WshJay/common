@@ -1,0 +1,46 @@
+#set($layout = '/layout/blank.vm')
+<form id="menuForm" class="form-horizontal" method="post" role="form">
+	<input type="hidden" value="$!parameter.id" name="id"/>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1">栏目名称</label>
+		<div class="col-sm-9">
+			<input type="text" value="$!parameter.name" id="name" name="name" class="col-xs-10 col-sm-5" />
+		</div>
+	</div>
+	<div class="space-4"></div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2">选择父级</label>
+		<div class="col-sm-9">
+		  <select id="fatherId" name="fatherId" class="form-appselect dropdown-toggle" data-toggle="dropdown">
+		   	#if($!parameter.fatherId == 0)
+		   		<option value="0">请选择</option>
+		   	#end
+		   	#foreach($!menu in $!rootMenuList)
+		   		#if($!menu.id == $!parameter.fatherId && $!parameter.fatherId != 0)
+		   			<option value="$!menu.id" selected>$!menu.name</option>
+		   		#else
+		   			<option value="$!menu.id">$!menu.name</option>
+		   		#end
+	   		#end
+          </select>
+		</div>
+	</div>
+	<div class="space-4"></div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2">选择权限</label>
+		<div class="col-sm-9">
+			<select id="resId" name="resId" class="form-appselect dropdown-toggle" data-toggle="dropdown">
+		   	#if($!parameter.resId == 0)
+		   		<option value="0">请选择</option>
+		   	#end
+		   	#foreach($!permission in $!permList)
+		   		#if($!permission.id == $!parameter.resId)
+		   			<option value="$!permission.id" selected >$!permission.name</option>
+		   		#else
+		   			<option value="$!permission.id">$!permission.name</option>
+		   		#end
+	   		#end
+          </select>
+		</div>
+	</div>
+</form>

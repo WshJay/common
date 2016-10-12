@@ -1,6 +1,7 @@
 package org.wsh.common.service.api;
 
 import org.wsh.common.model.basic.PermissionDO;
+import org.wsh.common.model.basic.RolePermissionDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
@@ -86,5 +87,11 @@ public interface PermissionService {
 	 * @return
 	 */
 	public List<PermissionDO> getAllPermission();
+
+	/***
+	 * 获取角色权限对应关系
+	 * @return
+     */
+	public List<RolePermissionDO> getRolePermissionList();
 }
 

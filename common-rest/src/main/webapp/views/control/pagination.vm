@@ -1,0 +1,74 @@
+<div class="pagination-box text-right">
+	#if($!total && $!total>0 && $!pageSize>0)
+		<ul class="pagination pagination-sm">
+			#if($!currentPage == 0)
+				#set($currentPage = 1)
+			#end
+			#set($pageHref = "$!{pageURL}")
+			#set($prevPage = $!currentPage - 1)
+			#if($!total%$pageSize > 0)
+				#set($totalPage = $!total/$pageSize+1)
+			#else
+				#set($totalPage = $!total/$pageSize)
+			#end
+			#if($!currentPage <= 1)
+				<li><span>首页</span></li>
+		        <li><span>上一页</span></li>
+	        #else
+	        	<li><a class="btn btn-default" href="$!{pageHref}1">首页</a></li>
+				<li><a class="btn btn-default" href="$!{pageHref}$!{prevPage}">上一页</a></li>
+	        #end
+	        #set($pgTmp1 = $!currentPage - 1)
+	        #set($pgTmp2 = $!currentPage - 2)
+			#if($!currentPage < 5)
+				#if($!currentPage != 1)
+					#foreach($!pageIndex in [1..$!pgTmp1])
+						<li><a href="$!{pageHref}$!pageIndex">$!pageIndex</a></li>
+					#end
+				#end
+			#else
+				<li><a href="$!{pageHref}1">1</a></li>
+				<li><a href="$!{pageHref}2">2</a></li>
+				<li><span>...</span></li>
+				#foreach($!pageIndex in [$!pgTmp2..$!pgTmp1])
+					<li><a href="$!{pageHref}$!pageIndex">$!pageIndex</a></li>
+				#end
+			#end
+			<li class="active"><a href="$!{pageHref}$!currentPage">$!currentPage</a></li>
+	        #set($pgTmp3 = $!currentPage+1)
+			#set($pgTmp4 = $!currentPage+4)
+			#if($pgTmp4 <= $!totalPage)
+		        #foreach($!pageIndex in [$!pgTmp3..$pgTmp4])
+		        	<li><a href="$!{pageHref}$!pageIndex">$!pageIndex</a></li>
+				#end
+			#elseif($!currentPage < $!totalPage)
+				#foreach($!pageIndex in [$!pgTmp3..$!totalPage])
+		        	<li><a href="$!{pageHref}$!pageIndex">$!pageIndex</a></li>
+				#end
+			#end
+			#set($pgTmp5 = $!currentPage+5)
+			#if($!pgTmp5 < $!totalPage)
+				<li><span>...</span></li>
+			#end
+			#if($!currentPage == $!totalPage)
+				<li ><span>下一页</span></li>
+				<li ><span>末页</span></li>
+			#else
+				<li><a href="$!{pageHref}$!pgTmp3">下一页</a></li>
+				<li><a href="$!{pageHref}$!totalPage">末页 </a></li>
+			#end
+	        <li>&nbsp;跳转到第<input id="jumpPage" type="text" style="width:50px">页</li>
+	        <li><input onclick="jumpPage('$!pageHref');" type="button" class="previous" value="确定"/></li>
+	        <li>总计：$!{total}条</li>
+	    </ul>
+    #else
+        #*没有分页*#
+    #end
+</div>
+<script>
+function jumpPage(pageHref){
+	if ($("#jumpPage").val() != null && $("#jumpPage").val() != "") {
+		window.location.href = pageHref + $("#jumpPage").val();
+	}
+}
+</script>
