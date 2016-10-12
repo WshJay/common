@@ -12,6 +12,11 @@
     <artifactId>common-dubbo-consumer</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>${parent.groupId}</groupId>
+            <artifactId>common-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
