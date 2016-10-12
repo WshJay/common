@@ -3,7 +3,7 @@ package org.wsh.common.provider.service.impl;
 import org.wsh.common.consumer.service.DemoAService;
 import org.wsh.common.consumer.service.DemoBService;
 import org.springframework.stereotype.Service;
-import org.wsh.common.provider.service.base.BaseService;
+import org.wsh.common.util.logger.LoggerService;
 
 /**
  * author: wsh
@@ -12,7 +12,7 @@ import org.wsh.common.provider.service.base.BaseService;
  * since Date： 2016-09-23 10:25
  */
 @Service("demoAService")
-public class DemoABServiceImpl extends BaseService implements DemoAService, DemoBService {
+public class DemoABServiceImpl extends LoggerService implements DemoAService, DemoBService {
 
     @Override
     public void aMethod() {

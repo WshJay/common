@@ -6,16 +6,31 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd  
         http://code.alibabatech.com/schema/dubbo  
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
-        ">       
-    <dubbo:application name="app-provider" />
+        ">
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="${rpc.dubbo.application.name}" owner="${app.owner}"/>
 
-    <!-- 使用zookeeper注册中心暴露服务地址 -->
-    <dubbo:registry  protocol="zookeeper" address="121.43.116.29:2181" />
+    <!-- 使用zookeeper广播注册中心暴露服务地址 -->
+    <dubbo:registry address="${rpc.dubbo.registry.address}" timeout="20000"/>
+    <!-- <dubbo:registry id="subscribe" address="${rpc.dubbo.subscribe.address}" register="false" timeout="20000"/> -->
+
     <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20881" />
+    <dubbo:protocol name="${rpc.dubbo.protocol.name}" port="${rpc.dubbo.protocol.port}"/>
 
-    <dubbo:service interface="org.wsh.common.consumer.service.DemoService" ref="demoService"/>      <!-- 和本地bean一样实现服务 -->
+    <dubbo:monitor protocol="${rpc.dubbo.monitor.protocol}"/>
 
+    <dubbo:provider timeout="10000" retries="0" version="${rpc.dubbo.provider.version}"/>
+
+    <!-- Demo Service -->
+    <dubbo:service interface="org.wsh.common.consumer.service.DemoService" ref="demoService"/>
     <dubbo:service interface="org.wsh.common.consumer.service.DemoAService" ref="demoAService"/>
     <dubbo:service interface="org.wsh.common.consumer.service.DemoBService" ref="demoAService"/>
+
+    <!-- Basic Service -->
+    <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService" version="1.0.0"/>
+    <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService" version="1.0.0"/>
+    <dubbo:service interface="org.wsh.common.service.api.PermissionService" ref="permissionService" version="1.0.0"/>
+    <dubbo:service interface="org.wsh.common.service.api.RoleService" ref="roleService" version="1.0.0"/>
+    <dubbo:service interface="org.wsh.common.service.api.UserService" ref="userService" version="1.0.0"/>
+
 </beans>

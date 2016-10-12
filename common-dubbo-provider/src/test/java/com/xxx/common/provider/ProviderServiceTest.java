@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/application-provider.xml"})
-public class ProviderTest {
+public class ProviderServiceTest {
 
     @Resource
     private DemoService demoService;

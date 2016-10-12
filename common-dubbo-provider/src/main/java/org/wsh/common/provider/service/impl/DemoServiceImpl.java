@@ -1,8 +1,10 @@
 package org.wsh.common.provider.service.impl;
 
-import org.wsh.common.consumer.service.DemoService;
 import org.springframework.stereotype.Service;
-import org.wsh.common.provider.service.base.BaseService;
+import org.wsh.common.consumer.service.DemoService;
+import org.wsh.common.util.logger.LoggerService;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * DemoService实现类
@@ -11,7 +13,7 @@ import org.wsh.common.provider.service.base.BaseService;
  * @since Date： 2014-5-23 上午10:57:39
  */
 @Service("demoService")
-public class DemoServiceImpl extends BaseService implements DemoService {
+public class DemoServiceImpl extends LoggerService implements DemoService {
 
 	private int count;
 
@@ -19,7 +21,7 @@ public class DemoServiceImpl extends BaseService implements DemoService {
 		count++;
 		String str = "common:Hello dubbo" + count;
 		System.out.println("common服务方：" + str);
-		log.info("common服务方：" + str);
+		logger.info("common服务方：" + str);
 		return str;
 	}
 }

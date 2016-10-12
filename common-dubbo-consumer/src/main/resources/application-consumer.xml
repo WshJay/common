@@ -9,11 +9,18 @@
         ">
     <dubbo:application name="app-consumer" />
 
-    <dubbo:registry  protocol="zookeeper" address="121.43.116.29:2181" />
-    <!-- 要引用的服务 -->
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoService" id="demoService"/>
+    <dubbo:registry  protocol="zookeeper" address="localhost:2181" />
 
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoAService" id="demoAService"/>
+    <!-- Demo Service -->
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoService" id="demoService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoAService" id="demoAService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoBService" id="demoBService" version="1.0.0"/>
 
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoBService" id="demoBService"/>
+    <!-- Basic Service -->
+    <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.UserService" id="userService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.RoleService" id="roleService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.PermissionService" id="permissionService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="1.0.0"/>
+
 </beans>

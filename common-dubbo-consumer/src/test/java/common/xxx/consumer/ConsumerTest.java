@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.service.api.MenuService;
+import org.wsh.common.util.concurrent.ConcurrentUtil;
+import org.wsh.common.util.concurrent.Task;
 
 import javax.annotation.Resource;
 
@@ -29,6 +32,9 @@ public class ConsumerTest {
     @Resource
     private DemoBService demoBService;
 
+    @Resource
+    private MenuService menuService;
+
     @Test
     public void test(){
         System.out.println("--------Test Start-----------");
@@ -37,7 +43,9 @@ public class ConsumerTest {
 
         demoAService.aMethod();
         demoBService.bMethod();
-        System.out.println("--------Test End-----------");
 
+        int count = 100;
+        ConcurrentUtil.start(new Task(count,menuService,"getAllChildrenMenu"),count);
+        System.out.println("--------Test End-----------");
     }
 }
