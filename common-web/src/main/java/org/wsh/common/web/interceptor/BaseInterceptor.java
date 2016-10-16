@@ -35,12 +35,13 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 	@Autowired 
 	private MenuService menuService;
 
-	@Value("app.server.host")
+	@Value("#{system.serverHost}")
 	private String SERVER_HOST;
-	
+
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
-    	
+
+		log.info("SERVER_HOST=>" + SERVER_HOST);
 //		String queryString = request.getQueryString();
     	
 		log.info("IP: " + IpUtil.getIpAddr(request));
@@ -68,7 +69,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		String requestURL = request.getRequestURL().toString();
-		requestURL = requestURL.replace(ConstantsUtil.SERVER_HOST, "");
+		requestURL = requestURL.replace(SERVER_HOST, "");
 		List<MenuDO> menuList = menuService.getMenuList(userName, requestURL);
 		if (!CollectionUtils.isEmpty(menuList)) {
 			request.setAttribute(ModelKey.requestMenus.name(), menuList);

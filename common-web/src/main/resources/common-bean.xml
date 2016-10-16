@@ -9,6 +9,14 @@
     <!-- 引入所有properties文件 -->
     <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
 
+    <!-- 保证@Value成功调用 -->
+    <bean id="system" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <array>
+                <value>classpath:config/system.properties</value>
+            </array>
+        </property>
+    </bean>
     <import resource="classpath:config/common-db.xml"/>
     <import resource="classpath:config/common-service.xml"/>
     <import resource="classpath:common-shiro.xml"/>
