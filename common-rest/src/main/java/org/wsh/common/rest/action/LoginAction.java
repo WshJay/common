@@ -2,16 +2,20 @@ package org.wsh.common.rest.action;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.service.api.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 用户登录
@@ -23,6 +27,10 @@ import java.io.IOException;
  */
 @Controller
 public class LoginAction {
+
+	@Autowired
+	private UserService userService;
+
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request,Model model) {
@@ -34,6 +42,10 @@ public class LoginAction {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, @RequestParam(FormAuthenticationFilter.DEFAULT_PASSWORD_PARAM) String password, Model model,HttpServletRequest request) {
+		List<UserBasicDO> userBasicDOList = userService.getAllUserBasicList();
+		for (UserBasicDO userBasicDO : userBasicDOList) {
+			System.out.println(userBasicDO.getRealName());
+		}
 		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);
 		return "/login";
 	}

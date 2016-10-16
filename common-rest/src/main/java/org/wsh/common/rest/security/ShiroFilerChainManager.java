@@ -51,6 +51,9 @@ public class ShiroFilerChainManager {
 //        initFilterChains(urlFilters);
 		try {
 			List<RoleDO> roleList = roleService.getAllRole();
+			for (RoleDO roleDO : roleList) {
+				System.out.println(roleDO.getRoleName());
+			}
 			List<RolePermissionDO> rolePermissionList = permissionService.getRolePermissionList();
 			List<PermissionDO> permissionList = permissionService.getAllPermission();
 			for (RoleDO roleDO : roleList) {

@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.model.basic.RolePermissionDO;
 import org.wsh.common.service.api.MenuService;
+import org.wsh.common.service.api.PermissionService;
 import org.wsh.common.util.concurrent.ConcurrentUtil;
 import org.wsh.common.util.concurrent.Task;
 
@@ -35,6 +37,9 @@ public class ConsumerTest {
     @Resource
     private MenuService menuService;
 
+    @Resource
+    private PermissionService permissionService;
+
     @Test
     public void test(){
         System.out.println("--------Test Start-----------");
@@ -46,6 +51,8 @@ public class ConsumerTest {
 
         int count = 100;
         ConcurrentUtil.start(new Task(count,menuService,"getAllChildrenMenu"),count);
+
+        permissionService.getRolePermissionList();
         System.out.println("--------Test End-----------");
     }
 }

@@ -73,6 +73,7 @@
         <poi.version>3.8</poi.version>
         <quartz.version>1.8.6</quartz.version>
         <lambdaj.version>2.3.3</lambdaj.version>
+        <aspectj.version>1.8.8</aspectj.version>
     </properties>
 
     <!-- maven打包配置 -->

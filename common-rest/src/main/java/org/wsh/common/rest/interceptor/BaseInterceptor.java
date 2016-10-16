@@ -34,7 +34,8 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 	@Autowired 
 	private MenuService menuService;
 
-	private String SERVER_HOST = "http://localhost";
+	@Value("#{system.serverHost}")
+	private String SERVER_HOST;
 	
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
@@ -66,7 +67,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 			return false;
 		}
 		String requestURL = request.getRequestURL().toString();
-		requestURL = requestURL.replace(ConstantsUtil.SERVER_HOST, "");
+		requestURL = requestURL.replace(SERVER_HOST, "");
 		List<MenuDO> menuList = menuService.getMenuList(userName, requestURL);
 		if (!CollectionUtils.isEmpty(menuList)) {
 			request.setAttribute(ModelKey.requestMenus.name(), menuList);

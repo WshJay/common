@@ -9,6 +9,7 @@ import org.wsh.common.consumer.service.DemoAService;
 import org.wsh.common.consumer.service.DemoBService;
 import org.wsh.common.consumer.service.DemoService;
 import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.rest.security.ShiroFilerChainManager;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.UserService;
 import org.wsh.common.util.concurrent.ConcurrentUtil;
@@ -44,6 +45,9 @@ public class ServiceTest {
     @Resource
     private UserService userService;
 
+    @Resource
+    private ShiroFilerChainManager shiroFilerChainManager;
+
     @Value("#{system.serverHost}")
     private String SERVER_HOST;
 
@@ -60,7 +64,7 @@ public class ServiceTest {
 //        for (UserBasicDO userBasicDO : userBasicDOList) {
 //            System.out.println(userBasicDO.getEmail());
 //        }
-
+        System.out.println(shiroFilerChainManager);
         System.out.println(SERVER_HOST);
 
 
