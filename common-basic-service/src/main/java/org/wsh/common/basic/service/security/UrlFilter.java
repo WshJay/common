@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security;
+package org.wsh.common.basic.service.security;
 
 import lombok.Getter;
 import lombok.Setter;

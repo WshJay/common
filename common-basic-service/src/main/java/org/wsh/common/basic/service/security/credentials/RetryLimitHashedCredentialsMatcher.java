@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security.credentials;
+package org.wsh.common.basic.service.security.credentials;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

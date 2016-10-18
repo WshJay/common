@@ -1,4 +1,4 @@
-package org.wsh.common.rest.filter;
+package org.wsh.common.basic.service.filter;
 
 import org.apache.shiro.web.filter.authc.UserFilter;
 

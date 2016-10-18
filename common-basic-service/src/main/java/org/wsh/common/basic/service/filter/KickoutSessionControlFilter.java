@@ -1,4 +1,4 @@
-package org.wsh.common.rest.filter;
+package org.wsh.common.basic.service.filter;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;

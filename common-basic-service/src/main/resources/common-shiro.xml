@@ -11,7 +11,7 @@
 	<description>Shiro安全配置</description>
 
 	<!-- 初始化 -->
-	<bean id="shiroFilerChainManager" class="org.wsh.common.rest.security.ShiroFilerChainManager"/>
+	<bean id="shiroFilerChainManager" class="org.wsh.common.basic.service.security.ShiroFilerChainManager"/>
 
 	<!-- 缓存管理器 使用Ehcache实现 -->  
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
@@ -46,7 +46,7 @@
 	</bean>
 	
 	<!-- 項目自定义的Realm,用于用户登录及权限验证 -->
-	<bean id="shiroDbRealm" class="org.wsh.common.rest.security.ShiroDbRealm">
+	<bean id="shiroDbRealm" class="org.wsh.common.basic.service.security.ShiroDbRealm">
 		<!-- 启用缓存，默认false(当用户信息或权限改变时则需要清除缓存) -->
 	    <property name="cachingEnabled" value="true"/>
 	    <!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
@@ -56,7 +56,7 @@
 	</bean>
 	
 	<!-- 并发登录人数控制 -->
-	<bean id="kickoutSessionControlFilter" class="org.wsh.common.rest.filter.KickoutSessionControlFilter">
+	<bean id="kickoutSessionControlFilter" class="org.wsh.common.basic.service.filter.KickoutSessionControlFilter">
 	    <property name="cacheManager" ref="cacheManager"/>  
 	    <!-- 用于根据会话ID，获取会话进行踢出操作的 -->
 	    <property name="sessionManager" ref="sessionManager"/>  
@@ -69,13 +69,13 @@
 	</bean>   
 
 	<!-- 登录失败次数限制 -->
-	<bean id="passwordMatcher" class="org.wsh.common.rest.security.LoginRetryLimit"/>
+	<bean id="passwordMatcher" class="org.wsh.common.basic.service.security.LoginRetryLimit"/>
 
 	<!-- 登录成功后调用 -->
-	<bean id="loginSuccessFilter" class="org.wsh.common.rest.filter.LoginSuccessFilter"/>
-	<bean id="myUserFilter" class="org.wsh.common.rest.filter.MyUserFilter"/>
+	<bean id="loginSuccessFilter" class="org.wsh.common.basic.service.filter.LoginSuccessFilter"/>
+	<bean id="myUserFilter" class="org.wsh.common.basic.service.filter.MyUserFilter"/>
 	<!--  -->
-	<bean id="filterChainManager" class="org.wsh.common.rest.security.shiro.CustomDefaultFilterChainManager">
+	<bean id="filterChainManager" class="org.wsh.common.basic.service.security.shiro.CustomDefaultFilterChainManager">
         <property name="loginUrl" value="/login.html"/>
         <property name="successUrl" value="/index.html"/>
         <property name="unauthorizedUrl" value="/403.html"/>
@@ -94,7 +94,7 @@
         </property>
     </bean>
 
-    <bean id="filterChainResolver" class="org.wsh.common.rest.security.shiro.CustomPathMatchingFilterChainResolver">
+    <bean id="filterChainResolver" class="org.wsh.common.basic.service.security.shiro.CustomPathMatchingFilterChainResolver">
         <property name="customDefaultFilterChainManager" ref="filterChainManager"/>
     </bean>
 

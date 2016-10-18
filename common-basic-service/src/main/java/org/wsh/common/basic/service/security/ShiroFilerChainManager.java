@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security;
+package org.wsh.common.basic.service.security;
 
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;

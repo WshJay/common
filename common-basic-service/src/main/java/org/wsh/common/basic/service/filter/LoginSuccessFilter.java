@@ -1,4 +1,4 @@
-package org.wsh.common.rest.filter;
+package org.wsh.common.basic.service.filter;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -6,11 +6,10 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.wsh.common.basic.service.util.SessionUtil;
 import org.wsh.common.enums.SessionKey;
 import org.wsh.common.model.basic.UserBasicDO;
-import org.wsh.common.rest.util.SessionUtil;
 import org.wsh.common.service.api.UserService;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;

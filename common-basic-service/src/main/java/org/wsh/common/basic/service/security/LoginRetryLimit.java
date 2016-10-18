@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security;
+package org.wsh.common.basic.service.security;
 
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;

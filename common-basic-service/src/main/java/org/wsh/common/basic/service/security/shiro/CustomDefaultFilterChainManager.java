@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security.shiro;
+package org.wsh.common.basic.service.security.shiro;
 
 import org.apache.shiro.config.Ini;
 import org.apache.shiro.util.CollectionUtils;

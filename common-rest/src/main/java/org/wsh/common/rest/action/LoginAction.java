@@ -1,6 +1,9 @@
 package org.wsh.common.rest.action;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.wsh.common.model.basic.UserBasicDO;
 import org.wsh.common.service.api.UserService;
+import org.wsh.common.util.logger.LoggerService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +30,7 @@ import java.util.List;
  * @since Date： 2015-4-1 下午5:39:11
  */
 @Controller
-public class LoginAction {
+public class LoginAction extends LoggerService{
 
 	@Autowired
 	private UserService userService;
@@ -36,16 +40,22 @@ public class LoginAction {
 	public String login(HttpServletRequest request,Model model) {
 		if(SecurityUtils.getSubject().isAuthenticated()){
 			model.addAttribute("authened","authened");
+			return "/index";
 		}
 		return "/login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, @RequestParam(FormAuthenticationFilter.DEFAULT_PASSWORD_PARAM) String password, Model model,HttpServletRequest request) {
-		List<UserBasicDO> userBasicDOList = userService.getAllUserBasicList();
-		for (UserBasicDO userBasicDO : userBasicDOList) {
-			System.out.println(userBasicDO.getRealName());
-		}
+//		Subject subject = SecurityUtils.getSubject();
+//		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+//		try {
+//			//登录，即身份验证
+//			subject.login(token);
+//		} catch (AuthenticationException e) {
+//			//5、身份验证失败
+//			logger.error("登录失败=>",e);
+//		}
 		model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);
 		return "/login";
 	}

@@ -3,6 +3,8 @@ package common.xxx.consumer;
 import org.wsh.common.consumer.service.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
+
 /**
  * @author wsh
  * @JDK-version: JDK1.8
@@ -13,10 +15,15 @@ public class Consumer {
 
     public static void main(String[] args) {
 
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/application-consumer.xml"});
-        context.start();
-        DemoService demoService = (DemoService) context.getBean("demoService"); //
-        String hello = demoService.sayHello(); // ִ
-        System.out.println(hello); //
+        try {
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/application-consumer.xml"});
+            context.start();
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        DemoService demoService = (DemoService) context.getBean("demoService"); //
+//        String hello = demoService.sayHello(); // ִ
+//        System.out.println(hello); //
     }
 }

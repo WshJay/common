@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security;
+package org.wsh.common.basic.service.security;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
@@ -19,6 +19,7 @@ import org.wsh.common.service.api.UserService;
 import org.wsh.common.util.shiro.encrypt.Encodes;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,28 +34,28 @@ import java.util.List;
 public class ShiroDbRealm extends AuthorizingRealm {
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
-	
-	public static final int INTERATIONS = 1024;
+
+	private static final int INTERATIONS = 1024;
 	private static final String ALGORITHM = "SHA-1";
 	
-	@Autowired
+	@Resource
 	private UserService userService;
-	
+
 	/**
 	 * 认证信息
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
+		log.info("认证信息...");
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		// 记住密码
 		token.setRememberMe(true);
-		log.info("认证信息...");
 		// 判断用户名是否为空
 		if (StringUtils.isEmpty(token.getUsername())) {
 			return null;
 		}
-		// 根据用户名查询用户信息
+//		 根据用户名查询用户信息
 		UserBasicDO user = userService.getUserBasicByUserName(token.getUsername());
 		if (user == null) {
 			return null;
@@ -108,6 +109,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
+		log.info("自定义密码加密方式...");
 		// 指定散列算法，需要和生成密码时的一样
 		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(ALGORITHM);
 		// 散列迭代次数，需要和生成密码时的一样

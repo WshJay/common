@@ -1,24 +1,18 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.basic.service.security.ShiroDbRealm;
+import org.wsh.common.basic.service.security.ShiroFilerChainManager;
 import org.wsh.common.consumer.service.DemoAService;
 import org.wsh.common.consumer.service.DemoBService;
 import org.wsh.common.consumer.service.DemoService;
-import org.wsh.common.model.basic.UserBasicDO;
-import org.wsh.common.rest.security.ShiroFilerChainManager;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.UserService;
-import org.wsh.common.util.concurrent.ConcurrentUtil;
-import org.wsh.common.util.concurrent.Task;
 
 import javax.annotation.Resource;
-import java.util.List;
-
-import static com.sun.corba.se.impl.util.Version.PROJECT_NAME;
 
 /**
  * author: wsh
@@ -42,11 +36,14 @@ public class ServiceTest {
     @Resource
     private MenuService menuService;
 
-    @Resource
+    @Autowired
     private UserService userService;
 
     @Resource
     private ShiroFilerChainManager shiroFilerChainManager;
+
+    @Resource
+    private ShiroDbRealm shiroDbRealm;
 
     @Value("#{system.serverHost}")
     private String SERVER_HOST;
@@ -66,7 +63,8 @@ public class ServiceTest {
 //        }
         System.out.println(shiroFilerChainManager);
         System.out.println(SERVER_HOST);
-
+        System.out.println(shiroDbRealm);
+        System.out.println(userService.getAllUserBasicList());
 
 //        int count = 100;
 //        ConcurrentUtil.start(new Task(count,menuService,"getAllChildrenMenu"),count);

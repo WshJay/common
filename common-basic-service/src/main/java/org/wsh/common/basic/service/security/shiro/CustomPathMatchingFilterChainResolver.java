@@ -1,4 +1,4 @@
-package org.wsh.common.rest.security.shiro;
+package org.wsh.common.basic.service.security.shiro;
 
 import org.apache.shiro.web.filter.mgt.FilterChainManager;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
