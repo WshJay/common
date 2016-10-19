@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 引入所有properties文件 -->
     <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
 
-    <context:component-scan base-package="org.wsh.common.provider.service"/>
+    <context:component-scan base-package="org.wsh.common.provider.service,org.wsh.common.provider.aop"/>
+
+    <!-- 开启aspectj注解 -->
+    <aop:aspectj-autoproxy/>
 
     <import resource="classpath:config/common-db.xml"/>
     <import resource="classpath:config/common-service.xml"/>
