@@ -1,4 +1,4 @@
-package org.wsh.common.util.annotation;
+package org.wsh.common.test.annotation;
 
 import java.lang.annotation.*;
 
