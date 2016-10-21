@@ -5,8 +5,9 @@
 		<plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
 			<property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
 		</plugin>
+		<plugin interceptor="org.wsh.common.datasource.mybatis.DynamicPlugin"/>
     </plugins>
-	<!-- 别名 
+	<!-- 别名
 	<typeAliases>
 	</typeAliases>-->
 </configuration>
