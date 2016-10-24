@@ -1,7 +1,7 @@
 package org.wsh.common.test.oop;
 
 import org.wsh.common.test.oop.extend.AutowareBeanFactory;
-import org.wsh.common.test.oop.extend.BeanFactory;
+import org.wsh.common.test.oop.impl.BeanFactory;
 import org.junit.Test;
 
 /**
@@ -16,5 +16,7 @@ public class FactoryTest {
     public void test(){
         BeanFactory factory = new AutowareBeanFactory();
         System.out.println(factory.getBean("123"));
+        AutowareBeanFactory autowareBeanFactory = new AutowareBeanFactory();
+        autowareBeanFactory.atractMethod();
     }
 }

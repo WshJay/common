@@ -13,4 +13,10 @@ public class AutowareBeanFactory extends AtractFactory{
     public String getBean(String name) {
         return "AutoWare";
     }
+
+    @Override
+    public void atractMethod() {
+        System.out.println("重写抽象方法...");
+        methodA();
+    }
 }

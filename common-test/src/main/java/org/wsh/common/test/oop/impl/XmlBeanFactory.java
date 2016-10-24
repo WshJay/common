@@ -1,4 +1,4 @@
-package org.wsh.common.test.oop.extend;
+package org.wsh.common.test.oop.impl;
 
 /**
  * @author wsh
