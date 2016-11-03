@@ -28,6 +28,7 @@
         <module>common-basic-service</module>
         <module>common-data-source</module>
         <module>common-boot</module>
+        <module>common-task</module>
         <!--
         <module>common-think-in-java</module>
         <module>common-deploy</module>
@@ -77,6 +78,8 @@
         <quartz.version>1.8.6</quartz.version>
         <lambdaj.version>2.3.3</lambdaj.version>
         <aspectj.version>1.8.8</aspectj.version>
+        <websocket.version>1.0</websocket.version>
+        <quartz.version>2.2.1</quartz.version>
     </properties>
 
     <!-- maven打包配置 -->

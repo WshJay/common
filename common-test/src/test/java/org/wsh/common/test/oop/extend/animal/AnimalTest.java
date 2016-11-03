@@ -15,6 +15,7 @@ public class AnimalTest {
         Animal animal = new Dog();
         animal.setName("DOG");
         System.out.println(animal.getName());
+        System.out.println("学java".getBytes().length);
     }
 }
 

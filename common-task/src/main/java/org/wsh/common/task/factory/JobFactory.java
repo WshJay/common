@@ -1,4 +1,4 @@
-package org.wsh.common.test.service.job.factory;
+package org.wsh.common.task.factory;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;
