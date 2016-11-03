@@ -10,7 +10,7 @@
    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 保证dao和service能注入到action -->
-    <context:component-scan base-package="org.wsh.common.rest.action"/>
+    <context:component-scan base-package="org.wsh.common.rest.action,org.wsh.common.rest.socket"/>
     <mvc:annotation-driven/>
     <!-- velocity -->
     <bean id="velocityConfig"

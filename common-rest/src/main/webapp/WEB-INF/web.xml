@@ -64,6 +64,7 @@
             <param-value>classpath*:/common-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
     </servlet>
     <!-- 过滤以.html为结尾的url -->
     <servlet-mapping>
@@ -76,8 +77,13 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>common</servlet-name>
+        <url-pattern>/ws</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>common</servlet-name>
         <url-pattern>/login.html</url-pattern>
     </servlet-mapping>
+
 
 
     <!--<mime-mapping> <extension>.txt</extension> <mime-type>application/octet-stream</mime-type>
