@@ -124,9 +124,10 @@
     <script>
         var path = 'localhost:8080/';
         var uid="$!{request.getSession().getAttribute("user").id}";
+        var toUserId = "$!{toUserId}";
         var from=uid;
         var fromName='$!{request.getSession().getAttribute("user").userName}';
-        var to=uid==1?2:1;
+        var to=toUserId==''?2:1;
 
         var websocket;
         if ('WebSocket' in window) {

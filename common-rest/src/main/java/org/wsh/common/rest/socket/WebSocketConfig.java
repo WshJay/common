@@ -2,6 +2,7 @@ package org.wsh.common.rest.socket;
 
 import javax.annotation.Resource;
 
+import org.springframework.asm.Handle;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -11,9 +12,10 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 /**
- * WebScoket配置处理器
- * @author Goofy
- * @Date 2015年6月11日 下午1:15:09
+ * author: wsh
+ * JDK-version:  JDK1.8
+ * comments:  WebScoket配置处理器
+ * since Date： 2016/11/4 15:54
  */
 @Configuration
 @EnableWebMvc
@@ -22,12 +24,15 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
 
 	@Resource
-	private MyWebSocketHandler myWebSocketHandler;
+	private SystemWebSocketHandler systemWebSocketHandler;
+
+	@Resource
+	private HandShakeInterceptor handShakeInterceptor;
 
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(myWebSocketHandler, "/ws").addInterceptors(new HandShake());
+		registry.addHandler(systemWebSocketHandler, "/ws").addInterceptors(handShakeInterceptor);
 
-		registry.addHandler(myWebSocketHandler, "/ws/sockjs").addInterceptors(new HandShake()).withSockJS();
+		registry.addHandler(systemWebSocketHandler, "/ws/sockjs").addInterceptors(handShakeInterceptor).withSockJS();
 	}
 
 }

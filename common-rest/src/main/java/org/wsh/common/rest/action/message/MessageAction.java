@@ -1,61 +1,46 @@
 package org.wsh.common.rest.action.message;
 
-import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.socket.TextMessage;
+import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.rest.socket.SystemWebSocketHandler;
+import org.wsh.common.service.api.UserService;
+import org.wsh.common.support.exception.BusinessException;
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.Date;
 
-import com.google.gson.GsonBuilder;
-import org.wsh.common.rest.socket.Message;
-import org.wsh.common.rest.socket.MyWebSocketHandler;
-import org.wsh.common.rest.socket.User;
 
 @Controller
 @RequestMapping("/msg")
 public class MessageAction {
 
 	@Resource
-	MyWebSocketHandler handler;
+	private SystemWebSocketHandler handler;
 
-	Map<Long, User> users = new HashMap<Long, User>();
-
-	// 模拟一些数据
-	@ModelAttribute
-	public void setReqAndRes() {
-		User u1 = new User();
-		u1.setId(1L);
-		u1.setName("张三");
-		users.put(u1.getId(), u1);
-
-		User u2 = new User();
-		u2.setId(2L);
-		u2.setName("李四");
-		users.put(u2.getId(), u2);
-
-	}
-
-	// 用户登录
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String doLogin(User user, HttpServletRequest request) {
-		request.getSession().setAttribute("uid", user.getId());
-		request.getSession().setAttribute("name", users.get(user.getId()).getName());
-		return "redirect:msg/talk";
-	}
+	@Resource
+	private UserService userService;
 
 	// 跳转到交谈聊天页面
 	@RequestMapping(value = "talk", method = RequestMethod.GET)
-	public String talk() {
+	public String talk(Model model, Long toUserId) {
+		try {
+			if (toUserId != null){
+				UserBasicDO toUser = userService.getUserByUserId(toUserId);
+				if(toUser != null){
+					model.addAttribute("toUserId",toUserId);
+				}
+			}
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 		return "msg/talk";
 	}
 
@@ -68,14 +53,12 @@ public class MessageAction {
 	// 发布系统广播（群发）
 	@ResponseBody
 	@RequestMapping(value = "broadcast", method = RequestMethod.POST)
-	public void broadcast(String text) throws IOException {
-		Message msg = new Message();
-		msg.setDate(new Date());
-		msg.setFrom(-1L);
-		msg.setFromName("系统广播");
-		msg.setTo(0L);
-		msg.setText(text);
-		handler.broadcast(new TextMessage(new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create().toJson(msg)));
+	public void broadcast(String text, Long formUserId) throws IOException {
+		MessageDO messageDO = new MessageDO();
+		messageDO.setGmtCreated(new Date());
+		messageDO.setFromUserId(String.valueOf(formUserId));
+		messageDO.setTextMessage(text);
+		handler.broadcast(new TextMessage(JSONObject.toJSONString(messageDO,
+				SerializerFeature.WriteDateUseDateFormat)));
 	}
-
 }

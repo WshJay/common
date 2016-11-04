@@ -29,6 +29,7 @@
         <module>common-data-source</module>
         <module>common-boot</module>
         <module>common-task</module>
+        <module>common-message</module>
         <!--
         <module>common-think-in-java</module>
         <module>common-deploy</module>

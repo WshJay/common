@@ -1,16 +1,13 @@
 package org.wsh.common.web.action.common.ajax;
 
-import static org.wsh.common.web.util.SessionUtil.getCurrentUser;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +18,12 @@ import org.wsh.common.service.api.RoleService;
 import org.wsh.common.service.api.UserService;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
+import org.wsh.common.web.validator.UserValidator;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import static org.wsh.common.web.util.SessionUtil.getCurrentUser;
 
 @Controller
 @RequestMapping("/ajax/user")
@@ -52,7 +55,7 @@ public class User {
 		}
 		return "user/add";
 	}
-	
+
 	/**
 	 * 添加用户
 	 * @param userBasicDO
@@ -61,7 +64,10 @@ public class User {
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/addUser")
 	public @ResponseBody
-	ResponseDO doAddUser(UserBasicDO userBasicDO){
+	ResponseDO doAddUser(UserBasicDO userBasicDO, BindingResult result){
+		if (result.hasErrors()){
+			log.error("---------");
+		}
 		ResponseDO responseDO = null;
 		if (userBasicDO != null) {
 			try {
@@ -116,8 +122,8 @@ public class User {
 	
 	/**
 	 * 修改用户信息
-	 * @param model
-	 * @param userId
+	 * @param user
+	 * @param roleId
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
