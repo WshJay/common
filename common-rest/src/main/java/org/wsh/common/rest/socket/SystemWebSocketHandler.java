@@ -1,7 +1,9 @@
 package org.wsh.common.rest.socket;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 import org.wsh.common.enums.SessionKey;
@@ -15,6 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static org.apache.zookeeper.server.ServerCnxn.me;
 
 /**
  * author: wsh
@@ -65,8 +69,15 @@ public class SystemWebSocketHandler extends LoggerService implements WebSocketHa
 			if(message.getPayloadLength()==0){
 				return;
 			}
-			MessageDO messageDO = JSON.parseObject(message.getPayload().toString(),new TypeReference<MessageDO>(){});
-			sendMessageToUser(Long.parseLong(messageDO.getToUserId()), new TextMessage(messageDO.getTextMessage()));
+			Object userObj = session.getAttributes().get(SessionKey.user.name());
+			if (userObj != null) {
+				UserBasicDO user = (UserBasicDO) userObj;
+				MessageDO messageDO = JSON.parseObject(message.getPayload().toString(),new TypeReference<MessageDO>(){});
+				messageDO.setFromUserId(String.valueOf(user.getId()));
+				messageDO.setFromUserName(user.getUserName());
+				sendMessageToUser(Long.parseLong(messageDO.getToUserId()), new TextMessage(JSONObject.toJSONString(messageDO,
+						SerializerFeature.WriteDateUseDateFormat)));
+			}
 	}
 
 	/**
@@ -127,9 +138,9 @@ public class SystemWebSocketHandler extends LoggerService implements WebSocketHa
 	 * @param message
 	 * @throws IOException
 	 */
-	public void sendMessageToUser(Long uid, TextMessage message)
+	public void sendMessageToUser(Long toUserId, TextMessage message)
 			throws IOException {
-		WebSocketSession session = userSocketSessionMap.get(uid);
+		WebSocketSession session = userSocketSessionMap.get(toUserId);
 		if (session != null && session.isOpen()) {
 			session.sendMessage(message);
 		}

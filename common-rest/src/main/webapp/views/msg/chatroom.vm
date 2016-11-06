@@ -77,7 +77,7 @@
 <!-- PAGE CONTENT ENDS -->
 <script src="/assets/jquery-2.0.3/jquery.min.js"></script>
 <script>
-    ##    var path = "$!{WebScoketPath}/";
+##    var path = "$!{WebScoketPath}/";
     var path = "common.wsh.org/";
     var toUserId = "$!{toUserId}";
     var fromName='$!{request.getSession().getAttribute("user").userName}';
@@ -96,7 +96,9 @@
     websocket.onmessage = function(event) {
         var data=JSON.parse(event.data);
         console.log("WebSocket:收到一条消息",data);
-        $("#content").append("<div class='itemdiv dialogdiv'><div class='user'><img alt='Bob's Avatar' src='/assets/admin/avatars/user.jpg' /></div><div class='body'><div class='time'><i class='icon-time'></i><span class='orange'>"+ new Date().Format("yyyy-MM-dd hh:mm:ss") +"</span></div><div class='name'><a href='#'>" + data.fromUserName + "</a><span class='label label-info arrowed arrowed-in-right'>admin</span></div><div class='text'>" + data.textMessage + "</div><div class='tools'><a href='#' class='btn btn-minier btn-info'><i class='icon-only icon-share-alt'></i> </a></div></div>");
+        var textCss=data.from==-1?"sfmsg_text":"fmsg_text";
+        $("#content").append("<div class='fmsg'><label class='name'>"+data.fromName+"&nbsp;"+data.date+"</label><div class='"+textCss+"'>"+data.text+"</div></div>");
+        scrollToBottom();
     };
     websocket.onerror = function(event) {
         console.log("WebSocket:发生错误 ");
@@ -116,7 +118,8 @@
             data["toUserId"]=toUserId;
             data["textMessage"]=v;
             websocket.send(JSON.stringify(data));
-            $("#content").append("<div class='itemdiv dialogdiv'><div class='user'><img alt='Bob's Avatar' src='/assets/admin/avatars/user.jpg' /></div><div class='body'><div class='time'><i class='icon-time'></i><span class='orange'>"+ new Date().Format("yyyy-MM-dd hh:mm:ss") +"</span></div><div class='name'><a href='#'>" + fromName + "</a><span class='label label-info arrowed arrowed-in-right'>admin</span></div><div class='text'>" + data.textMessage + "</div><div class='tools'><a href='#' class='btn btn-minier btn-info'><i class='icon-only icon-share-alt'></i> </a></div></div>");
+            $("#content").append("<div class='itemdiv dialogdiv'><div class='user'><img alt='Bob's Avatar' src='/assets/admin/avatars/user.jpg' /></div><div class='body'><div class='time'><i class='icon-time'></i><span class='orange'>"+ new Date().Format("yyyy-MM-dd hh:mm:ss") +"</span></div><div class='name'><a href='#'>Bob</a><span class='label label-info arrowed arrowed-in-right'>admin</span></div><div class='text'>" + data.textMessage + "</div><div class='tools'><a href='#' class='btn btn-minier btn-info'><i class='icon-only icon-share-alt'></i> </a></div></div>");
+
 //            scrollToBottom();
             $("#msg").val("");
         }

@@ -27,7 +27,7 @@
     </select>
 
     <!-- 添加数据 -->
-    <insert id="insert" parameterType="UserGroup">
+    <insert id="insert" parameterType="UserGroupDO">
 		<selectKey resultType="int" order="AFTER" keyProperty="id">
 		SELECT LAST_INSERT_ID() AS id
 		</selectKey>

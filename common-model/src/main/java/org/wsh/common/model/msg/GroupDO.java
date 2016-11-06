@@ -9,13 +9,6 @@ public class GroupDO extends BaseDO{
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * ID
-	 */
-	@Setter
-	@Getter
-	private int id;
-	
-	/**
 	 * 组名称
 	 */
 	@Setter

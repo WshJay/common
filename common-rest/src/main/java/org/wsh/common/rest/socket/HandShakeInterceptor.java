@@ -35,12 +35,14 @@ public class HandShakeInterceptor extends LoggerService implements HandshakeInte
 			// 标记用户
 			UserBasicDO userBasicDO = (UserBasicDO)session.getAttribute(SessionKey.user.name());
 			String groupId = (String)session.getAttribute(MessageKey.GROUP_ID.name());
-			if(userBasicDO != null && StringUtils.isNotBlank(groupId)){
+			if(userBasicDO != null){
 				attributes.put(SessionKey.user.name(), userBasicDO);
-				attributes.put(MessageKey.GROUP_ID.name(),groupId);
 				logger.info("Websocket:用户名[" + userBasicDO.getUserName() + "]已经建立连接");
 			}else{
 				return false;
+			}
+			if (StringUtils.isNotBlank(groupId)){// 加入组信息
+				attributes.put(MessageKey.GROUP_ID.name(),groupId);
 			}
 		}
 		return true;
