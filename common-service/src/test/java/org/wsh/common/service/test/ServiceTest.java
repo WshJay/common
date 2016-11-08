@@ -4,12 +4,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.enums.msg.MessageType;
+import org.wsh.common.model.msg.MessageDO;
 import org.wsh.common.service.api.MenuService;
-import org.wsh.common.model.basic.MenuDO;
+import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.support.base.AbstractLogger;
+import org.wsh.common.support.exception.BusinessException;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Date;
 
 /**
  * author: wsh
@@ -24,11 +27,40 @@ public class ServiceTest extends AbstractLogger{
     @Resource
     private MenuService menuService;
 
+    @Resource
+    private MessageService messageService;
+
     @Test
     public void test(){
-        List<MenuDO> menuDOList = menuService.getAllRootMenu();
-        for (MenuDO menuDO : menuDOList) {
-            logger.info("menuName==>" + menuDO.getName());
+//        List<MenuDO> menuDOList = menuService.getAllRootMenu();
+//        for (MenuDO menuDO : menuDOList) {
+//            logger.info("menuName==>" + menuDO.getName());
+//        }
+//
+//        doAddMessageDO();
+
+        Long messageId = 1L;
+        try {
+            messageService.doDelMessageById(messageId);
+//            ResponseDO<MessageDO> responseDO = messageService.getMessageById(messageId);
+//            logger.info("messageText:" + responseDO.getData().getContent());
+        } catch (BusinessException e) {
+            logger.error("根据ID=>["+messageId+"]查询消息异常!",e);
+        }
+    }
+
+    private void doAddMessageDO() {
+        try {
+            MessageDO messageDO = new MessageDO();
+            messageDO.setFromUserId("1");
+            messageDO.setType(MessageType.TO_ONE);
+            messageDO.setToUserId("2");
+            messageDO.setContent("Test...");
+            messageDO.setGmtCreated(new Date());
+            messageDO.setGmtModified(new Date());
+            messageService.doAddMessage(messageDO);
+        } catch (BusinessException e) {
+            logger.error("添加消息异常!",e);
         }
     }
 

@@ -28,6 +28,13 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.wsh.common</groupId>
+            <artifactId>common-cache</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>

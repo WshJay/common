@@ -32,7 +32,7 @@
 
     <!-- 添加数据 -->
     <insert id="insert" parameterType="MessageDO">
-		<selectKey resultType="int" order="AFTER" keyProperty="id">
+		<selectKey resultType="Long" order="AFTER" keyProperty="id">
 		SELECT LAST_INSERT_ID() AS id
 		</selectKey>
         INSERT INTO message (

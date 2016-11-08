@@ -13,7 +13,7 @@ public interface MessageDao {
 	 * @param id
 	 * @return
 	 */
-	public MessageDO loadById(int id);
+	public MessageDO loadById(Long id);
 	
 	/**
 	 * 插入信息
@@ -26,7 +26,7 @@ public interface MessageDao {
 	 * 根据ID删除信息
 	 * @param id
 	 */
-	void deleteById(int id);
+	void deleteById(Long id);
 	
 	/**
 	 * 批量添加信息

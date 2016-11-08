@@ -9,7 +9,9 @@
     <!-- 引入所有properties文件 -->
     <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
 
-    <import resource="classpath:config/common-service.xml"/>
+    <import resource="classpath*:common-redis.xml"/>
     <import resource="classpath:config/common-db.xml"/>
+    <import resource="classpath:config/common-service.xml"/>
+
 
 </beans>

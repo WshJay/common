@@ -19,6 +19,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.apache.zookeeper.server.ServerCnxn.me;
+import static org.wsh.common.enums.response.ModelKey.message;
 
 /**
  * author: wsh
@@ -109,29 +110,48 @@ public class SystemWebSocketHandler extends LoggerService implements WebSocketHa
 	 * @throws IOException
 	 */
 	public void broadcast(final TextMessage message) throws IOException {
-		Iterator<Entry<Long, WebSocketSession>> it = userSocketSessionMap
-				.entrySet().iterator();
-
 		// 多线程群发
-		while (it.hasNext()) {
-			final Entry<Long, WebSocketSession> entry = it.next();
-			if (entry.getValue().isOpen()) {
-				// entry.getValue().sendMessage(message);
-				new Thread(new Runnable() {
-					public void run() {
-						try {
-							if (entry.getValue().isOpen()) {
-								entry.getValue().sendMessage(message);
-							}
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}).start();
-			}
-
+		for (Map.Entry<Long, WebSocketSession> entry : userSocketSessionMap.entrySet()) {
+			sendToManyMessage(message, entry.getValue());
 		}
 	}
+
+	/**
+	 * 根据组ID给组成员发信息
+	 * @param groupId 组ID
+	 * @param message 消息内容
+	 * @throws IOException
+	 */
+	public void sengGroupMessage(Long groupId, TextMessage message) throws IOException {
+		if (groupSocketSessionMap.containsKey(groupId)){
+			Map<Long,WebSocketSession> groupSessionMap = groupSocketSessionMap.get(groupId);
+			for (Map.Entry<Long, WebSocketSession> entry : groupSessionMap.entrySet()) {
+				sendToManyMessage(message, entry.getValue());
+			}
+		}else{
+			logger.info("聊天组没人,发毛消息啊!");
+		}
+	}
+
+	/**
+	 * 给多人发消息
+	 * @param message
+	 * @param webSocketSession
+     */
+	private void sendToManyMessage(TextMessage message, WebSocketSession webSocketSession) {
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					if (webSocketSession.isOpen()) {
+						webSocketSession.sendMessage(message);
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
+
 
 	/**
 	 * 给某个用户发送消息

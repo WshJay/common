@@ -16,6 +16,7 @@
         <module>common-query</module>
         <module>common-pager</module>
         <module>common-model</module>
+        <module>common-ecache</module>
         <module>common-dao</module>
         <module>common-api</module>
         <module>common-service</module>
@@ -30,6 +31,7 @@
         <module>common-boot</module>
         <module>common-task</module>
         <module>common-message</module>
+        <module>common-cache</module>
         <!--
         <module>common-think-in-java</module>
         <module>common-deploy</module>
@@ -81,6 +83,8 @@
         <aspectj.version>1.8.8</aspectj.version>
         <websocket.version>1.0</websocket.version>
         <quartz.version>2.2.1</quartz.version>
+        <jedis.version>2.6.2</jedis.version>
+        <spring-data-redis.version>1.5.2.RELEASE</spring-data-redis.version>
     </properties>
 
     <!-- maven打包配置 -->

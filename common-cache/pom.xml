@@ -1,25 +1,28 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>common</artifactId>
-    <groupId>com.xxx.common</groupId>
-    <version>1.0</version>
-  </parent>
-  <groupId>com.xxx.common</groupId>
-  <artifactId>common-cache</artifactId>
-  <version>1.0</version>
-  <name>common-cache</name>
-  <description>缓存(Ehcache)</description>
-  
-  <dependencies>
-  		<!-- ehcache缓存 -->
-		<dependency>
-           <groupId>net.sf.ehcache</groupId>
-           <artifactId>ehcache-core</artifactId>
-      	</dependency>
-      	<dependency>
-		  <groupId>net.sf.ehcache</groupId>
-		  <artifactId>ehcache-web</artifactId>
-		</dependency>
- </dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common</artifactId>
+        <groupId>org.wsh.common</groupId>
+        <version>${project.version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>common-cache</artifactId>
+
+    <dependencies>
+        <!-- Spring Data Redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis.version}</version>
+        </dependency>
+        <!-- Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

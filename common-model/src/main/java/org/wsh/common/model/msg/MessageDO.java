@@ -41,7 +41,7 @@ public class MessageDO extends BaseDO{
      */
     @Setter
     @Getter
-    private String TextMessage;
+    private String content;
 
     /**
      * 发送者名称

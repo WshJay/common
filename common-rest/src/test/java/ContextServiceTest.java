@@ -1,12 +1,7 @@
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.wsh.common.service.api.UserService;
-
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * author: wsh

@@ -5,19 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.wsh.common.enums.response.ModelKey;
-import org.wsh.common.model.basic.MenuDO;
-import org.wsh.common.rest.util.ConstantsUtil;
-import org.wsh.common.rest.util.SessionUtil;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.util.ip.IpUtil;
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URLDecoder;
-import java.util.List;
 
 /**
  * 拦截器
