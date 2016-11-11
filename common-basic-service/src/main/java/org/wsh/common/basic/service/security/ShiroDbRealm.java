@@ -11,7 +11,6 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.wsh.common.model.basic.PermissionDO;
 import org.wsh.common.model.basic.RoleDO;
 import org.wsh.common.model.basic.UserBasicDO;

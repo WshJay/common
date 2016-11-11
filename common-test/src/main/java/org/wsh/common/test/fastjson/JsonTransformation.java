@@ -24,9 +24,9 @@ public class JsonTransformation {
 
         MessageDO messageDO = new MessageDO();
         messageDO.setId(1L);
-        messageDO.setTextMessage("abc");
+        messageDO.setContent("abc");
         messageDO.setFromUserId("1");
-        messageDO.setMessageType(MessageType.TO_MANY);
+        messageDO.setType(MessageType.TO_MANY);
         messageDO.setGmtCreated(new Date());
 
         // 模型转换为String
@@ -36,7 +36,7 @@ public class JsonTransformation {
 
         // String转换为模型
         MessageDO messageDO1 = JSON.parseObject(jsonStr,new TypeReference<MessageDO>(){});
-        System.out.println(messageDO1.getTextMessage());
+        System.out.println(messageDO1.getContent());
         System.out.println(messageDO1.getGmtCreated());
 
     }

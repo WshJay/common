@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lombok.Setter;
-
 import org.wsh.common.model.basic.MenuDO;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.test.service.TestService;
