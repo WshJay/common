@@ -7,6 +7,7 @@
 	<resultMap id="MenuMap" type="MenuDO">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
+		<result property="iconUrl" column="icon_url"/>
         <result property="resId" column="res_id"/>
         <result property="fatherId" column="father_id"/>
         <result property="status" column="status"/>
@@ -20,6 +21,7 @@
    	<sql id="allFields">
          id,
          name,
+		 icon_url,
          res_id,
          father_id,
          status,
@@ -54,16 +56,17 @@
 		SELECT LAST_INSERT_ID() AS id
 		</selectKey>
 		insert into menu (name,
+		 icon_url,
          res_id,
          father_id,
          status,
          gmt_created,
-         gmt_modified) VALUES(#{name},#{resId},#{fatherId},#{status},now(),now())
+         gmt_modified) VALUES(#{name},#{iconUrl}#{resId},#{fatherId},#{status},now(),now())
 	</insert>
 	
 	<!-- 修改栏目信息 -->
 	<update id="updateMenu" parameterType="MenuDO">
-		UPDATE menu SET name=#{name},res_id=#{resId},father_id=#{fatherId} WHERE id=#{id}
+		UPDATE menu SET name=#{name},res_id=#{resId},father_id=#{fatherId},icon_url=#{iconUrl} WHERE id=#{id}
 	</update>
 	
 	<!-- 删除栏目信息 -->

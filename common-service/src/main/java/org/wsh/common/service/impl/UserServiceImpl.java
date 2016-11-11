@@ -191,6 +191,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public int updateUserFaceUrl(String faceUrl, Long id) {
+		return 0;
+	}
+
+	@Override
 	public int addUser(String userName, String password, String realName,
 			String phone, String email) {
 		// TODO TO Validator

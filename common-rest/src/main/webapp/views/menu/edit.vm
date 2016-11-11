@@ -43,4 +43,393 @@
           </select>
 		</div>
 	</div>
+    <div class="space-4"></div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-2">选择图标</label>
+        <div class="col-sm-9">
+            <select id="iconUrl" name="iconUrl" class="form-appselect dropdown-toggle" data-toggle="dropdown">
+                <option value="">请选择</option>
+                <option
+                        value="icon-adjust">
+                    icon-adjust
+                </option>
+
+                <option
+                        value="icon-asterisk">
+                    icon-asterisk
+                </option>
+
+                <option
+                        value="icon-ban-circle">
+                    icon-ban-circle
+                </option>
+
+                <option
+                        value="icon-bar-chart">
+                    icon-bar-chart
+                </option>
+
+                <option
+                        value="icon-barcode">
+                    icon-barcode
+                </option>
+
+                <option
+                        value="icon-beaker">
+                    icon-beaker
+                </option>
+
+                <option
+                        value="icon-beer">
+                    icon-beer
+                </option>
+
+                <option
+                        value="icon-bell">
+                    icon-bell
+                </option>
+
+                <option
+                        value="icon-bell-alt">
+                    icon-bell-alt
+                </option>
+
+                <option
+                        value="icon-bolt">
+                    icon-bolt
+                </option>
+
+                <option
+                        value="icon-book">
+                    icon-book
+                </option>
+
+                <option
+                        value="icon-bookmark">
+                    icon-bookmark
+                </option>
+
+                <option
+                        value="icon-bookmark-empty">
+                    icon-bookmark-empty
+                </option>
+
+                <option
+                        value="icon-briefcase">
+                    icon-briefcase
+                </option>
+
+                <option
+                        value="icon-bullhorn">
+                    icon-bullhorn
+                </option>
+
+                <option
+                        value="icon-calendar">
+                    icon-calendar
+                </option>
+
+                <option
+                        value="icon-camera">
+                    icon-camera
+                </option>
+
+                <option
+                        value="icon-camera-retro">
+                    icon-camera-retro
+                </option>
+
+                <option
+                        value="icon-certificate">
+                    icon-certificate
+                </option>
+
+                <option
+                        value="icon-check">
+                    icon-check
+                </option>
+
+                <option
+                        value="icon-check-empty">
+                    icon-check-empty
+                </option>
+
+                <option
+                        value="icon-circle">
+                    icon-circle
+                </option>
+
+                <option
+                        value="icon-circle-blank">
+                    icon-circle-blank
+                </option>
+
+                <option
+                        value="icon-cloud">
+                    icon-cloud
+                </option>
+
+                <option
+                        value="icon-cloud-download">
+                    icon-cloud-download
+                </option>
+
+                <option
+                        value="icon-cloud-upload">
+                    icon-cloud-upload
+                </option>
+
+                <option
+                        value="icon-coffee">
+                    icon-coffee
+                </option>
+
+                <option
+                        value="icon-cog">
+                    icon-cog
+                </option>
+
+                <option
+                        value="icon-cogs">
+                    icon-cogs
+                </option>
+
+                <option
+                        value="icon-comment">
+                    icon-comment
+                </option>
+
+                <option
+                        value="icon-comment-alt">
+                    icon-comment-alt
+                </option>
+
+                <option
+                        value="icon-comments">
+                    icon-comments
+                </option>
+
+                <option
+                        value="icon-comments-alt">
+                    icon-comments-alt
+                </option>
+
+                <option
+                        value="icon-credit-card">
+                    icon-credit-card
+                </option>
+
+                <option
+                        value="icon-dashboard">
+                    icon-dashboard
+                </option>
+
+                <option
+                        value="icon-desktop">
+                    icon-desktop
+                </option>
+
+                <option
+                        value="icon-download">
+                    icon-download
+                </option>
+
+                <option
+                        value="icon-download-alt">
+                    icon-download-alt
+                </option>
+
+                <option
+                        value="icon-edit">
+                    icon-edit
+                </option>
+
+                <option
+                        value="icon-envelope">
+                    icon-envelope
+                </option>
+
+                <option
+                        value="icon-envelope-alt">
+                    icon-envelope-alt
+                </option>
+
+                <option
+                        value="icon-exchange">
+                    icon-exchange
+                </option>
+
+                <option
+                        value="icon-exclamation-sign">
+                    icon-exclamation-sign
+                </option>
+
+                <option
+                        value="icon-external-link">
+                    icon-external-link
+                </option>
+
+                <option
+                        value="icon-eye-close">
+                    icon-eye-close
+                </option>
+
+                <option
+                        value="icon-eye-open">
+                    icon-eye-open
+                </option>
+
+                <option
+                        value="icon-facetime-video">
+                    icon-facetime-video
+                </option>
+
+                <option
+                        value="icon-fighter-jet">
+                    icon-fighter-jet
+                </option>
+
+                <option
+                        value="icon-film">
+                    icon-film
+                </option>
+
+                <option
+                        value="icon-filter">
+                    icon-filter
+                </option>
+
+                <option
+                        value="icon-fire">
+                    icon-fire
+                </option>
+
+                <option
+                        value="icon-flag">
+                    icon-flag
+                </option>
+
+                <option
+                        value="icon-folder-close">
+                    icon-folder-close
+                </option>
+
+                <option
+                        value="icon-folder-open">
+                    icon-folder-open
+                </option>
+
+                <option
+                        value="icon-folder-close-alt">
+                    icon-folder-close-alt
+                </option>
+
+                <option
+                        value="icon-folder-open-alt">
+                    icon-folder-open-alt
+                </option>
+
+                <option
+                        value="icon-food">
+                    icon-food
+                </option>
+
+
+                <option
+                        value="icon-gift">
+                    icon-gift
+                </option>
+
+                <option
+                        value="icon-glass">
+                    icon-glass
+                </option>
+
+                <option
+                        value="icon-globe">
+                    icon-globe
+                </option>
+
+                <option
+                        value="icon-group">
+                    icon-group
+                </option>
+
+                <option
+                        value="icon-hdd">
+                    icon-hdd
+                </option>
+
+                <option
+                        value="icon-headphones">
+                    icon-headphones
+                </option>
+
+                <option
+                        value="icon-heart">
+                    icon-heart
+                </option>
+
+                <option
+                        value="icon-heart-empty">
+                    icon-heart-empty
+                </option>
+
+                <option
+                        value="icon-home">
+                    icon-home
+                </option>
+
+                <option
+                        value="icon-inbox">
+                    icon-inbox
+                </option>
+
+                <option
+                        value="icon-info-sign">
+                    icon-info-sign
+                </option>
+
+                <option
+                        value="icon-key">
+                    icon-key
+                </option>
+
+                <option
+                        value="icon-leaf">
+                    icon-leaf
+                </option>
+
+                <option
+                        value="icon-laptop">
+                    icon-laptop
+                </option>
+
+                <option
+                        value="icon-legal">
+                    icon-legal
+                </option>
+
+                <option
+                        value="icon-lemon">
+                    icon-lemon
+                </option>
+
+                <option
+                        value="icon-lightbulb">
+                    icon-lightbulb
+                </option>
+
+                <option
+                        value="icon-lock">
+                    icon-lock
+                </option>
+
+                <option
+                        value="icon-unlock">
+                    icon-unlock
+                </option>
+
+            </select>
+        </div>
 </form>

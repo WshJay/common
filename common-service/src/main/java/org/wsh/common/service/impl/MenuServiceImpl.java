@@ -57,20 +57,14 @@ public class MenuServiceImpl implements MenuService {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public ResponseDO doAddMenu(Long currentUserId, String MenuName,
-								Long resId, Long fatherId) throws BusinessException {
+	public ResponseDO doAddMenu(MenuDO menuDO) throws BusinessException {
 		try {
 			// TODO validata
-			MenuDO menuDO = new MenuDO();
-//			menuDO.setCreateUserId(currentUserId);
-			menuDO.setName(MenuName);
-			menuDO.setResId(resId);
-			menuDO.setFatherId(fatherId);
-			menuDAO.insertMenu(menuDO);
+			menuDAO.updateMenu(menuDO);
 			return newStaticOptionsResponseDO();
 		} catch (Exception e) {
-			throw new BusinessException(String.format("添加栏目信息异常，参数currentUserId:[%s],MenuName:[%s],resId:[%s],fatherId:[%s]", currentUserId,MenuName,
-				resId,fatherId));
+			throw new BusinessException(String.format("添加栏目信息异常，参数operationUserId:[%s],MenuName:[%s],resId:[%s],fatherId:[%s],iconUrl:[%s]", menuDO.getOperationUserId(),menuDO.getName(),
+					menuDO.getResId(),menuDO.getFatherId(),menuDO.getIconUrl()));
 		}
 	}
 	
@@ -187,20 +181,15 @@ public class MenuServiceImpl implements MenuService {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public ResponseDO doUpdateMenu(Long currentUserId, Long menuId,
-			String MenuName, Long resId, Long fatherId)
+	public ResponseDO doUpdateMenu(MenuDO menuDO)
 			throws BusinessException {
 		try {
 			// TODO validata
-			MenuDO menuDO = new MenuDO();
-			menuDO.setId(menuId);
-			menuDO.setName(MenuName);
-			menuDO.setResId(resId);
-			menuDO.setFatherId(fatherId);
 			menuDAO.updateMenu(menuDO);
 			return newStaticOptionsResponseDO();
 		} catch (Exception e) {
-			throw new BusinessException(String.format("修改栏目信息异常，参数currentUserId:[%s],menuId:[%s],MenuName:[%s],resId:[%s],fatherId:[%s]", currentUserId, menuId, MenuName, resId, fatherId));
+			throw new BusinessException(String.format("修改栏目信息异常，参数operationUserId:[%s],MenuName:[%s],resId:[%s],fatherId:[%s],iconUrl:[%s]", menuDO.getOperationUserId(),menuDO.getName(),
+					menuDO.getResId(),menuDO.getFatherId(),menuDO.getIconUrl()));
 		}
 	}
 

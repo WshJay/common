@@ -23,6 +23,7 @@
          password,
          salt,
          real_name,
+		 face_url,
          phone,
          email,
          status,
@@ -82,11 +83,12 @@
          password,
          salt,
          real_name,
+		 face_url,
          phone,
          email,
          status,
          gmt_created,
-         gmt_modified) VALUES(#{userName},#{password},#{salt},#{realName},#{phone},#{email},#{status},now(),now())
+         gmt_modified) VALUES(#{userName},#{password},#{salt},#{realName},#{faceUrl},#{phone},#{email},#{status},now(),now())
 	</insert>
 	
 	<!-- 修改用户基本信息 -->
@@ -98,4 +100,9 @@
 	<update id="deleteById" parameterType="Long">
 		update user_basic set status = 1 where id=#{id}
 	</update>
-</mapper>  
+
+	<!-- 根据用户ID更新用户头像地址 -->
+	<update id="updateUserFaceById">
+		UPDATE user_basic SET face_url = #{faceUrl}, gmt_modified = now() where id=#{id}
+	</update>
+</mapper>

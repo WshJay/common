@@ -1,7 +1,6 @@
 package org.wsh.common.web.interceptor;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.wsh.common.web.util.ConstantsUtil;
 import org.wsh.common.web.util.SessionUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

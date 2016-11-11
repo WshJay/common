@@ -57,7 +57,6 @@ public class MenuAction {
 	
 	/**
 	 * 添加栏目页
-	 * @param menuDO
 	 * @return
 	 */
 	@RequestMapping("/add")
@@ -82,7 +81,8 @@ public class MenuAction {
 		if (menuDO != null) {
 			try {
 				UserBasicDO currentUser = getCurrentUser(request, SessionKey.user);
-				responseDO = menuService.doAddMenu(currentUser.getId(), menuDO.getName(), menuDO.getResId(), menuDO.getFatherId());
+				menuDO.setOperationUserId(currentUser.getId());
+				responseDO = menuService.doAddMenu(menuDO);
 			} catch (BusinessException e) {
 				log.error("添加栏目异常",e);
 			}
@@ -123,7 +123,8 @@ public class MenuAction {
 		ResponseDO responseDO = null;
 		try {
 			UserBasicDO currentUser = getCurrentUser(request, SessionKey.user);
-			responseDO = menuService.doUpdateMenu(currentUser.getId(), menuDO.getId(), menuDO.getName(), menuDO.getResId(), menuDO.getFatherId());
+			menuDO.setOperationUserId(currentUser.getId());
+			responseDO = menuService.doUpdateMenu(menuDO);
 		} catch (BusinessException e) {
 			log.error("修改栏目信息异常",e);
 		}

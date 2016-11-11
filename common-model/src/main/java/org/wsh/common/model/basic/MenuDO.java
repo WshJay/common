@@ -16,6 +16,13 @@ public class MenuDO extends BaseDO {
 	@Setter
 	@Getter
 	private String name;
+
+	/**
+	 * 图标地址
+	 */
+	@Setter
+	@Getter
+	private String iconUrl;
 		
 	/**
 	 * 资源ID
@@ -37,6 +44,13 @@ public class MenuDO extends BaseDO {
 	@Setter
 	@Getter
 	private int status;
+
+	/**
+	 * 操作人ID
+	 */
+	@Setter
+	@Getter
+	private Long operationUserId;
 	
 	
 	/**

@@ -2,7 +2,7 @@
 	#foreach($!menu in $!requestMenus)
 	<li class="#if($!menu.current) #set($rootName = $!menu.name) active open #end">
 		<a href="" class="dropdown-toggle">
-			<i class="icon-list"></i>
+			<i class="$!menu.iconUrl"></i>
 			<span class="menu-text">$!menu.name</span>
 			<b class="arrow icon-angle-down"></b>
 		</a>

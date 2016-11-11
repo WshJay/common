@@ -4,17 +4,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.wsh.common.dao.MenuDAO;
 import org.wsh.common.dao.RoleDAO;
-import org.wsh.common.model.basic.MenuDO;
-import org.wsh.common.model.basic.PermissionDO;
 import org.wsh.common.model.basic.RoleDO;
-import org.wsh.common.model.basic.UserBasicDO;
 import org.wsh.common.support.base.AbstractLogger;
-import org.wsh.common.support.exception.BusinessException;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * author: wsh
@@ -27,21 +21,15 @@ import java.util.List;
 public class DaoTest extends AbstractLogger{
 
     @Resource
-    private MenuDAO menuDAO;
-
-    @Resource
     private RoleDAO roleDAO;
 
     @Test
     public void test(){
-//        List<MenuDO> menuDOList = menuDAO.queryAllChildrenMenu();
-//        for (MenuDO menuDO : menuDOList) {
-//            logger.info("name:" + menuDO.getName());
+
+//        List<RoleDO> roleDOList = roleDAO.queryAll();
+//        for (RoleDO roleDO : roleDOList) {
+//           logger.info("roleName:" + roleDO.getRoleName());
 //        }
-        List<RoleDO> roleDOList = roleDAO.queryAll();
-        for (RoleDO roleDO : roleDOList) {
-           logger.info("roleName:" + roleDO.getRoleName());
-        }
 //        addRole("秘书","MS",1L);
     }
 

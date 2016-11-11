@@ -1,0 +1,398 @@
+#set($layout = '/layout/blank.vm')
+<div class="row">
+    <div class="col-xs-6 col-sm-3">
+        <ul class="list-unstyled">
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-adjust"></i>
+                icon-adjust
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-asterisk"></i>
+                icon-asterisk
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-ban-circle"></i>
+                icon-ban-circle
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bar-chart"></i>
+                icon-bar-chart
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-barcode"></i>
+                icon-barcode
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-beaker"></i>
+                icon-beaker
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-beer"></i>
+                icon-beer
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bell"></i>
+                icon-bell
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bell-alt"></i>
+                icon-bell-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bolt"></i>
+                icon-bolt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-book"></i>
+                icon-book
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bookmark"></i>
+                icon-bookmark
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bookmark-empty"></i>
+                icon-bookmark-empty
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-briefcase"></i>
+                icon-briefcase
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-bullhorn"></i>
+                icon-bullhorn
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-calendar"></i>
+                icon-calendar
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-camera"></i>
+                icon-camera
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-camera-retro"></i>
+                icon-camera-retro
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-certificate"></i>
+                icon-certificate
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-6 col-sm-3">
+        <ul class="list-unstyled">
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-check"></i>
+                icon-check
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-check-empty"></i>
+                icon-check-empty
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-circle"></i>
+                icon-circle
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-circle-blank"></i>
+                icon-circle-blank
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-cloud"></i>
+                icon-cloud
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-cloud-download"></i>
+                icon-cloud-download
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-cloud-upload"></i>
+                icon-cloud-upload
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-coffee"></i>
+                icon-coffee
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-cog"></i>
+                icon-cog
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-cogs"></i>
+                icon-cogs
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-comment"></i>
+                icon-comment
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-comment-alt"></i>
+                icon-comment-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-comments"></i>
+                icon-comments
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-comments-alt"></i>
+                icon-comments-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-credit-card"></i>
+                icon-credit-card
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-dashboard"></i>
+                icon-dashboard
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-desktop"></i>
+                icon-desktop
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-download"></i>
+                icon-download
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-download-alt"></i>
+                icon-download-alt
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-6 col-sm-3">
+        <ul class="list-unstyled">
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-edit"></i>
+                icon-edit
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-envelope"></i>
+                icon-envelope
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-envelope-alt"></i>
+                icon-envelope-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-exchange"></i>
+                icon-exchange
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-exclamation-sign"></i>
+                icon-exclamation-sign
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-external-link"></i>
+                icon-external-link
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-eye-close"></i>
+                icon-eye-close
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-eye-open"></i>
+                icon-eye-open
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-facetime-video"></i>
+                icon-facetime-video
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-fighter-jet"></i>
+                icon-fighter-jet
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-film"></i>
+                icon-film
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-filter"></i>
+                icon-filter
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-fire"></i>
+                icon-fire
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-flag"></i>
+                icon-flag
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-folder-close"></i>
+                icon-folder-close
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-folder-open"></i>
+                icon-folder-open
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-folder-close-alt"></i>
+                icon-folder-close-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-folder-open-alt"></i>
+                icon-folder-open-alt
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-food"></i>
+                icon-food
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-xs-6 col-sm-3">
+        <ul class="list-unstyled">
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-gift"></i>
+                icon-gift
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-glass"></i>
+                icon-glass
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-globe"></i>
+                icon-globe
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-group"></i>
+                icon-group
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-hdd"></i>
+                icon-hdd
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-headphones"></i>
+                icon-headphones
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-heart"></i>
+                icon-heart
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-heart-empty"></i>
+                icon-heart-empty
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-home"></i>
+                icon-home
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-inbox"></i>
+                icon-inbox
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-info-sign"></i>
+                icon-info-sign
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-key"></i>
+                icon-key
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-leaf"></i>
+                icon-leaf
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-laptop"></i>
+                icon-laptop
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-legal"></i>
+                icon-legal
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-lemon"></i>
+                icon-lemon
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-lightbulb"></i>
+                icon-lightbulb
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-lock"></i>
+                icon-lock
+            </li>
+
+            <li>
+                <input type="checkbox" class="ace" /><i class="icon-unlock"></i>
+                icon-unlock
+            </li>
+        </ul>
+    </div>
+</div>

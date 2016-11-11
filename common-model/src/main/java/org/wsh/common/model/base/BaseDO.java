@@ -32,4 +32,12 @@ public abstract class BaseDO implements Serializable {
 	@Setter
 	private Date gmtModified;
 
+	@Getter
+	@Setter
+	private String beginTime;
+
+	@Getter
+	@Setter
+	private String endTime;
+
 }

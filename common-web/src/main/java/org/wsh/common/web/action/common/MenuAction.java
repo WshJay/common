@@ -1,13 +1,5 @@
 package org.wsh.common.web.action.common;
 
-import static org.wsh.common.web.util.ModelUtil.newModelParameters;
-import static org.wsh.common.web.util.ModelUtil.newModelQuerys;
-import static org.wsh.common.web.util.SessionUtil.getCurrentUser;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +17,13 @@ import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.PermissionService;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import static org.wsh.common.web.util.ModelUtil.newModelParameters;
+import static org.wsh.common.web.util.ModelUtil.newModelQuerys;
+import static org.wsh.common.web.util.SessionUtil.getCurrentUser;
 
 
 @Controller
@@ -58,7 +57,6 @@ public class MenuAction {
 	
 	/**
 	 * 添加栏目页
-	 * @param menuDO
 	 * @return
 	 */
 	@RequestMapping("/add")
@@ -83,7 +81,8 @@ public class MenuAction {
 		if (menuDO != null) {
 			try {
 				UserBasicDO currentUser = getCurrentUser(request, SessionKey.user);
-				responseDO = menuService.doAddMenu(currentUser.getId(), menuDO.getName(), menuDO.getResId(), menuDO.getFatherId());
+				menuDO.setOperationUserId(currentUser.getId());
+				responseDO = menuService.doAddMenu(menuDO);
 			} catch (BusinessException e) {
 				log.error("添加栏目异常",e);
 			}
@@ -124,7 +123,8 @@ public class MenuAction {
 		ResponseDO responseDO = null;
 		try {
 			UserBasicDO currentUser = getCurrentUser(request, SessionKey.user);
-			responseDO = menuService.doUpdateMenu(currentUser.getId(), menuDO.getId(), menuDO.getName(), menuDO.getResId(), menuDO.getFatherId());
+			menuDO.setOperationUserId(currentUser.getId());
+			responseDO = menuService.doUpdateMenu(menuDO);
 		} catch (BusinessException e) {
 			log.error("修改栏目信息异常",e);
 		}

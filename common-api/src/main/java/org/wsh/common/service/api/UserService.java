@@ -160,6 +160,14 @@ public interface UserService {
 	 * @return
 	 */
 	public List<UserBasicDO> getUserRoleByRole(RoleDO roleDO);
+
+	/**
+	 * 根据用户ID更新头像地址
+	 * @param faceUrl
+	 * @param id
+     * @return
+     */
+	public int updateUserFaceUrl(String faceUrl, Long id);
 	
 }
 

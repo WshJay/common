@@ -57,7 +57,7 @@ public class MessageAction {
 		MessageDO messageDO = new MessageDO();
 		messageDO.setGmtCreated(new Date());
 		messageDO.setFromUserId(String.valueOf(formUserId));
-		messageDO.setTextMessage(text);
+		messageDO.setContent(text);
 		handler.broadcast(new TextMessage(JSONObject.toJSONString(messageDO,
 				SerializerFeature.WriteDateUseDateFormat)));
 	}

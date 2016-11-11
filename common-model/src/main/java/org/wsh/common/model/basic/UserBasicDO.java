@@ -38,7 +38,14 @@ public class UserBasicDO extends BaseDO {
 	@Setter
 	@Getter
 	private String realName;
-		
+
+	/**
+	 * 头像地址
+	 */
+	@Setter
+	@Getter
+	private String faceUrl;
+
 	/**
 	 * 手机号码
 	 */

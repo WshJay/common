@@ -21,27 +21,20 @@ public interface MenuService {
 
 	/**
 	 * 添加栏目信息
-	 * @param currentUserId
-	 * @param MenuName
-	 * @param resId
-	 * @param fatherId
+	 * @param menuDO
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public ResponseDO doAddMenu(Long currentUserId, String MenuName, Long resId, Long fatherId)throws BusinessException;
+	public ResponseDO doAddMenu(MenuDO menuDO)throws BusinessException;
 	
 	/**
 	 * 修改栏目信息
-	 * @param currentUserId
-	 * @param menuId
-	 * @param MenuName
-	 * @param resId
-	 * @param fatherId
+	 * @param menuDO
 	 * @return
 	 * @throws BusinessException
 	 */
 	@SuppressWarnings("rawtypes")
-	public ResponseDO doUpdateMenu(Long currentUserId, Long menuId, String MenuName, Long resId, Long fatherId)throws BusinessException;
+	public ResponseDO doUpdateMenu(MenuDO menuDO)throws BusinessException;
 	
 	/**
 	 * 删除栏目信息

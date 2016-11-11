@@ -1,5 +1,6 @@
 package org.wsh.common.dao;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
 import org.wsh.common.model.basic.UserBasicDO;
@@ -57,4 +58,11 @@ public interface UserBasicDAO{
 	 * @param userId
 	 */
 	void deleteById(Long userId);
+
+	/**
+	 * 根据用户ID更新用户头像地址
+	 * @param userId 用户ID
+	 * @param faceUrl 头像地址
+	 */
+	int updateUserFaceById(@Param("id") Long userId, @Param("faceUrl")String faceUrl);
 }
