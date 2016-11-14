@@ -5,9 +5,8 @@
     <parent>
         <artifactId>common</artifactId>
         <groupId>org.wsh.common</groupId>
-        <version>${project.version}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>common-enums</artifactId>
-    <version>${project.version}</version>
 </project>

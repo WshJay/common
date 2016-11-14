@@ -1,10 +1,10 @@
-package com.xxx.common.provider;
+package org.wsh.common.provider;
 
-import org.wsh.common.consumer.service.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.consumer.service.DemoService;
 
 import javax.annotation.Resource;
 
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @since Date： 2016-09-10 15:03
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/application-provider.xml"})
+@ContextConfiguration(locations = { "classpath:/provider-bean.xml"})
 public class ProviderServiceTest {
 
     @Resource

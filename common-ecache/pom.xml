@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.wsh.common</groupId>
         <artifactId>common</artifactId>
-        <version>${project.version}</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
   <artifactId>common-ecache</artifactId>
   <description>缓存(Ehcache)</description>

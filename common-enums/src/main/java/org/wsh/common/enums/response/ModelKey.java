@@ -10,6 +10,10 @@ package org.wsh.common.enums.response;
  */
 public enum ModelKey {
 
+	SERVER_HOST,
+
+	STATIC_HOST,
+
 	newData,
 
 	parameter,
