@@ -36,6 +36,9 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 
 	@Value("#{system.serverHost}")
 	private String SERVER_HOST;
+
+	@Value("#{system.staticHost}")
+	private String STATIC_HOST;
 	
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object handler) throws Exception {
@@ -72,6 +75,10 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 		if (!CollectionUtils.isEmpty(menuList)) {
 			request.setAttribute(ModelKey.requestMenus.name(), menuList);
 		}
+
+		// 将域名地址放入页面
+		request.setAttribute(ModelKey.SERVER_HOST.name(),SERVER_HOST);
+		request.setAttribute(ModelKey.STATIC_HOST.name(),STATIC_HOST);
 		
 //		boolean isHavePerm = menuService.validatePermission(userName, requestURL);
 //		if (isHavePerm == false) {

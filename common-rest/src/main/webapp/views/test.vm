@@ -1,6 +1,8 @@
 #set($layout='/layout/blank.vm')
 <div>
     This is Test Page!
+    $!{STATIC_HOST}
+    $!{SERVER_HOST}
 </div>
 <script src="/assets/jquery-2.0.3/jquery.min.js"></script>
 <script src="/assets/plugins/layer-1.9.3/layer/layer.js"></script>
