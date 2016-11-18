@@ -1,8 +1,13 @@
 package org.wsh.common.support.beans;
 
 
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.wsh.common.enums.expection.Errors;
 import org.wsh.common.support.response.ResponseDO;
+
+import java.util.List;
+
+import static javafx.scene.input.KeyCode.T;
 
 @SuppressWarnings("rawtypes")
 public final class BeansUtil {
@@ -25,7 +30,17 @@ public final class BeansUtil {
 	public static ResponseDO newStaticResponseDO() {
 		return STATIC_RESPONSE_DO;
 	}
-	
+
+	/**
+	 * 静态方法newResponsDO
+	 * @param data T
+     * @return ResponseDO<T>
+     */
+	public static<T> ResponseDO<T> newStaticResponseDO(T data) {
+		ResponseDO<T> responseDO = new ResponseDO<>();
+		responseDO.setData(data);
+		return responseDO;
+	}
 
 	/**
 	 * newStaticOptionsResponseDO
@@ -34,6 +49,18 @@ public final class BeansUtil {
 	 */
 	public static OptionsResponseDO newStaticOptionsResponseDO() {
 		return STATIC_OPTIONS_RESPONSE_DO;
+	}
+
+	/**
+	 *
+	 * @param data T
+	 * @param <T> OptionsResponseDO<T>
+     * @return OptionsResponseDO<T>
+     */
+	public static<T> OptionsResponseDO<T> newStaticOptionsResponseDO(T data) {
+		OptionsResponseDO<T> optionsResponseDO = new OptionsResponseDO<>();
+		optionsResponseDO.setData(data);
+		return optionsResponseDO;
 	}
 
 	/**

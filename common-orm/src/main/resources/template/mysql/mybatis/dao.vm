@@ -1,0 +1,67 @@
+package ${daoPackage} ;
+
+import ${pojoPackage}.${bigDoName};
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+/**
+* author: wsh
+* JDK-version:  JDK1.8
+* comments:  ${headName}持久层
+* since Date： ${date}
+*/
+@Repository
+public interface ${bigDaoName} {
+
+	/**
+	 * 根据ID查询表数据
+	 * @param id Long
+	 * @return ${bigDoName}
+	 */
+	public ${bigDoName} loadById(Long id);
+
+	/**
+	* 多条件查询表信息
+	* @param ${minDoName} ${bigDoName}
+	* @param rowBounds RowBounds
+	* @return List<${bigDoName}>
+	*/
+	public List<${bigDoName}> queryListByParams(${bigDoName} ${minDoName}, RowBounds rowBounds);
+	public int queryCountByParams(${bigDoName} ${minDoName});
+	
+	/**
+	 * 插入信息
+	 * @param ${minDoName} ${bigDoName}
+	 * @return int
+	 */
+	int insert(${bigDoName} ${minDoName});
+
+	/**
+	* 根据ID更新信息
+	* @param ${minDoName} ${bigDoName}
+	* @return int
+	*/
+	int updateById(${bigDoName} ${minDoName});
+
+	/**
+	* 根据ID更新删除状态
+	* @param ${minDoName} ${bigDoName}
+	* @return int
+	*/
+	int updateIsDeleteById(${bigDoName} ${minDoName});
+	
+	/**
+	 * 根据ID删除信息
+	 * @param id Long
+	 * @return int
+	 */
+	int deleteById(Long id);
+	
+	/**
+	 * 批量添加信息
+	 * @param ${minDoName}List List<${bigDoName}>
+	 */
+	void insertList(List<${bigDoName}> ${minDoName}List);
+	
+}

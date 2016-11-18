@@ -5,14 +5,19 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.enums.msg.MessageType;
-import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.model.message.MessageDO;
+import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.support.base.AbstractLogger;
+import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
+import org.wsh.common.support.response.ResponseDO;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * author: wsh
@@ -37,28 +42,73 @@ public class ServiceTest extends AbstractLogger{
 //            logger.info("menuName==>" + menuDO.getName());
 //        }
 //
-//        doAddMessageDO();
+        doAddMessageDO();
 
-        Long messageId = 1L;
+        getListMessageDO();
+
+        getById();
+
+        update();
+
+        delete();
+    }
+
+    private MessageDO doAddMessageDO() {
+        MessageDO messageDO = new MessageDO();
         try {
-            messageService.doDelMessageById(messageId);
-//            ResponseDO<MessageDO> responseDO = messageService.getMessageById(messageId);
-//            logger.info("messageText:" + responseDO.getData().getContent());
+            messageDO.setTopic("Test");
+            messageDO.setFromId(1L);
+            messageDO.setType(MessageType.TO_ONE.toString());
+            messageDO.setTargetId(2L);
+            messageDO.setContent("Test...");
+            messageDO.setStatus("SENDED");
+            messageDO.setGmtCreated(new Date());
+            messageDO.setGmtModified(new Date());
+            messageService.addMessageDO(messageDO);
         } catch (BusinessException e) {
-            logger.error("根据ID=>["+messageId+"]查询消息异常!",e);
+            logger.error("添加消息异常!",e);
+        }
+        return messageDO;
+    }
+
+    private void getListMessageDO() {
+        try {
+            OptionsResponseDO<List<MessageDO>> responseDO = messageService.getMessageDOListForPage(null,new Pagination());
+            List<MessageDO> messageDOList = responseDO.getData();
+            for (MessageDO messageDO : messageDOList) {
+                logger.info("id=>[" + messageDO.getId() + "]");
+            }
+        } catch (BusinessException e) {
+            logger.error("获取消息异常!",e);
         }
     }
 
-    private void doAddMessageDO() {
+    private void getById() {
         try {
+            ResponseDO responseDO = messageService.getMessageDOById(1L);
+            logger.info("id=>[" + responseDO.getData() + "]");
+        } catch (BusinessException e) {
+            logger.error("获取消息异常!",e);
+        }
+    }
+
+    private void update() {
+        try {
+            ResponseDO<MessageDO> oldresponseDO = messageService.getMessageDOById(2L);
             MessageDO messageDO = new MessageDO();
-            messageDO.setFromUserId("1");
-            messageDO.setType(MessageType.TO_ONE);
-            messageDO.setToUserId("2");
-            messageDO.setContent("Test...");
-            messageDO.setGmtCreated(new Date());
-            messageDO.setGmtModified(new Date());
-            messageService.doAddMessage(messageDO);
+            messageDO.setId(oldresponseDO.getData().getId());
+            messageDO.setTopic("Test Update");
+            ResponseDO responseDO = messageService.updateMessageDO(messageDO);
+            logger.info("id=>[" + responseDO.getData() + "]");
+        } catch (BusinessException e) {
+            logger.error("修改消息异常!",e);
+        }
+    }
+
+    private void delete() {
+        try {
+            ResponseDO responseDO = messageService.deleteMessageDO(1L);
+            logger.info("id=>[" + responseDO.getData() + "]");
         } catch (BusinessException e) {
             logger.error("添加消息异常!",e);
         }

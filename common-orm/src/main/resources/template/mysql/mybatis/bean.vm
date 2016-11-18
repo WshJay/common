@@ -1,0 +1,31 @@
+package ${packageName};
+
+import lombok.Getter;
+import lombok.Setter;
+import org.wsh.common.model.base.BaseDO;
+
+/**
+* author: wsh
+* JDK-version:  JDK1.8
+* comments:  ${headName}模型
+* since Date： ${date}
+*/
+public class ${head}DO extends BaseDO{
+
+	private static final long serialVersionUID = 1L;
+	
+#foreach($colum in $columList)
+	
+	/**
+	 * $!colum.remark
+	 */
+	@Setter
+	@Getter
+	#if($!colum.type == "SMALLINT")
+private int $!colum.name;
+	#else
+private $!colum.type $!colum.name;
+	#end
+#end
+
+}

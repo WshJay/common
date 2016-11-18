@@ -1,51 +1,57 @@
 package org.wsh.common.service.api.message;
 
-import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.model.message.MessageDO;
+import org.springframework.stereotype.Service;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
-
-import javax.annotation.Resource;
+import static org.wsh.common.support.beans.BeansUtil.newOptionsResponseDO;
 import java.util.List;
 
 /**
- * author: wsh
- * JDK-version:  JDK1.8
- * comments:  消息服务
- * since Date： 2016-11-07 14:06
- */
+* author: wsh
+* JDK-version:  JDK1.8
+* comments:  Message服务层
+* since Date： 2016-11-18 09:58:07
+*/
+@Service
 public interface MessageService {
 
-    /**
-     * 多条件查询消息信息
-     * @param messageDO MessageDO
-     * @param pagination Pagination
-     * @return OptionsResponseDO
-     */
-    public OptionsResponseDO<List<MessageDO>> getMessageListByParams(MessageDO messageDO, Pagination pagination) throws BusinessException;
+	/**
+	* 多条件查询(分页)
+	* @param messageDO MessageDO
+	* @param pagination  Pagination
+	* @return OptionsResponseDO<List<MessageDO>>
+    */
+    public OptionsResponseDO<List<MessageDO>> getMessageDOListForPage(MessageDO messageDO, Pagination pagination) throws BusinessException;
 
     /**
-     * 新增消息
-     * @param messageDO 消息bean
-     * @return ResponseDO
-     * @throws BusinessException
-     */
-    public ResponseDO doAddMessage(MessageDO messageDO) throws BusinessException;
+    * 根据用户ID查询
+    * @param id Long
+    * @return ResponseDO<MessageDO>
+    */
+    public ResponseDO<MessageDO> getMessageDOById(Long id) throws BusinessException;
 
     /**
-     * 根据ID获取消息内容
-     * @param id 消息ID
-     * @return ResponseDO
-     * @throws BusinessException
-     */
-    public ResponseDO<MessageDO> getMessageById(Long id) throws BusinessException;
+    * 添加
+    * @param messageDO MessageDO
+    * @return ResponseDO<MessageDO>
+    */
+    public ResponseDO<MessageDO> addMessageDO(MessageDO messageDO) throws BusinessException;
 
     /**
-     * 根据ID删除消息
-     * @param id 消息ID
-     * @return ResponseDO
-     * @throws BusinessException
-     */
-    public ResponseDO doDelMessageById(Long id) throws BusinessException;
+    * 修改
+    * @param messageDO MessageDO
+	* @return ResponseDO<MessageDO>
+    */
+    public ResponseDO<MessageDO> updateMessageDO(MessageDO messageDO) throws BusinessException;
+
+    /**
+    * 删除
+    * @param id Long
+    * @return ResponseDO<MessageDO>
+    * @throws BusinessException
+    */
+    public ResponseDO<MessageDO> deleteMessageDO(Long id) throws BusinessException;
 }

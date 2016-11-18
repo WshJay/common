@@ -1,0 +1,179 @@
+package ${serviceImplPackage} ;
+
+import ${pojoPackage}.${bigDoName};
+import ${daoPackage}.${bigDaoName};
+import ${servicePackage}.${bigServiceName};
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.util.Assert;
+import org.springframework.stereotype.Service;
+import org.wsh.common.util.logger.LoggerService;
+import org.springframework.transaction.annotation.Transactional;
+import org.wsh.common.pager.pagination.Pagination;
+import org.wsh.common.support.beans.OptionsResponseDO;
+import org.wsh.common.support.exception.BusinessException;
+import org.wsh.common.support.response.ResponseDO;
+import javax.annotation.Resource;
+import static org.wsh.common.support.beans.BeansUtil.newOptionsResponseDO;
+import static org.wsh.common.support.beans.BeansUtil.newStaticOptionsResponseDO;
+import static org.wsh.common.support.beans.BeansUtil.newStaticResponseDO;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+* author: wsh
+* JDK-version:  JDK1.8
+* comments:  ${headName}服务实现层
+* since Date： ${date}
+*/
+@Service("${minServiceName}")
+public class ${bigServiceImplName} extends LoggerService implements ${bigServiceName}{
+
+    @Resource
+    private ${bigDaoName} ${minDaoName};
+
+	/**
+	* 多条件查询(分页)
+	* @param ${minDoName} ${bigDoName}
+	* @param pagination  Pagination
+	* @return List<${bigDoName}>
+    */
+    public OptionsResponseDO<List<${bigDoName}>> get${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException{
+        try {
+            int totalCount = ${minDaoName}.queryCountByParams(${minDoName});
+            if (totalCount <= 0) {
+                return newStaticOptionsResponseDO(new ArrayList<${bigDoName}>());
+            }
+            pagination.setTotalCount(totalCount);
+            List<${bigDoName}> ${minDoName}List = ${minDaoName}.queryListByParams(${minDoName}, pagination.getRowBounds());
+            return newOptionsResponseDO(totalCount, ${minDoName}List, pagination.getPageSize(),pagination.getPP());
+        } catch (Exception e) {
+            throw new BusinessException("多条件查询${bigDoName}信息异常",e);
+        }
+    }
+
+    /**
+    * 根据用户ID查询
+    * @param id Long
+    * @return ResponseDO<${bigDoName}>
+    */
+    @Cacheable(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
+    public ResponseDO<${bigDoName}> get${bigDoName}ById(Long id) throws BusinessException{
+        try {
+            Assert.isTrue(id != null,"查询Id不能为空!");
+            ${bigDoName} ${minDoName} = ${minDaoName}.loadById(id);
+            return newStaticResponseDO(${minDoName});
+        } catch (Exception e) {
+            throw new BusinessException("根据ID=>[" + id + "]查询${bigDoName}信息异常",e);
+        }
+    }
+
+    /**
+    * 添加
+    * @param ${minDoName} ${bigDoName}
+    * @return ResponseDO<${bigDoName}>
+    */
+    @Transactional(rollbackFor = Exception.class)
+    @CachePut(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
+    public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
+        try {
+            // Validate
+            validateForAdd(${minDoName});
+
+            // Insert
+            int result = ${minDaoName}.insert(${minDoName});
+            if (result < 1) {
+                throw new Exception("sql插入数据为0,请检查各项参数!");
+            }
+            logger.info("新增ID=>[" + ${minDoName}.getId() + "]的${bigDoName}成功");
+            return newStaticResponseDO(${minDoName});
+        } catch (Exception e) {
+            throw new BusinessException("新增ID=>[" + ${minDoName}.getId() + "]的${bigDoName}信息异常",e);
+        }
+    }
+
+    /**
+    * Validate Add
+    * @param ${minDoName} ${bigDoName}
+    */
+    private void validateForAdd(${bigDoName} ${minDoName}) {
+        Assert.isTrue(${minDoName} != null,"${minDoName}不能为空!");
+        // TODO Validate
+    }
+
+    /**
+    * 修改
+    * @param ${minDoName} ${bigDoName}
+	* @return ResponseDO<${bigDoName}>
+    */
+    @Transactional(rollbackFor = Exception.class)
+    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
+    public ResponseDO<${bigDoName}> update${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
+        try {
+
+            // validate
+            ${bigDoName} old${bigDoName} = validateForUpdate(${minDoName});
+
+            // Update
+            ${minDoName}.setVersion(old${bigDoName}.getVersion());
+            int result = ${minDaoName}.updateById(${minDoName});
+            if (result < 1) {
+                throw new Exception("sql修改数据为0,请检查各项参数!");
+            }
+            logger.info("修改ID=>[" + ${minDoName}.getId() + "]的${minDoName}成功!");
+            return newStaticResponseDO(${minDoName});
+        }catch (Exception e){
+            logger.error("修改ID=>[" + ${minDoName}.getId() + "]的${minDoName}异常!");
+            throw new BusinessException("修改ID=>[" + ${minDoName}.getId() +"]的${bigDoName}信息异常",e);
+        }
+    }
+
+    /**
+    * Validate Update
+    * @param ${minDoName} ${bigDoName}
+    * @return ${bigDoName}
+    */
+    private ${bigDoName} validateForUpdate(${bigDoName} ${minDoName}) {
+
+        Assert.isTrue(${minDoName} != null,"${minDoName}不能为空!");
+        Assert.isTrue(${minDoName}.getId() != null,"ID不能为空!");
+        // TODO Validate
+        ${bigDoName} old${bigDoName} = ${minDaoName}.loadById(${minDoName}.getId());
+        Assert.isTrue(old${bigDoName} != null,"查询不到ID=>[" + ${minDoName}.getId() + "]的信息!");
+        return old${bigDoName};
+    }
+
+    /**
+    * 删除
+    * @param id Long
+    * @return ResponseDO<${bigDoName}>
+    * @throws BusinessException
+    */
+    @Transactional(rollbackFor = Exception.class)
+    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
+    public ResponseDO<${bigDoName}> delete${bigDoName}(Long id) throws BusinessException{
+        try {
+            // validate
+            Assert.isTrue(id != null,"ID不能为空!");
+
+            ${bigDoName} old${minDoName} = ${minDaoName}.loadById(id);
+            Assert.isTrue(old${minDoName} != null,"查询不到ID=>" + id + "的信息!");
+            ${bigDoName} ${minDoName} = new ${bigDoName}();
+            ${minDoName}.setId(id);
+            ${minDoName}.setIsDeleted(1);
+            ${minDoName}.setVersion(old${minDoName}.getVersion());
+            // update
+            int result = ${minDaoName}.updateIsDeleteById(${minDoName});
+            if (result < 1) {
+                throw new Exception("数据已删除,请勿重复操作!");
+            }
+            logger.info("删除ID=>[" + id + "]的${minDoName}成功!");
+            return newStaticResponseDO(${minDoName});
+        }catch (Exception e){
+            logger.error("删除ID=>[" + id + "]的${minDoName}异常!");
+            throw new BusinessException("删除ID=>[" + id +"]的${bigDoName}异常",e);
+        }
+    }
+}

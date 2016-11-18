@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${daoPackage}.${tableName}Dao" > 
+	<resultMap id="${tableName}Map" type="${tableName}DO">
+	#foreach($xmlBo in ${list})
+    <result property="$!{xmlBo.propertyName}" column="$!{xmlBo.columnName}"/>
+    #end
+</resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		#foreach($xmlBo in ${list})#if(($velocityCount)!=$!{list.size()})
+$!{xmlBo.columnName},
+        #else
+$!{xmlBo.columnName}
+	#end#end</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="loadById" parameterType="int" resultMap="${tableName}Map">
+        SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="queryListByParams" parameterType="${tableName}DO" resultMap="${tableName}Map">
+        SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE is_deleted = 0
+    </select>
+    <select id="queryCountByParams" parameterType="${tableName}DO" resultType="int">
+        SELECT COUNT(id) FROM ${table_name} WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="${tableName}DO">
+		<selectKey resultType="Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+        INSERT INTO ${table_name}(
+        #foreach($xmlBo in ${list})
+#if(($velocityCount)!=$!{list.size()})#if($!xmlBo.propertyName != "id")$!xmlBo.columnName,
+        #end#else
+$!xmlBo.columnName
+        #end#end
+)VALUES(
+        #foreach($xmlBo in ${list})#if(($velocityCount)!=$!{list.size()})#if($!xmlBo.propertyName != "id")
+#{$!xmlBo.propertyName},
+        #end#else
+#{$!xmlBo.propertyName}#end#end)
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="${tableName}DO">
+        UPDATE ${table_name} SET
+        #foreach($xmlBo in ${list})#if($!xmlBo.columnName != "id" && $!xmlBo.columnName != "gmt_created"&& $!xmlBo.columnName != "version"&& $!xmlBo.columnName != "is_deleted")#if($!xmlBo.columnName == "gmt_modified")
+version = version + 1,
+        $!xmlBo.columnName = NOW()
+        #else<if test="$!{xmlBo.propertyName} != null #if($!{xmlBo.type} == "STRING")and $!{xmlBo.propertyName} != ''#end">
+            $!xmlBo.columnName = #{$!{xmlBo.propertyName}},
+        </if>
+        #end#end#end
+WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="${tableName}DO">
+        UPDATE ${table_name} SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="int">
+        DELETE FROM ${table_name} WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO ${table_name}
+		(#foreach($xmlBo in ${list})#if(($velocityCount)!=$!{list.size()})$!xmlBo.columnName,#else$!xmlBo.columnName#end#end)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#foreach($xmlBo in ${list})#if(($velocityCount)!=$!{list.size()})#{item.$!xmlBo.propertyName},#else#{item.$!xmlBo.propertyName}#end#end)
+		</foreach>
+    </insert>
+</mapper>  
