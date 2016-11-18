@@ -40,14 +40,14 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
 	* @param pagination  Pagination
 	* @return List<${bigDoName}>
     */
-    public OptionsResponseDO<List<${bigDoName}>> get${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException{
+    public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException{
         try {
-            int totalCount = ${minDaoName}.queryCountByParams(${minDoName});
+            int totalCount = ${minDaoName}.selectCountByParams(${minDoName});
             if (totalCount <= 0) {
                 return newStaticOptionsResponseDO(new ArrayList<${bigDoName}>());
             }
             pagination.setTotalCount(totalCount);
-            List<${bigDoName}> ${minDoName}List = ${minDaoName}.queryListByParams(${minDoName}, pagination.getRowBounds());
+            List<${bigDoName}> ${minDoName}List = ${minDaoName}.selectListByParams(${minDoName}, pagination.getRowBounds());
             return newOptionsResponseDO(totalCount, ${minDoName}List, pagination.getPageSize(),pagination.getPP());
         } catch (Exception e) {
             throw new BusinessException("多条件查询${bigDoName}信息异常",e);
@@ -63,7 +63,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     public ResponseDO<${bigDoName}> get${bigDoName}ById(Long id) throws BusinessException{
         try {
             Assert.isTrue(id != null,"查询Id不能为空!");
-            ${bigDoName} ${minDoName} = ${minDaoName}.loadById(id);
+            ${bigDoName} ${minDoName} = ${minDaoName}.selectById(id);
             return newStaticResponseDO(${minDoName});
         } catch (Exception e) {
             throw new BusinessException("根据ID=>[" + id + "]查询${bigDoName}信息异常",e);
@@ -109,8 +109,8 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
 	* @return ResponseDO<${bigDoName}>
     */
     @Transactional(rollbackFor = Exception.class)
-    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
-    public ResponseDO<${bigDoName}> update${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
+    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
+    public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
         try {
 
             // validate
@@ -140,25 +140,25 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
         Assert.isTrue(${minDoName} != null,"${minDoName}不能为空!");
         Assert.isTrue(${minDoName}.getId() != null,"ID不能为空!");
         // TODO Validate
-        ${bigDoName} old${bigDoName} = ${minDaoName}.loadById(${minDoName}.getId());
+        ${bigDoName} old${bigDoName} = ${minDaoName}.selectById(${minDoName}.getId());
         Assert.isTrue(old${bigDoName} != null,"查询不到ID=>[" + ${minDoName}.getId() + "]的信息!");
         return old${bigDoName};
     }
 
     /**
-    * 删除
+    * 删除(逻辑删除)
     * @param id Long
     * @return ResponseDO<${bigDoName}>
     * @throws BusinessException
     */
     @Transactional(rollbackFor = Exception.class)
     @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
-    public ResponseDO<${bigDoName}> delete${bigDoName}(Long id) throws BusinessException{
+    public ResponseDO<${bigDoName}> del${bigDoName}(Long id) throws BusinessException{
         try {
             // validate
             Assert.isTrue(id != null,"ID不能为空!");
 
-            ${bigDoName} old${minDoName} = ${minDaoName}.loadById(id);
+            ${bigDoName} old${minDoName} = ${minDaoName}.selectById(id);
             Assert.isTrue(old${minDoName} != null,"查询不到ID=>" + id + "的信息!");
             ${bigDoName} ${minDoName} = new ${bigDoName}();
             ${minDoName}.setId(id);

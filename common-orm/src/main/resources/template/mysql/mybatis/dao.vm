@@ -19,7 +19,7 @@ public interface ${bigDaoName} {
 	 * @param id Long
 	 * @return ${bigDoName}
 	 */
-	public ${bigDoName} loadById(Long id);
+	public ${bigDoName} selectById(Long id);
 
 	/**
 	* 多条件查询表信息
@@ -27,8 +27,8 @@ public interface ${bigDaoName} {
 	* @param rowBounds RowBounds
 	* @return List<${bigDoName}>
 	*/
-	public List<${bigDoName}> queryListByParams(${bigDoName} ${minDoName}, RowBounds rowBounds);
-	public int queryCountByParams(${bigDoName} ${minDoName});
+	public List<${bigDoName}> selectListByParams(${bigDoName} ${minDoName}, RowBounds rowBounds);
+	public int selectCountByParams(${bigDoName} ${minDoName});
 	
 	/**
 	 * 插入信息

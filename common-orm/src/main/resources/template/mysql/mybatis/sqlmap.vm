@@ -19,15 +19,15 @@ $!{xmlBo.columnName}
 	#end#end</sql>
    	
    	<!-- 根据ID查询实体数据 -->
-    <select id="loadById" parameterType="int" resultMap="${tableName}Map">
+    <select id="selectById" parameterType="int" resultMap="${tableName}Map">
         SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE id = #{value} AND is_deleted = 0 LIMIT 1
     </select>
 
     <!--多条件查询表信息(分页) -->
-    <select id="queryListByParams" parameterType="${tableName}DO" resultMap="${tableName}Map">
+    <select id="selectListByParams" parameterType="${tableName}DO" resultMap="${tableName}Map">
         SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE is_deleted = 0
     </select>
-    <select id="queryCountByParams" parameterType="${tableName}DO" resultType="int">
+    <select id="selectCountByParams" parameterType="${tableName}DO" resultType="int">
         SELECT COUNT(id) FROM ${table_name} WHERE is_deleted = 0
     </select>
 
