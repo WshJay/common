@@ -40,6 +40,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
 	* @param pagination  Pagination
 	* @return List<${bigDoName}>
     */
+    @Override
     public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException{
         try {
             int totalCount = ${minDaoName}.selectCountByParams(${minDoName});
@@ -59,6 +60,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @param id Long
     * @return ResponseDO<${bigDoName}>
     */
+    @Override
     @Cacheable(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
     public ResponseDO<${bigDoName}> get${bigDoName}ById(Long id) throws BusinessException{
         try {
@@ -75,7 +77,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @param ${minDoName} ${bigDoName}
     * @return ResponseDO<${bigDoName}>
     */
-    @Transactional(rollbackFor = Exception.class)
+    @Override
     @CachePut(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
     public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
         try {
@@ -108,7 +110,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @param ${minDoName} ${bigDoName}
 	* @return ResponseDO<${bigDoName}>
     */
-    @Transactional(rollbackFor = Exception.class)
+    @Override
     @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
     public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
         try {
@@ -151,7 +153,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @return ResponseDO<${bigDoName}>
     * @throws BusinessException
     */
-    @Transactional(rollbackFor = Exception.class)
+    @Override
     @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
     public ResponseDO<${bigDoName}> del${bigDoName}(Long id) throws BusinessException{
         try {

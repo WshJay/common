@@ -19,7 +19,7 @@ $!{xmlBo.columnName}
 	#end#end</sql>
    	
    	<!-- 根据ID查询实体数据 -->
-    <select id="selectById" parameterType="int" resultMap="${tableName}Map">
+    <select id="selectById" parameterType="Long" resultMap="${tableName}Map">
         SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE id = #{value} AND is_deleted = 0 LIMIT 1
     </select>
 
@@ -69,7 +69,7 @@ WHERE id = #{id} AND version = #{version}
     </update>
     
     <!-- 根据ID删除数据-->
-    <delete id="deleteById" parameterType="int">
+    <delete id="deleteById" parameterType="Long">
         DELETE FROM ${table_name} WHERE id = #{value}
     </delete>
 	
