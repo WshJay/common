@@ -1,6 +1,7 @@
 package org.wsh.common.orm.mysql.mybatis.build;
 
 import org.wsh.common.orm.mysql.mybatis.base.AbstractBuildFactory;
+import org.wsh.common.orm.mysql.mybatis.bean.Column;
 import org.wsh.common.orm.mysql.mybatis.bean.Table;
 import org.wsh.common.orm.mysql.mybatis.bean.TableWapper;
 import org.wsh.common.orm.mysql.mybatis.enums.OutPathKey;
@@ -8,6 +9,7 @@ import org.wsh.common.orm.mysql.mybatis.util.Util;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.wsh.common.orm.mysql.mybatis.util.Util.parseDate;
@@ -30,7 +32,10 @@ public class BuildDao extends AbstractBuildFactory {
 
 		String daoPackage = tableWapper.getDaoPackage();
 		String pojoPackage = tableWapper.getPojoPackage();
-		String output = tableWapper.getOutPathMap().get(getOutPath());
+		String outPath = tableWapper.getOutPathMap().get(OutPathKey.DEFULT);
+		if(tableWapper.getOutPathMap().get(getOutPath()) != null){
+			outPath = tableWapper.getOutPathMap().get(getOutPath());
+		}
 		Table table = tableWapper.getTable();
 		String tableName = table.getName();
 		String headName = Util.getUpperHumpName(tableName);
@@ -48,6 +53,20 @@ public class BuildDao extends AbstractBuildFactory {
 			letters[i] = letter;
 		}
 
+		String idType = "String";
+		List<Column> columnList = table.getColumns();
+		for (Column column : columnList) {
+			if(column.getName().equals("id")){
+				if (column.getType().equalsIgnoreCase("BIGINT")){
+					idType = "Long";
+				} else if (column.getType().equalsIgnoreCase("INT") || column.getType().equalsIgnoreCase("TINYINT")) {
+					idType = "int";
+				}else{
+					idType = "String";
+				}
+			}
+		}
+
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("daoPackage", daoPackage);
 		map.put("pojoPackage", pojoPackage);
@@ -55,8 +74,9 @@ public class BuildDao extends AbstractBuildFactory {
 		map.put("minDoName", minDoName + "DO");
 		map.put("bigDaoName", bigDaoName);
 		map.put("headName", headName);
+		map.put("idType", idType);
 		map.put("date", parseDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
 		map.put("tableName", new String(letters));
-		Util.writeCode("dao", map,output+bigDaoName+".java/");
+		Util.writeCode("dao", map,outPath+bigDaoName+".java/");
 	}
 }

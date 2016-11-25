@@ -34,7 +34,10 @@ public class BuildBean extends AbstractBuildFactory {
 		Table table = tableWapper.getTable();
 		List<Column> columnList = table.getColumns();
 		String doName = Util.getUpperHumpName(table.getName());
-		String outPath = tableWapper.getOutPathMap().get(getOutPath());
+		String outPath = tableWapper.getOutPathMap().get(OutPathKey.DEFULT);
+		if(tableWapper.getOutPathMap().get(getOutPath()) != null){
+			outPath = tableWapper.getOutPathMap().get(getOutPath());
+		}
 		String packageName = tableWapper.getPojoPackage();
 		for (Column co : columnList) {
 			Column colu = new Column();
@@ -59,6 +62,8 @@ public class BuildBean extends AbstractBuildFactory {
 				type = "Float";
 			} else if (type.equalsIgnoreCase("INTEGER")) {
 				type = "Integer";
+			}else if (type.equalsIgnoreCase("DECIMAL")) {
+				type = "BigDecimal";
 			}
 			if(Util.getHumpName(co.getName()).equalsIgnoreCase("id")||
 					Util.getHumpName(co.getName()).equalsIgnoreCase("gmtCreated")||

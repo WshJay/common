@@ -61,8 +61,8 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @return ResponseDO<${bigDoName}>
     */
     @Override
-    @Cacheable(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
-    public ResponseDO<${bigDoName}> get${bigDoName}ById(Long id) throws BusinessException{
+    @Cacheable(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #id")
+    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id) throws BusinessException{
         try {
             Assert.isTrue(id != null,"查询Id不能为空!");
             ${bigDoName} ${minDoName} = ${minDaoName}.selectById(id);
@@ -78,7 +78,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @return ResponseDO<${bigDoName}>
     */
     @Override
-    @CachePut(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
+    @CachePut(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #${minDoName}.id")
     public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
         try {
             // Validate
@@ -111,7 +111,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
 	* @return ResponseDO<${bigDoName}>
     */
     @Override
-    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #${minDoName}.id")
+    @CacheEvict(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #${minDoName}.id",beforeInvocation = true)
     public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
         try {
 
@@ -154,8 +154,8 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * @throws BusinessException
     */
     @Override
-    @CacheEvict(value = "${minDoName}Cache",key = "'${minDoName}Cache' + #id")
-    public ResponseDO<${bigDoName}> del${bigDoName}(Long id) throws BusinessException{
+    @CacheEvict(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #id",beforeInvocation = true)
+    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id) throws BusinessException{
         try {
             // validate
             Assert.isTrue(id != null,"ID不能为空!");

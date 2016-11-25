@@ -33,7 +33,7 @@ $!{xmlBo.columnName}
 
     <!-- 添加数据 -->
     <insert id="insert" parameterType="${tableName}DO">
-		<selectKey resultType="Long" order="AFTER" keyProperty="id">
+		<selectKey resultType="${idType}" order="AFTER" keyProperty="id">
 		SELECT LAST_INSERT_ID() AS id
 		</selectKey>
         INSERT INTO ${table_name}(

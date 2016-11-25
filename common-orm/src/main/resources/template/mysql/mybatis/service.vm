@@ -31,7 +31,7 @@ public interface ${bigServiceName} {
     * @param id Long
     * @return ResponseDO<${bigDoName}>
     */
-    public ResponseDO<${bigDoName}> get${bigDoName}ById(Long id) throws BusinessException;
+    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id) throws BusinessException;
 
     /**
     * 添加
@@ -53,5 +53,5 @@ public interface ${bigServiceName} {
     * @return ResponseDO<${bigDoName}>
     * @throws BusinessException
     */
-    public ResponseDO<${bigDoName}> del${bigDoName}(Long id) throws BusinessException;
+    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id) throws BusinessException;
 }

@@ -8,6 +8,8 @@ package org.wsh.common.orm.mysql.mybatis.enums;
  */
 public enum OutPathKey {
 
+    DEFULT,
+
     DO,
 
     DAO,

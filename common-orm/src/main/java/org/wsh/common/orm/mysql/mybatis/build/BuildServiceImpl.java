@@ -1,6 +1,7 @@
 package org.wsh.common.orm.mysql.mybatis.build;
 
 import org.wsh.common.orm.mysql.mybatis.base.AbstractBuildFactory;
+import org.wsh.common.orm.mysql.mybatis.bean.Column;
 import org.wsh.common.orm.mysql.mybatis.bean.Table;
 import org.wsh.common.orm.mysql.mybatis.bean.TableWapper;
 import org.wsh.common.orm.mysql.mybatis.enums.OutPathKey;
@@ -8,6 +9,7 @@ import org.wsh.common.orm.mysql.mybatis.util.Util;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.wsh.common.orm.mysql.mybatis.util.Util.parseDate;
@@ -32,7 +34,10 @@ public class BuildServiceImpl extends AbstractBuildFactory {
         String servicePackage = tableWapper.getServicePackage();
         String serviceImplPackage = tableWapper.getServiceImplPackage();
 
-        String output = tableWapper.getOutPathMap().get(getOutPath());
+        String outPath = tableWapper.getOutPathMap().get(OutPathKey.DEFULT);
+        if(tableWapper.getOutPathMap().get(getOutPath()) != null){
+            outPath = tableWapper.getOutPathMap().get(getOutPath());
+        }
         Table table = tableWapper.getTable();
         String tableName = table.getName();
         String headName = Util.getUpperHumpName(tableName);
@@ -44,7 +49,19 @@ public class BuildServiceImpl extends AbstractBuildFactory {
         String minServiceName = Util.getHumpName(tableName)+"Service";
         String bigServiceImplName = Util.getUpperHumpName(tableName)+"ServiceImpl";
         String minServiceImplName = Util.getHumpName(tableName)+"ServiceImpl";
-
+        String idType = "String";
+        List<Column> columnList = table.getColumns();
+        for (Column column : columnList) {
+            if(column.getName().equals("id")){
+                if (column.getType().equalsIgnoreCase("BIGINT")){
+                    idType = "Long";
+                } else if (column.getType().equalsIgnoreCase("INT") || column.getType().equalsIgnoreCase("TINYINT")) {
+                    idType = "int";
+                }else{
+                    idType = "String";
+                }
+            }
+        }
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("pojoPackage", pojoPackage);
         map.put("daoPackage", daoPackage);
@@ -59,7 +76,8 @@ public class BuildServiceImpl extends AbstractBuildFactory {
         map.put("bigServiceImplName", bigServiceImplName);
         map.put("minServiceImplName", minServiceImplName);
         map.put("headName", headName);
+        map.put("idType", idType);
         map.put("date", parseDate(new Date(),"yyyy-MM-dd HH:mm:ss"));
-        Util.writeCode("serviceImpl", map,output+bigServiceImplName+".java/");
+        Util.writeCode("serviceImpl", map,outPath+bigServiceImplName+".java/");
     }
 }

@@ -33,11 +33,17 @@ public class BuildXml extends AbstractBuildFactory {
 			List<XmlBean> dynamicQueryEnuList = new ArrayList<XmlBean>();
 			List<XmlBean> dynamicQueryDateList = new ArrayList<XmlBean>();
 			List<Column> columns = tableWapper.getTable().getColumns();
+
+			String outPath = tableWapper.getOutPathMap().get(OutPathKey.DEFULT);
+			if(tableWapper.getOutPathMap().get(getOutPath()) != null){
+				outPath = tableWapper.getOutPathMap().get(getOutPath());
+			}
 			String table_name = tableWapper.getTable().getName();
 			String pojoPackage=tableWapper.getPojoPackage();
 			String daoPackage=tableWapper.getDaoPackage();
 			String tableName = Util.getHumpName(tableWapper.getTable().getName());
 			String TableName = Util.getUpperHumpName(tableWapper.getTable().getName());
+			String idType = "String";
 			for (Column column : columns) {
 				XmlBean xmlBean = new XmlBean();
 				String name = Util.getHumpName(column.getName());
@@ -73,6 +79,16 @@ public class BuildXml extends AbstractBuildFactory {
 					dynamicQueryNumList.add(xmlBean);
 				}
 
+				if(column.getName().equals("id")){
+					if (column.getType().equalsIgnoreCase("BIGINT")){
+						idType = "Long";
+					} else if (column.getType().equalsIgnoreCase("INT") || column.getType().equalsIgnoreCase("TINYINT")) {
+						idType = "int";
+					}else{
+						idType = "String";
+					}
+				}
+
 				list.add(xmlBean);
 
 			}
@@ -87,9 +103,10 @@ public class BuildXml extends AbstractBuildFactory {
 			map.put("TableName", TableName);
 			map.put("table_name", table_name);
 			map.put("TABLE_NAME", table_name.toUpperCase());
+			map.put("idType", idType);
 			map.put("pojoPackage", pojoPackage);
 			map.put("daoPackage", daoPackage);
-			Util.writeCode("sqlmap", map, tableWapper.getOutPathMap().get(getOutPath())+tableName+"Mapper.xml/");
+			Util.writeCode("sqlmap", map, outPath+tableName+"Mapper.xml/");
 
 		} catch (Exception e) {
 			e.printStackTrace(); // To change body of catch statement use File |

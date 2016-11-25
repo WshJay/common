@@ -19,7 +19,7 @@ public interface ${bigDaoName} {
 	 * @param id Long
 	 * @return ${bigDoName}
 	 */
-	${bigDoName} selectById(Long id);
+	${bigDoName} selectById(${idType} id);
 
 	/**
 	* 多条件查询表信息
@@ -56,7 +56,7 @@ public interface ${bigDaoName} {
 	 * @param id Long
 	 * @return int
 	 */
-	int deleteById(Long id);
+	int deleteById(${idType} id);
 	
 	/**
 	 * 批量添加信息
