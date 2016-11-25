@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.wsh.common.enums.msg.MessageType;
-import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.model.message.MessageDO;
 
 import java.util.Date;
 
@@ -25,8 +25,8 @@ public class JsonTransformation {
         MessageDO messageDO = new MessageDO();
         messageDO.setId(1L);
         messageDO.setContent("abc");
-        messageDO.setFromUserId("1");
-        messageDO.setType(MessageType.TO_MANY);
+        messageDO.setFromId(1L);
+        messageDO.setType("TO_MANY");
         messageDO.setGmtCreated(new Date());
 
         // 模型转换为String
