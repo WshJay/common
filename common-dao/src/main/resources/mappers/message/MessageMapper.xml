@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.wsh.common.dao.message.MessageDao" > 
+	<resultMap id="MessageMap" type="MessageDO">
+	    <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="topic" column="topic"/>
+        <result property="fromId" column="from_id"/>
+        <result property="targetId" column="target_id"/>
+        <result property="content" column="content"/>
+        <result property="status" column="status"/>
+        <result property="description" column="description"/>
+        <result property="version" column="version"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+        type,
+        topic,
+        from_id,
+        target_id,
+        content,
+        status,
+        description,
+        version,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="selectById" parameterType="Long" resultMap="MessageMap">
+        SELECT <include refid="allSelectionColumn"/> FROM message WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="selectListByParams" parameterType="MessageDO" resultMap="MessageMap">
+        SELECT <include refid="allSelectionColumn"/> FROM message WHERE is_deleted = 0
+    </select>
+    <select id="selectCountByParams" parameterType="MessageDO" resultType="int">
+        SELECT COUNT(id) FROM message WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="MessageDO">
+		<selectKey resultType="Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+        INSERT INTO message(
+        type,
+        topic,
+        from_id,
+        target_id,
+        content,
+        status,
+        description,
+        version,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+        )VALUES(
+        #{type},
+        #{topic},
+        #{fromId},
+        #{targetId},
+        #{content},
+        #{status},
+        #{description},
+        #{version},
+        #{isDeleted},
+        #{gmtCreated},
+        #{gmtModified})
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="MessageDO">
+        UPDATE message SET
+        <if test="type != null and type != ''">
+            type = #{type},
+        </if>
+        <if test="topic != null and topic != ''">
+            topic = #{topic},
+        </if>
+        <if test="fromId != null ">
+            from_id = #{fromId},
+        </if>
+        <if test="targetId != null ">
+            target_id = #{targetId},
+        </if>
+        <if test="content != null and content != ''">
+            content = #{content},
+        </if>
+        <if test="status != null and status != ''">
+            status = #{status},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        version = version + 1,
+        gmt_modified = NOW()
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="MessageDO">
+        UPDATE message SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM message WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO message
+		(id,type,topic,from_id,target_id,content,status,description,version,is_deleted,gmt_created,gmt_modified)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.id},#{item.type},#{item.topic},#{item.fromId},#{item.targetId},#{item.content},#{item.status},#{item.description},#{item.version},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified})
+		</foreach>
+    </insert>
+</mapper>  

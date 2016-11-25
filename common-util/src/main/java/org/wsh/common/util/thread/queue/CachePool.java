@@ -1,4 +1,4 @@
-package org.wsh.common.util.thred.queue;
+package org.wsh.common.util.thread.queue;
 
 import java.util.AbstractMap;
 import java.util.HashSet;

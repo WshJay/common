@@ -64,7 +64,6 @@ public class UserServiceImpl implements UserService {
 		return userBasicDAO.queryByUserName(userName);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public ResponseDO doDelUserById(Long userId)throws BusinessException {
 		try {
@@ -79,7 +78,6 @@ public class UserServiceImpl implements UserService {
 		return newStaticResponseDO();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserBasicDO> getUserList(UserBasicDO userBasicDO,
 			Pagination pagination) {

@@ -85,4 +85,12 @@ public class ResponseDO<T> implements Serializable {
 		return obj;
 	}
 
+	/**
+	 * 转换为JSON数据
+	 * @return String
+	 */
+	public String toJsonString(){
+		return toJson().toJSONString();
+	}
+
 }

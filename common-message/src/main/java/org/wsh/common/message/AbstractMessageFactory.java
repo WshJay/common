@@ -1,8 +1,7 @@
 package org.wsh.common.message;
 
-import org.wsh.common.model.msg.MessageDO;
 
-import static javafx.scene.input.KeyCode.M;
+import org.wsh.common.model.message.MessageDO;
 
 /**
  * author: wsh

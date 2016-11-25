@@ -1,0 +1,1045 @@
+2016-10-21 09:24:42.703 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:24:42.718 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:24:42.724 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:24:42.730 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:24:42.731 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:24:42.733 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:24:42.733 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:24:42.738 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:24:42.740 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:24:42.740 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:24:42.740 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:24:42.740 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:24:42.742 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:24:42.742 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:24:43.454 [main] ERROR c.alibaba.druid.pool.DruidDataSource - init datasource error
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:998) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3835) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3771) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1659) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1206) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2239) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_101]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_101]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:148) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:211) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:142) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1360) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1414) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:602) ~[druid-1.0.2.jar:1.0.2]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1641) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1570) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:755) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757) [spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480) [spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:86) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:72) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:212) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:200) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:259) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:219) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:292) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157) [junit-4.9.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119) [junit-rt.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+2016-10-21 09:24:43.503 [main] ERROR c.alibaba.druid.pool.DruidDataSource - dataSource init error
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:998) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3835) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3771) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1659) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1206) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2239) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_101]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_101]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:148) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:211) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:142) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1360) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1414) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:602) ~[druid-1.0.2.jar:1.0.2]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1702) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1641) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1570) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:755) [spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757) [spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480) [spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:86) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:72) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:212) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:200) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:259) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:219) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:292) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157) [junit-4.9.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119) [junit-rt.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+2016-10-21 09:24:43.505 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:24:43.507 [main] ERROR o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5824a83d] to prepare test instance [org.wsh.common.test.DaoTest@537f60bf]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:94) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:72) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:212) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:200) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:259) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:219) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:292) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157) [junit-4.9.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119) [junit-rt.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [config/common-db-bak.xml]: Invocation of init method failed; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:755) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757) ~[spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480) ~[spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:68) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:86) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	... 29 common frames omitted
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:998) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3835) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3771) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:870) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1659) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1206) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2239) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2270) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2069) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:794) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:44) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[na:1.8.0_101]
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423) ~[na:1.8.0_101]
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:389) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:399) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:325) ~[mysql-connector-java-5.1.35.jar:5.1.35]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:148) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.stat.StatFilter.connection_connect(StatFilter.java:211) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.filter.FilterChainImpl.connection_connect(FilterChainImpl.java:142) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1360) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1414) ~[druid-1.0.2.jar:1.0.2]
+	at com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:602) ~[druid-1.0.2.jar:1.0.2]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeCustomInitMethod(AbstractAutowireCapableBeanFactory.java:1702) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1641) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1570) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	... 44 common frames omitted
+2016-10-21 09:31:39.982 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:31:39.985 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:31:39.985 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:31:39.985 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:31:39.986 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:31:39.986 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:31:39.986 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:31:39.988 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:31:39.989 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:31:40.518 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:31:40.541 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:31:40.619 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:31:40.619 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:31:40.620 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:31:40.620 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:31:40.620 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:31:40.621 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:31:40.621 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:31:40.682 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:31:40.683 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:31:40.683 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:31:40.683 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:31:40.683 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:31:40.689 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:31:40.690 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:31:40.690 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:31:40.690 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:31:40.703 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:31:40.704 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:31:40.704 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:31:40.704 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:31:40.704 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:31:40.705 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:31:40.705 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:31:40.705 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:31:40.705 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:31:40.706 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:31:40.706 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:31:40.706 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:31:40.706 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:31:40.787 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:31:40.787 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:31:40.788 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:31:40.835 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:31:40.836 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:31:40.836 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:31:40.836 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:31:40.836 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:31:40.837 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:31:40.846 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:31:40.846 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:31:40.846 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:31:40.847 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:31:40.848 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:31:40.848 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:31:40.848 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:31:40.848 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:31:40.848 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:31:40.852 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:31:40.853 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.854 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.855 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.856 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.856 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.857 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.857 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.858 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:31:40.860 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:31:40.971 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:31:40.971 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:31:40.975 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:31:41.038 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:31:41.051 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:31:41.085 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:31:41.101 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:31:41.137 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:31:41.147 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:31:41.155 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:31:41.206 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:31:41.215 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@125290e5] was not registered for synchronization because synchronization is not active
+2016-10-21 09:31:41.240 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@4196c360] will not be managed by Spring
+2016-10-21 09:31:41.241 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@4196c360]
+2016-10-21 09:31:41.243 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==>  Preparing: SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow FROM menu m, permission p where p.id = m.res_id and m.status = 0 
+2016-10-21 09:31:41.401 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==> Parameters: 
+2016-10-21 09:31:41.484 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - <==      Total: 8
+2016-10-21 09:31:41.484 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2016-10-21 09:31:41.484 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@125290e5]
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:用户管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:角色管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:权限管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:栏目管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:模块管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:会员管理
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:会员审核
+2016-10-21 09:31:41.485 [main] INFO  org.wsh.common.test.DaoTest - name:义工管理
+2016-10-21 09:31:41.489 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} exit cache
+2016-10-21 09:31:41.490 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:32:17.322 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:32:17.325 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:32:17.325 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:32:17.325 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:32:17.326 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:32:17.326 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:32:17.326 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:32:17.331 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:32:17.332 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:32:17.332 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:32:17.332 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:32:17.332 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:32:17.333 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:32:17.334 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:32:17.883 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:32:17.902 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:32:17.946 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:32:17.946 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:32:17.947 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:32:17.947 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:32:17.948 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:32:17.948 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:17.948 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:17.975 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:32:17.976 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:32:17.982 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:32:17.983 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:32:17.984 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:32:17.984 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:17.984 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:17.985 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:32:17.985 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:32:17.985 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:32:17.985 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:32:17.986 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:32:17.986 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:32:17.986 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:32:17.986 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:32:17.987 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:32:17.988 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:32:17.989 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:32:17.990 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:32:17.990 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:32:17.990 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:32:17.990 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.991 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.991 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.992 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.992 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.992 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.993 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.993 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:17.994 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:32:18.043 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:32:18.043 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:32:18.046 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:32:18.083 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:32:18.092 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:32:18.103 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:32:18.111 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:32:18.118 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:32:18.132 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:32:18.138 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:32:18.187 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:32:18.195 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@125290e5] was not registered for synchronization because synchronization is not active
+2016-10-21 09:32:18.220 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@4196c360] will not be managed by Spring
+2016-10-21 09:32:18.221 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@4196c360]
+2016-10-21 09:32:18.224 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==>  Preparing: SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow FROM menu m, permission p where p.id = m.res_id and m.status = 0 
+2016-10-21 09:32:18.293 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==> Parameters: 
+2016-10-21 09:32:18.314 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - <==      Total: 8
+2016-10-21 09:32:18.314 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2016-10-21 09:32:18.315 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@125290e5]
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:用户管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:角色管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:权限管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:栏目管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:模块管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:会员管理
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:会员审核
+2016-10-21 09:32:18.315 [main] INFO  org.wsh.common.test.DaoTest - name:义工管理
+2016-10-21 09:32:18.320 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} exit cache
+2016-10-21 09:32:18.321 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:32:56.127 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:32:56.130 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:32:56.130 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:32:56.131 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:32:56.131 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:32:56.131 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:32:56.131 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:32:56.134 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:32:56.134 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:32:56.134 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:32:56.134 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:32:56.135 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:32:56.135 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:32:56.135 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:32:56.595 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:32:56.657 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2016-10-21 09:32:56.708 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:32:56.771 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:32:56.772 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:32:56.772 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:32:56.773 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:32:56.773 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:32:56.773 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:56.774 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:56.808 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:32:56.809 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:32:56.809 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:32:56.809 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:56.809 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:56.810 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:32:56.810 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:32:56.810 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:32:56.810 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:32:56.810 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:32:56.811 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:56.811 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:56.811 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:32:56.812 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:32:56.812 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:32:56.813 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:32:56.813 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:32:56.813 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:32:56.813 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:32:56.814 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:32:56.815 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:32:56.815 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:32:56.815 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:32:56.815 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:32:56.816 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:32:56.816 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:32:56.816 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:32:56.816 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:32:56.817 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:32:56.817 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:32:56.817 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:32:56.817 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:32:56.817 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:32:56.818 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:32:56.818 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:32:56.818 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:32:56.818 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:32:56.819 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:32:56.819 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:32:56.819 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:32:56.819 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:32:56.820 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.821 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.821 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.822 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.822 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.823 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.823 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.823 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:32:56.824 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:32:56.897 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:32:56.897 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:32:56.901 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:32:56.958 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:32:56.971 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:32:56.983 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:32:56.995 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:32:57.005 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:32:57.022 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:32:57.032 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:32:57.095 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:32:57.109 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27abb83e] was not registered for synchronization because synchronization is not active
+2016-10-21 09:32:57.152 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1813f3e9] will not be managed by Spring
+2016-10-21 09:32:57.153 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1813f3e9]
+2016-10-21 09:32:57.156 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==>  Preparing: SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow FROM menu m, permission p where p.id = m.res_id and m.status = 0 
+2016-10-21 09:32:57.233 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==> Parameters: 
+2016-10-21 09:32:57.256 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - <==      Total: 8
+2016-10-21 09:32:57.257 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120000} enter cache
+2016-10-21 09:32:57.257 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@27abb83e]
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:用户管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:角色管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:权限管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:栏目管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:模块管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:会员管理
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:会员审核
+2016-10-21 09:32:57.258 [main] INFO  org.wsh.common.test.DaoTest - name:义工管理
+2016-10-21 09:32:57.263 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120000} exit cache
+2016-10-21 09:32:57.264 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2016-10-21 09:32:57.265 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:35:01.573 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:35:01.576 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:35:01.576 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:35:01.577 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:35:01.577 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:35:01.577 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:35:01.578 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:35:01.581 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:35:01.582 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:35:02.062 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:35:02.112 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2016-10-21 09:35:02.132 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:35:02.176 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:35:02.176 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:35:02.176 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:35:02.177 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:35:02.177 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:35:02.177 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:35:02.177 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:35:02.206 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:35:02.207 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:35:02.207 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:35:02.208 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:35:02.209 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:35:02.209 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:35:02.209 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:35:02.209 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:35:02.210 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:35:02.210 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:35:02.210 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:35:02.210 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:35:02.210 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:35:02.211 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:35:02.212 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:35:02.213 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:35:02.214 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:35:02.214 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:35:02.214 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:35:02.214 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:35:02.215 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.216 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.216 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.217 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.217 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.218 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.218 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.219 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:35:02.219 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:35:02.272 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:35:02.272 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:35:02.278 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2016-10-21 09:35:02.279 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:35:02.283 [main] ERROR o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@13df2a8c] to prepare test instance [org.wsh.common.test.DaoTest@1ebea008]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:94) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultTestContext.getApplicationContext(DefaultTestContext.java:72) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:117) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:83) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:212) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:200) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:259) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:261) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:219) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50) [junit-4.9.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:292) [junit-4.9.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163) [spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157) [junit-4.9.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:119) [junit-rt.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:42) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:234) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:74) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_101]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:144) [idea_rt.jar:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [config/common-db.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'DynamicPlugin'.  Cause: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1574) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:539) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:736) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:757) ~[spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480) ~[spring-context-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:125) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:109) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:261) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:68) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.test.context.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:86) ~[spring-test-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	... 29 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse config resource: class path resource [config/mybatis-config.xml]; nested exception is org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'DynamicPlugin'.  Cause: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:461) ~[mybatis-spring-1.2.5.jar:1.2.5]
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:355) ~[mybatis-spring-1.2.5.jar:1.2.5]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1633) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1570) ~[spring-beans-4.1.7.RELEASE.jar:4.1.7.RELEASE]
+	... 44 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing SQL Mapper Configuration. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'DynamicPlugin'.  Cause: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:106) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parse(XMLConfigBuilder.java:89) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:455) ~[mybatis-spring-1.2.5.jar:1.2.5]
+	... 47 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'DynamicPlugin'.  Cause: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:100) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.pluginElement(XMLConfigBuilder.java:139) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.builder.xml.XMLConfigBuilder.parseConfiguration(XMLConfigBuilder.java:97) ~[mybatis-3.2.3.jar:3.2.3]
+	... 49 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'DynamicPlugin'.  Cause: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:114) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:127) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:98) ~[mybatis-3.2.3.jar:3.2.3]
+	... 51 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: DynamicPlugin
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:188) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:87) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:254) ~[mybatis-3.2.3.jar:3.2.3]
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:110) ~[mybatis-3.2.3.jar:3.2.3]
+	... 53 common frames omitted
+2016-10-21 09:36:44.338 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:36:44.340 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:36:44.340 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:36:44.341 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:36:44.341 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:36:44.341 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:36:44.342 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:36:44.345 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:36:44.346 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:36:44.346 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:36:44.347 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:36:44.347 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:36:44.347 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:36:44.347 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:36:44.890 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:36:44.938 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2016-10-21 09:36:44.959 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:36:45.007 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:36:45.007 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:36:45.007 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:36:45.008 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:36:45.008 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:36:45.008 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:36:45.008 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:36:45.039 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:36:45.040 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:36:45.040 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:36:45.040 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:36:45.040 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:36:45.040 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:36:45.041 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:36:45.041 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:36:45.041 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:36:45.041 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:36:45.042 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:36:45.042 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:36:45.043 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:36:45.043 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:36:45.043 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:36:45.044 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:36:45.044 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:36:45.044 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:36:45.045 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:36:45.045 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:36:45.045 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:36:45.045 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:36:45.046 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:36:45.047 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:36:45.048 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:36:45.049 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:36:45.049 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.050 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.050 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.050 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.051 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.051 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.051 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.051 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:36:45.052 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:36:45.113 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:36:45.113 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:36:45.117 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:36:45.163 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:36:45.176 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:36:45.189 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:36:45.198 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:36:45.207 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:36:45.218 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:36:45.226 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:36:45.266 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:36:45.279 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39d9314d] was not registered for synchronization because synchronization is not active
+2016-10-21 09:36:45.295 [main] WARN  o.w.c.d.mybatis.DynamicPlugin - 设置方法[org.wsh.common.dao.MenuDAO.queryAllChildrenMenu] use [READ] Strategy, SqlCommandType [SELECT]..
+2016-10-21 09:36:45.306 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@44d52de2] will not be managed by Spring
+2016-10-21 09:36:45.307 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@44d52de2]
+2016-10-21 09:36:45.309 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==>  Preparing: SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow FROM menu m, permission p where p.id = m.res_id and m.status = 0 
+2016-10-21 09:36:45.403 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==> Parameters: 
+2016-10-21 09:36:45.456 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - <==      Total: 8
+2016-10-21 09:36:45.456 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2016-10-21 09:36:45.457 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@39d9314d]
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:用户管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:角色管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:权限管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:栏目管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:模块管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:会员管理
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:会员审核
+2016-10-21 09:36:45.457 [main] INFO  org.wsh.common.test.DaoTest - name:义工管理
+2016-10-21 09:36:45.462 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2016-10-21 09:36:45.463 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} exit cache
+2016-10-21 09:36:45.463 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:42:40.279 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:42:40.281 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:42:40.281 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:42:40.282 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:42:40.282 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:42:40.282 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:42:40.283 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:42:40.286 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:42:40.287 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:42:40.288 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:42:40.288 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:42:40.288 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:42:40.288 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:42:40.288 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:42:41.013 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:42:41.061 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2016-10-21 09:42:41.084 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:42:41.126 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:42:41.126 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:42:41.127 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:42:41.127 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:42:41.128 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:42:41.128 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:42:41.128 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:42:41.158 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:42:41.158 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:42:41.158 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:42:41.159 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:42:41.160 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:42:41.160 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:42:41.160 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:42:41.161 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:42:41.161 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:42:41.162 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:42:41.162 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:42:41.162 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:42:41.163 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:42:41.163 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:42:41.164 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:42:41.164 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:42:41.164 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:42:41.164 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:42:41.165 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:42:41.165 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:42:41.165 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:42:41.165 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:42:41.165 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:42:41.166 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:42:41.166 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:42:41.166 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:42:41.166 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:42:41.167 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:42:41.168 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:42:41.168 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:42:41.168 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:42:41.168 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.169 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.170 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.170 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.174 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.174 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.174 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.178 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:42:41.179 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:42:41.244 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:42:41.244 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:42:41.248 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:42:41.301 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:42:41.315 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:42:41.330 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:42:41.338 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:42:41.346 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:42:41.358 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:42:41.364 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:42:41.407 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:42:41.417 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b978d10] was not registered for synchronization because synchronization is not active
+2016-10-21 09:42:41.432 [main] WARN  o.w.c.d.mybatis.DynamicPlugin - 设置方法[org.wsh.common.dao.MenuDAO.queryAllChildrenMenu] use [READ] Strategy, SqlCommandType [SELECT]..
+2016-10-21 09:42:41.442 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@95e33cc] will not be managed by Spring
+2016-10-21 09:42:41.443 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@95e33cc]
+2016-10-21 09:42:41.445 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==>  Preparing: SELECT m.id, m.name, m.res_id, m.father_id, m.status, m.gmt_created, m.gmt_modified, p.target as target, p.allow as allow FROM menu m, permission p where p.id = m.res_id and m.status = 0 
+2016-10-21 09:42:41.518 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - ==> Parameters: 
+2016-10-21 09:42:41.538 [main] DEBUG o.w.c.d.MenuDAO.queryAllChildrenMenu - <==      Total: 8
+2016-10-21 09:42:41.538 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2016-10-21 09:42:41.539 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b978d10]
+2016-10-21 09:42:41.539 [main] INFO  org.wsh.common.test.DaoTest - name:用户管理
+2016-10-21 09:42:41.539 [main] INFO  org.wsh.common.test.DaoTest - name:角色管理
+2016-10-21 09:42:41.539 [main] INFO  org.wsh.common.test.DaoTest - name:权限管理
+2016-10-21 09:42:41.539 [main] INFO  org.wsh.common.test.DaoTest - name:栏目管理
+2016-10-21 09:42:41.539 [main] INFO  org.wsh.common.test.DaoTest - name:模块管理
+2016-10-21 09:42:41.540 [main] INFO  org.wsh.common.test.DaoTest - name:会员管理
+2016-10-21 09:42:41.540 [main] INFO  org.wsh.common.test.DaoTest - name:会员审核
+2016-10-21 09:42:41.540 [main] INFO  org.wsh.common.test.DaoTest - name:义工管理
+2016-10-21 09:42:41.540 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:42:41.540 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2766ca9d] was not registered for synchronization because synchronization is not active
+2016-10-21 09:42:41.540 [main] WARN  o.w.c.d.mybatis.DynamicPlugin - 设置方法[org.wsh.common.dao.RoleDAO.insertRole] use [WRITE] Strategy, SqlCommandType [INSERT]..
+2016-10-21 09:42:41.542 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1c481ff2] will not be managed by Spring
+2016-10-21 09:42:41.542 [main] DEBUG o.wsh.common.dao.RoleDAO.insertRole - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1c481ff2]
+2016-10-21 09:42:41.542 [main] DEBUG o.wsh.common.dao.RoleDAO.insertRole - ==>  Preparing: insert into role (role_name, role_code, status, create_user_id, gmt_created, gmt_modified) VALUES(?,?,?,?,now(),now()) 
+2016-10-21 09:42:41.546 [main] DEBUG o.wsh.common.dao.RoleDAO.insertRole - ==> Parameters: 秘书(String), MS(String), 0(Integer), 1(Long)
+2016-10-21 09:42:41.740 [main] DEBUG o.wsh.common.dao.RoleDAO.insertRole - <==    Updates: 1
+2016-10-21 09:42:41.740 [main] WARN  o.w.c.d.mybatis.DynamicPlugin - 设置方法[org.wsh.common.dao.RoleDAO.insertRole!selectKey] use [WRITE] Strategy, SqlCommandType [SELECT]..
+2016-10-21 09:42:41.741 [main] DEBUG o.w.c.d.RoleDAO.insertRole!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1c481ff2]
+2016-10-21 09:42:41.741 [main] DEBUG o.w.c.d.RoleDAO.insertRole!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS id 
+2016-10-21 09:42:41.741 [main] DEBUG o.w.c.d.RoleDAO.insertRole!selectKey - ==> Parameters: 
+2016-10-21 09:42:41.898 [main] DEBUG o.w.c.d.RoleDAO.insertRole!selectKey - <==      Total: 1
+2016-10-21 09:42:41.899 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120001} enter cache
+2016-10-21 09:42:41.900 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120000} enter cache
+2016-10-21 09:42:41.900 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2766ca9d]
+2016-10-21 09:42:41.916 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120001} exit cache
+2016-10-21 09:42:41.917 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-110005, pstmt-120000} exit cache
+2016-10-21 09:42:41.920 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2016-10-21 09:42:41.923 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} exit cache
+2016-10-21 09:42:41.925 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2016-10-21 09:44:47.637 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\MenuDAO.class]
+2016-10-21 09:44:47.640 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\ModuleDAO.class]
+2016-10-21 09:44:47.641 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\PermissionDAO.class]
+2016-10-21 09:44:47.641 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RoleDAO.class]
+2016-10-21 09:44:47.641 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\RolePermissionDAO.class]
+2016-10-21 09:44:47.641 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserBasicDAO.class]
+2016-10-21 09:44:47.642 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Identified candidate component class: file [E:\CommonWorks\common\common-dao\target\classes\org\wsh\common\dao\UserRoleDAO.class]
+2016-10-21 09:44:47.644 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'menuDAO' and 'org.wsh.common.dao.MenuDAO' mapperInterface
+2016-10-21 09:44:47.645 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'moduleDAO' and 'org.wsh.common.dao.ModuleDAO' mapperInterface
+2016-10-21 09:44:47.645 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'permissionDAO' and 'org.wsh.common.dao.PermissionDAO' mapperInterface
+2016-10-21 09:44:47.645 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'roleDAO' and 'org.wsh.common.dao.RoleDAO' mapperInterface
+2016-10-21 09:44:47.645 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'rolePermissionDAO' and 'org.wsh.common.dao.RolePermissionDAO' mapperInterface
+2016-10-21 09:44:47.646 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userBasicDAO' and 'org.wsh.common.dao.UserBasicDAO' mapperInterface
+2016-10-21 09:44:47.646 [main] DEBUG o.m.s.mapper.ClassPathMapperScanner - Creating MapperFactoryBean with name 'userRoleDAO' and 'org.wsh.common.dao.UserRoleDAO' mapperInterface
+2016-10-21 09:44:48.128 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2016-10-21 09:44:48.176 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} inited
+2016-10-21 09:44:48.196 [main] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2016-10-21 09:44:48.241 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VFS
+2016-10-21 09:44:48.241 [main] DEBUG org.apache.ibatis.io.ResolverUtil - JBoss 6 VFS API is not available in this environment.
+2016-10-21 09:44:48.242 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Class not found: org.jboss.vfs.VirtualFile
+2016-10-21 09:44:48.242 [main] DEBUG org.apache.ibatis.io.ResolverUtil - VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2016-10-21 09:44:48.243 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2016-10-21 09:44:48.243 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:44:48.243 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:44:48.270 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: base
+2016-10-21 09:44:48.270 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: basic
+2016-10-21 09:44:48.270 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: BaseDO.class
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:44:48.271 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/base/BaseDO.class
+2016-10-21 09:44:48.272 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ,
+2016-10-21 09:44:48.272 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:44:48.272 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:44:48.272 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: MenuDO.class
+2016-10-21 09:44:48.272 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ModuleDO.class
+2016-10-21 09:44:48.273 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: PermissionDO.class
+2016-10-21 09:44:48.273 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RoleDO.class
+2016-10-21 09:44:48.273 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: RolePermissionDO.class
+2016-10-21 09:44:48.273 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserBasicDO.class
+2016-10-21 09:44:48.274 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: UserRoleDO.class
+2016-10-21 09:44:48.274 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Listing file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic
+2016-10-21 09:44:48.274 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:44:48.274 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/MenuDO.class
+2016-10-21 09:44:48.274 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 Q
+2016-10-21 09:44:48.275 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:44:48.275 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/ModuleDO.class
+2016-10-21 09:44:48.275 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 2
+2016-10-21 09:44:48.275 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:44:48.275 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/PermissionDO.class
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 H
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RoleDO.class
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 ?
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/RolePermissionDO.class
+2016-10-21 09:44:48.276 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserBasicDO.class
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 h
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Find JAR URL: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Not a JAR: file:/E:/CommonWorks/common/common-model/target/classes/org/wsh/common/model/basic/UserRoleDO.class
+2016-10-21 09:44:48.277 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Reader entry: ����   4 '
+2016-10-21 09:44:48.278 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.base.BaseDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.279 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.MenuDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.279 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.ModuleDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.279 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.PermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.280 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RoleDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.280 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.RolePermissionDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.280 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserBasicDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.281 [main] DEBUG org.apache.ibatis.io.ResolverUtil - Checking to see if class org.wsh.common.model.basic.UserRoleDO matches criteria [is assignable to Object]
+2016-10-21 09:44:48.281 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Scanned package: 'org.wsh.common.model' for aliases
+2016-10-21 09:44:48.336 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2016-10-21 09:44:48.337 [main] DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2016-10-21 09:44:48.341 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed configuration file: 'class path resource [config/mybatis-config.xml]'
+2016-10-21 09:44:48.382 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\MenuMapper.xml]'
+2016-10-21 09:44:48.393 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\ModuleMapper.xml]'
+2016-10-21 09:44:48.405 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\PermissionMapper.xml]'
+2016-10-21 09:44:48.420 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RoleMapper.xml]'
+2016-10-21 09:44:48.430 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\RolePermissionMapper.xml]'
+2016-10-21 09:44:48.443 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserBasicMapper.xml]'
+2016-10-21 09:44:48.451 [main] DEBUG o.m.spring.SqlSessionFactoryBean - Parsed mapper file: 'file [E:\CommonWorks\common\common-dao\target\classes\mappers\UserRoleMapper.xml]'
+2016-10-21 09:44:48.485 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2016-10-21 09:44:48.494 [main] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b978d10] was not registered for synchronization because synchronization is not active
+2016-10-21 09:44:48.510 [main] WARN  o.w.c.d.mybatis.DynamicPlugin - 设置方法[org.wsh.common.dao.RoleDAO.queryAll] use [READ] Strategy, SqlCommandType [SELECT]..
+2016-10-21 09:44:48.521 [main] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@95e33cc] will not be managed by Spring
+2016-10-21 09:44:48.522 [main] DEBUG org.wsh.common.dao.RoleDAO.queryAll - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@95e33cc]
+2016-10-21 09:44:48.525 [main] DEBUG org.wsh.common.dao.RoleDAO.queryAll - ==>  Preparing: select id, role_name, role_code, status, create_user_id, gmt_created, gmt_modified from role 
+2016-10-21 09:44:48.596 [main] DEBUG org.wsh.common.dao.RoleDAO.queryAll - ==> Parameters: 
+2016-10-21 09:44:48.634 [main] DEBUG org.wsh.common.dao.RoleDAO.queryAll - <==      Total: 5
+2016-10-21 09:44:48.635 [main] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} enter cache
+2016-10-21 09:44:48.635 [main] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@b978d10]
+2016-10-21 09:44:48.636 [main] INFO  org.wsh.common.test.DaoTest - roleName:管理员
+2016-10-21 09:44:48.636 [main] INFO  org.wsh.common.test.DaoTest - roleName:客服
+2016-10-21 09:44:48.636 [main] INFO  org.wsh.common.test.DaoTest - roleName:产品
+2016-10-21 09:44:48.636 [main] INFO  org.wsh.common.test.DaoTest - roleName:运营
+2016-10-21 09:44:48.636 [main] INFO  org.wsh.common.test.DaoTest - roleName:人事
+2016-10-21 09:44:48.641 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-2} closed
+2016-10-21 09:44:48.641 [Thread-1] DEBUG c.a.druid.pool.PreparedStatementPool - {conn-10005, pstmt-20000} exit cache
+2016-10-21 09:44:48.642 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed

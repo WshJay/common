@@ -26,7 +26,7 @@ import java.util.ArrayList;
 * author: wsh
 * JDK-version:  JDK1.8
 * comments:  Message服务实现层
-* since Date： 2016-11-18 09:58:07
+* since Date： 2016-11-23 14:56:02
 */
 @Service("messageService")
 public class MessageServiceImpl extends LoggerService implements MessageService{
@@ -40,14 +40,15 @@ public class MessageServiceImpl extends LoggerService implements MessageService{
 	* @param pagination  Pagination
 	* @return List<MessageDO>
     */
-    public OptionsResponseDO<List<MessageDO>> getMessageDOListForPage(MessageDO messageDO, Pagination pagination) throws BusinessException{
+    @Override
+    public OptionsResponseDO<List<MessageDO>> queryMessageDOListForPage(MessageDO messageDO, Pagination pagination) throws BusinessException{
         try {
-            int totalCount = messageDao.queryCountByParams(messageDO);
+            int totalCount = messageDao.selectCountByParams(messageDO);
             if (totalCount <= 0) {
                 return newStaticOptionsResponseDO(new ArrayList<MessageDO>());
             }
             pagination.setTotalCount(totalCount);
-            List<MessageDO> messageDOList = messageDao.queryListByParams(messageDO, pagination.getRowBounds());
+            List<MessageDO> messageDOList = messageDao.selectListByParams(messageDO, pagination.getRowBounds());
             return newOptionsResponseDO(totalCount, messageDOList, pagination.getPageSize(),pagination.getPP());
         } catch (Exception e) {
             throw new BusinessException("多条件查询MessageDO信息异常",e);
@@ -59,11 +60,12 @@ public class MessageServiceImpl extends LoggerService implements MessageService{
     * @param id Long
     * @return ResponseDO<MessageDO>
     */
-    @Cacheable(value = "messageDOCache",key = "'messageDOCache' + #id")
+    @Override
+    @Cacheable(value = "common:messageDO",key = "'common:messageDO:id:' + #id")
     public ResponseDO<MessageDO> getMessageDOById(Long id) throws BusinessException{
         try {
             Assert.isTrue(id != null,"查询Id不能为空!");
-            MessageDO messageDO = messageDao.loadById(id);
+            MessageDO messageDO = messageDao.selectById(id);
             return newStaticResponseDO(messageDO);
         } catch (Exception e) {
             throw new BusinessException("根据ID=>[" + id + "]查询MessageDO信息异常",e);
@@ -75,8 +77,8 @@ public class MessageServiceImpl extends LoggerService implements MessageService{
     * @param messageDO MessageDO
     * @return ResponseDO<MessageDO>
     */
-    @Transactional(rollbackFor = Exception.class)
-    @CachePut(value = "messageDOCache",key = "'messageDOCache' + #messageDO.id")
+    @Override
+    @CachePut(value = "common:messageDO",key = "'common:messageDO:id:' + #messageDO.id")
     public ResponseDO<MessageDO> addMessageDO(MessageDO messageDO) throws BusinessException{
         try {
             // Validate
@@ -108,9 +110,9 @@ public class MessageServiceImpl extends LoggerService implements MessageService{
     * @param messageDO MessageDO
 	* @return ResponseDO<MessageDO>
     */
-    @Transactional(rollbackFor = Exception.class)
-    @CacheEvict(value = "messageDOCache",key = "'messageDOCache' + #id")
-    public ResponseDO<MessageDO> updateMessageDO(MessageDO messageDO) throws BusinessException{
+    @Override
+    @CacheEvict(value = "common:messageDO",key = "'common:messageDO:id:' + #messageDO.id",beforeInvocation = true)
+    public ResponseDO<MessageDO> modifyMessageDO(MessageDO messageDO) throws BusinessException{
         try {
 
             // validate
@@ -140,25 +142,25 @@ public class MessageServiceImpl extends LoggerService implements MessageService{
         Assert.isTrue(messageDO != null,"messageDO不能为空!");
         Assert.isTrue(messageDO.getId() != null,"ID不能为空!");
         // TODO Validate
-        MessageDO oldMessageDO = messageDao.loadById(messageDO.getId());
+        MessageDO oldMessageDO = messageDao.selectById(messageDO.getId());
         Assert.isTrue(oldMessageDO != null,"查询不到ID=>[" + messageDO.getId() + "]的信息!");
         return oldMessageDO;
     }
 
     /**
-    * 删除
+    * 删除(逻辑删除)
     * @param id Long
     * @return ResponseDO<MessageDO>
     * @throws BusinessException
     */
-    @Transactional(rollbackFor = Exception.class)
-    @CacheEvict(value = "messageDOCache",key = "'messageDOCache' + #id")
-    public ResponseDO<MessageDO> deleteMessageDO(Long id) throws BusinessException{
+    @Override
+    @CacheEvict(value = "common:messageDO",key = "'common:messageDO:id:' + #id",beforeInvocation = true)
+    public ResponseDO<MessageDO> delMessageDO(Long id) throws BusinessException{
         try {
             // validate
             Assert.isTrue(id != null,"ID不能为空!");
 
-            MessageDO oldmessageDO = messageDao.loadById(id);
+            MessageDO oldmessageDO = messageDao.selectById(id);
             Assert.isTrue(oldmessageDO != null,"查询不到ID=>" + id + "的信息!");
             MessageDO messageDO = new MessageDO();
             messageDO.setId(id);

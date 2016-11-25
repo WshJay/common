@@ -66,7 +66,30 @@ public class UserBasicDO extends BaseDO {
 	@Setter
 	@Getter
 	private int status;
-	
+
+
+	/**
+	 * 版本号(乐观锁)
+	 */
+	@Setter
+	@Getter
+	private int version;
+
+	/**
+	 * 备注说明
+	 */
+	@Setter
+	@Getter
+	private String description;
+
+	/**
+	 * 0正常,1删除
+	 */
+	@Setter
+	@Getter
+	private int isDeleted;
+
+
 	
 	/**
 	 * 用户对应角色ID
