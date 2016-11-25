@@ -13,7 +13,7 @@ import java.util.List;
 * author: wsh
 * JDK-version:  JDK1.8
 * comments:  Message服务层
-* since Date： 2016-11-18 09:58:07
+* since Date： 2016-11-23 14:56:02
 */
 @Service
 public interface MessageService {
@@ -24,7 +24,7 @@ public interface MessageService {
 	* @param pagination  Pagination
 	* @return OptionsResponseDO<List<MessageDO>>
     */
-    public OptionsResponseDO<List<MessageDO>> getMessageDOListForPage(MessageDO messageDO, Pagination pagination) throws BusinessException;
+    public OptionsResponseDO<List<MessageDO>> queryMessageDOListForPage(MessageDO messageDO, Pagination pagination) throws BusinessException;
 
     /**
     * 根据用户ID查询
@@ -45,13 +45,13 @@ public interface MessageService {
     * @param messageDO MessageDO
 	* @return ResponseDO<MessageDO>
     */
-    public ResponseDO<MessageDO> updateMessageDO(MessageDO messageDO) throws BusinessException;
+    public ResponseDO<MessageDO> modifyMessageDO(MessageDO messageDO) throws BusinessException;
 
     /**
-    * 删除
+    * 删除(逻辑删除)
     * @param id Long
     * @return ResponseDO<MessageDO>
     * @throws BusinessException
     */
-    public ResponseDO<MessageDO> deleteMessageDO(Long id) throws BusinessException;
+    public ResponseDO<MessageDO> delMessageDO(Long id) throws BusinessException;
 }
