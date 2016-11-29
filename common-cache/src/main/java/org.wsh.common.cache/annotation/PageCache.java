@@ -16,6 +16,11 @@ import java.lang.annotation.Target;
 public @interface PageCache {
 
     /**
+     * 缓存Key
+     */
+    String key() default "";
+
+    /**
      * 缓存过期时间，单位是秒
      */
     int expire();

@@ -1,5 +1,6 @@
 package org.wsh.common.cache.service.impl;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.wsh.common.cache.annotation.PageCache;
 import org.wsh.common.cache.service.CacheService;
@@ -14,8 +15,14 @@ import org.wsh.common.cache.service.CacheService;
 public class CacheServiceImpl implements CacheService{
 
     @Override
-    @PageCache(expire = 1000)
+    @PageCache(key="'common:id:' + #id",expire = 1000)
     public String getById(Long id){
+
+        return "Hello Cache...";
+    }
+
+    @Cacheable(key="'common:demo:id:' + #id")
+    public String getDemoDOById(Long id){
 
         return "Hello Cache...";
     }

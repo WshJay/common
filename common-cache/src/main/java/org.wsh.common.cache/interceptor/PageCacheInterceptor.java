@@ -44,24 +44,25 @@ public class PageCacheInterceptor {
     @Around("@annotation(org.wsh.common.cache.annotation.PageCache)")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         logger.info("joinPoint=>" + joinPoint);
-//        String cacheKey = getCacheKey(joinPoint);
-//        cacheManager.getCache(CACHE_KEY).get()
+        String cacheKey = getCacheKey(joinPoint);
 //        Serializable serializable = cacheManager.get(CACHE_NAME, cacheKey);
 //        if (serializable != null) {
 //            logger.info("cache hit，key [{}]", cacheKey);
 //            return serializable;
 //        } else {
 //            logger.info("cache miss，key [{}]", cacheKey);
-//            Object result = joinPoint.proceed(joinPoint.getArgs());
-//            if (result == null) {
-//                logger.error("fail to get data from source，key [{}]", cacheKey);
-//            } else {
-//                PageCache methodCache = getAnnotation(joinPoint, PageCache.class);
+            Object result = joinPoint.proceed(joinPoint.getArgs());
+            if (result == null) {
+                logger.error("fail to get data from source，key [{}]", cacheKey);
+            } else {
+                PageCache methodCache = getAnnotation(joinPoint, PageCache.class);
+                logger.info("key:" + methodCache.key());
+                logger.info("expire:" + methodCache.expire());
 ////                centralizeCacheService.put(CACHE_NAME, methodCache.expire(), cacheKey, (Serializable) result);
-//            }
-//            return result;
-//            }
-            return "Hello";
+            }
+            logger.info("result:" + result);
+            return result;
+//           }
     }
 
     /**
