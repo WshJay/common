@@ -1,5 +1,6 @@
 package org.wsh.common.util.concurrent;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -11,6 +12,11 @@ import java.util.concurrent.Executors;
  */
 public class ConcurrentUtil {
 
+    /**
+     * 并发处理同一操作
+     * @param task 任务
+     * @param count 执行次数
+     */
     public static void start(Task task, int count) {
         long startTime = System.currentTimeMillis();
         ExecutorService executorService = Executors.newFixedThreadPool(count);
