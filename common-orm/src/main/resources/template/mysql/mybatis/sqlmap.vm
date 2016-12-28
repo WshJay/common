@@ -33,20 +33,31 @@ $!{xmlBo.columnName}
 
     <!-- 添加数据 -->
     <insert id="insert" parameterType="${tableName}DO">
-		<selectKey resultType="${idType}" order="AFTER" keyProperty="id">
-		SELECT LAST_INSERT_ID() AS id
-		</selectKey>
+#if(${idType} != 'String')
+        <selectKey resultType="${idType}" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+#end
         INSERT INTO ${table_name}(
-        #foreach($xmlBo in ${list})
-#if(($velocityCount)!=$!{list.size()})#if($!xmlBo.propertyName != "id")$!xmlBo.columnName,
-        #end#else
-$!xmlBo.columnName
-        #end#end
-)VALUES(
-        #foreach($xmlBo in ${list})#if(($velocityCount)!=$!{list.size()})#if($!xmlBo.propertyName != "id")
-#{$!xmlBo.propertyName},
-        #end#else
-#{$!xmlBo.propertyName}#end#end)
+#foreach($xmlBo in ${list})
+#if($xmlBo.columnName != "id")#if(($velocityCount)!=$!{list.size()})
+        $!xmlBo.columnName,
+#else
+        $!xmlBo.columnName
+#end#end
+#end
+        )VALUES(
+#foreach($xmlBo in ${list})
+#if($xmlBo.columnName != "id")
+#if($!xmlBo.propertyName == "gmtCreated" || $!xmlBo.propertyName == "gmtModified")
+        NOW()#if(($velocityCount)!=$!{list.size()}),
+#end
+#elseif($!xmlBo.propertyName == "isDeleted")
+        0#if(($velocityCount)!=$!{list.size()}),
+#end
+#else
+        #{$!xmlBo.propertyName}#if(($velocityCount)!=$!{list.size()}),
+#end#end#end#end)
     </insert>
 
     <!-- 根据ID更新信息-->

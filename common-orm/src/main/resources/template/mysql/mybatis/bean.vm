@@ -28,4 +28,12 @@ private $!colum.type $!colum.name;
 	#end
 #end
 
+	public ${head}DO() {
+	}
+
+	public ${head}DO(#foreach($colum in $columList)$!{colum.type} $!{colum.name}#if($velocityCount!=$!{columList.size()}), #end#end) {
+#foreach($colum in $columList)
+		this.$!colum.name = $!colum.name;
+#end
+	}
 }

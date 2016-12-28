@@ -18,5 +18,7 @@ public enum OutPathKey {
 
     SERVICE,
 
-    SERVICE_IMPL;
+    SERVICE_IMPL,
+
+    SERVICE_TEST;
 }

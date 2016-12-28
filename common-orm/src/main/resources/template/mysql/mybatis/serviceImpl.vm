@@ -64,7 +64,11 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     @Cacheable(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #id")
     public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id) throws BusinessException{
         try {
+            #if(${idType} != "String")
             Assert.isTrue(id != null,"查询Id不能为空!");
+            #else
+            Assert.isTrue(StringUtils.isBanlk(id),"查询Id不能为空!");
+            #end
             ${bigDoName} ${minDoName} = ${minDaoName}.selectById(id);
             return newStaticResponseDO(${minDoName});
         } catch (Exception e) {
@@ -140,10 +144,14 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     private ${bigDoName} validateForUpdate(${bigDoName} ${minDoName}) {
 
         Assert.isTrue(${minDoName} != null,"${minDoName}不能为空!");
-        Assert.isTrue(${minDoName}.getId() != null,"ID不能为空!");
+        #if(${idType} != "String")
+        Assert.isTrue(${minDoName}.getId() != null,"查询Id不能为空!");
+        #else
+        Assert.isTrue(StringUtils.isBanlk(${minDoName}.getId()),"查询Id不能为空!");
+        #end
         // TODO Validate
         ${bigDoName} old${bigDoName} = ${minDaoName}.selectById(${minDoName}.getId());
-        Assert.isTrue(old${bigDoName} != null,"查询不到ID=>[" + ${minDoName}.getId() + "]的信息!");
+        Assert.notNull(old${bigDoName},"查询不到ID=>[" + ${minDoName}.getId() + "]的信息!");
         return old${bigDoName};
     }
 
@@ -158,7 +166,11 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id) throws BusinessException{
         try {
             // validate
-            Assert.isTrue(id != null,"ID不能为空!");
+            #if(${idType} != "String")
+            Assert.isTrue(id != null,"查询Id不能为空!");
+            #else
+            Assert.isTrue(StringUtils.isBanlk(id),"查询Id不能为空!");
+            #end
 
             ${bigDoName} old${minDoName} = ${minDaoName}.selectById(id);
             Assert.isTrue(old${minDoName} != null,"查询不到ID=>" + id + "的信息!");
