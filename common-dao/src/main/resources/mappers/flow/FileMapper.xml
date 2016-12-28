@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.wsh.common.dao.flow.FileDao" > 
+	<resultMap id="FileMap" type="FileDO">
+	    <result property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="name" column="name"/>
+        <result property="coverPath" column="cover_path"/>
+        <result property="filePath" column="file_path"/>
+        <result property="description" column="description"/>
+        <result property="version" column="version"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+        type,
+        name,
+        cover_path,
+        file_path,
+        description,
+        version,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="selectById" parameterType="Long" resultMap="FileMap">
+        SELECT <include refid="allSelectionColumn"/> FROM file WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="selectListByParams" parameterType="FileDO" resultMap="FileMap">
+        SELECT <include refid="allSelectionColumn"/> FROM file WHERE is_deleted = 0
+    </select>
+    <select id="selectCountByParams" parameterType="FileDO" resultType="int">
+        SELECT COUNT(id) FROM file WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="FileDO">
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO file(
+        type,
+        name,
+        cover_path,
+        file_path,
+        description,
+        version,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+        )VALUES(
+        #{type},
+        #{name},
+        #{coverPath},
+        #{filePath},
+        #{description},
+        #{version},
+        0,
+        NOW(),
+        NOW())
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="FileDO">
+        UPDATE file SET
+        <if test="type != null and type != ''">
+            type = #{type},
+        </if>
+        <if test="name != null and name != ''">
+            name = #{name},
+        </if>
+        <if test="coverPath != null and coverPath != ''">
+            cover_path = #{coverPath},
+        </if>
+        <if test="filePath != null and filePath != ''">
+            file_path = #{filePath},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        version = version + 1,
+        gmt_modified = NOW()
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="FileDO">
+        UPDATE file SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM file WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO file
+		(id,type,name,cover_path,file_path,description,version,is_deleted,gmt_created,gmt_modified)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.id},#{item.type},#{item.name},#{item.coverPath},#{item.filePath},#{item.description},#{item.version},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified})
+		</foreach>
+    </insert>
+</mapper>  

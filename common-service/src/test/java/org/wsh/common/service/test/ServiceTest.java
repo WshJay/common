@@ -7,16 +7,21 @@ import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.enums.msg.MessageType;
+import org.wsh.common.model.basic.MenuDO;
 import org.wsh.common.model.basic.UserBasicDO;
 import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.service.api.message.UserBasicService;
+import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
+import org.wsh.common.service.api.mysql.lock.PessimisticLockService;
 import org.wsh.common.support.base.AbstractLogger;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
+import org.wsh.common.util.concurrent.ConcurrentUtil;
+import org.wsh.common.util.concurrent.Task;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -44,6 +49,12 @@ public class ServiceTest extends AbstractLogger{
     @Autowired
     private CacheManager cacheManager;
 
+    @Resource
+    private PessimisticLockService pessimisticLockService;
+
+    @Resource
+    private OptimisticLockService optimisticLockService;
+
     @Test
     public void test() throws BusinessException {
 //        List<MenuDO> menuDOList = menuService.getAllRootMenu();
@@ -57,14 +68,41 @@ public class ServiceTest extends AbstractLogger{
 //        System.out.println(comMessageCache.get("message_id:12").get());
 //        System.out.println(fundsMessageCache.get("message_id:12").get());
 
-        ResponseDO<UserBasicDO> responseDO = userBasicService.getUserBasicDOById(1L);
-        userBasicService.getUserBasicDOByUserName("管理员");
+//        ResponseDO<UserBasicDO> responseDO = userBasicService.getUserBasicDOById(1L);
+//        userBasicService.getUserBasicDOByUserName("管理员");
 //
 //        UserBasicDO user = new UserBasicDO();
 //        user.setId(1L);
 //        userBasicService.modifyUserBasicDO(user);
-        userBasicService.modifyUserBasicDO(responseDO.getData());
+//        userBasicService.modifyUserBasicDO(responseDO.getData());
 
+//        optimisticLockUpdate();
+        pessimisticLockUpdate();
+
+    }
+
+    private void optimisticLockUpdate() {
+        try {
+            UserBasicDO user = new UserBasicDO();
+            user.setId(6L);
+            user.setFaceUrl("321");
+            int count = 3;
+            ConcurrentUtil.start(new Task(count,optimisticLockService,"updateForLock",user), count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void pessimisticLockUpdate() {
+        try {
+            UserBasicDO user = new UserBasicDO();
+            user.setId(6L);
+            user.setFaceUrl("123");
+            int count = 3;
+            ConcurrentUtil.start(new Task(count,pessimisticLockService,"updateForLock",user), count);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test

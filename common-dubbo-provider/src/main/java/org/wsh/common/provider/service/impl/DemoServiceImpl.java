@@ -13,6 +13,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
  * @since Date： 2014-5-23 上午10:57:39
  */
 @Service("demoService")
+@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
 public class DemoServiceImpl extends LoggerService implements DemoService {
 
 	private int count;

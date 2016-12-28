@@ -12,6 +12,7 @@ import org.wsh.common.util.logger.LoggerService;
  * since Date： 2016-09-23 10:25
  */
 @Service("demoAService")
+@com.alibaba.dubbo.config.annotation.Service(version = "1.0.0")
 public class DemoABServiceImpl extends LoggerService implements DemoAService, DemoBService {
 
     @Override

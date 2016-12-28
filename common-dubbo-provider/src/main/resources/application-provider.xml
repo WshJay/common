@@ -21,16 +21,20 @@
 
     <dubbo:provider timeout="10000" retries="0" version="${rpc.dubbo.provider.version}"/>
 
+    <!-- 注解DUBBO服务,在服务头加入@Service(version = "1.0.0")扫描注解包路径 -->
+    <!--<dubbo:annotation package="org.wsh.common.provider.service"/>-->
+
     <!-- Demo Service -->
     <dubbo:service interface="org.wsh.common.consumer.service.DemoService" ref="demoService"/>
     <dubbo:service interface="org.wsh.common.consumer.service.DemoAService" ref="demoAService"/>
     <dubbo:service interface="org.wsh.common.consumer.service.DemoBService" ref="demoAService"/>
 
     <!-- Basic Service -->
-    <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService" version="1.0.0"/>
-    <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService" version="1.0.0"/>
-    <dubbo:service interface="org.wsh.common.service.api.PermissionService" ref="permissionService" version="1.0.0"/>
-    <dubbo:service interface="org.wsh.common.service.api.RoleService" ref="roleService" version="1.0.0"/>
-    <dubbo:service interface="org.wsh.common.service.api.UserService" ref="userService" version="1.0.0"/>
+    <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService"/>
+    <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService"/>
+    <dubbo:service interface="org.wsh.common.service.api.PermissionService" ref="permissionService"/>
+    <dubbo:service interface="org.wsh.common.service.api.RoleService" ref="roleService"/>
+    <dubbo:service interface="org.wsh.common.service.api.UserService" ref="userService"/>
+    <dubbo:service interface="org.wsh.common.service.api.flow.FlowService" ref="flowService"/>
 
 </beans>
