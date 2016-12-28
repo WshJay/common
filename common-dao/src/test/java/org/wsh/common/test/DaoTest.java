@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.dao.RoleDAO;
+import org.wsh.common.dao.UserBasicDAO;
 import org.wsh.common.model.basic.RoleDO;
 import org.wsh.common.support.base.AbstractLogger;
 
@@ -23,6 +24,9 @@ public class DaoTest extends AbstractLogger{
     @Resource
     private RoleDAO roleDAO;
 
+    @Resource
+    private UserBasicDAO userBasicDAO;
+
     @Test
     public void test(){
 
@@ -31,6 +35,9 @@ public class DaoTest extends AbstractLogger{
 //           logger.info("roleName:" + roleDO.getRoleName());
 //        }
 //        addRole("秘书","MS",1L);
+
+//        userBasicDAO.queryById(6L);
+        userBasicDAO.updateUserFaceById(6L,"8");
     }
 
     /**

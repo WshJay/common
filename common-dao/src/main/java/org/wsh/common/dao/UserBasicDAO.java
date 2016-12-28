@@ -51,7 +51,7 @@ public interface UserBasicDAO{
 	 * 修改用户信息
 	 * @param userBasicDO
 	 */
-	void updateUserBasic(UserBasicDO userBasicDO);
+	int updateUserBasic(UserBasicDO userBasicDO);
 	
 	/**
 	 * 根据用户ID删除用户基本信息
@@ -65,4 +65,11 @@ public interface UserBasicDAO{
 	 * @param faceUrl 头像地址
 	 */
 	int updateUserFaceById(@Param("id") Long userId, @Param("faceUrl")String faceUrl);
+
+	/**
+	 * 根据用户ID查询用户基本信息(悲观锁测试)
+	 * @param userId 用户ID
+	 * @return UserBasicDO
+	 */
+	UserBasicDO selectById(@Param("id") Long userId);
 }

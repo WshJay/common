@@ -11,10 +11,10 @@
     <description>Test</description>
 
     <dependencies>
-        <dependency>
-            <groupId>${parent.groupId}</groupId>
-            <artifactId>common-service</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>${parent.groupId}</groupId>-->
+            <!--<artifactId>common-service</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.wsh.common</groupId>
             <artifactId>common-dubbo-consumer</artifactId>
@@ -30,12 +30,17 @@
             <artifactId>lambdaj</artifactId>
             <version>${lambdaj.version}</version>
         </dependency>
-
         <!-- RabbitMQ -->
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>3.6.2</version>
+        </dependency>
+        <!-- Jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
     </dependencies>
 </project>
