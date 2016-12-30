@@ -59,6 +59,11 @@ public class TablesBuilder {
 	@Getter
 	private String serviceImplPackage;
 
+	//serviceTest包地址
+	@Setter
+	@Getter
+	private String serviceTestPackage;
+
 	//数据库表名 %全部
 	@Setter
 	@Getter
@@ -87,6 +92,7 @@ public class TablesBuilder {
 			tableWapper.setPojoPackage(pojoPackage);
 			tableWapper.setServicePackage(servicePackage);
 			tableWapper.setServiceImplPackage(serviceImplPackage);
+			tableWapper.setServiceTestPackage(serviceTestPackage);
 			tableWapper.setOutPathMap(outPathMap);
 			tables.add(tableWapper);
 			String tableName = tableRet.getString("TABLE_NAME");

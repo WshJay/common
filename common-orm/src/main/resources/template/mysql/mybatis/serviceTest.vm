@@ -1,4 +1,4 @@
-package org.wsh.common.service.test.flow;
+package $!{serviceTestPackage};
 
 import org.springframework.transaction.annotation.Transactional;
 import org.wsh.common.pager.pagination.Pagination;
@@ -42,7 +42,7 @@ public class ${bigServiceName}Test extends LoggerService{
     private ${bigDoName} insert() throws Exception {
         ${bigDoName} ${minDoName} = new ${bigDoName}();
 
-        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.addFlowDO(${minDoName});
+        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.add${bigDoName}(${minDoName});
         logger.info("Result:" + responseDO.isSuccess() + "ErrorCode:" + responseDO.getErrorCode() + "ErrorMsg:" + responseDO.getErrorMsg());
         return ${minDoName};
     }

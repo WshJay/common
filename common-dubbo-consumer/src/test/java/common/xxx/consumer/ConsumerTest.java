@@ -40,13 +40,15 @@ public class ConsumerTest {
     private PermissionService permissionService;
 
     @Test
-    public void test(){
+    public void test() throws InterruptedException {
         System.out.println("--------Test Start-----------");
         String hello = demoService.sayHello();
         System.out.println(hello);
 
         demoAService.aMethod();
         demoBService.bMethod();
+
+        Thread.sleep(100000);
 
         int count = 100;
         ConcurrentUtil.start(new Task(count,menuService,"getAllChildrenMenu"),count);

@@ -33,6 +33,7 @@ public class BuildServiceTest extends AbstractBuildFactory {
         String pojoPackage = tableWapper.getPojoPackage();
         String servicePackage = tableWapper.getServicePackage();
         String serviceImplPackage = tableWapper.getServiceImplPackage();
+        String serviceTestPackage = tableWapper.getServiceTestPackage();
 
         String outPath = tableWapper.getOutPathMap().get(OutPathKey.DEFULT);
         if(tableWapper.getOutPathMap().get(getOutPath()) != null){
@@ -47,6 +48,7 @@ public class BuildServiceTest extends AbstractBuildFactory {
         String bigServiceTestName = bigServiceName+"Test";
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("servicePackage", servicePackage);
+        map.put("serviceTestPackage", serviceTestPackage);
         map.put("bigDoName", bigDoName);
         map.put("minDoName", minDoName);
         map.put("bigServiceName", bigServiceName);

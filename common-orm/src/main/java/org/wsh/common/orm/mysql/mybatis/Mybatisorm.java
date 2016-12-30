@@ -44,6 +44,7 @@ public class Mybatisorm {
 		builder.setDaoPackage("org.wsh.common.dao.flow");//dao包地址
 		builder.setServicePackage("org.wsh.common.service.api.flow");
 		builder.setServiceImplPackage("org.wsh.common.service.impl.flow");
+		builder.setServiceTestPackage("org.wsh.common.test.service.flow");
 		outPathMap.put(OutPathKey.DEFULT,"F:/TableModel/");
 		outPathMap.put(OutPathKey.DO,PROJECT_PATH + "\\model\\");
 		outPathMap.put(OutPathKey.DAO,PROJECT_PATH + "\\mapper\\");

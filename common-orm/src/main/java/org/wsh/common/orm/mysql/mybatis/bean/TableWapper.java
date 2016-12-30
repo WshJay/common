@@ -30,6 +30,10 @@ public class TableWapper {
 
 	@Setter
 	@Getter
+	private String serviceTestPackage;
+
+	@Setter
+	@Getter
 	private Map<OutPathKey,String> outPathMap;
 
 	public TableWapper(Table t) {
