@@ -1,6 +1,7 @@
 package org.wsh.common.util.concurrent;
 
 import java.lang.reflect.Method;
+import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 
 /**
@@ -19,9 +20,16 @@ public class Task implements Runnable {
 
     private Object[] args;
 
-
+    @Deprecated
     public Task(int count, Object obj, String methodName, Object... args) {
         this.cyclicBarrier = new CyclicBarrier(count);
+        this.obj = obj;
+        this.methodName = methodName;
+        this.args = args;
+    }
+
+    public Task(CyclicBarrier cyclicBarrier, Object obj, String methodName, Object... args) {
+        this.cyclicBarrier = cyclicBarrier;
         this.obj = obj;
         this.methodName = methodName;
         this.args = args;
@@ -31,7 +39,9 @@ public class Task implements Runnable {
     public void run() {
         try {
             // 等待所有任务准备就绪
+            Thread.sleep(1000 * (new Random()).nextInt(8));// 线程等待几秒,主要用于查看执行过程
             cyclicBarrier.await();
+            System.out.println("任务开始执行...");
             invokeMethod(obj, methodName, args);
         } catch (Exception e) {
             e.printStackTrace();
