@@ -1,22 +1,21 @@
-package org.wsh.common.util.rsa;
+package org.wsh.common.util.secret;
 
 import java.security.MessageDigest;  
-
-import javax.crypto.KeyGenerator;  
+import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;  
 import javax.crypto.SecretKey;  
 import javax.crypto.spec.SecretKeySpec;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
-import sun.misc.BASE64Decoder; 
-import sun.misc.BASE64Encoder;  
-/** 
- * 基础加密组件 
- *  
- * @author 梁栋 
- * @version 1.0 
- * @since 1.0 
- */  
-public abstract class Coder {  
+/**
+ * author: wsh
+ * JDK-version:  JDK1.8
+ * comments:  基础加密组件
+ * since Date： 2017/1/10 11:46
+ */
+public abstract class Coder {
+
     public static final String KEY_SHA = "SHA";  
     public static final String KEY_MD5 = "MD5";  
   

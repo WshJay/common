@@ -1,4 +1,4 @@
-package org.wsh.common.util.rsa;
+package org.wsh.common.util.secret;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -48,7 +48,7 @@ public class MD5 {
      * @param origin 原始字符串
      * @return 经过MD5加密之后的结果
      */
-    public static String MD5Encode(String origin) {
+    public static String encrypt(String origin) {
         String resultString = null;
         try {
             resultString = origin;
