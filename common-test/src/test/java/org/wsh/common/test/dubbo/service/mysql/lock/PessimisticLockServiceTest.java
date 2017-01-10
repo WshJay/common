@@ -1,4 +1,4 @@
-package org.wsh.common.test.mysql.lock;
+package org.wsh.common.test.dubbo.service.mysql.lock;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,54 +11,36 @@ import org.wsh.common.util.concurrent.ConcurrentUtil;
 import org.wsh.common.util.concurrent.Task;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * mysql乐观锁悲观锁测试
+ * mysql悲观锁测试
  * author: wsh
  * JDK-version:  JDK1.8
  * comments:  对此类的描述，可以引用系统设计中的描述
- * since Date： 2016-12-22 11:31
+ * since Date： 2017-01-09 10:45
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/common-bean.xml"})
-public class LockTest {
+@ContextConfiguration(locations = { "classpath:/common-dubbo-bean.xml"})
+public class PessimisticLockServiceTest {
 
     @Resource
     private PessimisticLockService pessimisticLockService;
 
-    @Resource
-    private OptimisticLockService optimisticLockService;
-
+    /**
+     * 悲观锁
+     */
     @Test
-    public void test(){
-
-//        optimisticLockUpdate();
-        pessimisticLockUpdate();
-    }
-
-    private void optimisticLockUpdate() {
-        try {
-            UserBasicDO user = new UserBasicDO();
-            user.setId(6L);
-            user.setFaceUrl("321");
-            int count = 3;
-            ConcurrentUtil.start(new Task(count,optimisticLockService,"updateForLock",user), count);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void pessimisticLockUpdate() {
+    public void pessimisticLockUpdate() {
         try {
             UserBasicDO user = new UserBasicDO();
             user.setId(6L);
             user.setFaceUrl("123");
-            int count = 3;
+            int count = 1;
             ConcurrentUtil.start(new Task(count,pessimisticLockService,"updateForLock",user), count);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+

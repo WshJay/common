@@ -1,12 +1,11 @@
 package org.wsh.common.test.sql;
 
+import org.wsh.common.test.model.dto.UserBasicDO;
 import org.wsh.common.util.file.FileUtil;
+import org.wsh.common.util.shiro.encrypt.HashPwd;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.UUID;
-
-import static java.util.UUID.randomUUID;
 
 /**
  * author: wsh
@@ -17,17 +16,64 @@ import static java.util.UUID.randomUUID;
 public class CreateInsert {
 
     public static void main(String[] args) throws IOException {
-        for (int j = 0; j < 6; j++) {
-            StringBuffer content = new StringBuffer();
-            for (int i = 0; i < 100000; i++) {
-                String currentDate = "'2016-09-21 10:30:00'";
-                String id = UUID.randomUUID().toString();
-                content.append("INSERT INTO bill_withdraw (`id`, `billNumber`, `withdrawType`, `channelId`, `userId`, `accountId`, `bankCardNo`, `bankCode`, `bankName`, `businessNumber`, `businessBody`, `appId`, `businessDate`, `businessDesc`, `amount`, `sign`, `createDate`, `updateDate`, `description`, `version`, `isdeleted`) VALUES ('" + id + "', '" + UUID.randomUUID().toString() + "', 'UNTIME', 'LIANLIAN', '201512040929176188868d2365cd444ca833046f944178d97', '201512040929176188868d2365cd444ca833046f944178d97_shop', '6226660605677380', '03030000', '光大银行', '" + UUID.randomUUID().toString() + "', NULL, 'F75378884E4048C7AF8890DB9A38C541', '2016-09-21 10:20:12', '测试提现', '10.0000', NULL, " + currentDate + ", " + currentDate + ", NULL, '0', '0');");
-                content.append("\n");
-                content.append("INSERT INTO audit_withdraw_status (`id`, `billWithdrawId`, `auditType`, `auditStatus`, `auditDesc`, `verifyDesc`, `version`, `createDate`, `updateDate`, `description`, `isdeleted`) VALUES ('" + UUID.randomUUID().toString() + "', '" + id + "', 'MANUAL', 'WAIT_AUDIT', 'null', 'null', '4', " + currentDate + ", " + currentDate + ", NULL, '0');");
-                content.append("\n");
-            }
-            FileUtil.genModuleTpl("E:/insert.sql",content.toString());
+
+//
+//for(int i = 1; i < 30; i++){
+//            StringBuffer content = new StringBuffer();
+//            int minNum = 1000000 * i;
+//            int maxNum = 1000000 * (i + 1);
+//            System.out.println("minNum=>" + minNum + " maxNum=>" + maxNum);
+//            addUser(content, minNum, maxNum);
+//            FileUtil.genModuleTpl("E:/insert_user_" + i + ".sql", content.toString());
+//        }
+//        for(int i = 1; i < 30; i++){
+//            StringBuffer content = new StringBuffer();
+//            int minNum = 1000000 * i;
+//            int maxNum = 1000000 * (i + 1);
+//            System.out.println("minNum=>" + minNum + " maxNum=>" + maxNum);
+//            addUserRole(content, minNum, maxNum);
+//            FileUtil.genModuleTpl("E:/insert_user_role_" + i + ".sql", content.toString());
+//        }
+
+        for(int i = 1; i < 30; i++){
+            System.out.println("source E:/SQL/insert_user_" + i + ".sql;");
+        }
+
+        for(int i = 1; i < 30; i++){
+            System.out.println("source E:/SQL/insert_user_role_" + i + ".sql;");
         }
     }
+
+    private static void addUserRole(StringBuffer content, int minNum, int maxNum) {
+        content.append("INSERT INTO user_role (id,user_id, role_id, create_user_id, gmt_created, gmt_modified) VALUES");
+        content.append("\n");
+        for (int i = minNum; i < maxNum; i++) {
+            String id = UUID.randomUUID().toString();
+            if (i == maxNum -1){
+                content.append("(").append(i).append(",").append(i).append(", 2, 1,NOW(),NOW());");
+            }else{
+                content.append("(").append(i).append(",").append(i).append(", 2, 1,NOW(),NOW()),");
+                content.append("\n");
+            }
+
+        }
+        content.append("\n");
+    }
+
+    private static void addUser(StringBuffer content, int minNum, int maxNum) {
+        content.append("INSERT INTO user_basic (id,user_name, password, salt, real_name, face_url, phone, email, status, gmt_created, gmt_modified) VALUES");
+        content.append("\n");
+        for (int i = minNum; i < maxNum; i++) {
+            String id = UUID.randomUUID().toString();
+            if (i == maxNum -1){
+                content.append("(").append(i).append(",").append("'用户").append(i).append("', 'a22afffd9237b3c9b7ef4a9ecf88d106392cfc33', '3e731f4fd71db231', '模拟用户', null, '12345678911', '123456@qq.com', 0,NOW(),NOW());");
+            }else{
+                content.append("(").append(i).append(",").append("'用户").append(i).append("', 'a22afffd9237b3c9b7ef4a9ecf88d106392cfc33', '3e731f4fd71db231', '模拟用户', null, '12345678911', '123456@qq.com', 0,NOW(),NOW()),");
+                content.append("\n");
+            }
+
+        }
+        content.append("\n");
+    }
+
 }

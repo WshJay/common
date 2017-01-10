@@ -16,12 +16,12 @@ import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.service.api.message.UserBasicService;
 import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
 import org.wsh.common.service.api.mysql.lock.PessimisticLockService;
-import org.wsh.common.support.base.AbstractLogger;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
 import org.wsh.common.util.concurrent.ConcurrentUtil;
 import org.wsh.common.util.concurrent.Task;
+import org.wsh.common.util.logger.LoggerService;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -35,7 +35,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:common-bean.xml")
-public class ServiceTest extends AbstractLogger{
+public class ServiceTest extends LoggerService{
 
     @Resource
     private MenuService menuService;
@@ -57,10 +57,10 @@ public class ServiceTest extends AbstractLogger{
 
     @Test
     public void test() throws BusinessException {
-//        List<MenuDO> menuDOList = menuService.getAllRootMenu();
-//        for (MenuDO menuDO : menuDOList) {
-//            logger.info("menuName==>" + menuDO.getName());
-//        }
+        List<MenuDO> menuDOList = menuService.getAllRootMenu();
+        for (MenuDO menuDO : menuDOList) {
+            logger.info("menuName==>" + menuDO.getName());
+        }
 //
 
 //        Cache comMessageCache = cacheManager.getCache("common_messageDO");
@@ -77,7 +77,7 @@ public class ServiceTest extends AbstractLogger{
 //        userBasicService.modifyUserBasicDO(responseDO.getData());
 
 //        optimisticLockUpdate();
-        pessimisticLockUpdate();
+//        pessimisticLockUpdate();
 
     }
 

@@ -29,6 +29,10 @@
     <dubbo:service interface="org.wsh.common.consumer.service.DemoAService" ref="demoAService"/>
     <dubbo:service interface="org.wsh.common.consumer.service.DemoBService" ref="demoAService"/>
 
+    <!-- Mysql Lock Service -->
+    <dubbo:service interface="org.wsh.common.service.api.mysql.lock.PessimisticLockService" ref="pessimisticLockService"/>
+    <dubbo:service interface="org.wsh.common.service.api.mysql.lock.OptimisticLockService" ref="optimisticLockService"/>
+
     <!-- Basic Service -->
     <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService"/>
     <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService"/>

@@ -7,9 +7,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.dao.RoleDAO;
 import org.wsh.common.dao.UserBasicDAO;
 import org.wsh.common.model.basic.RoleDO;
-import org.wsh.common.support.base.AbstractLogger;
+import org.wsh.common.util.logger.LoggerService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * author: wsh
@@ -19,7 +20,7 @@ import javax.annotation.Resource;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:common-bean.xml")
-public class DaoTest extends AbstractLogger{
+public class DaoTest extends LoggerService{
 
     @Resource
     private RoleDAO roleDAO;
@@ -30,14 +31,14 @@ public class DaoTest extends AbstractLogger{
     @Test
     public void test(){
 
-//        List<RoleDO> roleDOList = roleDAO.queryAll();
-//        for (RoleDO roleDO : roleDOList) {
-//           logger.info("roleName:" + roleDO.getRoleName());
-//        }
+        List<RoleDO> roleDOList = roleDAO.queryAll();
+        for (RoleDO roleDO : roleDOList) {
+           logger.info("roleName:" + roleDO.getRoleName());
+        }
 //        addRole("秘书","MS",1L);
 
 //        userBasicDAO.queryById(6L);
-        userBasicDAO.updateUserFaceById(6L,"8");
+//        userBasicDAO.updateUserFaceById(6L,"8");
     }
 
     /**

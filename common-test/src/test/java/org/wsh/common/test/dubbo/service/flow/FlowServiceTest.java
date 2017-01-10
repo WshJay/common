@@ -23,7 +23,7 @@ import static org.wsh.common.enums.SessionKey.user;
  * since Date： 2016-12-28 15:19
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/application-consumer.xml"})
+@ContextConfiguration(locations = { "classpath:/common-dubbo-bean.xml"})
 public class FlowServiceTest extends LoggerService{
 
     @Resource

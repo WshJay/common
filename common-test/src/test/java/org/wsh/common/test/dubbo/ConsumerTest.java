@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @since Date： 2016-09-10 15:30
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/application-consumer.xml"})
+@ContextConfiguration(locations = { "classpath:/common-dubbo-bean.xml"})
 public class ConsumerTest {
 
     @Resource

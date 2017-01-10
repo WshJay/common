@@ -1,16 +1,14 @@
 package common.xxx.consumer;
 
-import org.wsh.common.consumer.service.DemoAService;
-import org.wsh.common.consumer.service.DemoBService;
-import org.wsh.common.consumer.service.DemoService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.consumer.service.DemoAService;
+import org.wsh.common.consumer.service.DemoBService;
+import org.wsh.common.consumer.service.DemoService;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.PermissionService;
-import org.wsh.common.util.concurrent.ConcurrentUtil;
-import org.wsh.common.util.concurrent.Task;
 
 import javax.annotation.Resource;
 
@@ -21,7 +19,7 @@ import javax.annotation.Resource;
  * @since Date： 2016-09-09 15:23
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/application-consumer.xml"})
+@ContextConfiguration(locations = { "classpath:/consumer-bean.xml"})
 public class ConsumerTest {
 
     @Resource
@@ -47,11 +45,6 @@ public class ConsumerTest {
 
         demoAService.aMethod();
         demoBService.bMethod();
-
-        Thread.sleep(100000);
-
-        int count = 100;
-        ConcurrentUtil.start(new Task(count,menuService,"getAllChildrenMenu"),count);
 
         permissionService.getRolePermissionList();
         System.out.println("--------Test End-----------");

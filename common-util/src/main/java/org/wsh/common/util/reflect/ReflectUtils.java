@@ -85,22 +85,26 @@ public class ReflectUtils {
      * @param clazz
      * @param field
      * @return
-     * @throws NoSuchFieldException
-     * @throws SecurityException
-     * @throws IllegalArgumentException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
      */
-    public static <T> Object getFieldValue(Class<T> clazz, String field) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InstantiationException {
+    public static <T> Object getFieldValue(Class<T> clazz, String field) {
 
-        Field[] fields = clazz.getDeclaredFields();
-
-        for (int i = 0; i < fields.length; i++) {
-            if (fields[i].getName().equals(field)) {
-                //对于私有变量的访问权限，在这里设置，这样即可访问Private修饰的变量
-                fields[i].setAccessible(true);
-                return fields[i].get(clazz.newInstance());
+        try {
+            Field[] fields = clazz.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                if (fields[i].getName().equals(field)) {
+                    //对于私有变量的访问权限，在这里设置，这样即可访问Private修饰的变量
+                    fields[i].setAccessible(true);
+                    return fields[i].get(clazz.newInstance());
+                }
             }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
         }
 
         return null;

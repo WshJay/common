@@ -1,4 +1,4 @@
-package org.wsh.common.provider.test;
+package org.wsh.common.provider.dubbo;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

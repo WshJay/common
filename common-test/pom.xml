@@ -20,6 +20,11 @@
             <artifactId>common-dubbo-consumer</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.wsh.common</groupId>
+            <artifactId>common-util</artifactId>
+        </dependency>
+        <!-- quartz -->
+        <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
