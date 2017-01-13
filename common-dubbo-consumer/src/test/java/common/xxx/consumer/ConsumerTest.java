@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @since Date： 2016-09-09 15:23
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:/consumer-bean.xml"})
+@ContextConfiguration(locations = { "classpath:beans.xml"})
 public class ConsumerTest {
 
     @Resource

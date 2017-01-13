@@ -20,7 +20,7 @@ public class ConstantsUtil {
 	protected static final Logger LOG = LoggerFactory.getLogger(ConstantsUtil.class);
 	
 	/** 文件地址 */
-	private final static String PROPERTISE_PATH = "config/system.properties";
+	private final static String PROPERTISE_PATH = "config/dev/system.properties";
 	
 	/** APP请求URL */
 	public static String SERVER_HOST = PropertiesUtils.readProperties(PROPERTISE_PATH).getProperty("app.server.host");

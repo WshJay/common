@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.TextMessage;
 import org.wsh.common.model.basic.UserBasicDO;
-import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.rest.socket.SystemWebSocketHandler;
 import org.wsh.common.service.api.UserService;
 import org.wsh.common.support.exception.BusinessException;
@@ -56,7 +56,7 @@ public class MessageAction {
 	public void broadcast(String text, Long formUserId) throws IOException {
 		MessageDO messageDO = new MessageDO();
 		messageDO.setGmtCreated(new Date());
-		messageDO.setFromUserId(String.valueOf(formUserId));
+		messageDO.setFromId(formUserId);
 		messageDO.setContent(text);
 		handler.broadcast(new TextMessage(JSONObject.toJSONString(messageDO,
 				SerializerFeature.WriteDateUseDateFormat)));

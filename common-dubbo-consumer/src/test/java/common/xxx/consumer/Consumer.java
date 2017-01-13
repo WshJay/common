@@ -16,7 +16,7 @@ public class Consumer {
     public static void main(String[] args) {
 
         try {
-            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:/application-consumer.xml"});
+            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"classpath:beans.xml"});
             context.start();
             System.in.read();
         } catch (IOException e) {

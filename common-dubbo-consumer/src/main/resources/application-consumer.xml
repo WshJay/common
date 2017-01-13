@@ -7,30 +7,30 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         ">
-    <dubbo:application name="app-consumer"/>
+    <dubbo:application name="${rpc.dubbo.application.name}"/>
 
-    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+    <dubbo:registry protocol="${rpc.dubbo.registry.protocol}" address="${rpc.dubbo.registry.address}"/>
 
     <!-- Demo Service -->
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoService" id="demoService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoAService" id="demoAService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.consumer.service.DemoBService" id="demoBService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoService" id="demoService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoAService" id="demoAService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.consumer.service.DemoBService" id="demoBService" version="${rpc.dubbo.consumer.version}"/>
 
     <!-- Mysql Lock Service -->
-    <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.PessimisticLockService" id="pessimisticLockService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.OptimisticLockService" id="optimisticLockService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.PessimisticLockService" id="pessimisticLockService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.OptimisticLockService" id="optimisticLockService" version="${rpc.dubbo.consumer.version}"/>
 
 
     <!-- Basic Service -->
-    <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.service.api.UserService" id="userService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.service.api.RoleService" id="roleService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.service.api.PermissionService" id="permissionService" version="1.0.0"/>
-    <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.UserService" id="userService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.RoleService" id="roleService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.PermissionService" id="permissionService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="${rpc.dubbo.consumer.version}"/>
     <!--<dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>-->
 
     <!-- 超时/异常重试,默认为cluster="failover" -->
-    <dubbo:reference interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0">
+    <dubbo:reference interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="${rpc.dubbo.consumer.version}">
         <dubbo:method name="modifyFlowDO" retries="1" timeout="2000"/>
     </dubbo:reference>
 

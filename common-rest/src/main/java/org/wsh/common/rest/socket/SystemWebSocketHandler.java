@@ -9,7 +9,7 @@ import org.springframework.web.socket.*;
 import org.wsh.common.enums.SessionKey;
 import org.wsh.common.enums.msg.MessageKey;
 import org.wsh.common.model.basic.UserBasicDO;
-import org.wsh.common.model.msg.MessageDO;
+import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.util.logger.LoggerService;
 
 import java.io.IOException;
@@ -74,9 +74,9 @@ public class SystemWebSocketHandler extends LoggerService implements WebSocketHa
 			if (userObj != null) {
 				UserBasicDO user = (UserBasicDO) userObj;
 				MessageDO messageDO = JSON.parseObject(message.getPayload().toString(),new TypeReference<MessageDO>(){});
-				messageDO.setFromUserId(String.valueOf(user.getId()));
-				messageDO.setFromUserName(user.getUserName());
-				sendMessageToUser(Long.parseLong(messageDO.getToUserId()), new TextMessage(JSONObject.toJSONString(messageDO,
+				messageDO.setFromId(user.getId());
+//				messageDO.setFromUserName(user.getUserName());
+				sendMessageToUser(messageDO.getTargetId(), new TextMessage(JSONObject.toJSONString(messageDO,
 						SerializerFeature.WriteDateUseDateFormat)));
 			}
 	}

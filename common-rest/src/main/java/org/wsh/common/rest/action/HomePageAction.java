@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.wsh.common.model.basic.UserBasicDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.UserService;
+import org.wsh.common.support.exception.BusinessException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -40,10 +41,12 @@ public class HomePageAction {
 	 */
 	@RequestMapping("/index")
 	public String goHomePage(Model model, UserBasicDO user, Pagination pagination, HttpServletRequest request) {
-		List<UserBasicDO> userList = userService.getUserList(user, pagination);
-		model.addAttribute("userList", userList);
-		ModelAndView mav = new ModelAndView("pay");
-		mav.addObject("html", "Test...");
+		try {
+			List<UserBasicDO> userList = userService.getUserList(user, pagination);
+			model.addAttribute("userList", userList);
+		} catch (BusinessException e) {
+			return "/404";
+		}
 		return "/index";
 	}
 }

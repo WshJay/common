@@ -13,7 +13,7 @@
     <bean id="system" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="locations">
             <array>
-                <value>classpath:config/system.properties</value>
+                <value>classpath:config/*.properties</value>
             </array>
         </property>
     </bean>

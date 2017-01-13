@@ -126,5 +126,21 @@ public class UserBasicDO extends BaseDO {
 		this.phone = phone;
 		this.email = email;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "UserBasicDO{" +
+				"userName='" + userName + '\'' +
+				", password='" + password + '\'' +
+				", salt='" + salt + '\'' +
+				", realName='" + realName + '\'' +
+				", faceUrl='" + faceUrl + '\'' +
+				", phone='" + phone + '\'' +
+				", email='" + email + '\'' +
+				", status=" + status +
+				", version=" + version +
+				", description='" + description + '\'' +
+				", isDeleted=" + isDeleted +
+				'}';
+	}
 }

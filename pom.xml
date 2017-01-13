@@ -33,6 +33,7 @@
         <module>common-cache</module>
         <module>common-deploy</module>
         <module>common-orm</module>
+        <module>common-rest-jersey</module>
         <!--
         <module>common-ecache</module>
         <module>common-think-in-java</module>
