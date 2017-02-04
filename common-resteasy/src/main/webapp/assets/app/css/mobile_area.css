@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+body{	
+	width:100%;
+}
+
+h1{
+	width:96%;
+	margin:0 auto;
+	font-family:Arial,"黑体","微软雅黑", sans-serif;
+	font-size:30px;
+	text-align:center;
+	margin-top:20px;
+	color:#666;
+	
+}
+#area{
+	width:96%;
+	margin:0 auto;
+
+	
+	color:#333;	
+	line-height:24px;
+	font-size:.75rem;
+	font-family:Arial, "微软雅黑","幼圆", sans-serif;
+}
+#area li{
+
+	min-height:24px;
+}
+
+#area li span{
+	display:inline-block;
+	font-weight:bold;
+	font-size:14px;
+}
+#select{
+	width:96%;
+	margin:0 auto;
+	margin-top:20px;
+}
+#select select{
+	width:100%;
+	height:24px;
+	font-size:14px;
+	font-family:Arial, "微软雅黑","幼圆", sans-serif;
+	margin-bottom:10px;
+
+}

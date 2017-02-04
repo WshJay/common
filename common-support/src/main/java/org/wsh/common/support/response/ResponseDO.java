@@ -49,6 +49,16 @@ public class ResponseDO<T> implements Serializable {
 	@Setter
 	private T data;
 
+	public ResponseDO() {
+	}
+
+	public ResponseDO(Errors error) {
+		setError(error);
+		setErrorCode(error.getErrorCode());
+		setErrorMsg(error.getErrorMsg());
+		setSuccess(Boolean.FALSE);
+	}
+
 	public boolean isSuccess() {
 		return success;
 	}
@@ -56,6 +66,8 @@ public class ResponseDO<T> implements Serializable {
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
+
+
 
 	/**
 	 * invokeFailed
