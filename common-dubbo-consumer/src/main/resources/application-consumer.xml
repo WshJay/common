@@ -27,12 +27,12 @@
     <dubbo:reference interface="org.wsh.common.service.api.RoleService" id="roleService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.PermissionService" id="permissionService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="${rpc.dubbo.consumer.version}"/>
-    <!--<dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>-->
+    <dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>
 
     <!-- 超时/异常重试,默认为cluster="failover" -->
-    <dubbo:reference interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="${rpc.dubbo.consumer.version}">
-        <dubbo:method name="modifyFlowDO" retries="1" timeout="2000"/>
-    </dubbo:reference>
+    <!--<dubbo:reference interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="${rpc.dubbo.consumer.version}">-->
+        <!--<dubbo:method name="modifyFlowDO" retries="1" timeout="2000"/>-->
+    <!--</dubbo:reference>-->
 
 
 </beans>

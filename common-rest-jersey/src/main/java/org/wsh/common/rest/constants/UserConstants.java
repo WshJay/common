@@ -1,4 +1,4 @@
-package org.wsh.common.constants;
+package org.wsh.common.rest.constants;
 
 /**
  * author: wsh

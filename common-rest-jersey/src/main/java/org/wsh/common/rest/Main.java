@@ -1,8 +1,9 @@
-package org.wsh.common;
+package org.wsh.common.rest;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.wsh.common.application.RESTApplication;
+import org.wsh.common.rest.application.RESTApplication;
+
 import java.io.IOException;
 import java.net.URI;
 

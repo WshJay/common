@@ -1,0 +1,46 @@
+<assembly
+        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd
+http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2">
+
+    <!--<id>release</id>-->
+    <id>SNAPSHOT</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources</directory>
+            <outputDirectory>etc</outputDirectory>
+            <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
+            <excludes>
+                <exclude>config/test/**</exclude>
+                <exclude>config/pro/**</exclude>
+                <exclude>config/dev/**</exclude>
+            </excludes>
+            <lineEnding>unix</lineEnding>
+            <filtered>true</filtered>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/src/main/resources/config/${profiles.active}</directory>
+            <outputDirectory>etc/config</outputDirectory>
+            <lineEnding>unix</lineEnding>
+            <filtered>true</filtered>
+        </fileSet>
+        <fileSet>
+            <directory>sbin</directory>
+            <outputDirectory>sbin</outputDirectory>
+            <lineEnding>unix</lineEnding>
+            <fileMode>555</fileMode>
+            <filtered>true</filtered>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory><!-- 将scope为runtime的依赖包打包到lib目录下。 -->
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+</assembly>

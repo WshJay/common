@@ -1,12 +1,15 @@
-package org.wsh.common.resource;
+package org.wsh.common.rest.resource;
 
-import org.glassfish.jersey.message.internal.OutboundJaxrsResponse;
-import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.wsh.common.constants.UserConstants;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.wsh.common.rest.constants.UserConstants;
+import org.wsh.common.service.api.UserService;
 
+import javax.servlet.ServletContext;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -30,8 +33,11 @@ public class UserResource {
     @GET
     @Path("/test")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String doTest() {
-
+    public String doTest(@Context ServletContext servletContext) {
+//        ApplicationContext ctx =
+//                WebApplicationContextUtils.getWebApplicationContext(servletContext);
+//        UserService userService = ctx.getBean("userService",UserService.class);
+//        System.out.println(userService);
         return "123";
     }
 
