@@ -30,6 +30,7 @@
     <dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>
 
     <dubbo:reference interface="org.wsh.common.service.api.SystemService" id="systemService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.blog.BlogService" id="blogService" version="${rpc.dubbo.consumer.version}"/>
 
     <!-- 超时/异常重试,默认为cluster="failover" -->
     <!--<dubbo:reference interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="${rpc.dubbo.consumer.version}">-->

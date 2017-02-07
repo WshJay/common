@@ -3,11 +3,15 @@ package org.wsh.common.rest.controller;
 import org.springframework.stereotype.Controller;
 import org.wsh.common.consumer.service.DemoService;
 import org.wsh.common.model.basic.RoleDO;
+import org.wsh.common.model.blog.BlogDO;
 import org.wsh.common.model.system.SystemDO;
+import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.rest.controller.request.Article;
 import org.wsh.common.rest.response.Helloworld;
 import org.wsh.common.service.api.RoleService;
 import org.wsh.common.service.api.SystemService;
+import org.wsh.common.service.api.blog.BlogService;
+import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.response.ResponseDO;
 
 import javax.annotation.Resource;
@@ -31,10 +35,27 @@ public class HomeController {
 	@Resource
 	private SystemService systemService;
 
+	@Resource
+	private BlogService blogService;
+
+	@GET
+	@Path("/home")
+	@Produces("application/json")
+	public ResponseDO home() throws Exception {
+		try {
+			OptionsResponseDO<List<BlogDO>> optionsResponseDO = null;
+			optionsResponseDO = blogService.queryBlogDOListForPage(new BlogDO(),new Pagination());
+			return optionsResponseDO;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	@GET
 	@Path("/index")
 	@Produces("application/json")
-	public ResponseDO home() throws Exception {
+	public ResponseDO index() throws Exception {
 		try {
 			ResponseDO<SystemDO> responseDO = null;
 			responseDO = systemService.getSystemDO();

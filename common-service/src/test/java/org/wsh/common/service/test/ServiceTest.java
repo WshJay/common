@@ -13,7 +13,6 @@ import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.MenuService;
 import org.wsh.common.service.api.message.MessageService;
-import org.wsh.common.service.api.message.UserBasicService;
 import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
 import org.wsh.common.service.api.mysql.lock.PessimisticLockService;
 import org.wsh.common.support.beans.OptionsResponseDO;
@@ -43,8 +42,8 @@ public class ServiceTest extends LoggerService{
     @Resource
     private MessageService messageService;
 
-    @Resource
-    private UserBasicService userBasicService;
+//    @Resource
+//    private UserBasicService userBasicService;
 
     @Autowired
     private CacheManager cacheManager;

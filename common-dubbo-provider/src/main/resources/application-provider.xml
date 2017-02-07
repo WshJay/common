@@ -42,5 +42,6 @@
     <dubbo:service interface="org.wsh.common.service.api.flow.FlowService" ref="flowService"/>
 
     <dubbo:service interface="org.wsh.common.service.api.SystemService" ref="systemService"/>
+    <dubbo:service interface="org.wsh.common.service.api.blog.BlogService" ref="blogService"/>
 
 </beans>

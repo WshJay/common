@@ -44,7 +44,7 @@ public class BlogServiceTest extends LoggerService{
     }
 
     private BlogDO insert() throws Exception {
-        BlogDO blogDO = new BlogDO("Hello Blog","http://admin.wangsh.top/image/1.jpg","Test...", Privacy.PUBLIC, BlogStatus.NORMAL, 1L);
+        BlogDO blogDO = new BlogDO("我是标题","http://img1.imgtn.bdimg.com/it/u=3575133701,3444996625&fm=214&gp=0.jpg","Test...", Privacy.PUBLIC, BlogStatus.NORMAL, 1L);
 
         ResponseDO<BlogDO> responseDO = blogService.addBlogDO(blogDO);
         logger.info("Result:" + responseDO.isSuccess() + "ErrorCode:" + responseDO.getErrorCode() + "ErrorMsg:" + responseDO.getErrorMsg());
