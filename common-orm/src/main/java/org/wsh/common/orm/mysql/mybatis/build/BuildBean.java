@@ -28,6 +28,7 @@ public class BuildBean extends AbstractBuildFactory {
 	@Override
 	public void buildTable(TableWapper tableWapper) {
 		List<Column> column = new ArrayList<Column>();
+		List<Column> columnList3 = new ArrayList<Column>();
 		List<BigAndSmall> column2 = new ArrayList<BigAndSmall>();
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -77,6 +78,9 @@ public class BuildBean extends AbstractBuildFactory {
 
 			column.add(colu);
 			column2.add(bigSmall);
+			if (!colu.getName().equals("version") && !colu.getName().equals("description") && !colu.getName().equals("isDeleted")){
+				columnList3.add(colu);
+			}
 		}
 
 		String head = "";
@@ -85,6 +89,7 @@ public class BuildBean extends AbstractBuildFactory {
 		head = doName;
 		map.put("columList", column);
 		map.put("columList2", column2);
+		map.put("columList3", columnList3);
 		map.put("packageName", packageName);
 		map.put("head", head);
 		map.put("headName", headName);

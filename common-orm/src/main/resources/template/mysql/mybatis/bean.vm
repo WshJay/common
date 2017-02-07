@@ -31,8 +31,8 @@ private $!colum.type $!colum.name;
 	public ${head}DO() {
 	}
 
-	public ${head}DO(#foreach($colum in $columList)$!{colum.type} $!{colum.name}#if($velocityCount!=$!{columList.size()}), #end#end) {
-#foreach($colum in $columList)
+	public ${head}DO(#foreach($colum in $columList3)$!{colum.type} $!{colum.name}#if($velocityCount!=$!{columList3.size()}), #end#end) {
+#foreach($colum in $columList3)
 		this.$!colum.name = $!colum.name;
 #end
 	}
