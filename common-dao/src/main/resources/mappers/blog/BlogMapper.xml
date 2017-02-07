@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.wsh.common.dao.blog.BlogDao" > 
+	<resultMap id="BlogMap" type="BlogDO">
+	    <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="coverUrl" column="cover_url"/>
+        <result property="contentId" column="content_id"/>
+        <result property="privacy" column="privacy"/>
+        <result property="status" column="status"/>
+        <result property="authorId" column="author_id"/>
+        <result property="version" column="version"/>
+        <result property="description" column="description"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+        title,
+        cover_url,
+        content_id,
+        privacy,
+        status,
+        author_id,
+        version,
+        description,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="selectById" parameterType="Long" resultMap="BlogMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="selectListByParams" parameterType="BlogDO" resultMap="BlogMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog WHERE is_deleted = 0
+    </select>
+    <select id="selectCountByParams" parameterType="BlogDO" resultType="int">
+        SELECT COUNT(id) FROM blog WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="BlogDO">
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blog(
+        title,
+        cover_url,
+        content_id,
+        privacy,
+        status,
+        author_id,
+        version,
+        description,
+        is_deleted,
+        gmt_created,
+        gmt_modified
+        )VALUES(
+        #{title},
+        #{coverUrl},
+        #{contentId},
+        #{privacy},
+        #{status},
+        #{authorId},
+        #{version},
+        #{description},
+        0,
+        NOW(),
+        NOW())
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="BlogDO">
+        UPDATE blog SET
+        <if test="title != null and title != ''">
+            title = #{title},
+        </if>
+        <if test="coverUrl != null and coverUrl != ''">
+            cover_url = #{coverUrl},
+        </if>
+        <if test="contentId != null ">
+            content_id = #{contentId},
+        </if>
+        <if test="privacy != null and privacy != ''">
+            privacy = #{privacy},
+        </if>
+        <if test="status != null and status != ''">
+            status = #{status},
+        </if>
+        <if test="authorId != null ">
+            author_id = #{authorId},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        version = version + 1,
+        gmt_modified = NOW()
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="BlogDO">
+        UPDATE blog SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM blog WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO blog
+		(id,title,cover_url,content_id,privacy,status,author_id,version,description,is_deleted,gmt_created,gmt_modified)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.id},#{item.title},#{item.coverUrl},#{item.contentId},#{item.privacy},#{item.status},#{item.authorId},#{item.version},#{item.description},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified})
+		</foreach>
+    </insert>
+</mapper>  
