@@ -3,14 +3,18 @@ package org.wsh.common.rest.controller;
 import org.springframework.stereotype.Controller;
 import org.wsh.common.consumer.service.DemoService;
 import org.wsh.common.model.basic.RoleDO;
+import org.wsh.common.model.system.SystemDO;
 import org.wsh.common.rest.controller.request.Article;
 import org.wsh.common.rest.response.Helloworld;
 import org.wsh.common.service.api.RoleService;
+import org.wsh.common.service.api.SystemService;
+import org.wsh.common.support.response.ResponseDO;
 
 import javax.annotation.Resource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
@@ -23,6 +27,23 @@ public class HomeController {
 
 	@Resource
 	private DemoService demoService;
+
+	@Resource
+	private SystemService systemService;
+
+	@GET
+	@Path("/index")
+	@Produces("application/json")
+	public ResponseDO home() throws Exception {
+		try {
+			ResponseDO<SystemDO> responseDO = null;
+			responseDO = systemService.getSystemDO();
+			return responseDO;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@GET
 	@Path("/world")

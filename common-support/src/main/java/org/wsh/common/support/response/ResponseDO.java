@@ -52,10 +52,20 @@ public class ResponseDO<T> implements Serializable {
 	public ResponseDO() {
 	}
 
+	public ResponseDO(T data) {
+		this.data = data;
+	}
+
 	public ResponseDO(Errors error) {
 		setError(error);
 		setErrorCode(error.getErrorCode());
 		setErrorMsg(error.getErrorMsg());
+		setSuccess(Boolean.FALSE);
+	}
+
+	public ResponseDO(String errorCode, String errorMsg) {
+		setErrorCode(errorCode);
+		setErrorMsg(errorMsg);
 		setSuccess(Boolean.FALSE);
 	}
 
