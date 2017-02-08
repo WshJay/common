@@ -22,8 +22,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import java.util.List;
 
-@Controller
 @Path("/hello")
+@Controller
 public class HomeController {
 
 	@Resource
@@ -37,20 +37,6 @@ public class HomeController {
 
 	@Resource
 	private BlogService blogService;
-
-	@GET
-	@Path("/home")
-	@Produces("application/json")
-	public ResponseDO home() throws Exception {
-		try {
-			OptionsResponseDO<List<BlogDO>> optionsResponseDO = null;
-			optionsResponseDO = blogService.queryBlogDOListForPage(new BlogDO(),new Pagination());
-			return optionsResponseDO;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 
 	@GET
 	@Path("/index")

@@ -43,5 +43,8 @@
 
     <dubbo:service interface="org.wsh.common.service.api.SystemService" ref="systemService"/>
     <dubbo:service interface="org.wsh.common.service.api.blog.BlogService" ref="blogService"/>
+    <dubbo:service interface="org.wsh.common.service.api.blog.BlogCommentService" ref="blogCommentService"/>
+    <dubbo:service interface="org.wsh.common.service.api.blog.BlogTagsService" ref="blogTagsService"/>
+    <dubbo:service interface="org.wsh.common.service.api.blog.BlogCatalogService" ref="blogCatalogService"/>
 
 </beans>

@@ -1,0 +1,116 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.wsh.common.dao.blog.BlogCounterDao" > 
+	<resultMap id="BlogCounterMap" type="BlogCounterDO">
+	    <result property="id" column="id"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="version" column="version"/>
+        <result property="description" column="description"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="gmtCreated" column="gmt_created"/>
+        <result property="gmtModified" column="gmt_modified"/>
+        <result property="viewNum" column="view_num"/>
+        <result property="commentNum" column="comment_num"/>
+        <result property="praiseNum" column="praise_num"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+        blog_id,
+        version,
+        description,
+        is_deleted,
+        gmt_created,
+        gmt_modified,
+        view_num,
+        comment_num,
+        praise_num
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="selectById" parameterType="Long" resultMap="BlogCounterMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_counter WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="selectListByParams" parameterType="BlogCounterDO" resultMap="BlogCounterMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_counter WHERE is_deleted = 0
+    </select>
+    <select id="selectCountByParams" parameterType="BlogCounterDO" resultType="int">
+        SELECT COUNT(id) FROM blog_counter WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="BlogCounterDO">
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blog_counter(
+        blog_id,
+        version,
+        description,
+        is_deleted,
+        gmt_created,
+        gmt_modified,
+        view_num,
+        comment_num,
+        praise_num
+        )VALUES(
+        #{blogId},
+        #{version},
+        #{description},
+        0,
+        NOW(),
+        NOW(),
+        #{viewNum},
+        #{commentNum},
+        #{praiseNum})
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="BlogCounterDO">
+        UPDATE blog_counter SET
+        <if test="blogId != null ">
+            blog_id = #{blogId},
+        </if>
+        <if test="description != null and description != ''">
+            description = #{description},
+        </if>
+        version = version + 1,
+        gmt_modified = NOW()
+        <if test="viewNum != null ">
+            view_num = #{viewNum},
+        </if>
+        <if test="commentNum != null ">
+            comment_num = #{commentNum},
+        </if>
+        <if test="praiseNum != null ">
+            praise_num = #{praiseNum},
+        </if>
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="BlogCounterDO">
+        UPDATE blog_counter SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM blog_counter WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO blog_counter
+		(id,blog_id,version,description,is_deleted,gmt_created,gmt_modified,view_num,comment_num,praise_num)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.id},#{item.blogId},#{item.version},#{item.description},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified},#{item.viewNum},#{item.commentNum},#{item.praiseNum})
+		</foreach>
+    </insert>
+</mapper>  

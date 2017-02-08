@@ -1,10 +1,13 @@
 package org.wsh.common.service.impl.blog;
 
 import org.wsh.common.dao.blog.BlogContentDao;
+import org.wsh.common.dao.blog.BlogCounterDao;
 import org.wsh.common.model.blog.BlogContentDO;
+import org.wsh.common.model.blog.BlogCounterDO;
 import org.wsh.common.model.blog.BlogDO;
 import org.wsh.common.dao.blog.BlogDao;
 import org.wsh.common.service.api.blog.BlogContentService;
+import org.wsh.common.service.api.blog.BlogCounterService;
 import org.wsh.common.service.api.blog.BlogService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -39,6 +42,9 @@ public class BlogServiceImpl extends LoggerService implements BlogService{
 
     @Resource
     private BlogContentDao blogContentDao;
+
+    @Resource
+    private BlogCounterDao blogCounterDao;
 
 	/**
 	* 多条件查询(分页)
@@ -95,10 +101,20 @@ public class BlogServiceImpl extends LoggerService implements BlogService{
             // Insert Blog
             blogDO = insertBlogDO(blogDO);
 
+            // Insert BlogCounter
+            insertBlogCounter(blogDO);
+
             logger.info("新增ID=>[" + blogDO.getId() + "]的BlogDO成功");
             return newStaticResponseDO(blogDO);
         } catch (Exception e) {
             throw new BusinessException("新增ID=>[" + blogDO.getId() + "]的BlogDO信息异常",e);
+        }
+    }
+
+    private void insertBlogCounter(BlogDO blogDO) throws Exception {
+        int result = blogCounterDao.insert(new BlogCounterDO(blogDO.getId()));
+        if (result < 1) {
+            throw new Exception("sql插入数据为0,请检查各项参数!");
         }
     }
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.wsh.common.dao.blog.BlogPraiseDao" > 
+	<resultMap id="BlogPraiseMap" type="BlogPraiseDO">
+	    <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="blogId" column="blog_id"/>
+        <result property="gmtCreated" column="gmt_created"/>
+    </resultMap>
+   	
+   	<!-- 所有查询字段 -->
+   	<sql id="allSelectionColumn">
+		id,
+        user_id,
+        blog_id,
+        gmt_created
+	</sql>
+   	
+   	<!-- 根据ID查询实体数据 -->
+    <select id="selectById" parameterType="Long" resultMap="BlogPraiseMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_praise WHERE id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+    <!--多条件查询表信息(分页) -->
+    <select id="selectListByParams" parameterType="BlogPraiseDO" resultMap="BlogPraiseMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_praise WHERE is_deleted = 0
+    </select>
+    <select id="selectCountByParams" parameterType="BlogPraiseDO" resultType="int">
+        SELECT COUNT(id) FROM blog_praise WHERE is_deleted = 0
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="insert" parameterType="BlogPraiseDO">
+        <selectKey resultType="Long" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO blog_praise(
+        user_id,
+        blog_id,
+        gmt_created
+        )VALUES(
+        #{userId},
+        #{blogId},
+        NOW())
+    </insert>
+
+    <!-- 根据ID更新信息-->
+    <update id="updateById" parameterType="BlogPraiseDO">
+        UPDATE blog_praise SET
+        <if test="userId != null ">
+            user_id = #{userId},
+        </if>
+        <if test="blogId != null ">
+            blog_id = #{blogId},
+        </if>
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新删除状态-->
+    <update id="updateIsDeleteById" parameterType="BlogPraiseDO">
+        UPDATE blog_praise SET is_deleted = #{isDeleted}, version = version + 1
+        WHERE id = #{id} AND is_deleted = 0 AND version = #{version}
+    </update>
+    
+    <!-- 根据ID删除数据-->
+    <delete id="deleteById" parameterType="Long">
+        DELETE FROM blog_praise WHERE id = #{value}
+    </delete>
+	
+    <!-- 批量添加数据 -->
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO blog_praise
+		(id,user_id,blog_id,gmt_created)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.id},#{item.userId},#{item.blogId},#{item.gmtCreated})
+		</foreach>
+    </insert>
+</mapper>  
