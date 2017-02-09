@@ -1,16 +1,12 @@
 package org.wsh.common.rest.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.wsh.common.consumer.service.DemoService;
 import org.wsh.common.model.blog.BlogCatalogDO;
 import org.wsh.common.model.blog.BlogDO;
 import org.wsh.common.model.blog.BlogTagsDO;
 import org.wsh.common.pager.pagination.Pagination;
-import org.wsh.common.service.api.RoleService;
-import org.wsh.common.service.api.SystemService;
 import org.wsh.common.service.api.blog.*;
-import org.wsh.common.service.api.message.UserBasicService;
+import org.wsh.common.service.api.basic.UserBasicService;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.response.ResponseDO;
 import org.wsh.common.util.collections.CollectionUtils;
@@ -24,9 +20,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import static javafx.scene.input.KeyCode.H;
-import static org.wsh.common.util.collections.CollectionUtils.ListCovertKeySet;
 
 /**
  * author: wsh
@@ -65,7 +58,7 @@ public class BlogHomeController extends LoggerService{
         try {
             optionsResponseDO = blogService.queryBlogDOListForPage(new BlogDO(),new Pagination());
 
-            HashSet<Long> idSet = CollectionUtils.ListCovertKeySet("id",optionsResponseDO.getData());
+            HashSet<Long> idSet = CollectionUtils.ListCovertKeySet("authorId",optionsResponseDO.getData());
             if (!org.springframework.util.CollectionUtils.isEmpty(idSet)){
                 ResponseDO<Map<Long,String>> userResponse = userBasicService.queryUserListByIds(new ArrayList<>(idSet));
                 for (BlogDO blogDO : optionsResponseDO.getData()) {

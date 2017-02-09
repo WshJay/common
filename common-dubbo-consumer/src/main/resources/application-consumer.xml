@@ -29,10 +29,14 @@
     <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>
 
+    <dubbo:reference interface="org.wsh.common.service.api.basic.UserBasicService" id="userBasicService" version="${rpc.dubbo.consumer.version}"/>
+
+
     <dubbo:reference interface="org.wsh.common.service.api.SystemService" id="systemService" version="${rpc.dubbo.consumer.version}"/>
 
     <!-- Blog -->
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogService" id="blogService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.blog.BlogCounterService" id="blogCounterService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogCommentService" id="blogCommentService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogTagsService" id="blogTagsService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogCatalogService" id="blogCatalogService" version="${rpc.dubbo.consumer.version}"/>

@@ -14,8 +14,6 @@ import org.wsh.common.model.base.BaseDO;
 */
 public class BlogDO extends BaseDO{
 
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * 标题
 	 */

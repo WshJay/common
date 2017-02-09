@@ -2,10 +2,10 @@ package org.wsh.common.service.impl.message ;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.cache.annotation.Caching;
-import org.wsh.common.dao.message.UserBasicDao;
+import org.wsh.common.dao.basic.UserBasicDao;
 import org.wsh.common.interceptor.MapParam;
 import org.wsh.common.model.basic.UserBasicDO;
-import org.wsh.common.service.api.message.UserBasicService;
+import org.wsh.common.service.api.basic.UserBasicService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -203,7 +203,7 @@ public class UserBasicServiceImpl extends LoggerService implements UserBasicServ
             Map<Long,String> map = userBasicDao.selectUserNameByIds(new MapParam("id", "user_name",idList));
             return newStaticResponseDO(map);
         }catch (Exception e){
-            logger.error("查询Ids=>[" + idList.toString() + "]的userName异常!");
+            logger.error("查询Ids=>[" + idList.toString() + "]的userName异常!",e);
             return new ResponseDO<>("-1","查询异常!");
         }
     }

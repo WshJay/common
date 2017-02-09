@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.dao.RoleDAO;
 import org.wsh.common.dao.UserBasicDAO;
-import org.wsh.common.dao.message.UserBasicDao;
+import org.wsh.common.dao.basic.UserBasicDao;
 import org.wsh.common.interceptor.MapParam;
 import org.wsh.common.model.basic.RoleDO;
 import org.wsh.common.util.logger.LoggerService;

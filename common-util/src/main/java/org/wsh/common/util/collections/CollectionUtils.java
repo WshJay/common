@@ -97,7 +97,7 @@ public class CollectionUtils {
 				log.error("List转SET异常",e);
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
-			}
+   			}
 		}
 		return set;
 	}

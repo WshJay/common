@@ -1,4 +1,4 @@
-package org.wsh.common.dao.message ;
+package org.wsh.common.dao.basic ;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;

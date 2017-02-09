@@ -1,4 +1,4 @@
-package org.wsh.common.service.api.message;
+package org.wsh.common.service.api.basic;
 
 import org.springframework.stereotype.Service;
 import org.wsh.common.model.basic.UserBasicDO;
