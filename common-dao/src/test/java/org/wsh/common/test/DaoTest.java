@@ -6,11 +6,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.dao.RoleDAO;
 import org.wsh.common.dao.UserBasicDAO;
+import org.wsh.common.dao.message.UserBasicDao;
+import org.wsh.common.interceptor.MapParam;
 import org.wsh.common.model.basic.RoleDO;
 import org.wsh.common.util.logger.LoggerService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * author: wsh
@@ -27,6 +31,9 @@ public class DaoTest extends LoggerService{
 
     @Resource
     private UserBasicDAO userBasicDAO;
+
+    @Resource
+    private UserBasicDao userBasicDao;
 
     @Test
     public void test(){
@@ -55,6 +62,17 @@ public class DaoTest extends LoggerService{
         roleDO.setRoleCode(roleCode);
         roleDO.setCreateUserId(createUserId);
         return roleDAO.insertRole(roleDO);
+    }
+
+    @Test
+    public void selectUserByIds(){
+        List<Long> ids = new ArrayList<>();
+        ids.add(1L);
+        ids.add(2L);
+//        MapParam param = new MapParam("id", "user_name","1,2");
+        MapParam param = new MapParam("id", "user_name",ids);
+        Map<Long,String> resultMap = userBasicDao.selectUserNameByIds(param);
+        System.out.println(resultMap.get(1L));
     }
 }
 

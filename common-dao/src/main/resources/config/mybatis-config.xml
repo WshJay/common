@@ -6,7 +6,10 @@
 			<property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
 		</plugin>
 		<plugin interceptor="org.wsh.common.datasource.mybatis.DynamicPlugin"/>
-    </plugins>
+
+		<!-- Map查询拦截器 -->
+		<plugin interceptor="org.wsh.common.interceptor.MapInterceptor"/>
+	</plugins>
 	<!-- 别名
 	<typeAliases>
 	</typeAliases>-->

@@ -39,6 +39,11 @@
 		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
 		<!--mapper文件扫描 -->
 		<property name="mapperLocations" value="classpath*:mappers/**/*.xml" />
+		<property name="plugins">
+			<array>
+				<bean class="org.wsh.common.interceptor.MapInterceptor"/>
+			</array>
+		</property>
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
