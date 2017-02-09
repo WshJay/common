@@ -85,6 +85,13 @@ public class BlogDO extends BaseDO{
 	@Setter
 	@Getter
 	private String content;
+
+	/**
+	 * 作者名称
+	 */
+	@Setter
+	@Getter
+	private String authorName;
 	
 	public BlogDO() {
 	}

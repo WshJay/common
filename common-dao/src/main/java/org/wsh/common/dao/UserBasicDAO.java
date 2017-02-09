@@ -3,9 +3,11 @@ package org.wsh.common.dao;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
+import org.wsh.common.interceptor.MapParam;
 import org.wsh.common.model.basic.UserBasicDO;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserBasicDAO{

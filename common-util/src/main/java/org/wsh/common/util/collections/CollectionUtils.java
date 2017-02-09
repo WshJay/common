@@ -1,9 +1,9 @@
 package org.wsh.common.util.collections;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import org.apache.poi.ss.formula.functions.T;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,6 +81,25 @@ public class CollectionUtils {
 			}
 		}
 		return map;
+	}
+
+	public static <T>HashSet<Long> ListCovertKeySet(String key, List<T> list) {
+		HashSet<Long> set = new HashSet<>();
+		for (T t : list) {
+			try {
+				Field field = t.getClass().getDeclaredField(key);
+				field.setAccessible(true); // 设置些属性是可以访问的
+				Object keyObj = field.get(t);
+				if (keyObj != null) {
+					set.add(Long.parseLong(keyObj.toString()));
+				}
+			} catch (NoSuchFieldException e) {
+				log.error("List转SET异常",e);
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+		return set;
 	}
 }
 
