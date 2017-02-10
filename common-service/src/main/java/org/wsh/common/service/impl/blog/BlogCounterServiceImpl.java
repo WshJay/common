@@ -1,5 +1,7 @@
 package org.wsh.common.service.impl.blog;
 
+import org.wsh.common.enums.expection.Errors;
+import org.wsh.common.model.blog.BlogContentDO;
 import org.wsh.common.model.blog.BlogCounterDO;
 import org.wsh.common.dao.blog.BlogCounterDao;
 import org.wsh.common.service.api.blog.BlogCounterService;
@@ -132,6 +134,7 @@ public class BlogCounterServiceImpl extends LoggerService implements BlogCounter
         }
     }
 
+
     /**
     * Validate Update
     * @param blogCounterDO BlogCounterDO
@@ -176,6 +179,47 @@ public class BlogCounterServiceImpl extends LoggerService implements BlogCounter
         }catch (Exception e){
             logger.error("删除ID=>[" + id + "]的blogCounterDO异常!");
             throw new BusinessException("删除ID=>[" + id +"]的BlogCounterDO异常",e);
+        }
+    }
+
+    @Override
+    public ResponseDO<List<BlogCounterDO>> queryBlogCounterDOListByBlogIds(List<Long> idList) {
+        try {
+            // validate
+            Assert.notEmpty(idList,"查询Ids不能为空!");
+
+            List<BlogCounterDO> blogCounterDOList = blogCounterDao.selectListByIds(idList);
+            logger.info("根据Ids=>[" + idList.toString() + "]查询blogCounterDOList成功!");
+            return newStaticResponseDO(blogCounterDOList);
+        }catch (Exception e){
+            logger.error("根据Ids=>[" + idList.toString() + "]查询blogCounterDOList成功!",e);
+            return new ResponseDO<>("-1", "查询异常!");
+        }
+    }
+
+    @Override
+    public ResponseDO addViewNum(Long blogId) {
+        try {
+
+            // validate
+            Assert.notNull(blogId,"BlogId不能为空!");
+
+            BlogCounterDO oldBlogCounterDO = blogCounterDao.selectByBlogId(blogId);
+            Assert.notNull(oldBlogCounterDO,"查询不到BlogID=>[" + blogId +"]相关信息!");
+
+            // Update
+            BlogCounterDO blogCounterDO = new BlogCounterDO();
+            blogCounterDO.setId(oldBlogCounterDO.getId());
+            blogCounterDO.setVersion(oldBlogCounterDO.getVersion());
+            int result = blogCounterDao.updateViewNumById(blogCounterDO);
+            if (result < 1) {
+                throw new Exception("sql修改数据为0,请检查各项参数!");
+            }
+            logger.info("修改ID=>[" + blogCounterDO.getId() + "]的blogCounterDO成功!");
+            return new ResponseDO();
+        }catch (Exception e){
+            logger.error("修改ID=>[" + blogId + "]的blogCounterDO异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR);
         }
     }
 }

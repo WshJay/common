@@ -1,7 +1,9 @@
 package org.wsh.common.service.impl.blog;
 
+import org.wsh.common.dao.blog.BlogCounterDao;
 import org.wsh.common.model.blog.BlogCommentDO;
 import org.wsh.common.dao.blog.BlogCommentDao;
+import org.wsh.common.model.blog.BlogCounterDO;
 import org.wsh.common.service.api.blog.BlogCommentService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -33,6 +35,9 @@ public class BlogCommentServiceImpl extends LoggerService implements BlogComment
 
     @Resource
     private BlogCommentDao blogCommentDao;
+
+    @Resource
+    private BlogCounterDao blogCounterDao;
 
 	/**
 	* 多条件查询(分页)
@@ -78,6 +83,7 @@ public class BlogCommentServiceImpl extends LoggerService implements BlogComment
     * @return ResponseDO<BlogCommentDO>
     */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     @CachePut(value = "common:blogCommentDO",key = "'common:blogCommentDO:id:' + #blogCommentDO.id")
     public ResponseDO<BlogCommentDO> addBlogCommentDO(BlogCommentDO blogCommentDO) throws BusinessException{
         try {
@@ -89,10 +95,27 @@ public class BlogCommentServiceImpl extends LoggerService implements BlogComment
             if (result < 1) {
                 throw new Exception("sql插入数据为0,请检查各项参数!");
             }
+
+            // Update
+            updateBlogCommentNum(blogCommentDO, 1);
+
             logger.info("新增ID=>[" + blogCommentDO.getId() + "]的BlogCommentDO成功");
             return newStaticResponseDO(blogCommentDO);
         } catch (Exception e) {
             throw new BusinessException("新增ID=>[" + blogCommentDO.getId() + "]的BlogCommentDO信息异常",e);
+        }
+    }
+
+    private void updateBlogCommentNum(BlogCommentDO blogCommentDO, int commentNum) throws Exception {
+        BlogCounterDO oldBlogCounterDO = blogCounterDao.selectByBlogId(blogCommentDO.getBlogId());
+        Assert.notNull(blogCommentDO,"查询不到信息!");
+        BlogCounterDO blogCounterDO = new BlogCounterDO();
+        blogCounterDO.setId(oldBlogCounterDO.getId());
+        blogCounterDO.setCommentNum(commentNum);
+        blogCounterDO.setVersion(oldBlogCounterDO.getVersion());
+        int result = blogCounterDao.updateCommentNumById(blogCounterDO);
+        if (result < 1) {
+            throw new Exception("sql插入数据为0,请检查各项参数!");
         }
     }
 
@@ -157,24 +180,34 @@ public class BlogCommentServiceImpl extends LoggerService implements BlogComment
     @CacheEvict(value = "common:blogCommentDO",key = "'common:blogCommentDO:id:' + #id",beforeInvocation = true)
     public ResponseDO<BlogCommentDO> delBlogCommentDO(Long id) throws BusinessException{
         try {
-            // validate
-                        Assert.isTrue(id != null,"查询Id不能为空!");
-            
-            BlogCommentDO oldblogCommentDO = blogCommentDao.selectById(id);
-            Assert.isTrue(oldblogCommentDO != null,"查询不到ID=>" + id + "的信息!");
-            BlogCommentDO blogCommentDO = new BlogCommentDO();
-            blogCommentDO.setId(id);
-            blogCommentDO.setVersion(oldblogCommentDO.getVersion());
-            // update
-            int result = blogCommentDao.updateIsDeleteById(blogCommentDO);
-            if (result < 1) {
-                throw new Exception("数据已删除,请勿重复操作!");
-            }
+            // Delete Comment
+            BlogCommentDO blogCommentDO = delBlogComment(id);
+
+            // Update CommentNum
+            updateBlogCommentNum(blogCommentDO, -1);
+
             logger.info("删除ID=>[" + id + "]的blogCommentDO成功!");
             return newStaticResponseDO(blogCommentDO);
         }catch (Exception e){
             logger.error("删除ID=>[" + id + "]的blogCommentDO异常!");
             throw new BusinessException("删除ID=>[" + id +"]的BlogCommentDO异常",e);
         }
+    }
+
+    private BlogCommentDO delBlogComment(Long id) throws Exception {
+
+        // validate
+        Assert.notNull(id ,"Id不能为空!");
+        BlogCommentDO oldblogCommentDO = blogCommentDao.selectById(id);
+        Assert.notNull(oldblogCommentDO,"查询不到ID=>" + id + "的信息!");
+        BlogCommentDO blogCommentDO = new BlogCommentDO();
+        blogCommentDO.setId(id);
+        blogCommentDO.setVersion(oldblogCommentDO.getVersion());
+        // update
+        int result = blogCommentDao.updateIsDeleteById(blogCommentDO);
+        if (result < 1) {
+            throw new Exception("数据已删除,请勿重复操作!");
+        }
+        return blogCommentDO;
     }
 }

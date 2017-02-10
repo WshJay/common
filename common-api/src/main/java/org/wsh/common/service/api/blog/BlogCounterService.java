@@ -54,4 +54,18 @@ public interface BlogCounterService {
     * @throws BusinessException
     */
     public ResponseDO<BlogCounterDO> delBlogCounterDO(Long id) throws BusinessException;
+
+    /**
+     * 根据BlogIds查询信息
+     * @param idList List<Long>
+     * @return ResponseDO<List<BlogCounterDO>>
+     */
+    public ResponseDO<List<BlogCounterDO>> queryBlogCounterDOListByBlogIds(List<Long> idList);
+
+    /**
+     * 增加浏览量
+     * @param blogId Long
+     * @return ResponseDO<BlogCounterDO>
+     */
+    public ResponseDO addViewNum(Long blogId);
 }

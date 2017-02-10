@@ -16,7 +16,7 @@ public class BlogCounterDO extends BaseDO{
 	
 	
 	/**
-	 * 父ID
+	 * 博客ID
 	 */
 	@Setter
 	@Getter
@@ -69,5 +69,12 @@ public class BlogCounterDO extends BaseDO{
 
 	public BlogCounterDO(Long blogId) {
 		this.blogId = blogId;
+	}
+
+	public BlogCounterDO(Long blogId, int viewNum, int commentNum, int praiseNum) {
+		this.blogId = blogId;
+		this.viewNum = viewNum;
+		this.commentNum = commentNum;
+		this.praiseNum = praiseNum;
 	}
 }

@@ -1,5 +1,6 @@
 package org.wsh.common.dao.blog;
 
+import org.apache.ibatis.annotations.Param;
 import org.wsh.common.model.blog.BlogCounterDO;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
@@ -63,5 +64,39 @@ public interface BlogCounterDao {
 	 * @param blogCounterDOList List<BlogCounterDO>
 	 */
 	void insertList(List<BlogCounterDO> blogCounterDOList);
-	
+
+	/**
+	 * 根据Ids获取博客计数信息
+	 * @param idList List<Long>
+	 * @return List<BlogCounterDO>
+     */
+	List<BlogCounterDO> selectListByIds(@Param("list") List<Long> idList);
+
+	/**
+	 * 根据博客ID查询
+	 * @param blogId Long
+	 * @return BlogCounterDO
+     */
+	BlogCounterDO selectByBlogId(Long blogId);
+
+	/**
+	 * 更新浏览量
+	 * @param blogCounterDO BlogCounterDO
+	 * @return int
+     */
+	int updateViewNumById(BlogCounterDO blogCounterDO);
+
+	/**
+	 * 更新评论数量
+	 * @param blogCounterDO BlogCounterDO
+	 * @return int
+     */
+	int updateCommentNumById(BlogCounterDO blogCounterDO);
+
+	/**
+	 * 更新赞数量
+	 * @param blogCounterDO BlogCounterDO
+	 * @return int
+	 */
+	int updatepraiseNumById(BlogCounterDO blogCounterDO);
 }

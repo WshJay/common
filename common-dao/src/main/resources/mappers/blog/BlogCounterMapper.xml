@@ -20,15 +20,24 @@
    	<sql id="allSelectionColumn">
 		id,
         blog_id,
+        view_num,
+        comment_num,
+        praise_num,
         version,
         description,
         is_deleted,
         gmt_created,
-        gmt_modified,
+        gmt_modified
+	</sql>
+
+    <!-- 所有查询字段 -->
+    <sql id="mainSelectionColumn">
+        id,
+        blog_id,
         view_num,
         comment_num,
         praise_num
-	</sql>
+    </sql>
    	
    	<!-- 根据ID查询实体数据 -->
     <select id="selectById" parameterType="Long" resultMap="BlogCounterMap">
@@ -113,4 +122,39 @@
 		(#{item.id},#{item.blogId},#{item.version},#{item.description},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified},#{item.viewNum},#{item.commentNum},#{item.praiseNum})
 		</foreach>
     </insert>
+
+    <!-- 根据Ids获取博客计数信息 -->
+    <select id="selectListByIds" parameterType="java.util.List" resultMap="BlogCounterMap">
+        SELECT <include refid="mainSelectionColumn"/> FROM blog_counter
+        WHERE blog_id IN(
+        <foreach collection="list" item="item" index="index" separator=",">
+            ${item}
+        </foreach>)
+        AND is_deleted = 0
+    </select>
+
+    <!-- 根据blogId查询实体数据 -->
+    <select id="selectByBlogId" parameterType="Long" resultMap="BlogCounterMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_counter WHERE blog_id = #{value} AND is_deleted = 0 LIMIT 1
+    </select>
+
+
+    <!-- 根据ID更新浏览量-->
+    <update id="updateViewNumById" parameterType="BlogCounterDO">
+        UPDATE blog_counter SET view_num = view_num + 1, version = version + 1
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新评论量-->
+    <update id="updateCommentNumById" parameterType="BlogCounterDO">
+        UPDATE blog_counter SET comment_num = comment_num + #{commentNum}, version = version + 1
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
+    <!-- 根据ID更新赞数量-->
+    <update id="updatePraiseNumById" parameterType="BlogCounterDO">
+        UPDATE blog_counter SET praise_num = praise_num + 1, version = version + 1
+        WHERE id = #{id} AND version = #{version}
+    </update>
+
 </mapper>  

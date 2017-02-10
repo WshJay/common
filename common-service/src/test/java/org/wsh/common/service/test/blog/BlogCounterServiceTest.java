@@ -20,7 +20,7 @@ import java.util.List;
 * comments:  服务接口单元测试
 * since Date： 2017-02-08 16:57:38
 */
-@Transactional
+//@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:common-bean.xml")
 public class BlogCounterServiceTest extends LoggerService{
@@ -42,7 +42,7 @@ public class BlogCounterServiceTest extends LoggerService{
     }
 
     private BlogCounterDO insert() throws Exception {
-        BlogCounterDO blogCounterDO = new BlogCounterDO();
+        BlogCounterDO blogCounterDO = new BlogCounterDO(1L, 10, 0, 0);
 
         ResponseDO<BlogCounterDO> responseDO = blogCounterService.addBlogCounterDO(blogCounterDO);
         logger.info("Result:" + responseDO.isSuccess() + "ErrorCode:" + responseDO.getErrorCode() + "ErrorMsg:" + responseDO.getErrorMsg());

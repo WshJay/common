@@ -41,7 +41,7 @@ public class NettyServer {
         netty.initBootstrap().setOption("reuseAddress", true);
         netty.setDeployment(dp);
         netty.setPort(port);
-        netty.setRootResourcePath("/resteasy");
+        netty.setRootResourcePath(rootResourcePath);
         netty.setSecurityDomain(null);
         netty.start();
     }

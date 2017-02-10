@@ -87,14 +87,30 @@ public class CollectionUtils {
 		HashSet<Long> set = new HashSet<>();
 		for (T t : list) {
 			try {
-				Field field = t.getClass().getDeclaredField(key);
-				field.setAccessible(true); // 设置些属性是可以访问的
-				Object keyObj = field.get(t);
-				if (keyObj != null) {
-					set.add(Long.parseLong(keyObj.toString()));
+				boolean isExist = false;
+				Field[] fields = t.getClass().getDeclaredFields();
+				for (Field field : fields) {
+					if (field.getName().equals(key)){
+						field.setAccessible(true); // 设置些属性是可以访问的
+						Object keyObj = field.get(t);
+						if (keyObj != null) {
+							set.add(Long.parseLong(keyObj.toString()));
+						}
+						isExist = true;
+					}
 				}
-			} catch (NoSuchFieldException e) {
-				log.error("List转SET异常",e);
+				if (isExist == false) {
+					Field[] superfields = t.getClass().getSuperclass().getDeclaredFields();
+					for (Field field : superfields) {
+						if (field.getName().equals(key)){
+							field.setAccessible(true); // 设置些属性是可以访问的
+							Object keyObj = field.get(t);
+							if (keyObj != null) {
+								set.add(Long.parseLong(keyObj.toString()));
+							}
+						}
+					}
+				}
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
    			}
