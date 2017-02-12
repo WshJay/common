@@ -2,11 +2,11 @@ package org.wsh.common.rest.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.wsh.common.enums.blog.BlogStatus;
+import org.wsh.common.enums.blog.Privacy;
 import org.wsh.common.enums.expection.Errors;
-import org.wsh.common.model.blog.BlogCatalogDO;
-import org.wsh.common.model.blog.BlogCounterDO;
-import org.wsh.common.model.blog.BlogDO;
-import org.wsh.common.model.blog.BlogTagsDO;
+import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.model.blog.*;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.rest.response.BlogListVO;
 import org.wsh.common.service.api.blog.*;
@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import static com.sun.tools.internal.xjc.reader.Ring.add;
 
 /**
  * author: wsh
@@ -53,6 +51,8 @@ public class BlogHomeController extends LoggerService{
     @Resource
     private UserBasicService userBasicService;
 
+    @Resource
+    private BlogContentService blogContentService;
 
     @GET
     @Path("/list")
@@ -74,7 +74,6 @@ public class BlogHomeController extends LoggerService{
                     blogListVO.setAuthorName(userResponse.getData().get(blogDO.getAuthorId()));
                     for (BlogCounterDO blogCounterDO : bCounterResponseDO.getData()) {
                         if (blogCounterDO.getBlogId().equals(blogDO.getId())){
-//                            blogListVO.counterToBlogVO(blogListVO,blogCounterDO);
                             blogListVO.counterToBlogVO(blogCounterDO);
                         }
                     }
@@ -83,6 +82,20 @@ public class BlogHomeController extends LoggerService{
             }
             responseDO.setData(blogListVOs);
             return responseDO;
+        } catch (Exception e) {
+            logger.error("查询异常!",e);
+            return optionsResponseDO;
+        }
+    }
+
+    @GET
+    @Path("/comment/list")
+    @Produces("application/json")
+    public ResponseDO commentList(){
+        OptionsResponseDO<List<BlogCommentDO>> optionsResponseDO = new OptionsResponseDO<>();
+        try {
+            optionsResponseDO = blogCommentService.queryBlogCommentDOListForPage(new BlogCommentDO(),new Pagination());
+            return optionsResponseDO;
         } catch (Exception e) {
             logger.error("查询异常!",e);
             return optionsResponseDO;
@@ -118,14 +131,37 @@ public class BlogHomeController extends LoggerService{
     }
 
     @GET
-    @Path("/blog/{id}")
+    @Path("/{id}")
     @Produces("application/json")
     public ResponseDO detail(@PathParam("id") Long blogId){
 
         try {
             Assert.notNull(blogId,"ID不能为空");
             logger.info("blogId:" + blogId);
-            return blogService.getBlogDOById(blogId);
+            ResponseDO<BlogDO> blogDOResponseDO = blogService.getBlogDOById(blogId);
+            Assert.notNull(blogDOResponseDO.getData(),"查询异常!");
+
+            BlogListVO blogListVO = new BlogListVO(blogDOResponseDO.getData());
+            ResponseDO<BlogCounterDO> blogCounterResponseDO = blogCounterService.queryBlogCounterDOByBlogId(blogId);
+            blogListVO.counterToBlogVO(blogCounterResponseDO.getData());
+
+            ResponseDO<UserBasicDO> userBasicResponseDO = userBasicService.getUserBasicDOById(blogDOResponseDO.getData().getAuthorId());
+            blogListVO.setAuthorName(userBasicResponseDO.getData().getUserName());
+            return new ResponseDO(blogListVO);
+        } catch (Exception e) {
+            logger.error("查询异常!",e);
+            return new ResponseDO(Errors.DEFAULT_ERROR);
+        }
+    }
+
+    @GET
+    @Path("/content/{contentId}")
+    @Produces("application/json")
+    public ResponseDO content(@PathParam("contentId") Long contentId){
+        try {
+            Assert.notNull(contentId,"ID不能为空");
+            logger.info("blogId:" + contentId);
+            return blogContentService.getBlogContentDOById(contentId);
         } catch (Exception e) {
             logger.error("查询异常!",e);
             return new ResponseDO(Errors.DEFAULT_ERROR);
@@ -143,6 +179,25 @@ public class BlogHomeController extends LoggerService{
             return blogCounterService.addViewNum(blogId);
         } catch (Exception e) {
             logger.error("修改异常!",e);
+            return new ResponseDO(Errors.DEFAULT_ERROR);
+        }
+    }
+
+    @POST
+    @Path("/add")
+    @Produces("application/json")
+    public ResponseDO addBlog(@FormParam("title") String title,
+                              @FormParam("content") String content, @FormParam("tags") String tags, @FormParam("privacy") String privacy){
+
+        try {
+            logger.debug(new BlogDO(title,"",content,tags, Privacy.valueOf(privacy), BlogStatus.NORMAL, 1L).toString());
+            Assert.notNull(title,"参数不能为空");
+            Assert.notNull(content,"参数不能为空");
+            Assert.notNull(tags,"参数不能为空");
+            Assert.notNull(privacy,"参数不能为空");
+            return blogService.addBlogDO(new BlogDO(title,"",content,tags, Privacy.valueOf(privacy), BlogStatus.NORMAL, 1L));
+        } catch (Exception e) {
+            logger.error("添加异常!",e);
             return new ResponseDO(Errors.DEFAULT_ERROR);
         }
     }

@@ -27,7 +27,9 @@
     <dubbo:reference interface="org.wsh.common.service.api.RoleService" id="roleService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.PermissionService" id="permissionService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.ModuleService" id="moduleService" version="${rpc.dubbo.consumer.version}"/>
+
     <dubbo:reference cluster="failover" interface="org.wsh.common.service.api.flow.FlowService" id="flowService" version="1.0.0"/>
+    <dubbo:reference interface="org.wsh.common.service.api.flow.FileService" id="fileService" version="${rpc.dubbo.consumer.version}"/>
 
     <dubbo:reference interface="org.wsh.common.service.api.basic.UserBasicService" id="userBasicService" version="${rpc.dubbo.consumer.version}"/>
 
@@ -36,6 +38,7 @@
 
     <!-- Blog -->
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogService" id="blogService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.blog.BlogContentService" id="blogContentService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogCounterService" id="blogCounterService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogCommentService" id="blogCommentService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.blog.BlogTagsService" id="blogTagsService" version="${rpc.dubbo.consumer.version}"/>

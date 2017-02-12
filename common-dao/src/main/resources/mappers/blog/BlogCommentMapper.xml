@@ -38,7 +38,8 @@
 
     <!--多条件查询表信息(分页) -->
     <select id="selectListByParams" parameterType="BlogCommentDO" resultMap="BlogCommentMap">
-        SELECT <include refid="allSelectionColumn"/> FROM blog_comment WHERE is_deleted = 0
+        SELECT <include refid="allSelectionColumn"/> FROM blog_comment
+        WHERE is_deleted = 0 ORDER BY gmt_modified DESC
     </select>
     <select id="selectCountByParams" parameterType="BlogCommentDO" resultType="int">
         SELECT COUNT(id) FROM blog_comment WHERE is_deleted = 0

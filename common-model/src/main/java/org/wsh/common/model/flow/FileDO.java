@@ -13,15 +13,7 @@ import org.wsh.common.model.base.BaseDO;
 public class FileDO extends BaseDO{
 
 	private static final long serialVersionUID = 1L;
-	
-	
-	/**
-	 * 文件类型[IMG:图片,TEXT:文本,ZIP:压缩包]
-	 */
-	@Setter
-	@Getter
-	private String type;
-		
+
 	/**
 	 * 名称
 	 */
@@ -42,6 +34,27 @@ public class FileDO extends BaseDO{
 	@Setter
 	@Getter
 	private String filePath;
+
+	/**
+	 * 文件类型[IMG:图片,TEXT:文本,ZIP:压缩包]
+	 */
+	@Setter
+	@Getter
+	private String type;
+
+	/**
+	 * 用户ID
+	 */
+	@Setter
+	@Getter
+	private Long userId;
+
+	/**
+	 * 标签ID
+	 */
+	@Setter
+	@Getter
+	private Long tagsId;
 		
 	/**
 	 * 描述
@@ -67,13 +80,16 @@ public class FileDO extends BaseDO{
 	public FileDO() {
 	}
 
-	public FileDO(String type, String name, String coverPath, String filePath, String description, int version, int isDeleted) {
+	public FileDO(String type, String name, String coverPath, String filePath, Long userId, Long tagsId, String description, int version, int isDeleted) {
 		this.type = type;
 		this.name = name;
 		this.coverPath = coverPath;
 		this.filePath = filePath;
+		this.userId = this.userId;
+		this.tagsId = this.tagsId;
 		this.description = description;
 		this.version = version;
 		this.isDeleted = isDeleted;
 	}
+
 }

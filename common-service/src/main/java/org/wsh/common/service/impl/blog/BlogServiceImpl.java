@@ -1,11 +1,7 @@
 package org.wsh.common.service.impl.blog;
 
-import org.wsh.common.dao.blog.BlogContentDao;
-import org.wsh.common.dao.blog.BlogCounterDao;
-import org.wsh.common.model.blog.BlogContentDO;
-import org.wsh.common.model.blog.BlogCounterDO;
-import org.wsh.common.model.blog.BlogDO;
-import org.wsh.common.dao.blog.BlogDao;
+import org.wsh.common.dao.blog.*;
+import org.wsh.common.model.blog.*;
 import org.wsh.common.service.api.blog.BlogContentService;
 import org.wsh.common.service.api.blog.BlogCounterService;
 import org.wsh.common.service.api.blog.BlogService;
@@ -42,6 +38,12 @@ public class BlogServiceImpl extends LoggerService implements BlogService{
 
     @Resource
     private BlogContentDao blogContentDao;
+
+    @Resource
+    private BlogTagsDao blogTagsDao;
+
+    @Resource
+    private BlogInnerTagsDao blogInnerTagsDao;
 
     @Resource
     private BlogCounterDao blogCounterDao;
@@ -90,6 +92,7 @@ public class BlogServiceImpl extends LoggerService implements BlogService{
     * @return ResponseDO<BlogDO>
     */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     @CachePut(value = "common:blogDO",key = "'common:blogDO:id:' + #blogDO.id")
     public ResponseDO<BlogDO> addBlogDO(BlogDO blogDO) throws BusinessException{
         try {
@@ -104,10 +107,31 @@ public class BlogServiceImpl extends LoggerService implements BlogService{
             // Insert BlogCounter
             insertBlogCounter(blogDO);
 
+            // Insert BlogTags
+            insertBlogTags(blogDO);
+
             logger.info("新增ID=>[" + blogDO.getId() + "]的BlogDO成功");
             return newStaticResponseDO(blogDO);
         } catch (Exception e) {
             throw new BusinessException("新增ID=>[" + blogDO.getId() + "]的BlogDO信息异常",e);
+        }
+    }
+
+    private void insertBlogTags(BlogDO blogDO) throws Exception {
+        String[] tagNames = blogDO.getTags().split(",");
+        for (String tagName : tagNames) {
+            BlogTagsDO blogTag = blogTagsDao.selectByTagName(tagName);
+            if (blogTag == null){
+                blogTag = new BlogTagsDO(tagName);
+                int result = blogTagsDao.insert(blogTag);
+                if (result < 1) {
+                    throw new Exception("sql插入数据为0,请检查各项参数!");
+                }
+            }
+            int result = blogInnerTagsDao.insert(new BlogInnerTagsDO(blogDO.getId(),blogTag.getId()));
+            if (result < 1) {
+                throw new Exception("sql插入数据为0,请检查各项参数!");
+            }
         }
     }
 

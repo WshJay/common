@@ -120,4 +120,10 @@ public class Pagination implements Serializable {
         return totalCount;
     }
 
+    public Pagination() {
+    }
+
+    public Pagination(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

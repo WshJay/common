@@ -1,5 +1,6 @@
 package org.wsh.common.dao.blog;
 
+import org.apache.ibatis.annotations.Param;
 import org.wsh.common.model.blog.BlogTagsDO;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Repository;
@@ -63,5 +64,20 @@ public interface BlogTagsDao {
 	 * @param blogTagsDOList List<BlogTagsDO>
 	 */
 	void insertList(List<BlogTagsDO> blogTagsDOList);
+
+	/**
+	 * 根据名称查询标签信息
+	 * @param tagName 标签名称
+	 * @return BlogTagsDO
+	 */
+	BlogTagsDO selectByTagName(@Param("tagName")String tagName);
+
+	/**
+	 * 根据名称查询标签信息
+	 * @param tagNames 标签名称(多个)
+	 * @return List<BlogTagsDO>
+     */
+	List<BlogTagsDO> selectListByTagNames(@Param("tagNames") String tagNames);
+
 	
 }

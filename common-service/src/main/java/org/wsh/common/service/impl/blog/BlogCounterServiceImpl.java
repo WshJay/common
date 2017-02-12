@@ -222,4 +222,19 @@ public class BlogCounterServiceImpl extends LoggerService implements BlogCounter
             return new ResponseDO<>(Errors.DEFAULT_ERROR);
         }
     }
+
+    @Override
+    public ResponseDO<BlogCounterDO> queryBlogCounterDOByBlogId(Long blogId) {
+        try {
+            // validate
+            Assert.notNull(blogId,"查询blogId不能为空!");
+
+            BlogCounterDO blogCounterDO = blogCounterDao.selectByBlogId(blogId);
+            logger.debug("根据blogId=>[" + blogId + "]查询blogCounterDO成功!");
+            return newStaticResponseDO(blogCounterDO);
+        }catch (Exception e){
+            logger.error("根据blogId=>[" + blogId + "]查询blogCounterDO異常!",e);
+            return new ResponseDO<>("-1", "查询异常!");
+        }
+    }
 }

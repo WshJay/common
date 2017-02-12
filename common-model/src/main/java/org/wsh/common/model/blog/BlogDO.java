@@ -85,6 +85,13 @@ public class BlogDO extends BaseDO{
 	private String content;
 
 	/**
+	 * 标签
+	 */
+	@Setter
+	@Getter
+	private String tags;
+
+	/**
 	 * 作者名称
 	 */
 	@Setter
@@ -110,5 +117,33 @@ public class BlogDO extends BaseDO{
 		this.privacy = privacy;
 		this.status = status;
 		this.authorId = authorId;
+	}
+
+	public BlogDO(String title, String coverUrl, String content, String tags, Privacy privacy, BlogStatus status, Long authorId) {
+		this.title = title;
+		this.coverUrl = coverUrl;
+		this.content = content;
+		this.tags = tags;
+		this.privacy = privacy;
+		this.status = status;
+		this.authorId = authorId;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogDO{" +
+				"title='" + title + '\'' +
+				", coverUrl='" + coverUrl + '\'' +
+				", contentId=" + contentId +
+				", privacy=" + privacy +
+				", status=" + status +
+				", authorId=" + authorId +
+				", version=" + version +
+				", description='" + description + '\'' +
+				", isDeleted=" + isDeleted +
+				", content='" + content + '\'' +
+				", tags='" + tags + '\'' +
+				", authorName='" + authorName + '\'' +
+				'}';
 	}
 }

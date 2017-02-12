@@ -39,13 +39,17 @@
     <dubbo:service interface="org.wsh.common.service.api.PermissionService" ref="permissionService"/>
     <dubbo:service interface="org.wsh.common.service.api.RoleService" ref="roleService"/>
     <dubbo:service interface="org.wsh.common.service.api.UserService" ref="userService"/>
+
+
     <dubbo:service interface="org.wsh.common.service.api.flow.FlowService" ref="flowService"/>
+    <dubbo:service interface="org.wsh.common.service.api.flow.FileService" ref="fileService"/>
 
     <dubbo:service interface="org.wsh.common.service.api.basic.UserBasicService" ref="userBasicService"/>
 
 
     <dubbo:service interface="org.wsh.common.service.api.SystemService" ref="systemService"/>
     <dubbo:service interface="org.wsh.common.service.api.blog.BlogService" ref="blogService"/>
+    <dubbo:service interface="org.wsh.common.service.api.blog.BlogContentService" ref="blogContentService"/>
     <dubbo:service interface="org.wsh.common.service.api.blog.BlogCounterService" ref="blogCounterService"/>
     <dubbo:service interface="org.wsh.common.service.api.blog.BlogCommentService" ref="blogCommentService"/>
     <dubbo:service interface="org.wsh.common.service.api.blog.BlogTagsService" ref="blogTagsService"/>

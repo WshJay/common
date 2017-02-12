@@ -20,7 +20,7 @@ import org.wsh.common.util.logger.LoggerService;
 public class ExpendAdvice extends LoggerService {
 
     //    @Pointcut("execution(* com.trc.funds.*.service.impl.*.do*(..)) || execution(* com.trc.funds.*.service.impl.*.select*(..)))")
-    @Pointcut("execution(* org.wsh.common.service.impl.*.*(..))")
+    @Pointcut("execution(* org.wsh.common.service.impl.*.*.*(..))")
     private void aspectjMethod() {
     }
 

@@ -32,10 +32,19 @@
 
     <!--多条件查询表信息(分页) -->
     <select id="selectListByParams" parameterType="BlogTagsDO" resultMap="BlogTagsMap">
-        SELECT <include refid="allSelectionColumn"/> FROM blog_tags WHERE is_deleted = 0
+        SELECT bt.id AS id, bt.name AS name FROM blog_tags bt
+        LEFT JOIN user_tags ut ON bt.id = ut.tags_id
+        WHERE bt.is_deleted = 0
+        <if test="userId != null">
+            AND ut.user_id = #{userId}
+        </if>
     </select>
     <select id="selectCountByParams" parameterType="BlogTagsDO" resultType="int">
-        SELECT COUNT(id) FROM blog_tags WHERE is_deleted = 0
+        SELECT COUNT(bt.id) FROM blog_tags bt LEFT JOIN user_tags ut ON bt.id = ut.tags_id
+        WHERE bt.is_deleted = 0
+        <if test="userId != null">
+            AND ut.user_id = #{userId}
+        </if>
     </select>
 
     <!-- 添加数据 -->
@@ -93,4 +102,15 @@
 		(#{item.id},#{item.name},#{item.version},#{item.description},#{item.isDeleted},#{item.gmtCreated},#{item.gmtModified})
 		</foreach>
     </insert>
+
+    <!-- 根据名称查询标签信息 -->
+    <select id="selectListByTagNames" resultMap="BlogTagsMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_tags WHERE name IN(${tagName}) AND is_deleted = 0
+    </select>
+
+    <!-- 根据ID查询实体数据 -->
+    <select id="selectByTagName" resultMap="BlogTagsMap">
+        SELECT <include refid="allSelectionColumn"/> FROM blog_tags
+        WHERE name = #{tagName} AND is_deleted = 0 LIMIT 1
+    </select>
 </mapper>  

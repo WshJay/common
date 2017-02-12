@@ -13,8 +13,7 @@ import org.wsh.common.model.base.BaseDO;
 public class BlogTagsDO extends BaseDO{
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/**
 	 * 名称
 	 */
@@ -42,6 +41,13 @@ public class BlogTagsDO extends BaseDO{
 	@Setter
 	@Getter
 	private int isDeleted;
+
+	/**
+	 * 用户ID
+	 */
+	@Setter
+	@Getter
+	private Long userId;
 	
 	public BlogTagsDO() {
 	}

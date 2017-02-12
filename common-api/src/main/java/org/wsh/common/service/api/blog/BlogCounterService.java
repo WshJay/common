@@ -68,4 +68,7 @@ public interface BlogCounterService {
      * @return ResponseDO<BlogCounterDO>
      */
     public ResponseDO addViewNum(Long blogId);
+
+
+    public ResponseDO<BlogCounterDO> queryBlogCounterDOByBlogId(Long blogId);
 }
