@@ -11,6 +11,7 @@ import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 
@@ -77,6 +78,26 @@ public class ImageUtils {
 
         // 6-给图片添加图片水印：
         ImageUtils.pressImage("e:/abc.jpg", "e:/abc.jpg","e:/abc_pressImage.jpg", 0, 0, 0.5f);//测试OK
+    }
+
+    /**
+     * 校驗圖片類型
+     * @param imgType
+     * @return
+     */
+    public static boolean validateImgType(String imgType){
+        if (imgType.equals(IMAGE_TYPE_JPG)){
+            return true;
+        }else if(imgType.equals(IMAGE_TYPE_JPEG)){
+            return true;
+        }else if(imgType.equals(IMAGE_TYPE_PNG)){
+            return true;
+        }else if(imgType.equals(IMAGE_TYPE_GIF)){
+            return true;
+        }else if(imgType.equals(IMAGE_TYPE_BMP)){
+            return true;
+        }
+        return false;
     }
 
 
