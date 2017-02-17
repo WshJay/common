@@ -15,4 +15,6 @@
 
     <!-- 强制使用CGLIB代理 -->
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+
+    <import resource="classpath*:common-cache.xml"/>
 </beans>

@@ -20,6 +20,8 @@
     <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.PessimisticLockService" id="pessimisticLockService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.mysql.lock.OptimisticLockService" id="optimisticLockService" version="${rpc.dubbo.consumer.version}"/>
 
+    <!-- Jedis Service -->
+    <dubbo:reference interface="org.wsh.common.service.api.jedis.JedisService" id="jedisService" version="${rpc.dubbo.consumer.version}"/>
 
     <!-- Basic Service -->
     <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="${rpc.dubbo.consumer.version}"/>

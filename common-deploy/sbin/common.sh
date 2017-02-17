@@ -115,6 +115,7 @@ command_print "    74887  78887777774885 7888277777 7888577 78880   7885    7888
 command_print "     727   747        741777248888887   70888857     7727      777           288888027  7527     7807    4888884         1888817     777"
 command_print ""
 }
+
 start() {
     [ -e "$LOG_PATH" ] && cnt=`wc -l "$LOG_PATH" | awk '{ print $1 }'` || cnt=1
     last_newline=${cnt}
@@ -129,7 +130,7 @@ start() {
     PROJECT_CLASSPATH=${PROJECT_CLASSPATH}:${ETC_PATH}
     export PROJECT_CLASSPATH
 
-    echo "nohup java -cp \"$PROJECT_CLASSPATH\" $PROJECT_MAIN >> \"$LOG_PATH\" 2>&1 &"
+    echo "nohup java -cp \"$PROJECT_CLASSPATH\"  $PROJECT_MAIN >> \"$LOG_PATH\" 2>&1 &"
     nohup java -cp "$PROJECT_CLASSPATH" ${PROJECT_MAIN}  >> "$LOG_PATH" 2>&1 &
     echo $! > "$BASE_DIR/../$PROJECT_NAME.pid"
     echo ""

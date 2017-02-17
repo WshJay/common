@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CacheConfiguration {
     @Bean
-    CacheManager cacheManager()
-    {
+    CacheManager cacheManager() {
         ConcurrentMapCacheManager cmcm = new ConcurrentMapCacheManager("cacheValue");
         return cmcm;
     }

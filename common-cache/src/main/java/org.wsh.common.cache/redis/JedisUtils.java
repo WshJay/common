@@ -20,15 +20,15 @@ public class JedisUtils {
 	// 一些时间常量
 	public static final Integer
 	// 半小时的秒数
-			SECOND_HALF_HOURS = 60 * 30,
-			// 一小时的秒数
-			SECOND_HOURS = 60 * 60,
-			// 一天的秒数
-			SECOND_DAY = 60 * 60 * 24,
-			// 一周的秒数
-			SECOND_WEEK = 60 * 60 * 24 * 7,
-			// 一个月的秒数;
-			SECOND_MONTH = SECOND_DAY * 30;
+	SECOND_HALF_HOURS = 60 * 30,
+	// 一小时的秒数
+	SECOND_HOURS = 60 * 60,
+	// 一天的秒数
+	SECOND_DAY = 60 * 60 * 24,
+	// 一周的秒数
+	SECOND_WEEK = 60 * 60 * 24 * 7,
+	// 一个月的秒数;
+	SECOND_MONTH = SECOND_DAY * 30;
 
 	protected ShardedJedisPool jedisPool;
 

@@ -33,6 +33,9 @@
     <dubbo:service interface="org.wsh.common.service.api.mysql.lock.PessimisticLockService" ref="pessimisticLockService"/>
     <dubbo:service interface="org.wsh.common.service.api.mysql.lock.OptimisticLockService" ref="optimisticLockService"/>
 
+    <!-- Jedis Service -->
+    <dubbo:service interface="org.wsh.common.service.api.jedis.JedisService" ref="jedisService"/>
+
     <!-- Basic Service -->
     <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService"/>
     <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService"/>

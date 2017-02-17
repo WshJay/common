@@ -4,6 +4,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.wsh.common.cache.annotation.PageCache;
 import org.wsh.common.cache.service.CacheService;
+import redis.clients.jedis.Jedis;
+
+import javax.annotation.Resource;
 
 /**
  * author: wsh

@@ -1,10 +1,13 @@
 package org.wsh.common.util.file;
 //Download by http://www.codefans.net
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 此类中封装一些常用的文件操作。
@@ -641,7 +644,7 @@ public class FileUtil {
     /**
      * 获取图片文件的扩展名（发布系统专用）
      *
-     * @param picname 为图片名称加上前面的路径不包括扩展名
+     * @param pic_path 为图片名称加上前面的路径不包括扩展名
      * @return 图片的扩展名
      * @since 1.0
      */
@@ -664,7 +667,7 @@ public class FileUtil {
     }
 
     //拷贝文件
-    public static final boolean CopyFile(File in, File out) throws Exception {
+    public static final boolean CopyFile(File in, File out){
         try {
             FileInputStream fis = new FileInputStream(in);
             FileOutputStream fos = new FileOutputStream(out);
@@ -679,16 +682,19 @@ public class FileUtil {
         } catch (IOException ie) {
             ie.printStackTrace();
             return false;
+        }catch (Exception e){
+            e.getStackTrace();
+            return false;
         }
     }
 
     //拷贝文件
-    public static final boolean CopyFile(String infile, String outfile) throws Exception {
+    public static final boolean CopyFile(String infile, String outfile) {
         try {
             File in = new File(infile);
             File out = new File(outfile);
             return CopyFile(in, out);
-        } catch (IOException ie) {
+        } catch (Exception ie) {
             ie.printStackTrace();
             return false;
         }
@@ -726,6 +732,35 @@ public class FileUtil {
         mfilter = null;
 
         return counts;
+    }
+
+    /**
+     * 递归获取文件夹下所有文件路径
+     * @param dirPath 文件夹路径
+     * @return List<File>
+     */
+    public static List<File> getDirFileList(String dirPath, String endsWith) {
+        File dir = new File(dirPath);
+        File[] files = dir.listFiles(); //
+        List<File> fileList = new ArrayList<>();
+        if (files != null) {
+            for (int i = 0; i < files.length; i++) {
+                String fileName = files[i].getName();
+                if (files[i].isDirectory()) { // 判断是文件还是文件夹
+                    getDirFileList(files[i].getAbsolutePath(), endsWith); // 获取文件绝对路径
+                } else if (StringUtils.isBlank(endsWith)) { // 是否校验文件后缀
+                    String strFileName = files[i].getAbsolutePath();
+                    fileList.add(files[i]);
+                } else if (fileName.endsWith(endsWith)) { // 判断文件名是否以.avi结尾
+                    String strFileName = files[i].getAbsolutePath();
+                    fileList.add(files[i]);
+                } else {
+                    continue;
+                }
+            }
+
+        }
+        return fileList;
     }
 
 }
