@@ -689,16 +689,10 @@ public class FileUtil {
     }
 
     //拷贝文件
-    public static final boolean CopyFile(String infile, String outfile) {
-        try {
+    public static boolean CopyFile(String infile, String outfile) throws Exception{
             File in = new File(infile);
             File out = new File(outfile);
             return CopyFile(in, out);
-        } catch (Exception ie) {
-            ie.printStackTrace();
-            return false;
-        }
-
     }
 
     /**

@@ -14,7 +14,7 @@
     <name>common-resteasy</name>
 
     <properties>
-        <resteasy.version>3.0-beta-5</resteasy.version>
+        <resteasy.version>3.0.8.Final</resteasy.version>
     </properties>
     <dependencies>
         <dependency>
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-multipart-provider</artifactId>
-            <version>2.3.1.GA</version>
+            <version>3.0.8.Final</version>
         </dependency>
 
         <!-- Spring -->

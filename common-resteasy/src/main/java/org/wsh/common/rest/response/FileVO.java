@@ -2,6 +2,7 @@ package org.wsh.common.rest.response;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.wsh.common.enums.flow.FileType;
 import org.wsh.common.model.blog.BlogCounterDO;
 import org.wsh.common.model.flow.FileDO;
 
@@ -39,7 +40,7 @@ public class FileVO {
      */
     @Setter
     @Getter
-    private String type;
+    private FileType type;
 
     /**
      * 用户ID

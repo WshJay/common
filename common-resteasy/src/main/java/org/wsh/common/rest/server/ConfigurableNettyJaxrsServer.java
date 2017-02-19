@@ -61,9 +61,9 @@ public class ConfigurableNettyJaxrsServer extends NettyJaxrsServer {
 
         ChannelPipelineFactory factory;
         if (sslContext == null) {
-            factory = new HttpServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize);
+            factory = new HttpServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize,true);
         } else {
-            factory = new HttpsServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, sslContext);
+            factory = new HttpsServerPipelineFactory(dispatcher, root, executorThreadCount, maxRequestSize, true, sslContext);
         }
         // Set up the event pipeline factory.
         bootstrap.setPipelineFactory(factory);

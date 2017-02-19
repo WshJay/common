@@ -2,6 +2,7 @@ package org.wsh.common.model.flow;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.wsh.common.enums.flow.FileType;
 import org.wsh.common.model.base.BaseDO;
 
 /**
@@ -40,7 +41,7 @@ public class FileDO extends BaseDO{
 	 */
 	@Setter
 	@Getter
-	private String type;
+	private FileType type;
 
 	/**
 	 * 用户ID
@@ -80,16 +81,14 @@ public class FileDO extends BaseDO{
 	public FileDO() {
 	}
 
-	public FileDO(String type, String name, String coverPath, String filePath, Long userId, Long tagsId, String description, int version, int isDeleted) {
+	public FileDO(FileType type, String name, String coverPath, String filePath, Long userId, Long tagsId, String description) {
 		this.type = type;
 		this.name = name;
 		this.coverPath = coverPath;
 		this.filePath = filePath;
-		this.userId = this.userId;
-		this.tagsId = this.tagsId;
+		this.userId = userId;
+		this.tagsId = tagsId;
 		this.description = description;
-		this.version = version;
-		this.isDeleted = isDeleted;
 	}
 
 }

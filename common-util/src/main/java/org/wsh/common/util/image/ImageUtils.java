@@ -1,5 +1,7 @@
 package org.wsh.common.util.image;
 
+import sun.awt.image.ToolkitImage;
+
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.geom.AffineTransform;
@@ -12,7 +14,10 @@ import java.awt.image.ImageFilter;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 
 /**
@@ -46,38 +51,43 @@ public class ImageUtils {
      * @param args
      */
     public static void main(String[] args) {
-        // 1-缩放图像：
-        // 方法一：按比例缩放
-        ImageUtils.scale("e:/abc.jpg", "e:/abc_scale.jpg", 2, true);//测试OK
-        // 方法二：按高度和宽度缩放
-        ImageUtils.scale2("e:/abc.jpg", "e:/abc_scale2.jpg", 500, 300, true);//测试OK
+
+        try {
+            // 1-缩放图像：
+            // 方法一：按比例缩放
+            ImageUtils.scale("e:/abc.jpg", "e:/abc_scale.jpg", 2, true);//测试OK
+            // 方法二：按高度和宽度缩放
+            ImageUtils.scale2("e:/abc.jpg", "e:/abc_scale2.jpg", 500, 300, true);//测试OK
 
 
-        // 2-切割图像：
-        // 方法一：按指定起点坐标和宽高切割
-        ImageUtils.cut("e:/abc.jpg", "e:/abc_cut.jpg", 0, 0, 400, 400 );//测试OK
-        // 方法二：指定切片的行数和列数
-        ImageUtils.cut2("e:/abc.jpg", "e:/", 2, 2 );//测试OK
-        // 方法三：指定切片的宽度和高度
-        ImageUtils.cut3("e:/abc.jpg", "e:/", 300, 300 );//测试OK
+            // 2-切割图像：
+            // 方法一：按指定起点坐标和宽高切割
+            ImageUtils.cut("e:/abc.jpg", "e:/abc_cut.jpg", 0, 0, 400, 400 );//测试OK
+            // 方法二：指定切片的行数和列数
+            ImageUtils.cut2("e:/abc.jpg", "e:/", 2, 2 );//测试OK
+            // 方法三：指定切片的宽度和高度
+            ImageUtils.cut3("e:/abc.jpg", "e:/", 300, 300 );//测试OK
 
 
-        // 3-图像类型转换：
-        ImageUtils.convert("e:/abc.jpg", "GIF", "e:/abc_convert.gif");//测试OK
+            // 3-图像类型转换：
+            ImageUtils.convert("e:/abc.jpg", "GIF", "e:/abc_convert.gif");//测试OK
 
 
-        // 4-彩色转黑白：
-        ImageUtils.gray("e:/abc.jpg", "e:/abc_gray.jpg");//测试OK
+            // 4-彩色转黑白：
+            ImageUtils.gray("e:/abc.jpg", "e:/abc_gray.jpg");//测试OK
 
 
-        // 5-给图片添加文字水印：
-        // 方法一：
-        ImageUtils.pressText("我是水印文字","e:/abc.jpg","e:/abc_pressText.jpg","宋体",Font.BOLD,Color.white,80, 0, 0, 0.5f);//测试OK
-        // 方法二：
-        ImageUtils.pressText2("我也是水印文字", "e:/abc.jpg","e:/abc_pressText2.jpg", "黑体", 36, Color.white, 80, 0, 0, 0.5f);//测试OK
+            // 5-给图片添加文字水印：
+            // 方法一：
+            ImageUtils.pressText("我是水印文字","e:/abc.jpg","e:/abc_pressText.jpg","宋体",Font.BOLD,Color.white,80, 0, 0, 0.5f);//测试OK
+            // 方法二：
+            ImageUtils.pressText2("我也是水印文字", "e:/abc.jpg","e:/abc_pressText2.jpg", "黑体", 36, Color.white, 80, 0, 0, 0.5f);//测试OK
 
-        // 6-给图片添加图片水印：
-        ImageUtils.pressImage("e:/abc.jpg", "e:/abc.jpg","e:/abc_pressImage.jpg", 0, 0, 0.5f);//测试OK
+            // 6-给图片添加图片水印：
+            ImageUtils.pressImage("e:/abc.jpg", "e:/abc.jpg","e:/abc_pressImage.jpg", 0, 0, 0.5f);//测试OK
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -143,11 +153,11 @@ public class ImageUtils {
      * @param width 缩放后的宽度
      * @param bb 比例不对时是否需要补白：true为补白; false为不补白;
      */
-    public final static void scale2(String srcImageFile, String result, int height, int width, boolean bb) {
+    public final static void scale2(String srcImageFile, String result, int height, int width, boolean bb) throws Exception {
         try {
             double ratio = 0.0; // 缩放比例
-            File f = new File(srcImageFile);
-            BufferedImage bi = ImageIO.read(f);
+            File file = new File(srcImageFile);
+            BufferedImage bi = ImageIO.read(file);
             Image itemp = bi.getScaledInstance(width, height, bi.SCALE_SMOOTH);
             // 计算比例
             if ((bi.getHeight() > height) || (bi.getWidth() > width)) {
@@ -178,9 +188,23 @@ public class ImageUtils {
                 g.dispose();
                 itemp = image;
             }
-            ImageIO.write((BufferedImage) itemp, "JPEG", new File(result));
+            // create an image input stream from the specified file
+            ImageInputStream iis = ImageIO.createImageInputStream(file);
+
+            // get all currently registered readers that recognize the image format
+            Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
+            if (!iter.hasNext()) {
+                throw new RuntimeException("No readers found!");
+            }
+            // get the first reader
+            ImageReader reader = iter.next();
+            System.out.println(reader.getFormatName());
+            BufferedImage bui = ((ToolkitImage)itemp).getBufferedImage();
+            ImageIO.write(bui, reader.getFormatName(), new File(result));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
+        }catch (Exception e) {
+            throw e;
         }
     }
 

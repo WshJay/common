@@ -12,6 +12,15 @@
 
 	<!-- 引入所有properties文件 -->
 	<context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
+
+	<bean id="upload" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<array>
+				<value>classpath:config/upload.properties</value>
+			</array>
+		</property>
+	</bean>
+
 	<import resource="classpath:consumer-bean.xml"/>
 
 	<context:annotation-config />
