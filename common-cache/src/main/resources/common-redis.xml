@@ -1,66 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:cache="http://www.springframework.org/schema/cache"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/cache
-       http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd ">
 
     <!-- Jedis Pool Config -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <property name="maxTotal" value="${redis.pool.maxTotal}" />
-        <property name="maxIdle" value="${redis.pool.maxIdle}" />
-        <property name="minIdle" value="${redis.pool.minIdle}" />
-        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />
-        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />
+        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <property name="minIdle" value="${redis.pool.minIdle}"/>
+        <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.pool.testOnBorrow}"/>
     </bean>
 
     <!-- Jedis Pool -->
-    <bean id="funds-business-jedisPool" class="redis.clients.jedis.JedisPool">
-        <constructor-arg name="poolConfig" ref="jedisPoolConfig" />
-        <constructor-arg name="host" value="${redis.host}" />
-        <constructor-arg name="port" value="${redis.port}" />
-        <constructor-arg name="timeout" value="${redis.timeout}" />
-        <constructor-arg name="password" value="${redis.password}" />
-        <constructor-arg name="database" value="${redis.database}" />
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+        <constructor-arg name="host" value="${redis.host}"/>
+        <constructor-arg name="port" value="${redis.port}"/>
+        <constructor-arg name="timeout" value="${redis.timeout}"/>
+        <constructor-arg name="password" value="${redis.password}"/>
+        <constructor-arg name="database" value="${redis.database}"/>
     </bean>
 
-    <!--<bean id="funds-account-jedisClient" class="com.txframework.core.redis.JedisClient">-->
-        <!--<property name="version" value="${redis.key.version}" />-->
-        <!--<property name="jedisPool" ref="funds-business-jedisPool" />-->
-    <!--</bean>-->
-
-    <!--Spring Cache-->
     <!-- Jedis ConnectionFactory -->
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:hostName="${redis.host}" p:port="${redis.port}" p:password="${redis.password}" p:database="${redis.database}">
+          destroy-method="destroy">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+        <property name="database" value="${redis.database}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="usePool" value="true"/>
+        <property name="poolConfig" ref="jedisPoolConfig"/>
     </bean>
 
     <!-- Redis Template -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="valueSerializer">
-            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
-        </property>
-        <!-- 1.注意这里 -->
         <property name="keySerializer">
-            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
         </property>
-        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="hashKeySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="hashValueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
     </bean>
-    <!-- 开启缓存注解 -->
-    <cache:annotation-driven/>
-    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" >
+
+    <!-- RedosCacheManager -->
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
         <constructor-arg name="template" ref="redisTemplate"/>
         <!--默认失效时间设置-->
         <property name="defaultExpiration" value="${redis.expire}"/>
     </bean>
+    <!-- CacheManager -->
     <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
         <property name="cacheManagers">
             <list>
-                <ref bean="redisCacheManager" />
+                <ref bean="redisCacheManager"/>
             </list>
         </property>
-        <property name="fallbackToNoOpCache" value="true" />
+        <property name="fallbackToNoOpCache" value="true"/>
     </bean>
 </beans>

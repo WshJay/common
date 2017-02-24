@@ -18,12 +18,13 @@ import javax.annotation.Resource;
 public class CacheServiceImpl implements CacheService{
 
     @Override
-    @PageCache(key="'common:id:' + #id",expire = 1000)
+//    @PageCache(key="'common:id:' + #id",expire = 1000)
     public String getById(Long id){
 
         return "Hello Cache...";
     }
 
+    @Override
     @Cacheable(key="'common:demo:id:' + #id")
     public String getDemoDOById(Long id){
 

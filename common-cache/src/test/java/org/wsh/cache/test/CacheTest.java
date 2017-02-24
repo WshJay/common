@@ -24,6 +24,6 @@ public class CacheTest {
 
     @Test
     public void Test(){
-        cacheService.getById(1L);
+        cacheService.getDemoDOById(1L);
     }
 }

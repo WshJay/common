@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 public interface CacheService {
 
     public String getById(Long Id);
+
+    public String getDemoDOById(Long id);
 }
