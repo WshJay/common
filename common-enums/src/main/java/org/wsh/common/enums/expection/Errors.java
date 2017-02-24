@@ -1,5 +1,7 @@
 package org.wsh.common.enums.expection;
 
+import lombok.Getter;
+
 /**
  * Errors
  * 
@@ -33,41 +35,24 @@ public enum Errors {
 	PASSWORD_LENGTH_ERROR("0011", "抱歉，密码号长度错误");
 
 	/**
-	 * errorCode,错误编码
+	 * 错误编码
 	 */
+	@Getter
 	private String errorCode;
 
 	/**
-	 * errorMsg,错误信息描述
+	 * 错误信息描述
 	 */
+	@Getter
 	private String errorMsg;
 
 	/**
 	 * Errors
-	 * 
-	 * @param errorCode
-	 * @param errorMsg
+	 * @param errorCode 错误编码
+	 * @param errorMsg 错误信息描述
 	 */
 	private Errors(String errorCode, String errorMsg) {
 		this.errorCode = errorCode;
 		this.errorMsg = errorMsg;
-	}
-
-	/**
-	 * getErrorCode
-	 * 
-	 * @return
-	 */
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	/**
-	 * getErrorMsg
-	 * 
-	 * @return
-	 */
-	public String getErrorMsg() {
-		return errorMsg;
 	}
 }

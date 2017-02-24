@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.cache.service.RedisService;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Set;
 
 /**
@@ -33,8 +34,11 @@ public class RedisServiceTest {
         //首先,我们看下redis服务里是否有数据
         long dbSizeStart = redisService.dbSize();
         System.out.println(dbSizeStart);
-//
-//        redisService.set("username", "oyhk");//设值(查看了源代码,默认存活时间30分钟)
+
+        String currentAmountStr = redisService.get("2");
+        BigDecimal currentAmount = new BigDecimal(currentAmountStr);
+        System.out.println("当前金额=>"+ currentAmount);
+        redisService.set("2", String.valueOf(currentAmount.add(new BigDecimal(1))));//设值(查看了源代码,默认存活时间30分钟)
 //        String username = redisService.get("username");//取值
 //        System.out.println(username);
 //        redisService.set("username1", "oyhk1", 1);//设值,并且设置数据的存活时间(这里以秒为单位)
@@ -51,6 +55,7 @@ public class RedisServiceTest {
         //查看keys
         Set<String> keys = redisService.keys("*");//这里查看所有的keys
         System.out.println(keys);//只有username username1(已经清空了)
+
 //
 //        //删除
 //        redisService.set("username2", "oyhk2");

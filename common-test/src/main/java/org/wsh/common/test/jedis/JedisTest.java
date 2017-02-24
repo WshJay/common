@@ -3,11 +3,16 @@ package org.wsh.common.test.jedis;
 import org.junit.Before;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Response;
+import redis.clients.jedis.Transaction;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static com.sun.scenario.Settings.set;
 
 /**
  * author: wsh
@@ -22,9 +27,11 @@ public class JedisTest {
     @Before
     public void setup() {
         //连接redis服务器，192.168.0.100:6379
-        jedis = new Jedis("192.168.0.100", 6379);
+        jedis = new Jedis("172.30.251.243", 6379);
         //权限认证
-        jedis.auth("admin");
+        jedis.auth("123456");
+
+        jedis.watch("2");
     }
 
     /**
@@ -32,19 +39,43 @@ public class JedisTest {
      */
     @Test
     public void testString() {
+
+        //连接redis服务器，192.168.0.100:6379
+        Jedis jedis1 = new Jedis("172.30.251.243", 6379);
+        //权限认证
+        jedis1.auth("123456");
+        String currentAmountStr = jedis1.get("2");
+        BigDecimal currentAmount = new BigDecimal(currentAmountStr);
+        System.out.println("当前金额=>"+ currentAmount);
+        String rt = jedis1.set("2", String.valueOf(new BigDecimal(10)));
+        System.out.println("Result=>" + rt);
+        System.out.println("========================");
+
+
+        Transaction tx = jedis.multi();
+//        System.out.println("当前金额=>"+ new BigDecimal(jedis.get("2")));
+        //注意,在事物中间是不能使用jedis来操作redis,否则会报
+        //redis.clients.jedis.exceptions.JedisDataException: Cannot use Jedis when in Multi. Please use JedisTransaction instead.
+        tx.set("1", String.valueOf(new BigDecimal(10)));
+        tx.set("2", String.valueOf(new BigDecimal(30)));
+        List<Object> objects = tx.exec();
+//        for (Object object : objects) {
+//            System.out.println(object);
+//        }
+
         //-----添加数据----------
-        jedis.set("name","xinxin");//向key-->name中放入了value-->xinxin
-        System.out.println(jedis.get("name"));//执行结果：xinxin
+//        jedis.set("name","xinxin");//向key-->name中放入了value-->xinxin
+//        System.out.println(jedis.get("name"));//执行结果：xinxin
 
-        jedis.append("name", " is my lover"); //拼接
-        System.out.println(jedis.get("name"));
-
-        jedis.del("name");  //删除某个键
-        System.out.println(jedis.get("name"));
-        //设置多个键值对
-        jedis.mset("name","liuling","age","23","qq","476777XXX");
-        jedis.incr("age"); //进行加1操作
-        System.out.println(jedis.get("name") + "-" + jedis.get("age") + "-" + jedis.get("qq"));
+//        jedis.append("name", " is my lover"); //拼接
+//        System.out.println(jedis.get("name"));
+//
+//        jedis.del("name");  //删除某个键
+//        System.out.println(jedis.get("name"));
+//        //设置多个键值对
+//        jedis.mset("name","liuling","age","23","qq","476777XXX");
+//        jedis.incr("age"); //进行加1操作
+//        System.out.println(jedis.get("name") + "-" + jedis.get("age") + "-" + jedis.get("qq"));
 
     }
 

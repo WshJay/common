@@ -156,11 +156,19 @@ public class RedisService {
      *
      * @return
      */
-    private Jedis getJedis() {
+    public Jedis getJedis() {
         if (jedis == null) {
             return jedisConnectionFactory.getShardInfo().createResource();
         }
         return jedis;
+    }
+
+    /**
+     * 监控多个Key值
+     * @return String
+     */
+    public String watch(String... keys){
+        return this.getJedis().watch(keys);
     }
 
     /**
