@@ -15,9 +15,9 @@ public class TestJedis extends LoggerService{
 
 
 
-    private static String HOST = "172.30.251.243";
+    private static String HOST = "121.43.116.29";
     private static int PORT = 6379;
-    private static String AUTH = "vcEV1YKF";
+    private static String AUTH = "123456";
 
     private static Jedis jedis;
     private static ShardedJedis sharding;
@@ -53,9 +53,8 @@ public class TestJedis extends LoggerService{
     @Test
     public void test1Normal() {
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 100; i++) {
-//            String result = jedis.set("n" + i, "n" + i);
-            jedis.del(String.valueOf(i));
+        for (int i = 0; i < 1; i++) {
+            String result = jedis.set("n", "n" + i);
         }
         long end = System.currentTimeMillis();
         System.out.println("Simple SET: " + ((end - start) / 1000.0) + " seconds");
@@ -83,16 +82,14 @@ public class TestJedis extends LoggerService{
      * 用异步方式，一次发送多个指令，不同步等待其返回结果
      */
     @Test
-    public void test3Pipelined() throws InterruptedException {
+    public void test3Pipelined() {
         Pipeline pipeline = jedis.pipelined();
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-//            pipeline.set("n"+ i, "n" + i);
-            pipeline.del("n" + i);
+        for (int i = 0; i < 100000; i++) {
+            pipeline.set("p" + i, "p" + i);
         }
         //System.out.println(pipeline.get("p1000").get());
         List<Object> results = pipeline.syncAndReturnAll();
-        System.out.println(results.size());
         long end = System.currentTimeMillis();
         System.out.println("Pipelined SET: " + ((end - start) / 1000.0) + " seconds");
     }

@@ -62,6 +62,9 @@ public class FileController extends LoggerService {
     @Value("#{upload.imgHeight}")
     private Integer IMAGE_HEIGHT;
 
+    @Value("#{upload.imgWidth}")
+    private Integer IMAGE_WIDTH;
+
     @GET
     @Path("/image/list")
     @Produces("application/json")
@@ -140,8 +143,9 @@ public class FileController extends LoggerService {
             String imgThumUrl = new StringBuffer(File.separator).append("upload").append(File.separator).append("images")
                     .append(File.separator).append("thumbnail").append(File.separator).append(file.getName()).toString();
             String imgThumbPath = UPLOADED_FILE_PATH + imgThumUrl;
-            jpgScaleZoom test = new jpgScaleZoom(imgPath, imgThumbPath, "width", IMAGE_HEIGHT);
-            test.makeImg();
+//            jpgScaleZoom test = new jpgScaleZoom(imgPath, imgThumbPath, "width", IMAGE_HEIGHT);
+//            test.makeImg();
+            ImageUtils.scale2(imgPath,imgThumbPath,IMAGE_HEIGHT,IMAGE_WIDTH,false);
 
             return fileService.addFileDO(new FileDO(FileType.IMG,name,imgThumUrl,filePath,2L,tagsId,""));
         } catch (Exception e) {

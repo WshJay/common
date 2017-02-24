@@ -11,11 +11,15 @@ $(function(){
                     tagClick();
                 }
             }else{
-                alert(data.errorMsg);
+                layer.alert(data.errorMsg, {
+                    icon: 2
+                });
             }
         },
         error:function(request){
-            alert(data.errorMsg);
+            layer.alert("上传异常!", {
+                icon: 2
+            });
         }
     },"json");
 
@@ -34,20 +38,50 @@ function uploadtrig(file_id){
 
 // 图片上传
 function upload_file(show_id,file_url_id) {
-    $.ajaxFileUpload({
-        url : "/apis/resteasy/file/upload/image",
-        secureuri : false,
-        fileElementId : "imgfile",
-        dataType : "json",
+
+    var pic = $("#imgfile").get(0).files[0];
+    var formData = new FormData();
+    formData.append("imgfile" , pic);
+    $.ajax({
+        type: "POST",
+        url: "/apis/resteasy/file/upload/image",
+        data: formData ,
+        processData : false,
+        //必须false才会自动加上正确的Content-Type
+        contentType : false ,
+        xhr: function(){
+            $(".upload-progress").html("0%" );
+            $(".upload-progress").css("width" ,"0");
+            $(".progressbar-content").show();
+            var xhr = $.ajaxSettings.xhr();
+            if(onprogress && xhr.upload) {
+                xhr.upload.addEventListener("progress" , onprogress, false);
+                return xhr;
+            }
+        },
         success : function(data) {
+            $(".progressbar-content").hide();
             if(data.success){
                 $("#" + show_id+ "").attr("src",data.data.filePath);
                 $("#filePath").val(data.data.filePath);
             }else{
-                alert("上传图片失败!");
+                layer.alert(data.errorMsg, {
+                    icon: 2
+                });
             }
         }
     });
+}
+
+/**
+ * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
+ */
+function onprogress(evt){
+    var loaded = evt.loaded;     //已经上传大小情况
+    var tot = evt.total;      //附件总大小
+    var per = Math.floor(100*loaded/tot);  //已经上传的百分比
+    $(".upload-progress").html( per +"%" );
+    $(".upload-progress").css("width" , per +"%");
 }
 
 /**
@@ -58,11 +92,20 @@ function addPaint(){
     var tagsId = $(".tags-list .active a").attr("id");
     var filePath = $("#filePath").val();
     if(isNull(name)){
-        alert("SB,写一下作品名称!");
+        layer.alert("SB,写一下作品名称!", {
+            icon: 2
+        });
+        return;
     }else if(isNull(tagsId)){
-        alert("SB,选择作品标签啦!");
+        layer.alert("SB,选择作品标签啦!", {
+            icon: 2
+        });
+        return;
     }else if(isNull(filePath)){
-        alert("SB,作品图片都不上传,你发布毛线啊!");
+        layer.alert("SB,作品图片都不上传,你发布毛线啊!", {
+            icon: 2
+        });
+        return;
     }
     $.ajax({
         url:"/apis/resteasy/file/add",
@@ -70,13 +113,25 @@ function addPaint(){
         type:"POST",
         success:function(data){
             if(data.success){
-                alert("发布成功!");
+                layer.alert("添加成功", {
+                    icon: 1
+                }, function(){
+                    goPortfolio();
+                });
             }else{
-                alert(data.errorMsg);
+                layer.alert(data.errorMsg, {
+                    icon: 2
+                });
             }
         },
         error:function(request){
-            alert(data);
+            layer.alert("添加异常!", {
+                icon: 2
+            });
         }
     },"json");
+}
+
+function goPortfolio() {
+    window.location.href = "/portfolio.html";
 }
