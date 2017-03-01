@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+
+	<display-name>Welcome to Tomcat</display-name>
+	<description>
+		Welcome to Tomcat
+	</description>
+
+	<servlet>
+		<servlet-name>ThreeParams</servlet-name>
+		<servlet-class>ThreeParams</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ThreeParams</servlet-name>
+		<url-pattern>/ThreeParams</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TestLifeCycleServlet</servlet-name>
+		<servlet-class>TestLifeCycleServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TestLifeCycleServlet</servlet-name>
+		<url-pattern>/TestLifeCycleServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowParameters</servlet-name>
+		<servlet-class>ShowParameters</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowParameters</servlet-name>
+		<url-pattern>/ShowParameters</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowParametersMap</servlet-name>
+		<servlet-class>ShowParametersMap</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowParametersMap</servlet-name>
+		<url-pattern>/ShowParametersMap</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SetCookies</servlet-name>
+		<servlet-class>SetCookies</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SetCookies</servlet-name>
+		<url-pattern>/SetCookies</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowCookies</servlet-name>
+		<servlet-class>ShowCookies</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowCookies</servlet-name>
+		<url-pattern>/ShowCookies</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SessionInfoServlet</servlet-name>
+		<servlet-class>SessionInfoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SessionInfoServlet</servlet-name>
+		<url-pattern>/SessionInfoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowSession</servlet-name>
+		<servlet-class>ShowSession</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowSession</servlet-name>
+		<url-pattern>/ShowSession</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>URLSession</servlet-name>
+		<servlet-class>URLSession</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>URLSession</servlet-name>
+		<url-pattern>/URLSession</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TestServletContext</servlet-name>
+		<servlet-class>TestServletContext</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TestServletContext</servlet-name>
+		<url-pattern>/TestServletContext</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowRs</servlet-name>
+		<servlet-class>ShowRs</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowRs</servlet-name>
+		<url-pattern>/ShowRs</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ShowRsUseBean</servlet-name>
+		<servlet-class>ShowRsUseBean</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ShowRsUseBean</servlet-name>
+		<url-pattern>/ShowRsUseBean</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ServletToJSP</servlet-name>
+		<servlet-class>ServletToJSP</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ServletToJSP</servlet-name>
+		<url-pattern>/servlet/ServletToJSP</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<init-param>
+			<param-name>name</param-name>
+			<param-value>ÂÞÐ¡ÓÂ1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>nameb</param-name>
+			<param-value>ÂÞÐ¡ÓÂ2</param-value>
+		</init-param>
+		<init-param>
+			<param-name>namec</param-name>
+			<param-value>ÂÞÐ¡ÓÂ3</param-value>
+		</init-param>
+
+		<servlet-name>TestInitServlet</servlet-name>
+		<servlet-class>TestInitServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TestInitServlet</servlet-name>
+		<url-pattern>/TestInitServlet</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
