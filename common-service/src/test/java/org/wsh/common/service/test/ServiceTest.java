@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.enums.flow.FileType;
 import org.wsh.common.enums.msg.MessageType;
 import org.wsh.common.model.basic.MenuDO;
 import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.model.flow.FileDO;
 import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.MenuService;
+import org.wsh.common.service.api.flow.FileService;
 import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
 import org.wsh.common.service.api.mysql.lock.PessimisticLockService;
@@ -54,14 +57,20 @@ public class ServiceTest extends LoggerService{
     @Resource
     private OptimisticLockService optimisticLockService;
 
+    @Resource
+    private FileService fileService;
+
     @Test
     public void test() throws BusinessException {
-        List<MenuDO> menuDOList = menuService.getAllRootMenu();
-        for (MenuDO menuDO : menuDOList) {
-            logger.info("menuName==>" + menuDO.getName());
-        }
+//        List<MenuDO> menuDOList = menuService.getAllRootMenu();
+//        for (MenuDO menuDO : menuDOList) {
+//            logger.info("menuName==>" + menuDO.getName());
+//        }
 //
-
+        FileDO fileParamDO = new FileDO();
+        fileParamDO.setType(FileType.IMG);
+        fileParamDO.setUserId(2L);
+          fileService.queryFileDOListForPage(fileParamDO,new Pagination(100));
 //        Cache comMessageCache = cacheManager.getCache("common_messageDO");
 //        Cache fundsMessageCache = cacheManager.getCache("funds_messageDO");
 //        System.out.println(comMessageCache.get("message_id:12").get());

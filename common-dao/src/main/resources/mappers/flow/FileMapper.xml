@@ -53,6 +53,7 @@
         <if test="tagsId !='' and tagsId != null">
             AND tags_id = #{tagsId}
         </if>
+        ORDER BY gmt_created DESC
     </select>
     <select id="selectCountByParams" parameterType="FileDO" resultType="int">
         SELECT COUNT(id) FROM file

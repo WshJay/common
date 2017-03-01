@@ -1,6 +1,6 @@
 $(function(){
     $.ajax({
-        url:"/apis/resteasy/blog/tags/list",
+        url:"/apis/resteasy/file/tags/list/2",
         type:"GET",
         success:function(data){
             if(data.success){
@@ -38,50 +38,26 @@ function uploadtrig(file_id){
 
 // 图片上传
 function upload_file(show_id,file_url_id) {
-
     var pic = $("#imgfile").get(0).files[0];
+    if(isNull(pic)){
+        return;
+    }
     var formData = new FormData();
     formData.append("imgfile" , pic);
-    $.ajax({
-        type: "POST",
-        url: "/apis/resteasy/file/upload/image",
-        data: formData ,
-        processData : false,
-        //必须false才会自动加上正确的Content-Type
-        contentType : false ,
-        xhr: function(){
-            $(".upload-progress").html("0%" );
-            $(".upload-progress").css("width" ,"0");
-            $(".progressbar-content").show();
-            var xhr = $.ajaxSettings.xhr();
-            if(onprogress && xhr.upload) {
-                xhr.upload.addEventListener("progress" , onprogress, false);
-                return xhr;
-            }
-        },
-        success : function(data) {
-            $(".progressbar-content").hide();
-            if(data.success){
-                $("#" + show_id+ "").attr("src",data.data.filePath);
+    if (flag) {
+        COMMON.V.Ajax.upload("/apis/resteasy/file/upload/image", formData, function (data) {
+            flag = true;
+            layer.close(layerId);
+            if (data.success) {
+                $("#" + show_id + "").attr("src", data.data.filePath);
                 $("#filePath").val(data.data.filePath);
-            }else{
+            } else {
                 layer.alert(data.errorMsg, {
                     icon: 2
                 });
             }
-        }
-    });
-}
-
-/**
- * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
- */
-function onprogress(evt){
-    var loaded = evt.loaded;     //已经上传大小情况
-    var tot = evt.total;      //附件总大小
-    var per = Math.floor(100*loaded/tot);  //已经上传的百分比
-    $(".upload-progress").html( per +"%" );
-    $(".upload-progress").css("width" , per +"%");
+        }, "json");
+    }
 }
 
 /**
@@ -107,11 +83,11 @@ function addPaint(){
         });
         return;
     }
-    $.ajax({
-        url:"/apis/resteasy/file/add",
-        data:{"name":name,"tagsId":tagsId,"filePath":filePath},
-        type:"POST",
-        success:function(data){
+
+    if (flag){
+        COMMON.V.Ajax.json("/apis/resteasy/file/add",{"name":name,"tagsId":tagsId,"filePath":filePath},"POST",function(data) {
+            flag = true;
+            layer.close(layerId);
             if(data.success){
                 layer.alert("添加成功", {
                     icon: 1
@@ -123,15 +99,42 @@ function addPaint(){
                     icon: 2
                 });
             }
-        },
-        error:function(request){
-            layer.alert("添加异常!", {
-                icon: 2
-            });
-        }
-    },"json");
+        }, "json");
+    }
 }
 
 function goPortfolio() {
     window.location.href = "/portfolio.html";
 }
+
+// var t_img; // 定时器
+// var isLoad = true; // 控制变量
+//
+// function getImgSize(url){
+//     $.ajax({
+//         url:url,
+//         cache:true,
+//         beforeSend:function(xhr){
+//             layerId = layer.open({
+//                 type: 1,
+//                 title: '上传进度',
+//                 closeBtn: 0,
+//                 shadeClose: true,
+//                 area: ['780px', '108px'], //宽高
+//                 content: progressHtml
+//             });
+//         },
+//         complete: function(){
+//             $(".upload-progress").html("100%" );
+//             $(".upload-progress").css("width" , "100%");
+//             layer.close(layerId);
+//             clearTimeout(t_img); // 清除定时器
+//         },
+//         success:function(a,b,xhr){
+//             total = xhr.getResponseHeader("Content-Length")/1024;
+//             num++;
+//             t_img = setTimeout(downloadProgress,1000);
+//         }
+//     })
+// }
+// getImgSize("/upload/images/1488123108251.png");

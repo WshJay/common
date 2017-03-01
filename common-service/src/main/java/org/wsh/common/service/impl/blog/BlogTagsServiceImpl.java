@@ -41,6 +41,7 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
 	* @return List<BlogTagsDO>
     */
     @Override
+    @Cacheable(value = "common:blogTagsList",key = "'common:blogTagsList:userId:' + #blogTagsDO.userId")
     public OptionsResponseDO<List<BlogTagsDO>> queryBlogTagsDOListForPage(BlogTagsDO blogTagsDO, Pagination pagination) throws BusinessException{
         try {
             int totalCount = blogTagsDao.selectCountByParams(blogTagsDO);

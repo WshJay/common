@@ -37,6 +37,7 @@ public class LoginController extends LoggerService{
     @Path("login")
     @Produces("application/json")
     public ResponseDO login() throws Exception {
+        Thread.sleep(5000);
         System.out.println("Welcome, HelloWorld...");
         return new ResponseDO();
     }

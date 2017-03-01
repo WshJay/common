@@ -125,8 +125,8 @@ public class FileController extends LoggerService {
     @POST
     @Path("/add")
     @Produces("application/json")
-    public ResponseDO addBlog(@FormParam("name") String name,
-                              @FormParam("filePath") String filePath, @FormParam("tagsId") Long tagsId){
+    public ResponseDO addFile(@FormParam("name") String name,
+                              @FormParam("filePath") String filePath, @FormParam("tagsId") Long tagsId, @FormParam("description") String description){
         try {
             Assert.notNull(name,"参数不能为空");
             Assert.notNull(filePath,"参数不能为空");
@@ -138,6 +138,7 @@ public class FileController extends LoggerService {
             File file = new File(imgPath);
             FileUtil.CopyFile(imgPath,realPath);
 
+            String imgType  = imgPath.split("\\.")[1];
             logger.debug("type:" + imgPath.split("\\.")[1]);
 
             String imgThumUrl = new StringBuffer(File.separator).append("upload").append(File.separator).append("images")
@@ -147,7 +148,7 @@ public class FileController extends LoggerService {
 //            test.makeImg();
             ImageUtils.scale2(imgPath,imgThumbPath,IMAGE_HEIGHT,IMAGE_WIDTH,false);
 
-            return fileService.addFileDO(new FileDO(FileType.IMG,name,imgThumUrl,filePath,2L,tagsId,""));
+            return fileService.addFileDO(new FileDO(FileType.IMG,name,imgThumUrl,filePath,2L,tagsId,description));
         } catch (Exception e) {
             logger.error("添加异常!",e);
             return new ResponseDO(Errors.DEFAULT_ERROR);

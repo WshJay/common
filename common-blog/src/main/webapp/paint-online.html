@@ -69,63 +69,30 @@
 </header>
 <!--/#header-->
 
-    <section id="action" class="responsive">
-        <div class="vertical-center">
-            <div class="container">
-                <div class="row">
-                    <div class="action take-tour">
-                        <div class="col-sm-7 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <h1 class="title">细节狂</h1>
-                            <p>作品空间</p>
-                        </div>
-                        <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <div class="tour-button">
-                                <a href="/portfolio.html" class="btn btn-common">作品空间</a>
-                            </div>
+<section id="action" class="responsive">
+    <div class="vertical-center">
+        <div class="container">
+            <div class="row">
+                <div class="action take-tour">
+                    <div class="col-sm-7 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h1 class="title">细节狂</h1>
+                        <p>作品空间</p>
+                    </div>
+                    <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <div class="tour-button">
+                            <a href="/paint-add.html" class="btn btn-common">创建作品</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--/#action-->
+    </div>
+</section>
+<!--/#action-->
 
-    <section id="blog" class="padding-top">
+    <section id="blog" class="padding-bottom">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-9 col-md-8">
-                    <div class="contact-form bottom">
-                        <h2>作品发布</h2>
-                        <div class="form-group">
-                            <input id="fileName" name="name" class="form-control" required="required" placeholder="请输入作品名称">
-                        </div>
-                        <div class="form-group">
-                            <div class="tag-cloud">
-                                <ul class="nav nav-pills tags-list">
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="file-content"><input type="file" id="imgfile" name="imgfile" class="file-input" onchange="upload_file('show-img','fileUrl')" /></div>
-                            <input type="hidden" id="filePath" value=""/>
-                            <input name="" type="button" class="btn btn-info" value="上传图片" onclick="uploadtrig('imgfile')"/>
-                        </div>
-                        <!--<div id="progressbar-container" class="progressbar-content file-content">-->
-                            <!--<h2 class="page-header">上传进度</h2>-->
-                            <!--<div class="progress">-->
-                                <!--<div class="progress-bar progress-bar-info upload-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0">-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>&lt;!&ndash;/#progressbar-container&ndash;&gt;-->
-                        <div class="form-group">
-                            <img id="show-img" src="images/portfolio-details/1.jpg" class="img-responsive" alt=""/>
-                        </div>
-                        <div class="form-group">
-                            <input type="button" onclick="addPaint();" class="btn btn-info" value="发布作品">
-                        </div>
-                    </div>
-                 </div>
-                <div class="col-md-4"></div>
+            <div class="row online-content">
             </div>
         </div>
     </section>
@@ -211,11 +178,11 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="plugins/layer-1.9.3/layer.js"></script>
 <script type="text/javascript" src="js/common.main.js"></script>
-<script type="text/javascript" src="js/paint.add.js"></script>
+<script type="text/javascript" src="js/paint-online.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/lightbox.min.js"></script>
-<script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<!--<script type="text/javascript" src="js/wow.min.js"></script>-->
+<!--<script type="text/javascript" src="js/main.js"></script>-->
 <script type="text/javascript" src="js/validate.js"></script>
 </body>
 </html>

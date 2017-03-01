@@ -1,5 +1,7 @@
 package org.wsh.common.util.image;
 
+import org.springframework.util.Assert;
+import sun.awt.image.ImageRepresentation;
 import sun.awt.image.ToolkitImage;
 
 import java.awt.*;
@@ -56,8 +58,9 @@ public class ImageUtils {
             // 1-缩放图像：
             // 方法一：按比例缩放
 //            ImageUtils.scale("e:/abc.jpg", "e:/abc_scale.jpg", 2, true);//测试OK
-            // 方法二：按高度和宽度缩放
-            ImageUtils.scale2("e:/abc.png", "e:/2.jpg", 480, 640, false);//测试OK
+//            // 方法二：按高度和宽度缩放
+            ImageUtils.scale2("e:/abc.png", "e:/2.png", 480, 640, false);//测试OK
+//            ImageUtils.scale("e:/abc.png", "e:/2.png", 480, 640, "png");//测试OK
 
 
 //            // 2-切割图像：
@@ -144,6 +147,28 @@ public class ImageUtils {
         }
     }
 
+    /**
+     * 缩放图像（按高度和宽度缩放）
+     * @param srcImagePath 源图像文件地址
+     * @param deskImagePath 缩放后的图像地址
+     * @param height 缩放后的高度
+     * @param width 缩放后的宽度
+     */
+    public static void scale(String srcImagePath, String deskImagePath, int height, int width, String imgType) throws Exception {
+        try {
+            Assert.isTrue(validateImgType(imgType),"不符合的图片类型");
+            BufferedImage i = ImageIO.read(new File(srcImagePath));
+            Image imgToProcessing = (Image) i;
+            Image img = (Image) imgToProcessing.getScaledInstance(width, height, Image.SCALE_REPLICATE);
+            ToolkitImage toolkitImage = (ToolkitImage) img;
+            ImageRepresentation ir = toolkitImage.getImageRep();
+            BufferedImage bb = ir.getOpaqueRGBImage();
+            ImageIO.write(bb, imgType, new File(deskImagePath));
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
 
     /**
      * 缩放图像（按高度和宽度缩放）
@@ -198,7 +223,7 @@ public class ImageUtils {
             }
             // get the first reader
             ImageReader reader = iter.next();
-            ImageIO.write(((ToolkitImage)itemp).getBufferedImage(), reader.getFormatName(), new File(result));
+            ImageIO.write((BufferedImage)itemp, reader.getFormatName(), new File(result));
         } catch (IOException e) {
             throw e;
         }catch (Exception e) {

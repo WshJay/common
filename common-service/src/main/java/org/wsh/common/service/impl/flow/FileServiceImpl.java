@@ -41,6 +41,7 @@ public class FileServiceImpl extends LoggerService implements FileService{
 	* @return List<FileDO>
     */
     @Override
+    @Cacheable(value = "common:fileList",key = "'common:fileList:userId:' + #fileDO.userId")
     public OptionsResponseDO<List<FileDO>> queryFileDOListForPage(FileDO fileDO, Pagination pagination) throws BusinessException{
         try {
             int totalCount = fileDao.selectCountByParams(fileDO);
