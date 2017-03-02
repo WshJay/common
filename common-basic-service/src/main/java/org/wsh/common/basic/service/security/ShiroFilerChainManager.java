@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service("shiroFilerChainManager")
-public class ShiroFilerChainManager {
+public class ShiroFilerChainManager implements ShiroFilerChainService {
 
 	@Autowired
     private DefaultFilterChainManager filterChainManager;

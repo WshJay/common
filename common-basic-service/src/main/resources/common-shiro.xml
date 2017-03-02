@@ -87,9 +87,8 @@
 		</property>
         <property name="defaultFilterChainDefinitions">
             <value>
-            	/assets/** = anon
             	/login.html = authc
-            	/index.html = authc
+				/* = user
             </value>
         </property>
     </bean>
