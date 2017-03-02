@@ -1,5 +1,6 @@
 package org.wsh.common.service.impl.flow;
 
+import org.wsh.common.cache.service.RedisService;
 import org.wsh.common.model.flow.FileDO;
 import org.wsh.common.dao.flow.FileDao;
 import org.wsh.common.service.api.flow.FileService;
@@ -34,6 +35,9 @@ public class FileServiceImpl extends LoggerService implements FileService{
     @Resource
     private FileDao fileDao;
 
+    @Resource
+    private RedisService redisService;
+
 	/**
 	* 多条件查询(分页)
 	* @param fileDO FileDO
@@ -57,7 +61,7 @@ public class FileServiceImpl extends LoggerService implements FileService{
     }
 
     /**
-    * 根据用户ID查询
+    * 根据ID查询
     * @param id Long
     * @return ResponseDO<FileDO>
     */
@@ -65,8 +69,8 @@ public class FileServiceImpl extends LoggerService implements FileService{
     @Cacheable(value = "common:fileDO",key = "'common:fileDO:id:' + #id")
     public ResponseDO<FileDO> getFileDOById(Long id) throws BusinessException{
         try {
-                        Assert.isTrue(id != null,"查询Id不能为空!");
-                        FileDO fileDO = fileDao.selectById(id);
+            Assert.isTrue(id != null,"查询Id不能为空!");
+            FileDO fileDO = fileDao.selectById(id);
             return newStaticResponseDO(fileDO);
         } catch (Exception e) {
             throw new BusinessException("根据ID=>[" + id + "]查询FileDO信息异常",e);
@@ -90,6 +94,8 @@ public class FileServiceImpl extends LoggerService implements FileService{
             if (result < 1) {
                 throw new Exception("sql插入数据为0,请检查各项参数!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:fileList:userId:" + fileDO.getUserId());
             logger.info("新增ID=>[" + fileDO.getId() + "]的FileDO成功");
             return newStaticResponseDO(fileDO);
         } catch (Exception e) {
@@ -124,6 +130,8 @@ public class FileServiceImpl extends LoggerService implements FileService{
             if (result < 1) {
                 throw new Exception("sql修改数据为0,请检查各项参数!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:fileList:userId:" + fileDO.getUserId());
             logger.info("修改ID=>[" + fileDO.getId() + "]的fileDO成功!");
             return newStaticResponseDO(fileDO);
         }catch (Exception e){
@@ -139,11 +147,11 @@ public class FileServiceImpl extends LoggerService implements FileService{
     */
     private FileDO validateForUpdate(FileDO fileDO) {
 
-        Assert.isTrue(fileDO != null,"fileDO不能为空!");
-                Assert.isTrue(fileDO.getId() != null,"查询Id不能为空!");
-                // TODO Validate
+        Assert.notNull(fileDO,"fileDO不能为空!");
+        Assert.notNull(fileDO.getId(),"查询Id不能为空!");
+        // TODO Validate
         FileDO oldFileDO = fileDao.selectById(fileDO.getId());
-        Assert.isTrue(oldFileDO != null,"查询不到ID=>[" + fileDO.getId() + "]的信息!");
+        Assert.notNull(oldFileDO,"查询不到ID=>[" + fileDO.getId() + "]的信息!");
         return oldFileDO;
     }
 
@@ -158,10 +166,9 @@ public class FileServiceImpl extends LoggerService implements FileService{
     public ResponseDO<FileDO> delFileDO(Long id) throws BusinessException{
         try {
             // validate
-                        Assert.isTrue(id != null,"查询Id不能为空!");
-            
+            Assert.notNull(id,"查询Id不能为空!");
             FileDO oldfileDO = fileDao.selectById(id);
-            Assert.isTrue(oldfileDO != null,"查询不到ID=>" + id + "的信息!");
+            Assert.notNull(oldfileDO,"查询不到ID=>" + id + "的信息!");
             FileDO fileDO = new FileDO();
             fileDO.setId(id);
             fileDO.setIsDeleted(1);
@@ -170,6 +177,8 @@ public class FileServiceImpl extends LoggerService implements FileService{
             if (result < 1) {
                 throw new Exception("数据已删除,请勿重复操作!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:fileList:userId:" + fileDO.getUserId());
             logger.info("删除ID=>[" + id + "]的fileDO成功!");
             return newStaticResponseDO(fileDO);
         }catch (Exception e){

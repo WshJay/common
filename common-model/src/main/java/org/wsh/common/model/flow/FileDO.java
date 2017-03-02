@@ -91,4 +91,19 @@ public class FileDO extends BaseDO{
 		this.description = description;
 	}
 
+	@Override
+	public String toString() {
+		return "FileDO{" +
+				"id='" + super.getId() + '\'' +
+				"name='" + name + '\'' +
+				", coverPath='" + coverPath + '\'' +
+				", filePath='" + filePath + '\'' +
+				", type=" + type +
+				", userId=" + userId +
+				", tagsId=" + tagsId +
+				", description='" + description + '\'' +
+				", version=" + version +
+				", isDeleted=" + isDeleted +
+				'}';
+	}
 }

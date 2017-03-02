@@ -1,5 +1,6 @@
 package org.wsh.common.service.impl.blog;
 
+import org.wsh.common.cache.service.RedisService;
 import org.wsh.common.model.blog.BlogTagsDO;
 import org.wsh.common.dao.blog.BlogTagsDao;
 import org.wsh.common.service.api.blog.BlogTagsService;
@@ -34,6 +35,9 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
     @Resource
     private BlogTagsDao blogTagsDao;
 
+    @Resource
+    private RedisService redisService;
+
 	/**
 	* 多条件查询(分页)
 	* @param blogTagsDO BlogTagsDO
@@ -65,8 +69,8 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
     @Cacheable(value = "common:blogTagsDO",key = "'common:blogTagsDO:id:' + #id")
     public ResponseDO<BlogTagsDO> getBlogTagsDOById(Long id) throws BusinessException{
         try {
-                        Assert.isTrue(id != null,"查询Id不能为空!");
-                        BlogTagsDO blogTagsDO = blogTagsDao.selectById(id);
+            Assert.notNull(id,"查询Id不能为空!");
+            BlogTagsDO blogTagsDO = blogTagsDao.selectById(id);
             return newStaticResponseDO(blogTagsDO);
         } catch (Exception e) {
             throw new BusinessException("根据ID=>[" + id + "]查询BlogTagsDO信息异常",e);
@@ -90,6 +94,8 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
             if (result < 1) {
                 throw new Exception("sql插入数据为0,请检查各项参数!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:blogTagsList:userId:" + blogTagsDO.getUserId());
             logger.info("新增ID=>[" + blogTagsDO.getId() + "]的BlogTagsDO成功");
             return newStaticResponseDO(blogTagsDO);
         } catch (Exception e) {
@@ -102,7 +108,7 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
     * @param blogTagsDO BlogTagsDO
     */
     private void validateForAdd(BlogTagsDO blogTagsDO) {
-        Assert.isTrue(blogTagsDO != null,"blogTagsDO不能为空!");
+        Assert.notNull(blogTagsDO,"blogTagsDO不能为空!");
         // TODO Validate
     }
 
@@ -125,6 +131,8 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
             if (result < 1) {
                 throw new Exception("sql修改数据为0,请检查各项参数!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:blogTagsList:userId:" + blogTagsDO.getUserId());
             logger.info("修改ID=>[" + blogTagsDO.getId() + "]的blogTagsDO成功!");
             return newStaticResponseDO(blogTagsDO);
         }catch (Exception e){
@@ -140,9 +148,9 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
     */
     private BlogTagsDO validateForUpdate(BlogTagsDO blogTagsDO) {
 
-        Assert.isTrue(blogTagsDO != null,"blogTagsDO不能为空!");
-                Assert.isTrue(blogTagsDO.getId() != null,"查询Id不能为空!");
-                // TODO Validate
+        Assert.notNull(blogTagsDO,"blogTagsDO不能为空!");
+        Assert.notNull(blogTagsDO.getId(),"查询Id不能为空!");
+        // TODO Validate
         BlogTagsDO oldBlogTagsDO = blogTagsDao.selectById(blogTagsDO.getId());
         Assert.notNull(oldBlogTagsDO,"查询不到ID=>[" + blogTagsDO.getId() + "]的信息!");
         return oldBlogTagsDO;
@@ -162,7 +170,7 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
                         Assert.isTrue(id != null,"查询Id不能为空!");
             
             BlogTagsDO oldblogTagsDO = blogTagsDao.selectById(id);
-            Assert.isTrue(oldblogTagsDO != null,"查询不到ID=>" + id + "的信息!");
+            Assert.notNull(oldblogTagsDO,"查询不到ID=>" + id + "的信息!");
             BlogTagsDO blogTagsDO = new BlogTagsDO();
             blogTagsDO.setId(id);
             blogTagsDO.setIsDeleted(1);
@@ -172,6 +180,8 @@ public class BlogTagsServiceImpl extends LoggerService implements BlogTagsServic
             if (result < 1) {
                 throw new Exception("数据已删除,请勿重复操作!");
             }
+            // 重新加载用户缓存
+            redisService.getJedis().del("common:blogTagsList:userId:" + blogTagsDO.getUserId());
             logger.info("删除ID=>[" + id + "]的blogTagsDO成功!");
             return newStaticResponseDO(blogTagsDO);
         }catch (Exception e){

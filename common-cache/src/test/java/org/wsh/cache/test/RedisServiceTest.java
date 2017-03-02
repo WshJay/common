@@ -37,8 +37,8 @@ public class RedisServiceTest {
 
         String result = redisService.set("userName","禅明");
         System.out.println("Result=>" + result);
-        String username = redisService.get("userName");//取值
-        System.out.println(username);
+//        String username = redisService.get("userName");//取值
+//        System.out.println(username);
 //        redisService.set("username1", "oyhk1", 1);//设值,并且设置数据的存活时间(这里以秒为单位)
 //        String username1 = redisService.get("username1");
 //        System.out.println(username1);
@@ -51,8 +51,8 @@ public class RedisServiceTest {
 //        System.out.println(exist);
 //
         //查看keys
-//        Set<String> keys = redisService.keys("*");//这里查看所有的keys
-//        System.out.println(keys);//只有username username1(已经清空了)
+        Set<String> keys = redisService.keys("*");//这里查看所有的keys
+        System.out.println(keys);//只有username username1(已经清空了)
 
 //
 //        //删除

@@ -53,7 +53,7 @@ public class Mybatisorm {
 		outPathMap.put(OutPathKey.SERVICE_IMPL,PROJECT_PATH + "\\service\\impl\\");
 		outPathMap.put(OutPathKey.SERVICE_TEST,PROJECT_PATH + "\\service\\test\\");
 		builder.setOutPathMap(outPathMap);//生成文件地址
-		builder.setTableName("user_tags");//数据库表名 %全部
+		builder.setTableName("file");//数据库表名 %全部
 		return builder.build();
 	}
 

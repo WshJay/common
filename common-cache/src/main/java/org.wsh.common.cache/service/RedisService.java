@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.Transaction;
 
 /**
@@ -158,6 +159,7 @@ public class RedisService {
      */
     public Jedis getJedis() {
         if (jedis == null) {
+            System.out.println(jedisConnectionFactory.getDatabase());
             return jedisConnectionFactory.getShardInfo().createResource();
         }
         return jedis;
