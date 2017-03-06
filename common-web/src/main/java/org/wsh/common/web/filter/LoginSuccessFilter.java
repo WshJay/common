@@ -21,15 +21,10 @@ import org.wsh.common.service.api.UserService;
 
 /**
  * 登录成功后调用
- * 
- * CopyRright (c) 2014:   <般豆网络>
- * Project:     <mercury-web>
- * File Name:   <LoginSuccessFilter.java>
- * Module ID:   <(模块)类编号，可以引用系统设计中的类编号>
- * Comments:  <对此类的描述，可以引用系统设计中的描述>
- * JDK version used:      <JDK1.6> 
- * @author wsh(王树辉) [wsh.ck@qq.com]
- * @since Date： 2014-3-27 上午11:43:55
+ * author: wsh
+ * JDK-version:  JDK1.8
+ * comments:  对此类的描述，可以引用系统设计中的描述
+ * since Date： 2017/3/6 22:29
  */
 @Component
 public class LoginSuccessFilter extends FormAuthenticationFilter{

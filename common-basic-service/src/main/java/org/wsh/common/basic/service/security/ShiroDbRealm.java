@@ -9,17 +9,27 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.CollectionUtils;
+import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
+import org.apache.shiro.web.filter.mgt.NamedFilterList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.wsh.common.model.basic.PermissionDO;
 import org.wsh.common.model.basic.RoleDO;
+import org.wsh.common.model.basic.RolePermissionDO;
 import org.wsh.common.model.basic.UserBasicDO;
+import org.wsh.common.service.api.PermissionService;
+import org.wsh.common.service.api.RoleService;
 import org.wsh.common.service.api.UserService;
+import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.util.shiro.encrypt.Encodes;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -107,13 +117,72 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 * 此方法表示在表单提交后自动为密码加密，不需要写代码加密
 	 */
 	@PostConstruct
-	public void initCredentialsMatcher() {
+	public void initCredentialsMatcher() throws Exception{
 		log.info("自定义密码加密方式...");
 		// 指定散列算法，需要和生成密码时的一样
 		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(ALGORITHM);
 		// 散列迭代次数，需要和生成密码时的一样
 		matcher.setHashIterations(INTERATIONS);
 		setCredentialsMatcher(matcher);
+
+		try {
+			List<RoleDO> roleList = roleService.getAllRole();
+			for (RoleDO roleDO : roleList) {
+				System.out.println(roleDO.getRoleName());
+			}
+			List<RolePermissionDO> rolePermissionList = permissionService.getRolePermissionList();
+			List<PermissionDO> permissionList = permissionService.getAllPermission();
+			for (RoleDO roleDO : roleList) {
+				for (RolePermissionDO rolePermissionDO : rolePermissionList) {
+					if (roleDO.getId().equals(rolePermissionDO.getRoleId())) {
+						for (PermissionDO permissionDO : permissionList) {
+							if (rolePermissionDO.getPermissionId().equals(permissionDO.getId())) {
+								if (CollectionUtils.isEmpty(roleDO.getPermissionSet())) {
+									roleDO.setPermissionSet(new HashSet<PermissionDO>());
+								}else{
+									roleDO.getPermissionSet().add(permissionDO);
+								}
+							}
+						}
+					}
+				}
+			}
+			initFilterChains(roleList, permissionList);
+			log.info("filterChainManager",filterChainManager);
+		} catch (BusinessException e) {
+			log.error("初始化权限异常:",e);
+			throw e;
+		}
+	}
+
+	@Autowired
+	private DefaultFilterChainManager filterChainManager;
+
+	@Autowired
+	private RoleService roleService;
+
+	@Autowired
+	private PermissionService permissionService;
+
+	private LinkedHashMap<String, NamedFilterList> defaultFilterChains;
+
+	public void initFilterChains(List<RoleDO> roleList, List<PermissionDO> permissionList) {
+		//1、首先删除以前老的filter chain并注册默认的
+		filterChainManager.getFilterChains().clear();
+		if(defaultFilterChains != null) {
+			filterChainManager.getFilterChains().putAll(defaultFilterChains);
+		}
+		//2、注册filter chain
+		for (RoleDO roleDO : roleList) {
+			if (!CollectionUtils.isEmpty(roleDO.getPermissionSet())) {
+				for (PermissionDO permissionDO : roleDO.getPermissionSet()) {
+					filterChainManager.addToChain(permissionDO.getTarget(), "roles", roleDO.getRoleCode());
+				}
+			}
+		}
+		for (PermissionDO permissionDO : permissionList) {
+			filterChainManager.addToChain(permissionDO.getTarget(), "perms", permissionDO.getCode());
+		}
 	}
 	
 }

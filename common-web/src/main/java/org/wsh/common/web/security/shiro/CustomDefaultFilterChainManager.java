@@ -95,7 +95,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
 
     @PostConstruct
     public void init() {
-    	System.out.println("初始化");
         //Apply the acquired and/or configured filters:
         Map<String, Filter> filters = getFilters();
         if (!CollectionUtils.isEmpty(filters)) {

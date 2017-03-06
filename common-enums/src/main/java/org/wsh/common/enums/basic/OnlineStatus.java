@@ -1,8 +1,5 @@
 package org.wsh.common.enums.basic;
 
-import static com.sun.jmx.snmp.daemon.CommunicatorServer.OFFLINE;
-import static com.sun.jmx.snmp.daemon.CommunicatorServer.ONLINE;
-
 /**
  * author: wsh
  * JDK-version:  JDK1.8

@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.net.URLDecoder;
 import java.util.List;
 
+import static org.wsh.common.enums.response.ModelKey.requestURL;
+
 /**
  * 拦截器
  * File Name: <BaseInterceptor.java>
@@ -66,6 +68,11 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 			// 设置跳转到登录页必须保证login.html请求不经过此拦截器，否则将形成死循环
 			response.sendRedirect("/login.html");
 			return false;
+		}
+
+		// 404和500页面直接返回
+		if (request.getRequestURI().contains("404.html") || request.getRequestURI().contains("500.html")){
+			return true;
 		}
 		String requestURL = request.getRequestURL().toString();
 		requestURL = requestURL.replace(SERVER_HOST, "");

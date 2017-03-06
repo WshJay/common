@@ -1,4 +1,4 @@
-package org.wsh.common.web.security;
+package org.wsh.common.web.security.chain;
 
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
@@ -13,14 +13,13 @@ import org.wsh.common.dao.RolePermissionDAO;
 import org.wsh.common.model.basic.PermissionDO;
 import org.wsh.common.model.basic.RoleDO;
 import org.wsh.common.model.basic.RolePermissionDO;
-
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service("shiroFilerChainManager")
-public class ShiroFilerChainManager {
+public class ShiroFilerChainManager{
 
 	@Autowired
     private DefaultFilterChainManager filterChainManager;

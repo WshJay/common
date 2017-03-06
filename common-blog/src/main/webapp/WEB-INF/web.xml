@@ -27,7 +27,7 @@
 	<filter-mapping>
 		<filter-name>shiroFilter</filter-name>
 		<!-- 只拦截以.html结尾URL请求 -->
-		<url-pattern>/*.html</url-pattern>
+		<url-pattern>*.html</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>

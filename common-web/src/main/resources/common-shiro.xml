@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
@@ -10,22 +11,19 @@
 
 	<description>Shiro安全配置</description>
 
-	<!-- 初始化 -->
-	<bean id="shiroFilerChainManager" class="org.wsh.common.web.security.ShiroFilerChainManager"/>
-
-	<!-- 缓存管理器 使用Ehcache实现 -->  
-	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
-	    <!-- 设置ehcache缓存的配置文件 -->
-	    <property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
-	</bean> 
+	<!-- 缓存管理器 使用Ehcache实现 -->
+	<!--<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  -->
+	    <!--&lt;!&ndash; 设置ehcache缓存的配置文件 &ndash;&gt;-->
+	    <!--<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>-->
+	<!--</bean> -->
 	
 	<!-- 会话Cookie管理，如果使用rememberMe则用户默认处于登录状态，关闭浏览器也一样，重要页面可以使用authc进行验证 -->
-	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-	    <constructor-arg value="rememberMe"/>
-	    <property name="httpOnly" value="true"/>
-	    <!-- Cookie保存30天 -->
-	    <property name="maxAge" value="2592000"/>
-	</bean> 
+	<!--<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">-->
+	    <!--<constructor-arg value="rememberMe"/>-->
+	    <!--<property name="httpOnly" value="true"/>-->
+	    <!--&lt;!&ndash; Cookie保存30天 &ndash;&gt;-->
+	    <!--<property name="maxAge" value="2592000"/>-->
+	<!--</bean> -->
 	
 	<!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
@@ -48,20 +46,20 @@
 	<!-- 項目自定义的Realm,用于用户登录及权限验证 -->
 	<bean id="shiroDbRealm" class="org.wsh.common.web.security.ShiroDbRealm">
 		<!-- 启用缓存，默认false(当用户信息或权限改变时则需要清除缓存) -->
-	    <property name="cachingEnabled" value="true"/>
+	    <!--<property name="cachingEnabled" value="true"/>-->
 	    <!-- 启用身份验证缓存，即缓存AuthenticationInfo信息，默认false -->
-	    <property name="authenticationCachingEnabled" value="true"/>
+	    <!--<property name="authenticationCachingEnabled" value="true"/>-->
 	    <!-- 启用授权缓存，即缓存AuthorizationInfo信息，默认false -->
-	    <property name="authorizationCachingEnabled" value="true"/>
+	    <!--<property name="authorizationCachingEnabled" value="true"/>-->
 	</bean>
 	
 	<!-- 并发登录人数控制 -->
 	<bean id="kickoutSessionControlFilter" class="org.wsh.common.web.filter.KickoutSessionControlFilter">
-	    <property name="cacheManager" ref="cacheManager"/>  
+	    <!--<property name="cacheManager" ref="cacheManager"/>  -->
 	    <!-- 用于根据会话ID，获取会话进行踢出操作的 -->
 	    <property name="sessionManager" ref="sessionManager"/>  
 	    <!-- 是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户 -->
-	    <property name="kickoutAfter" value="false"/>  
+	    <property name="kickoutAfter" value="true"/>
 	    <!-- 同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录 -->
 	    <property name="maxSession" value="1"/>  
 	    <!-- 被踢出后重定向到的地址 -->

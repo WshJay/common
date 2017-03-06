@@ -32,5 +32,11 @@ public class HashPwd {
 		public String salt;
 		public String password;
 	}
+
+	public static void main(String[] args) {
+		HashPassword pw = encrypt("wsh0704");
+		System.out.println(pw.password);
+		System.out.println(pw.salt);
+	}
 }
 

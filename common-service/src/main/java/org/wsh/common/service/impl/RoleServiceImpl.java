@@ -49,11 +49,6 @@ public class RoleServiceImpl implements RoleService {
 	
 	private final Logger log = LoggerFactory.getLogger(RoleServiceImpl.class);
 	
-	@PostConstruct
-    public void init() {
-		log.info("初始化执行...");
-    }
-	
 	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<RoleDO> getRoleListByParams(RoleQuery roleQuery,
