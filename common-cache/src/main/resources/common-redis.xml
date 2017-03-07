@@ -59,7 +59,7 @@
         <property name="defaultExpiration" value="${redis.expire}"/>
     </bean>
     <!-- CacheManager -->
-    <bean id="compositeCacheManager" class="org.springframework.cache.support.CompositeCacheManager">
+    <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
         <property name="cacheManagers">
             <list>
                 <ref bean="redisCacheManager"/>
