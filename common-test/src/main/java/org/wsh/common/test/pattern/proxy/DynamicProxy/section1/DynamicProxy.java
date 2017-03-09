@@ -1,0 +1,47 @@
+package org.wsh.common.test.pattern.proxy.DynamicProxy.section1;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * 动态代理
+ * author: wsh
+ * JDK-version:  JDK1.8
+ * comments:  对此类的描述，可以引用系统设计中的描述
+ * since Date： 2017/3/7 19:46
+ */
+public class DynamicProxy {
+
+	//定义要代理哪个类
+	private Object obj =null;
+	//通过构造函数传递被代理对象	
+	public DynamicProxy(Object _obj){
+		Class c = _obj.getClass();
+		//生成被代理类的代理类
+		this.obj = Proxy.newProxyInstance(c.getClassLoader(), c.getInterfaces(), new MyInvocationHandler(_obj));
+	}
+	//执行代理类的方法
+	public Object exec(String methodName,Object...args){
+		//返回值
+		Object result = null;
+		//方法中的参数类型
+		Class[] c= new Class[args.length];
+		int i=0;
+		//获得参数的类型
+		for(Object o:args){
+			c[i] = o.getClass();
+			i++;
+		}
+		try {
+			//根据方法名称和参数类型查找到唯一一个方法
+			Method method=this.obj.getClass().getMethod(methodName, c);
+			//执行该方法
+			result = method.invoke(this.obj, args);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+}
