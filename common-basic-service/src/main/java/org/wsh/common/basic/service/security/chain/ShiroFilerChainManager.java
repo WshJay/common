@@ -1,4 +1,4 @@
-package org.wsh.common.basic.service.security;
+package org.wsh.common.basic.service.security.chain;
 
 import org.apache.shiro.util.CollectionUtils;
 import org.apache.shiro.web.filter.mgt.DefaultFilterChainManager;
@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service("shiroFilerChainManager")
-public class ShiroFilerChainManager implements ShiroFilerChainService {
+public class ShiroFilerChainManager {
 
 	@Autowired
     private DefaultFilterChainManager filterChainManager;
@@ -37,23 +37,10 @@ public class ShiroFilerChainManager implements ShiroFilerChainService {
 
     @PostConstruct
     public void init() throws Exception {
-    	
-    	log.info("初始化执行......");
-        defaultFilterChains = new LinkedHashMap<String, NamedFilterList>(filterChainManager.getFilterChains());
-//        List<UrlFilter> urlFilters = new ArrayList<UrlFilter>();
-//        UrlFilter uf = new UrlFilter();
-//        uf.setId(1L);
-//        uf.setName("角色列表");
-//        uf.setPermissions("role:*");
-//        uf.setRoles("aa");
-//        uf.setUrl("/role/*");
-//        urlFilters.add(uf);
-//        initFilterChains(urlFilters);
 		try {
+			log.info("初始化加载权限信息......");
+			defaultFilterChains = new LinkedHashMap<String, NamedFilterList>(filterChainManager.getFilterChains());
 			List<RoleDO> roleList = roleService.getAllRole();
-			for (RoleDO roleDO : roleList) {
-				System.out.println(roleDO.getRoleName());
-			}
 			List<RolePermissionDO> rolePermissionList = permissionService.getRolePermissionList();
 			List<PermissionDO> permissionList = permissionService.getAllPermission();
 			for (RoleDO roleDO : roleList) {
@@ -72,14 +59,13 @@ public class ShiroFilerChainManager implements ShiroFilerChainService {
 				}
 			}
 			initFilterChains(roleList, permissionList);
-			log.info("filterChainManager",filterChainManager);
 		} catch (BusinessException e) {
 			log.error("初始化权限异常:",e);
 			throw e;
 		}
     }
 
-    public void initFilterChains(List<RoleDO> roleList, List<PermissionDO> permissionList) {
+    private void initFilterChains(List<RoleDO> roleList, List<PermissionDO> permissionList) {
         //1、首先删除以前老的filter chain并注册默认的
         filterChainManager.getFilterChains().clear();
         if(defaultFilterChains != null) {

@@ -18,6 +18,7 @@ import org.wsh.common.service.api.flow.FileService;
 import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
 import org.wsh.common.service.api.mysql.lock.PessimisticLockService;
+import org.wsh.common.service.impl.CglibService;
 import org.wsh.common.support.beans.OptionsResponseDO;
 import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
@@ -42,9 +43,6 @@ public class ServiceTest extends LoggerService{
     @Resource
     private MenuService menuService;
 
-    @Resource
-    private MessageService messageService;
-
 //    @Resource
 //    private UserBasicService userBasicService;
 
@@ -59,6 +57,12 @@ public class ServiceTest extends LoggerService{
 
     @Resource
     private FileService fileService;
+
+    @Resource
+    private CglibService cglibService;
+
+    @Resource
+    private MessageService messageService;
 
     @Test
     public void test() throws BusinessException {
@@ -181,4 +185,9 @@ public class ServiceTest extends LoggerService{
         }
     }
 
+    @Test
+    public void getUserById(){
+        ResponseDO<UserBasicDO> responseDO = cglibService.queryById(1L);
+        logger.info(responseDO.toJsonString());
+    }
 }

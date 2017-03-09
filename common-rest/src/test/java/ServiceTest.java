@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.wsh.common.basic.service.security.ShiroDbRealm;
-import org.wsh.common.basic.service.security.ShiroFilerChainManager;
+import org.wsh.common.basic.service.security.chain.ShiroFilerChainManager;
 import org.wsh.common.consumer.service.DemoAService;
 import org.wsh.common.consumer.service.DemoBService;
 import org.wsh.common.consumer.service.DemoService;

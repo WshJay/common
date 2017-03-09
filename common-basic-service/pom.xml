@@ -19,6 +19,12 @@
             <groupId>org.wsh.common</groupId>
             <artifactId>common-util</artifactId>
         </dependency>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <!-- Shiro -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
