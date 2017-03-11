@@ -1,4 +1,4 @@
-package org.wsh.common.test.order.base;
+package org.wsh.common.test.order.duoju.base;
 
 import org.wsh.common.support.response.ResponseDO;
 

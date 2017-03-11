@@ -6,10 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import org.wsh.common.test.order.base.IProcessor;
-import org.wsh.common.test.order.base.OrderIProcessor;
-import org.wsh.common.test.order.enums.PartyType;
+import org.wsh.common.test.order.duoju.base.IProcessor;
+import org.wsh.common.test.order.duoju.base.OrderIProcessor;
+import org.wsh.common.test.order.duoju.enums.PartyType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml"})

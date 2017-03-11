@@ -1,10 +1,10 @@
-package org.wsh.common.test.order;
+package org.wsh.common.test.order.duoju;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.wsh.common.test.order.base.OrderIProcessor;
-import org.wsh.common.test.order.enums.PartyType;
+import org.wsh.common.test.order.duoju.base.OrderIProcessor;
+import org.wsh.common.test.order.duoju.enums.PartyType;
 import org.wsh.common.support.response.ResponseDO;
 
 public class OfficialPartyOrder extends OrderIProcessor{

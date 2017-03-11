@@ -1,4 +1,4 @@
-package org.wsh.common.test.order.enums;
+package org.wsh.common.test.order.duoju.enums;
 
 /**
  * 活动类型枚举类
