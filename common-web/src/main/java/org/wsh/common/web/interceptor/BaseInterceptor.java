@@ -72,14 +72,15 @@ public class BaseInterceptor extends HandlerInterceptorAdapter{
 
 		// 404和500页面直接返回
 		if (request.getRequestURI().contains("404.html") || request.getRequestURI().contains("500.html")){
+			String requestURL = request.getRequestURL().toString();
+			requestURL = requestURL.replace(SERVER_HOST, "");
+			List<MenuDO> menuList = menuService.getMenuList(userName, requestURL);
+			if (!CollectionUtils.isEmpty(menuList)) {
+				request.setAttribute(ModelKey.requestMenus.name(), menuList);
+			}
 			return true;
 		}
-		String requestURL = request.getRequestURL().toString();
-		requestURL = requestURL.replace(SERVER_HOST, "");
-		List<MenuDO> menuList = menuService.getMenuList(userName, requestURL);
-		if (!CollectionUtils.isEmpty(menuList)) {
-			request.setAttribute(ModelKey.requestMenus.name(), menuList);
-		}
+
 		
 //		boolean isHavePerm = menuService.validatePermission(userName, requestURL);
 //		if (isHavePerm == false) {

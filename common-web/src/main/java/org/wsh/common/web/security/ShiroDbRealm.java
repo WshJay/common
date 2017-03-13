@@ -39,7 +39,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	
 	public static final int INTERATIONS = 1024;
 	private static final String ALGORITHM = "SHA-1";
-	
+
 	@Autowired
 	private UserService userService;
 	
@@ -104,18 +104,22 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		SimplePrincipalCollection principals = new SimplePrincipalCollection(principal, getName());
 		clearCachedAuthorizationInfo(principals);
 	}
-	
+
 	/**
 	 * 自定义密码加密方式
 	 * 此方法表示在表单提交后自动为密码加密，不需要写代码加密
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
+		log.info("Init HashedCredentialsMatcher...");
 		// 指定散列算法，需要和生成密码时的一样
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(ALGORITHM);
-		// 散列迭代次数，需要和生成密码时的一样
+//		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(ALGORITHM);
+//		// 散列迭代次数，需要和生成密码时的一样
+//		matcher.setHashIterations(INTERATIONS);
+		LoginRetryLimit matcher = new LoginRetryLimit("classpath:shiro-ehcache.xml");
+		matcher.setHashAlgorithmName(ALGORITHM);
 		matcher.setHashIterations(INTERATIONS);
 		setCredentialsMatcher(matcher);
 	}
-	
+
 }

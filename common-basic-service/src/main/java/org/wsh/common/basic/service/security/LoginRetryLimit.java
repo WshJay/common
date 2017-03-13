@@ -1,5 +1,6 @@
 package org.wsh.common.basic.service.security;
 
+import lombok.Setter;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
@@ -7,8 +8,11 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.sun.corba.se.impl.util.RepositoryId.cache;
 
 /**
  * 用户登录次数限制 
@@ -22,10 +26,12 @@ public class LoginRetryLimit extends HashedCredentialsMatcher {
 
 	private Ehcache passwordRetryCache;
 
+	@Setter
+	private String cacheConfigPath;
+
 	public LoginRetryLimit() {
 		// 获取缓存配置
-		CacheManager cacheManager = CacheManager.newInstance(CacheManager.class
-				.getClassLoader().getResource("ehcache.xml"));
+		CacheManager cacheManager = new CacheManager(cacheConfigPath);
 		passwordRetryCache = cacheManager.getCache("passwordRetryCache");
 	}
 

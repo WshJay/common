@@ -2,6 +2,7 @@ package org.wsh.common.basic.service.security;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -49,6 +50,13 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	
 	@Resource
 	private UserService userService;
+
+	public ShiroDbRealm() {
+	}
+
+	public ShiroDbRealm(CredentialsMatcher matcher) {
+		super(matcher);
+	}
 
 	/**
 	 * 认证信息

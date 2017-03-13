@@ -26,6 +26,6 @@
     <!-- 初始化权限 -->
     <context:component-scan base-package="org.wsh.common.web.security.chain"/>
     <!-- 强制使用CGLIB代理 -->
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
 
 </beans>
