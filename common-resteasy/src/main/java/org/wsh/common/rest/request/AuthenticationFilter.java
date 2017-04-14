@@ -15,22 +15,22 @@ import java.security.Principal;
 @Component
 @Provider
 public class AuthenticationFilter
-		implements ContainerRequestFilter {
+        implements ContainerRequestFilter {
 
-	protected final Logger	logger	= LoggerFactory.getLogger(AuthenticationFilter.class);
+    protected final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
-	@Override
-	public void filter(ContainerRequestContext requestContext) throws IOException {
-		authenticate(requestContext);
-	}
+    @Override
+    public void filter(ContainerRequestContext requestContext) throws IOException {
+        authenticate(requestContext);
+    }
 
-	protected void authenticate(ContainerRequestContext ctx)
-			throws IOException {
+    protected void authenticate(ContainerRequestContext ctx)
+            throws IOException {
 
-		Principal principal = new SimplePrincipal("Sample" + System.currentTimeMillis());
+        Principal principal = new SimplePrincipal("Sample" + System.currentTimeMillis());
 
-		ctx.setSecurityContext(
-				new NettySecurityContext(principal, null, "BASIC", true)
-				);
-	}
+        ctx.setSecurityContext(
+                new NettySecurityContext(principal, null, "BASIC", true)
+        );
+    }
 }

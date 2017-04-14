@@ -1,7 +1,9 @@
 package org.wsh.common.test.order.small;
 
 
+import org.wsh.common.test.order.small.factory.AbstractOrderFactory;
 import org.wsh.common.test.order.small.factory.OrderFactory;
+import org.wsh.common.test.order.small.model.OrderDO;
 import org.wsh.common.test.order.small.service.BalanceOrderService;
 
 /**
@@ -13,6 +15,7 @@ import org.wsh.common.test.order.small.service.BalanceOrderService;
 public class Client {
 
     public static void main(String[] args) {
+
         OrderFactory orderFactory = new BalanceOrderService();
         OrderDO orderDO = orderFactory.addOrder();
         System.out.println(orderDO.getId());

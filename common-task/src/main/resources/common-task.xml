@@ -13,5 +13,5 @@
         <property name="jobFactory" ref="jobFactory"/>
     </bean>
 
-    <bean id="quartzManagerService" class="org.wsh.common.task.impl.QuartzManagerServiceImpl"/>
+    <bean id="quartzManagerService" class="org.wsh.common.task.service.impl.QuartzManagerServiceImpl"/>
 </beans>

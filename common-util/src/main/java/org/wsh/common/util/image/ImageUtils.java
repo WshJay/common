@@ -1,32 +1,33 @@
 package org.wsh.common.util.image;
 
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGEncodeParam;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import org.springframework.util.Assert;
 import sun.awt.image.ImageRepresentation;
 import sun.awt.image.ToolkitImage;
 
-import java.awt.*;
-import java.awt.color.ColorSpace;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
-import java.awt.image.CropImageFilter;
-import java.awt.image.FilteredImageSource;
-import java.awt.image.ImageFilter;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.color.ColorSpace;
+import java.awt.geom.AffineTransform;
+import java.awt.image.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
 
 
 /**
  * 图片处理工具类：<br>
  * 功能：缩放图像、切割图像、图像类型转换、彩色转黑白、文字水印、图片水印等
+ *
  * @author Administrator
  */
+
 /**
  * 图片处理工具类
  * author: wsh
@@ -55,11 +56,22 @@ public class ImageUtils {
     public static void main(String[] args) {
 
         try {
+
+            File originalImage = new File("D:/A.gif");
+            long l1 = System.currentTimeMillis();
+            resize(originalImage, new File("D:/1.gif"),480, 0.7f);
+            System.out.println(System.currentTimeMillis()- l1);
+            long l2 = System.currentTimeMillis();
+            resize(originalImage, new File("D:/2.gif"),480, 1f);
+            System.out.println(System.currentTimeMillis() - l2);
+
             // 1-缩放图像：
             // 方法一：按比例缩放
 //            ImageUtils.scale("e:/abc.jpg", "e:/abc_scale.jpg", 2, true);//测试OK
 //            // 方法二：按高度和宽度缩放
-            ImageUtils.scale2("e:/abc.png", "e:/2.png", 480, 640, false);//测试OK
+            long l3 = System.currentTimeMillis();
+            ImageUtils.scale2("D:/A.gif", "D:/3.gif", 480, 640, false);//测试OK
+            System.out.println(System.currentTimeMillis() - l3);
 //            ImageUtils.scale("e:/abc.png", "e:/2.png", 480, 640, "png");//测试OK
 
 
@@ -98,21 +110,83 @@ public class ImageUtils {
      * @param imgType
      * @return
      */
-    public static boolean validateImgType(String imgType){
-        if (imgType.equals(IMAGE_TYPE_JPG)){
+    public static boolean validateImgType(String imgType) {
+        if (imgType.equals(IMAGE_TYPE_JPG)) {
             return true;
-        }else if(imgType.equals(IMAGE_TYPE_JPEG)){
+        } else if (imgType.equals(IMAGE_TYPE_JPEG)) {
             return true;
-        }else if(imgType.equals(IMAGE_TYPE_PNG)){
+        } else if (imgType.equals(IMAGE_TYPE_PNG)) {
             return true;
-        }else if(imgType.equals(IMAGE_TYPE_GIF)){
+        } else if (imgType.equals(IMAGE_TYPE_GIF)) {
             return true;
-        }else if(imgType.equals(IMAGE_TYPE_BMP)){
+        } else if (imgType.equals(IMAGE_TYPE_BMP)) {
             return true;
         }
         return false;
     }
 
+
+    public static void resize(File originalFile, File resizedFile,
+                              int newWidth, float quality) throws IOException {
+
+        if (quality > 1) {
+            throw new IllegalArgumentException(
+                    "Quality has to be between 0 and 1");
+        }
+
+        ImageIcon ii = new ImageIcon(originalFile.getCanonicalPath());
+        Image i = ii.getImage();
+        Image resizedImage = null;
+
+        int iWidth = i.getWidth(null);
+        int iHeight = i.getHeight(null);
+
+        if (iWidth > iHeight) {
+            resizedImage = i.getScaledInstance(newWidth, (newWidth * iHeight)
+                    / iWidth, Image.SCALE_SMOOTH);
+        } else {
+            resizedImage = i.getScaledInstance((newWidth * iWidth) / iHeight,
+                    newWidth, Image.SCALE_SMOOTH);
+        }
+
+        // This code ensures that all the pixels in the image are loaded.
+        Image temp = new ImageIcon(resizedImage).getImage();
+
+        // Create the buffered image.
+        BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null),
+                temp.getHeight(null), BufferedImage.TYPE_INT_RGB);
+
+        // Copy image to buffered image.
+        Graphics g = bufferedImage.createGraphics();
+
+        // Clear background and paint the image.
+        g.setColor(Color.white);
+        g.fillRect(0, 0, temp.getWidth(null), temp.getHeight(null));
+        g.drawImage(temp, 0, 0, null);
+        g.dispose();
+
+        // Soften.
+        float softenFactor = 0.05f;
+        float[] softenArray = {0, softenFactor, 0, softenFactor,
+                1 - (softenFactor * 4), softenFactor, 0, softenFactor, 0};
+        Kernel kernel = new Kernel(3, 3, softenArray);
+        ConvolveOp cOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
+        bufferedImage = cOp.filter(bufferedImage, null);
+
+        // Write the jpeg to a file.
+        FileOutputStream out = new FileOutputStream(resizedFile);
+
+        // Encodes image as a JPEG data stream
+        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+
+        JPEGEncodeParam param = encoder
+                .getDefaultJPEGEncodeParam(bufferedImage);
+
+        param.setQuality(quality, true);
+
+        encoder.setJPEGEncodeParam(param);
+        encoder.encode(bufferedImage);
+    }
 
     /**
      * 缩放图像（按比例缩放）
@@ -156,7 +230,7 @@ public class ImageUtils {
      */
     public static void scale(String srcImagePath, String deskImagePath, int height, int width, String imgType) throws Exception {
         try {
-            Assert.isTrue(validateImgType(imgType),"不符合的图片类型");
+            Assert.isTrue(validateImgType(imgType), "不符合的图片类型");
             BufferedImage i = ImageIO.read(new File(srcImagePath));
             Image imgToProcessing = (Image) i;
             Image img = (Image) imgToProcessing.getScaledInstance(width, height, Image.SCALE_REPLICATE);
@@ -223,10 +297,10 @@ public class ImageUtils {
             }
             // get the first reader
             ImageReader reader = iter.next();
-            ImageIO.write((BufferedImage)itemp, reader.getFormatName(), new File(result));
+            ImageIO.write((BufferedImage) itemp, reader.getFormatName(), new File(result));
         } catch (IOException e) {
             throw e;
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -278,8 +352,8 @@ public class ImageUtils {
     public final static void cut2(String srcImageFile, String descDir,
                                   int rows, int cols) {
         try {
-            if(rows<=0||rows>20) rows = 2; // 切片行数
-            if(cols<=0||cols>20) cols = 2; // 切片列数
+            if (rows <= 0 || rows > 20) rows = 2; // 切片行数
+            if (cols <= 0 || cols > 20) cols = 2; // 切片列数
             // 读取源图像
             BufferedImage bi = ImageIO.read(new File(srcImageFile));
             int srcWidth = bi.getHeight(); // 源图宽度
@@ -339,8 +413,8 @@ public class ImageUtils {
     public final static void cut3(String srcImageFile, String descDir,
                                   int destWidth, int destHeight) {
         try {
-            if(destWidth<=0) destWidth = 200; // 切片宽度
-            if(destHeight<=0) destHeight = 150; // 切片高度
+            if (destWidth <= 0) destWidth = 200; // 切片宽度
+            if (destHeight <= 0) destHeight = 150; // 切片高度
             // 读取源图像
             BufferedImage bi = ImageIO.read(new File(srcImageFile));
             int srcWidth = bi.getHeight(); // 源图宽度
@@ -442,7 +516,7 @@ public class ImageUtils {
      */
     public final static void pressText(String pressText,
                                        String srcImageFile, String destImageFile, String fontName,
-                                       int fontStyle, Color color, int fontSize,int x,
+                                       int fontStyle, Color color, int fontSize, int x,
                                        int y, float alpha) {
         try {
             File img = new File(srcImageFile);
@@ -481,7 +555,7 @@ public class ImageUtils {
      * @param y 修正值
      * @param alpha 透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
      */
-    public final static void pressText2(String pressText, String srcImageFile,String destImageFile,
+    public final static void pressText2(String pressText, String srcImageFile, String destImageFile,
                                         String fontName, int fontStyle, Color color, int fontSize, int x,
                                         int y, float alpha) {
         try {
@@ -517,7 +591,7 @@ public class ImageUtils {
      * @param y 修正值。 默认在中间
      * @param alpha 透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
      */
-    public final static void pressImage(String pressImg, String srcImageFile,String destImageFile,
+    public final static void pressImage(String pressImg, String srcImageFile, String destImageFile,
                                         int x, int y, float alpha) {
         try {
             File img = new File(srcImageFile);
@@ -538,7 +612,7 @@ public class ImageUtils {
                     (height - height_biao) / 2, wideth_biao, height_biao, null);
             // 水印文件结束
             g.dispose();
-            ImageIO.write((BufferedImage) image,  "JPEG", new File(destImageFile));
+            ImageIO.write((BufferedImage) image, "JPEG", new File(destImageFile));
         } catch (Exception e) {
             e.printStackTrace();
         }

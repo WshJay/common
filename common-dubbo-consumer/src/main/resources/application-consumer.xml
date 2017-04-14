@@ -23,6 +23,9 @@
     <!-- Jedis Service -->
     <dubbo:reference interface="org.wsh.common.service.api.jedis.JedisService" id="jedisService" version="${rpc.dubbo.consumer.version}"/>
 
+    <!-- Retry Service -->
+    <dubbo:reference interface="org.wsh.common.service.api.retry.SpringRetryService" id="springRetryService" version="${rpc.dubbo.consumer.version}"/>
+
     <!-- Basic Service -->
     <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.UserService" id="userService" version="${rpc.dubbo.consumer.version}"/>

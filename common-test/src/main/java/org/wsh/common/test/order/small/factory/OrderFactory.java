@@ -1,7 +1,8 @@
 package org.wsh.common.test.order.small.factory;
 
 
-import org.wsh.common.test.order.small.OrderDO;
+import org.wsh.common.test.order.small.enums.OrderType;
+import org.wsh.common.test.order.small.model.OrderDO;
 
 /**
  * author: wsh

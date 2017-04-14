@@ -10,6 +10,8 @@
        http://www.springframework.org/schema/cache
        http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
 
+    <context:property-placeholder location="classpath:config/*.properties" ignore-unresolvable="true"/>
+
     <context:component-scan base-package="org.wsh.common.cache"
                             annotation-config="true" />
     <!-- 开启缓存注解 -->

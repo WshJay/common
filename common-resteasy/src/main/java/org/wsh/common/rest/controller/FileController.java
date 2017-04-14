@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.io.File.separator;
+import static org.wsh.common.util.image.ImageUtils.resize;
 
 /**
  * author: wsh
@@ -146,8 +147,8 @@ public class FileController extends LoggerService {
             String imgThumbPath = UPLOADED_FILE_PATH + imgThumUrl;
 //            jpgScaleZoom test = new jpgScaleZoom(imgPath, imgThumbPath, "width", IMAGE_HEIGHT);
 //            test.makeImg();
-            ImageUtils.scale2(imgPath,imgThumbPath,IMAGE_HEIGHT,IMAGE_WIDTH,false);
-
+//            ImageUtils.scale2(imgPath,imgThumbPath,IMAGE_HEIGHT,IMAGE_WIDTH,false);
+              ImageUtils.resize(new File(imgPath), new File(imgThumbPath),IMAGE_WIDTH, 1f);
             return fileService.addFileDO(new FileDO(FileType.IMG,name,imgThumUrl,filePath,2L,tagsId,description));
         } catch (Exception e) {
             logger.error("添加异常!",e);

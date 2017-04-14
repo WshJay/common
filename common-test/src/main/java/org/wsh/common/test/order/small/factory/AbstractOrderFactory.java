@@ -1,6 +1,7 @@
 package org.wsh.common.test.order.small.factory;
 
 import org.wsh.common.model.jedis.OrderDO;
+import org.wsh.common.test.order.small.enums.OrderType;
 
 /**
  * author: wsh
@@ -11,5 +12,7 @@ import org.wsh.common.model.jedis.OrderDO;
 public abstract class AbstractOrderFactory implements OrderFactory{
 
     private OrderDO orderDO;
+
+    public abstract OrderType getOrderType();
 
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:redis="http://www.springframework.org/schema/redis"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd ">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/redis http://www.springframework.org/schema/redis/spring-redis-1.0.xsd">
 
     <!-- Jedis Pool Config -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
@@ -66,5 +68,47 @@
             </list>
         </property>
         <property name="fallbackToNoOpCache" value="true"/>
+    </bean>
+
+    <!-- JDK序列化 -->
+    <bean id="jdkSerializer" class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+    <!-- 消息监听器 -->
+    <bean id="redisMessageListener" class="org.wsh.common.cache.message.listener.RedisMessageListener"/>
+    <bean id="defaultMessageDelegate" class="org.wsh.common.cache.message.DefaultMessageDelegate"/>
+    <!-- Redis实现消息发布订阅模式 -->
+    <!--<redis:listener-container connection-factory="jedisConnectionFactory">-->
+        <!--&lt;!&ndash; the method attribute can be skipped as the default method name is "handleMessage" &ndash;&gt;-->
+        <!--<redis:listener ref="redisMessageListener" serializer="jdkSerializer" method="handleMessage" topic="java" />-->
+    <!--</redis:listener-container>-->
+
+    <!-- Bean Configuration -->
+    <bean id="messageListener"
+          class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <constructor-arg>
+            <bean class="org.wsh.common.cache.message.DefaultMessageDelegate" />
+        </constructor-arg>
+        <property name="serializer" ref="jdkSerializer"/>
+    </bean>
+
+    <bean id="redisContainer"
+          class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+        <property name="connectionFactory" ref="jedisConnectionFactory" />
+        <property name="messageListeners">
+            <map>
+                <entry key-ref="messageListener">
+                    <list>
+                        <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                            <constructor-arg value="order" />
+                        </bean>
+                        <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                            <constructor-arg value="credit" />
+                        </bean>
+                        <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                            <constructor-arg value="ecard" />
+                        </bean>
+                    </list>
+                </entry>
+            </map>
+        </property>
     </bean>
 </beans>

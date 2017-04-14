@@ -1,7 +1,8 @@
 package org.wsh.common.test.order.small.service;
 
-import org.wsh.common.test.order.small.BalanceOrderDO;
-import org.wsh.common.test.order.small.OrderDO;
+import org.wsh.common.test.order.small.enums.OrderType;
+import org.wsh.common.test.order.small.model.BalanceOrderDO;
+import org.wsh.common.test.order.small.model.OrderDO;
 import org.wsh.common.test.order.small.factory.AbstractOrderFactory;
 
 /**
@@ -26,5 +27,10 @@ public class BalanceOrderService extends AbstractOrderFactory{
     public OrderDO updateOrder(Long id) {
         System.out.println("修改ID=>[" + id + "]资金订单成功!");
         return new BalanceOrderDO();
+    }
+
+    @Override
+    public OrderType getOrderType() {
+        return OrderType.BALANCE;
     }
 }

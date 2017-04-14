@@ -40,12 +40,12 @@ public class MySemaphore extends Thread {
 
 	public static void main(String args[]) {
 		ExecutorService list = Executors.newCachedThreadPool();
-		Semaphore position = new Semaphore(2);
+		Semaphore position = new Semaphore(1);
 		for (int i = 0; i < 10; i++) {
 			list.submit(new MySemaphore(i + 1, position));
 		}
 		list.shutdown();
-		position.acquireUninterruptibly(2);
+		position.acquireUninterruptibly(1);
 		System.out.println("使用完毕，需要清扫了");
 		position.release(2);
 	}

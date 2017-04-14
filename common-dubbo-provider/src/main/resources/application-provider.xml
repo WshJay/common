@@ -36,6 +36,9 @@
     <!-- Jedis Service -->
     <dubbo:service interface="org.wsh.common.service.api.jedis.JedisService" ref="jedisService"/>
 
+    <!-- retry Service -->
+    <dubbo:service interface="org.wsh.common.service.api.retry.SpringRetryService" ref="springRetryService"/>
+
     <!-- Basic Service -->
     <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService"/>
     <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService"/>

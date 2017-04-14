@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.wsh.common.task.QuartzManagerService;
+import org.wsh.common.task.service.QuartzManagerService;
 import org.wsh.common.util.date.DateUtil;
 import org.wsh.common.util.logger.LoggerService;
 

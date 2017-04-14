@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 
 public abstract class OrderIProcessor implements IProcessor{
 
-	private static final Map<Integer, IProcessor> PROCESSOR_MAP = new HashMap<Integer, IProcessor>();
-
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
+
+	private static final Map<Integer, IProcessor> PROCESSOR_MAP = new HashMap<Integer, IProcessor>();
 
 	public OrderIProcessor() {
 		PROCESSOR_MAP.put(getAppPartyTypeId(), this);
