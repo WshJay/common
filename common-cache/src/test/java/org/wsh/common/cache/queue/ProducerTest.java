@@ -26,17 +26,14 @@ public class ProducerTest {
 
     @Test
     public void test() {
-
-        ProducerTest pc = new ProducerTest();
-        Producer p = pc.new Producer("张三",taskQueueService);
+        Producer p = new Producer("张三",taskQueueService);
         p.run();
     }
 
     @Test
     public void testA() {
 
-        ProducerTest pc = new ProducerTest();
-        Producer p = pc.new Producer("李四",taskQueueService);
+        Producer p = new Producer("李四",taskQueueService);
         p.run();
     }
 

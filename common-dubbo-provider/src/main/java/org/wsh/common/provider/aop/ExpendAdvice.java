@@ -1,5 +1,6 @@
 package org.wsh.common.provider.aop;
 
+import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -44,9 +45,16 @@ public class ExpendAdvice extends LoggerService {
         try {
             String className = joinPoint.getThis().toString();
             String methodName = joinPoint.getSignature().getName();
+            Object[] objects = joinPoint.getArgs();
+            StringBuilder params = new StringBuilder();
+            if (objects.length > 0){
+                for (Object object : objects) {
+                    params.append(JSON.toJSONString(object));
+                }
+            }
             long st = System.currentTimeMillis();
             Object result = joinPoint.proceed();
-            logger.info("[***类名:" + className + " ,方法名:" + methodName + " ,共计消耗:" + (System.currentTimeMillis() - st) + " ms ***]");
+            logger.info("[***类名:" + className + " ,方法名:" + methodName + " ,传入参数:" + params + " ,共计消耗:" + (System.currentTimeMillis() - st) + " ms ***]");
             return result;
         } catch (Throwable throwable) {
             logger.error("环绕增强发生异常!请联系超级管理员");
