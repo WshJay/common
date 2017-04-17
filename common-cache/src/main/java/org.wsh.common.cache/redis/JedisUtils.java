@@ -38,8 +38,7 @@ public class JedisUtils {
 
 	/**
 	 * 借出jedis连接实例
-	 * 
-	 * @return
+	 * @return ShardedJedis
 	 */
 	protected ShardedJedis borrow() {
 		return jedisPool.getResource();
@@ -87,12 +86,10 @@ public class JedisUtils {
 		return tList;
 	}
 
-	// list操作
 	/**
 	 * 添加一个List
-	 * 
-	 * @param key
-	 * @param list
+	 * @param key String
+	 * @param list List<?>
 	 */
 	public void addList(String key, List<?> list, Integer seconds) {
 		ShardedJedis jedis = borrow();
@@ -105,10 +102,9 @@ public class JedisUtils {
 
 	/**
 	 * 从缓存里获取一个List
-	 * 
-	 * @param key
-	 * @param clazz
-	 * @return
+	 * @param key String
+	 * @param clazz Class<T>
+	 * @return List<T>
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getList(String key, Class<T> clazz) {
@@ -141,7 +137,6 @@ public class JedisUtils {
 		public Object action(ShardedJedis jedis) {
 			return null;
 		}
-
 		public Object action(ShardedJedis jedis, Object args) {
 			return null;
 		}

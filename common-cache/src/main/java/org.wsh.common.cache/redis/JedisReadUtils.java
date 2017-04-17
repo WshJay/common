@@ -62,13 +62,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 获取一个key的剩余有效时间
-	 * 
-	 * @return <p>
-	 *         当key不存在返回-2
-	 *         <p>
-	 *         当key存在但没有设置过期时间返回-1
-	 *         <p>
-	 *         否则返回秒为单位的时间
+	 * 当key不存在返回-2
+	 * 当key存在但没有设置过期时间返回-1
+	 * 否则返回秒为单位的时间
 	 */
 	public Long ttl(String key) {
 		ShardedJedis jedis = borrow();
@@ -84,7 +80,6 @@ public class JedisReadUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 取出Hash
-	 * <p>
 	 * 最好不要去用反射
 	 */
 	@Deprecated
@@ -101,13 +96,11 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取出Hash，但不对jedis连接负责
-	 * <p>
 	 * 最好不要去用反射
-	 * 
-	 * @param jedis
-	 * @param key
-	 * @param clazz
-	 * @return
+	 * @param jedis ShardedJedis
+	 * @param key String
+	 * @param clazz Class<T>
+	 * @return <T extends IHashMapper>
 	 */
 	@Deprecated
 	public <T extends IHashMapper> T getHash(ShardedJedis jedis, String key, Class<T> clazz) {
@@ -129,9 +122,8 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取hash所有的键值对
-	 * 
-	 * @param key
-	 * @return
+	 * @param key String
+	 * @return Map<String, String>
 	 */
 	public Map<String, String> hgetAll(String key) {
 		ShardedJedis jedis = borrow();
@@ -144,10 +136,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 判断hash中是否存在field
-	 * 
-	 * @param key
-	 * @param field
-	 * @return
+	 * @param key String
+	 * @param field String
+	 * @return boolean
 	 */
 	public boolean hexists(String key, String field) {
 		ShardedJedis jedis = borrow();
@@ -160,10 +151,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取hash中的字段值
-	 * 
-	 * @param key
-	 * @param field
-	 * @return
+	 * @param key String
+	 * @param field String
+	 * @return String
 	 */
 	public String hget(String key, String field) {
 		ShardedJedis jedis = borrow();
@@ -188,9 +178,8 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取hash中的field个数
-	 * 
-	 * @param key
-	 * @return
+	 * @param key String
+	 * @return Long
 	 */
 	public Long hlen(String key) {
 		ShardedJedis jedis = borrow();
@@ -218,13 +207,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 从左边取list中的元素
-	 * <p>
 	 * 最好不要用反射
-	 * 
-	 * @param start
-	 *            开始下标
-	 * @param end
-	 *            结束下标。结束下标为null或为-1则取全部
+	 * @param start 开始下标
+	 * @param end 结束下标。结束下标为null或为-1则取全部
 	 */
 	@Deprecated
 	public <T extends IListMapper> List<T> listGet(String key, Class<T> clazz, Integer start, Integer end) {
@@ -242,8 +227,7 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 返回排序好的队列
-	 * 
-	 * @param key
+	 * @param key String
 	 */
 	public List<String> list(String key) {
 		ShardedJedis jedis = borrow();
@@ -256,11 +240,10 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * lrange操作
-	 * 
-	 * @param key
-	 * @param start
-	 * @param end
-	 * @return
+	 * @param key String
+	 * @param start int
+	 * @param end int
+	 * @return List<String>
 	 */
 	public List<String> lrange(String key, int start, int end) {
 		ShardedJedis jedis = borrow();
@@ -276,10 +259,9 @@ public class JedisReadUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 是否包含某个元素
-	 * 
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key String
+	 * @param value String
+	 * @return boolean
 	 */
 	public boolean scontains(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -303,10 +285,9 @@ public class JedisReadUtils extends JedisUtils {
 	}
 
 	/**
-	 * 
-	 * @param key
-	 * @param deviceId
-	 * @return
+	 * @param key String
+	 * @param value String
+	 * @return boolean
 	 */
 	public boolean sismember(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -319,9 +300,8 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取set中的所有元素
-	 * 
-	 * @param key
-	 * @return
+	 * @param key String
+	 * @return Set<String>
 	 */
 	public Set<String> smembers(String key) {
 		ShardedJedis jedis = borrow();
@@ -334,9 +314,8 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取set集合长度
-	 * 
-	 * @param key
-	 * @return
+	 * @param key String
+	 * @return Long
 	 */
 	public Long scard(String key) {
 		ShardedJedis jedis = borrow();
@@ -400,9 +379,7 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取给定下标区间的元素
-	 * <p>
 	 * 最好不要用反射
-	 * <p>
 	 * 按照score从小到大的顺序
 	 */
 	@Deprecated
@@ -418,9 +395,7 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取score在给定区间的元素
-	 * <p>
 	 * 最好不要用反射
-	 * <p>
 	 * 按照score从小到大排序
 	 */
 	@Deprecated
@@ -437,7 +412,6 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取下标在给定范围内的元素
-	 * <p>
 	 * score从大到小排序
 	 */
 	@Deprecated
@@ -452,9 +426,7 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取score在给定范围内的元素
-	 * <p>
 	 * 不要去用反射
-	 * <p>
 	 * score从大到小排序
 	 */
 	@Deprecated
@@ -470,10 +442,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取元素在sort set中的反序索引位置
-	 * 
-	 * @param key
-	 * @param string
-	 * @return
+	 * @param key String
+	 * @param value String
+	 * @return Long
 	 */
 	public Long zrevrank(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -486,11 +457,10 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 反序取元素集合
-	 * 
-	 * @param key
-	 * @param start
-	 * @param end
-	 * @return
+	 * @param key String
+	 * @param start long
+	 * @param end long
+	 * @return Set<String>
 	 */
 	public Set<String> zrevrange(String key, long start, long end) {
 		ShardedJedis jedis = borrow();
@@ -503,10 +473,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取元素的score值
-	 * 
-	 * @param keyChannelZset
-	 * @param string
-	 * @return
+	 * @param key String
+	 * @param value String
+	 * @return Double
 	 */
 	public Double zscore(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -519,10 +488,9 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取元素在sort set中的正序位置
-	 * 
-	 * @param key
-	 * @param value
-	 * @return
+	 * @param key String
+	 * @param value String
+	 * @return Long
 	 */
 	public Long zrank(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -535,11 +503,10 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 正序取元素集合
-	 * 
-	 * @param key
-	 * @param start
-	 * @param end
-	 * @return
+	 * @param key String
+	 * @param start long
+	 * @param end long
+	 * @return Set<String>
 	 */
 	public Set<String> zrange(String key, long start, long end) {
 		ShardedJedis jedis = borrow();
@@ -552,9 +519,8 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取sort set的长度
-	 * 
-	 * @param key
-	 * @return
+	 * @param key String
+	 * @return Long
 	 */
 	public Long zcard(String key) {
 		ShardedJedis jedis = borrow();
@@ -567,11 +533,10 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取sort set集合(从小到大)中score在start和end之间的元素。包含start
-	 * 
-	 * @param key
-	 * @param double1
-	 * @param double2
-	 * @return
+	 * @param key String
+	 * @param start double
+	 * @param end double
+	 * @return Set<String>
 	 */
 	public Set<String> zrangeByScore(String key, double start, double end) {
 		ShardedJedis jedis = borrow();
@@ -584,11 +549,10 @@ public class JedisReadUtils extends JedisUtils {
 
 	/**
 	 * 取sort set集合(从大到小)中score在start和end之间的元素。包含start
-	 * 
-	 * @param key
-	 * @param max
-	 * @param min
-	 * @return
+	 * @param key String
+	 * @param max long
+	 * @param min long
+	 * @return Set<String>
 	 */
 	public Set<String> zrevrangeByScore(String key, long max, long min) {
 		ShardedJedis jedis = borrow();

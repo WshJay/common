@@ -18,11 +18,9 @@ public class JedisWriteUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 缓存键值对
-	 * 
-	 * @param key
-	 * @param value
-	 * @param seconds
-	 *            缓存超时时间，为空或小于0则永久有效（单位：秒）
+	 * @param key String
+	 * @param value String
+	 * @param seconds 缓存超时时间，为空或小于0则永久有效（单位：秒）
 	 */
 	public void save(String key, String value, Integer seconds) {
 		ShardedJedis jedis = borrow();
@@ -31,7 +29,20 @@ public class JedisWriteUtils extends JedisUtils {
 			if (seconds != null && seconds > 0) {
 				jedis.expire(key, seconds);
 			}
+		} finally {
+			returnConn(jedis);
+		}
+	}
 
+	/**
+	 * 缓存键值对
+	 * @param key String
+	 * @param value String
+     */
+	public void set(String key, String value) {
+		ShardedJedis jedis = borrow();
+		try {
+			jedis.set(key, value);
 		} finally {
 			returnConn(jedis);
 		}
@@ -51,14 +62,10 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 折半法重置key的有效期
-	 * <p>
 	 * 如果剩余的有效期不到完整有效期的一半，则重置有效期。
-	 * <p>
 	 * 适用场景：当key的有效期较长，又需要频繁更新有效期时。减少更新次数
-	 * 
-	 * @param key
-	 * @param timeout
-	 *            有效期（单位：秒）
+	 * @param key String
+	 * @param timeout 有效期（单位：秒）
 	 */
 	public void expireHalf(String key, Integer timeout) {
 
@@ -87,9 +94,7 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 累加
-	 * <p>
 	 * 如果key不存在，则置为incr.否则每次累加incr。若incr为空，则每次累加1
-	 * 
 	 * @return 累加后的值
 	 */
 	public Long incr(String key, Integer incr) {
@@ -108,9 +113,7 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 累减
-	 * <p>
 	 * 如果key不存在，则置为incr.否则每次累加incr。若incr为空，则每次累减1
-	 * 
 	 * @return 累减后的值
 	 */
 	public Long decr(String key, Integer decr) {
@@ -129,11 +132,8 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 缓存数据类型
-	 * 
-	 * @param mapper
-	 *            需要缓存的数据类型
-	 * @param seconds
-	 *            缓存超时时间。为空或小于0则永久有效（单位：秒）
+	 * @param mapper 需要缓存的数据类型
+	 * @param seconds 缓存超时时间。为空或小于0则永久有效（单位：秒）
 	 */
 	public void save(IMapper mapper, Integer seconds) {
 		ShardedJedis jedis = borrow();
@@ -176,10 +176,9 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 设置字段的值
-	 * 
-	 * @param key
-	 * @param field
-	 * @param value
+	 * @param key String
+	 * @param field field
+	 * @param value String
 	 */
 	public void hset(String key, String field, String value) {
 		ShardedJedis jedis = borrow();
@@ -190,19 +189,11 @@ public class JedisWriteUtils extends JedisUtils {
 		}
 	}
 
-	public void set(String key, String value) {
-		ShardedJedis jedis = borrow();
-		try {
-			jedis.set(key, value);
-		} finally {
-			returnConn(jedis);
-		}
-	}
+
 	/**
 	 * 删除hash中的field
-	 * 
-	 * @param key
-	 * @param field
+	 * @param key String
+	 * @param field String
 	 */
 	public void hdel(String key, String field) {
 		ShardedJedis jedis = borrow();
@@ -218,9 +209,8 @@ public class JedisWriteUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 从头部插入元素
-	 * 
-	 * @param key
-	 * @param value
+	 * @param key String
+	 * @param value String
 	 */
 	public void listPush(String key, String value) {
 		ShardedJedis jedis = borrow();
@@ -296,9 +286,8 @@ public class JedisWriteUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 往一个Set里塞记录
-	 * 
-	 * @param key
-	 * @param value
+	 * @param key String
+	 * @param value String
 	 */
 	public void sadd(String key, String... value) {
 		ShardedJedis jedis = borrow();
@@ -312,8 +301,8 @@ public class JedisWriteUtils extends JedisUtils {
 	/**
 	 * set里移除一个元素
 	 * 
-	 * @param key
-	 * @param value
+	 * @param key String
+	 * @param value String
 	 */
 	public void srem(String key, String... value) {
 		ShardedJedis jedis = borrow();
@@ -329,7 +318,6 @@ public class JedisWriteUtils extends JedisUtils {
 	 ****************************************************************************************************************/
 	/**
 	 * 给指定的元素增加score
-	 * <p>
 	 * score可以为负
 	 */
 	public void addScore(ISortSetMapper mapper, double score) {
@@ -343,7 +331,6 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 删除排序集合中的元素
-	 * <p>
 	 * mappers必须从属于同一排序集合
 	 */
 	public void zsetDelete(ISortSetMapper... mappers) {
@@ -361,11 +348,8 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 移除排序集合下标在给定区间内的元素
-	 * <p>
 	 * score为从小到大顺序
-	 * 
-	 * @param end
-	 *            结束位置。end为负的话表示倒数第几个元素
+	 * @param end 结束位置。end为负的话表示倒数第几个元素
 	 */
 	public Long zsetDeleteIndexLimit(String key, Integer start, Integer end) {
 		ShardedJedis jedis = borrow();
@@ -378,7 +362,6 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 移除排序集合score在给定区间的元素
-	 * <p>
 	 * score为从小到大顺序
 	 */
 	public Long zsetDeleteScoreLimit(String key, double scoreMin, double scoreMax) {
@@ -392,9 +375,8 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 删除zset中值为value的元素
-	 * 
-	 * @param key
-	 * @param value
+	 * @param key String
+	 * @param value String
 	 */
 	public void zrem(String key, String... value) {
 		ShardedJedis jedis = borrow();
@@ -407,10 +389,9 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 删除正序中索引位置在start和end之间的元素。包括start
-	 * 
-	 * @param key
-	 * @param start
-	 * @param end
+	 * @param key String
+	 * @param start long
+	 * @param end long
 	 */
 	public void zremrangeByRank(String key, long start, long end) {
 		ShardedJedis jedis = borrow();
@@ -423,10 +404,9 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 保存sort set元素项
-	 * 
-	 * @param key
-	 * @param score
-	 * @param value
+	 * @param key String
+	 * @param score double
+	 * @param value String
 	 */
 	public void zadd(String key, double score, String value) {
 		ShardedJedis jedis = borrow();
@@ -451,9 +431,9 @@ public class JedisWriteUtils extends JedisUtils {
 
 	/**
 	 * 给sort set中的元素追加score
-	 * @param key
-	 * @param score
-	 * @param value
+	 * @param key String
+	 * @param score double
+	 * @param value String
 	 */
 	public void zincrby(String key, double score, String value) {
 		ShardedJedis jedis = borrow();
@@ -472,5 +452,4 @@ public class JedisWriteUtils extends JedisUtils {
 			returnConn(jedis);
 		}
 	}
-
 }
