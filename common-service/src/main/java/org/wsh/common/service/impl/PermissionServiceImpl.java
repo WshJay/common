@@ -127,7 +127,7 @@ public class PermissionServiceImpl implements PermissionService {
 		try {
 			PermissionDO permissionDO = permissionDAO.loadById(permissionId);
 			if (permissionDO == null) {
-				return newResponseDO(Errors.PARAMETER_IS_ERROR);
+				return newResponseDO(Errors.PARAMETER_ERROR);
 			}
 			permissionDAO.deleteById(permissionId);
 			return newStaticOptionsResponseDO();

@@ -115,4 +115,8 @@ public class ResponseDO<T> implements Serializable {
 		return toJson().toJSONString();
 	}
 
+	@Override
+	public String toString() {
+		return toJsonString();
+	}
 }

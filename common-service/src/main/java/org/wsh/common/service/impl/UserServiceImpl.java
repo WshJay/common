@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			UserBasicDO userBasicDO = userBasicDAO.queryById(userId);
 			if (userBasicDO == null) {
-				return newResponseDO(Errors.PARAMETER_IS_ERROR);
+				return newResponseDO(Errors.PARAMETER_ERROR);
 			}
 			userBasicDAO.deleteById(userId);
 		} catch (Exception e) {
@@ -222,7 +222,7 @@ public class UserServiceImpl implements UserService {
 			// TODO validate
 			UserBasicDO userBasicDO = userBasicDAO.queryById(userId);
 			if (userBasicDO == null) {
-				return newResponseDO(Errors.PARAMETER_IS_ERROR);
+				return newResponseDO(Errors.PARAMETER_ERROR);
 			}
 			userBasicDO.setPhone(phone);
 			userBasicDO.setEmail(email);
@@ -299,7 +299,7 @@ public class UserServiceImpl implements UserService {
 			// TODO validate
 			UserBasicDO userBasicDO = userBasicDAO.queryById(userId);
 			if (userBasicDO == null) {
-				return newResponseDO(Errors.PARAMETER_IS_ERROR);
+				return newResponseDO(Errors.PARAMETER_ERROR);
 			}
 			userBasicDO.setPhone(phone);
 			userBasicDO.setEmail(email);

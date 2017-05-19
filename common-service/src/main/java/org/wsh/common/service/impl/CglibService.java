@@ -24,9 +24,6 @@ public class CglibService extends LoggerService{
     public ResponseDO<UserBasicDO> queryById(Long id){
 
         UserBasicDO userBasicDO = userBasicDAO.queryById(id);
-        if (userBasicDO == null){
-            return new ResponseDO<>(Errors.USER_DOES_NOT_EXIST);
-        }
         return new ResponseDO<>(userBasicDO);
     }
 }

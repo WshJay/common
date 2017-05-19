@@ -56,9 +56,9 @@ public class JedisServiceImpl extends LoggerService implements JedisService {
     public ResponseDO transaction(OrderDO orderDO) {
 
         try {
-            Assert.notNull(orderDO,Errors.PARAMETER_IS_ERROR.getErrorMsg());
-            Assert.notNull(orderDO.getId(),Errors.PARAMETER_IS_ERROR.getErrorMsg());
-            Assert.notNull(orderDO.getAmount(),Errors.PARAMETER_IS_ERROR.getErrorMsg());
+            Assert.notNull(orderDO,Errors.PARAMETER_ERROR.getErrorMsg());
+            Assert.notNull(orderDO.getId(),Errors.PARAMETER_ERROR.getErrorMsg());
+            Assert.notNull(orderDO.getAmount(),Errors.PARAMETER_ERROR.getErrorMsg());
 
             Jedis jedis = redisService.getJedis();
             String key = String.valueOf(orderDO.getId());

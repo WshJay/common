@@ -4,10 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.wsh.common.cache.queue.model.Producer;
+import org.wsh.common.cache.service.ProducerService;
 
 import javax.annotation.Resource;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * author: wsh
@@ -20,17 +20,15 @@ import java.util.concurrent.Executors;
 public class ProducerConsumerTest {
 
     @Resource
-    private TaskQueueService taskQueueService;
+    private ProducerService producerService;
 
     @Test
     public void produce(){
-        Producer p = new Producer("张三",taskQueueService);
-        p.run();
+        producerService.doCreateProduce("张三");
     }
 
     @Test
     public void produceA(){
-        Producer p = new Producer("李四",taskQueueService);
-        p.run();
+        producerService.doCreateProduce("李四");
     }
 }

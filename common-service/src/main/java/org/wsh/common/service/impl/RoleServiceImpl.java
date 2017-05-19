@@ -226,7 +226,7 @@ public class RoleServiceImpl implements RoleService {
 		try {
 			RoleDO role = roleDAO.loadById(roleId);
 			if (role == null) {
-				return newResponseDO(Errors.PARAMETER_IS_ERROR);
+				return newResponseDO(Errors.PARAMETER_ERROR);
 			}
 			roleDAO.deleteById(roleId);
 			return newStaticOptionsResponseDO();

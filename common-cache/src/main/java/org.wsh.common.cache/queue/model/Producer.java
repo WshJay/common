@@ -1,6 +1,10 @@
-package org.wsh.common.cache.queue;
+package org.wsh.common.cache.queue.model;
 
+import org.wsh.common.cache.queue.SNService;
+import org.wsh.common.cache.queue.SNUtils;
+import org.wsh.common.cache.queue.TaskQueueService;
 import org.wsh.common.cache.queue.enums.TaskType;
+import org.wsh.common.cache.redis.JedisReadUtils;
 
 /**
  * author: wsh
@@ -14,6 +18,9 @@ public class Producer implements Runnable {
 
     private TaskQueueService taskService;
 
+    public Producer() {
+    }
+
     public Producer(String name, TaskQueueService taskQueueService) {
         this.name = name;
         this.taskService = taskQueueService;
@@ -22,9 +29,9 @@ public class Producer implements Runnable {
     public void run() {
         try {
             while (true) {
-                String producerId = SNUtils.getSN();
+                long producerId = SNUtils.getTradeNO();
                 System.out.println(name + "准备生产(" + producerId + ").");
-                taskService.addQueue(TaskType.DEFAULT.name(),String.class,String.valueOf(producerId));
+//                taskService.addQueue(TaskType.DEFAULT.name(),String.class,String.valueOf(producerId));
                 System.out.println(name + "已生产(" + producerId + ").");
                 System.out.println("===============");
                 Thread.sleep(1000);

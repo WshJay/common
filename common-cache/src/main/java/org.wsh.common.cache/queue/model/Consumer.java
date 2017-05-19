@@ -1,5 +1,6 @@
-package org.wsh.common.cache.queue;
+package org.wsh.common.cache.queue.model;
 
+import org.wsh.common.cache.queue.TaskQueueService;
 import org.wsh.common.cache.queue.enums.TaskType;
 
 /**
@@ -8,7 +9,7 @@ import org.wsh.common.cache.queue.enums.TaskType;
  * comments:  消费者
  * since Date： 2017-04-17 19:51
  */
-public class Consumer implements Runnable {
+public class Consumer extends Thread {
 
     private String name;
 

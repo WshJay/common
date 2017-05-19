@@ -1,4 +1,4 @@
-package org.wsh.common.cache.queue;
+package org.wsh.common.util.sn;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

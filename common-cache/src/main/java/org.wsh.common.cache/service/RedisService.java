@@ -31,7 +31,7 @@ public class RedisService {
     private Jedis jedis;
 
     public Jedis getJedis() {
-        return jedis;
+        return jedisConnectionFactory.getShardInfo().createResource();
     }
 
     @Autowired
