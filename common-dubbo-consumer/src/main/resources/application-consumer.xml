@@ -26,6 +26,10 @@
     <!-- Retry Service -->
     <dubbo:reference interface="org.wsh.common.service.api.retry.SpringRetryService" id="springRetryService" version="${rpc.dubbo.consumer.version}"/>
 
+    <!-- Redpacket Service -->
+    <dubbo:reference interface="org.wsh.common.service.api.redpacket.RedPacketSendService" id="redPacketSendService" version="${rpc.dubbo.consumer.version}"/>
+    <dubbo:reference interface="org.wsh.common.service.api.redpacket.RedPacketReceiveService" id="redPacketReceiveService" version="${rpc.dubbo.consumer.version}"/>
+
     <!-- Basic Service -->
     <dubbo:reference interface="org.wsh.common.service.api.MenuService" id="menuService" version="${rpc.dubbo.consumer.version}"/>
     <dubbo:reference interface="org.wsh.common.service.api.UserService" id="userService" version="${rpc.dubbo.consumer.version}"/>

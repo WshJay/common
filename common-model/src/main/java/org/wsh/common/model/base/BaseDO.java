@@ -18,8 +18,6 @@ import java.util.Date;
  */
 public abstract class BaseDO implements Serializable {
 
-	private static final long serialVersionUID = -469571077724566638L;
-
 	@Getter
 	@Setter
 	private Long id;

@@ -171,16 +171,16 @@ public class FileController extends LoggerService {
                     MultivaluedMap<String, String> header = inputPart.getHeaders();
                     String oldfileName = getFileName(header);
                     if (StringUtils.isBlank(oldfileName)) {
-                        return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                        return new ResponseDO(Errors.PARAMETER_ERROR);
                     }
                     //convert the uploaded file to inputstream
                     InputStream inputStream = inputPart.getBody(InputStream.class, null);
                     String[] imageTypes = oldfileName.split("\\.");
                     if (imageTypes.length <= 1) {
-                        return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                        return new ResponseDO(Errors.PARAMETER_ERROR);
                     }
                     if (!ImageUtils.validateImgType(imageTypes[1])) {
-                        return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                        return new ResponseDO(Errors.PARAMETER_ERROR);
                     }
                     String fileName = System.currentTimeMillis() + "";
 
@@ -193,14 +193,14 @@ public class FileController extends LoggerService {
                         imgMap.put("filePath", imgUrl);
                         return new ResponseDO(imgMap);
                     } else {
-                        return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                        return new ResponseDO(Errors.PARAMETER_ERROR);
                     }
                 } catch (IOException e) {
                     logger.error("上传图片异常!",e);
-                    return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                    return new ResponseDO(Errors.PARAMETER_ERROR);
                 } catch (Exception e) {
                     logger.error("上传图片异常!",e);
-                    return new ResponseDO(Errors.PARAMETER_IS_ERROR);
+                    return new ResponseDO(Errors.PARAMETER_ERROR);
                 }
         }
         return new ResponseDO();

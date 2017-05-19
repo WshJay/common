@@ -39,6 +39,10 @@
     <!-- retry Service -->
     <dubbo:service interface="org.wsh.common.service.api.retry.SpringRetryService" ref="springRetryService"/>
 
+    <!-- redpacket Service -->
+    <dubbo:service interface="org.wsh.common.service.api.redpacket.RedPacketSendService" ref="redPacketSendService"/>
+    <dubbo:service interface="org.wsh.common.service.api.redpacket.RedPacketReceiveService" ref="redPacketReceiveService"/>
+
     <!-- Basic Service -->
     <dubbo:service interface="org.wsh.common.service.api.MenuService" ref="menuService"/>
     <dubbo:service interface="org.wsh.common.service.api.ModuleService" ref="moduleService"/>
