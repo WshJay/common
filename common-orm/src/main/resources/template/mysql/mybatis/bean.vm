@@ -12,8 +12,6 @@ import org.wsh.common.model.base.BaseDO;
 */
 public class ${head}DO extends BaseDO{
 
-	private static final long serialVersionUID = 1L;
-	
 #foreach($colum in $columList)
 	
 	/**

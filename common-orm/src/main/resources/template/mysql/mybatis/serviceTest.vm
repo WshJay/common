@@ -18,7 +18,6 @@ import java.util.List;
 * comments:  服务接口单元测试
 * since Date： ${date}
 */
-@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:common-bean.xml")
 public class ${bigServiceName}Test extends LoggerService{
@@ -29,74 +28,64 @@ public class ${bigServiceName}Test extends LoggerService{
     private Long id = 1L;
 
     @Test
-    public void add() {
-        try {
-            ${bigDoName} ${minDoName} = insert();
-            id = ${minDoName}.getId();
-            logger.info(${minDoName}.toString());
-        } catch (Exception e) {
-            logger.error("添加数据异常!", e);
-        }
-    }
-
-    private ${bigDoName} insert() throws Exception {
+    public void add() throws Exception{
         ${bigDoName} ${minDoName} = new ${bigDoName}();
-
+#foreach($colum in $columnList)
+#if($colum.type == "int")
+        ${minDoName}.set$!{colum.bigName}(0);
+#elseif($colum.type == "String")
+        ${minDoName}.set$!{colum.bigName}("");
+#elseif($colum.type == "Date")
+        ${minDoName}.set$!{colum.bigName}(new Date());
+#elseif($colum.type == "BigDecimal")
+        ${minDoName}.set$!{colum.bigName}(new BigDecimal(0));
+#elseif($colum.type == "boolean")
+        ${minDoName}.set$!{colum.bigName}(true);
+#end
+#end
         ResponseDO<${bigDoName}> responseDO = ${minServiceName}.add${bigDoName}(${minDoName});
-        logger.info("Result:" + responseDO.isSuccess() + "ErrorCode:" + responseDO.getErrorCode() + "ErrorMsg:" + responseDO.getErrorMsg());
-        return ${minDoName};
+        Assert.isTrue(responseDO.isSuccess(),responseDO.getErrorMsg());
+        id = responseDO.getData().getId();
+        logger.info(responseDO.toString());
     }
 
     @Test
-    public void selectListForPage() {
-        try {
-            ${bigDoName} ${minDoName} = new ${bigDoName}();
-            OptionsResponseDO<List<${bigDoName}>> responseDO = ${minServiceName}.query${bigDoName}ListForPage(${minDoName}, new Pagination());
-            if (responseDO.isSuccess()) {
-                for (${bigDoName} ${minDoName}1 : responseDO.getData()) {
-                    logger.info(${minDoName}1.toString());
-                }
-            } else {
-                logger.info("分页查询列表为空!");
-            }
-        } catch (Exception e) {
-            logger.error("分页查询列表数据异常!", e);
-        }
+    public void selectListForPage() throws Exception{
+        ${bigDoName} ${minDoName} = new ${bigDoName}();
+        OptionsResponseDO<List<${bigDoName}>> responseDO = ${minServiceName}.query${bigDoName}ListForPage(${minDoName}, new Pagination());
+        logger.info(responseDO.toString());
     }
 
     @Test
-    public void selectById() {
-        try {
-            ResponseDO<${bigDoName}> responseDO = ${minServiceName}.get${bigDoName}ById(id);
-            if (responseDO.isSuccess()) {
-                logger.info(responseDO.getData().toString());
-            }
-        } catch (Exception e) {
-            logger.error("根据ID查询表数据异常!", e);
-        }
+    public void selectById() throws Exception{
+        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.get${bigDoName}ById(id);
+        Assert.isTrue(responseDO.isSuccess(),responseDO.getErrorMsg());
+        logger.info(responseDO.toString());
     }
 
     @Test
-    public void updateById() {
-        try {
-            ResponseDO<${bigDoName}> oldResponseDO = ${minServiceName}.get${bigDoName}ById(id);
-            ${bigDoName} ${minDoName} = oldResponseDO.getData();
-            ResponseDO<${bigDoName}> responseDO = ${minServiceName}.modify${bigDoName}(${minDoName});
-            logger.info("Result:" + responseDO.isSuccess());
-        } catch (Exception e) {
-            logger.error("根据ID更新表数据异常!", e);
-        }
+    public void selectByParams() throws Exception{
+        ${bigDoName} ${minDoName} = new ${bigDoName}();
+        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.get${bigDoName}ByParams(${minDoName});
+        Assert.isTrue(responseDO.isSuccess(),responseDO.getErrorMsg());
+        logger.info(responseDO.toString());
     }
 
     @Test
-    public void delete() {
-        try {
-            ${bigDoName} ${minDoName} = new ${bigDoName}();
-            ${minDoName}.setId(id);
-            ResponseDO<${bigDoName}> responseDO = ${minServiceName}.del${bigDoName}(id);
-            logger.info("Result:" + responseDO.isSuccess());
-        } catch (Exception e) {
-            logger.error("根据ID逻辑删除表数据异常!", e);
-        }
+    public void updateById() throws Exception{
+        ResponseDO<${bigDoName}> oldResponseDO = ${minServiceName}.get${bigDoName}ById(id);
+        ${bigDoName} ${minDoName} = oldResponseDO.getData();
+        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.modify${bigDoName}(${minDoName});
+        Assert.isTrue(responseDO.isSuccess(),responseDO.getErrorMsg());
+        logger.info(responseDO.toString());
+    }
+
+    @Test
+    public void delete() throws Exception{
+        ${bigDoName} ${minDoName} = new ${bigDoName}();
+        ${minDoName}.setId(id);
+        ResponseDO<${bigDoName}> responseDO = ${minServiceName}.del${bigDoName}(id);
+        Assert.isTrue(responseDO.isSuccess(),responseDO.getErrorMsg());
+        logger.info(responseDO.toString());
     }
 }

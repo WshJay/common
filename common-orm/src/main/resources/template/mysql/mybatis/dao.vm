@@ -24,6 +24,13 @@ public interface ${bigDaoName} {
 	/**
 	* 多条件查询表信息
 	* @param ${minDoName} ${bigDoName}
+	* @return ${bigDoName}
+	*/
+	${bigDoName} selectByParams(${bigDoName} ${minDoName});
+
+	/**
+	* 多条件查询表信息
+	* @param ${minDoName} ${bigDoName}
 	* @param rowBounds RowBounds
 	* @return List<${bigDoName}>
 	*/

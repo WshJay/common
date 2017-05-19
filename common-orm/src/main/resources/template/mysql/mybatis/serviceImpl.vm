@@ -3,16 +3,15 @@ package ${serviceImplPackage} ;
 import ${pojoPackage}.${bigDoName};
 import ${daoPackage}.${bigDaoName};
 import ${servicePackage}.${bigServiceName};
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.Assert;
 import org.springframework.stereotype.Service;
 import org.wsh.common.util.logger.LoggerService;
-import org.springframework.transaction.annotation.Transactional;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.support.beans.OptionsResponseDO;
-import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
 import javax.annotation.Resource;
 import static org.wsh.common.support.beans.BeansUtil.newOptionsResponseDO;
@@ -41,7 +40,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
 	* @return List<${bigDoName}>
     */
     @Override
-    public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException{
+    public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination){
         try {
             int totalCount = ${minDaoName}.selectCountByParams(${minDoName});
             if (totalCount <= 0) {
@@ -51,7 +50,8 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
             List<${bigDoName}> ${minDoName}List = ${minDaoName}.selectListByParams(${minDoName}, pagination.getRowBounds());
             return newOptionsResponseDO(totalCount, ${minDoName}List, pagination.getPageSize(),pagination.getPP());
         } catch (Exception e) {
-            throw new BusinessException("多条件查询${bigDoName}信息异常",e);
+            logger.error("多条件分页查询列表异常!",e);
+            return new OptionsResponseDO<>();
         }
     }
 
@@ -62,28 +62,47 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     */
     @Override
     @Cacheable(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #id")
-    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id) throws BusinessException{
+    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id){
         try {
-            #if(${idType} != "String")
-            Assert.isTrue(id != null,"查询Id不能为空!");
-            #else
-            Assert.isTrue(StringUtils.isBanlk(id),"查询Id不能为空!");
-            #end
+#if(${idType} != "String")
+            Assert.notNull(id,"查询Id不能为空!");
+#else
+            Assert.hasText(id,"查询Id不能为空!");
+#end
             ${bigDoName} ${minDoName} = ${minDaoName}.selectById(id);
             return newStaticResponseDO(${minDoName});
+        } catch (IllegalArgumentException e) {
+            logger.warn("根据ID查询校验参数异常!",e);
+            return new ResponseDO<>(Errors.PARAMETER_ERROR.getErrorCode(),e.getMessage());
         } catch (Exception e) {
-            throw new BusinessException("根据ID=>[" + id + "]查询${bigDoName}信息异常",e);
+            logger.error("根据ID=>[" + id + "]查询信息异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR.getErrorCode(),Errors.DEFAULT_ERROR.getErrorMsg());
         }
     }
 
     /**
-    * 添加
+    * 多条件查询信息
+    * @param ${minDoName} ${bigDoName}
+    * @return ResponseDO<${bigDoName}>
+    */
+    @Override
+    public ResponseDO<${bigDoName}> get${bigDoName}ByParams(${bigDoName} ${minDoName}){
+        try {
+            return newStaticResponseDO(${minDaoName}.selectByParams(${minDoName}));
+        } catch (Exception e) {
+            logger.error("多条件查询信息异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR.getErrorCode(),Errors.DEFAULT_ERROR.getErrorMsg());
+        }
+    }
+
+    /**
+    * 新增
     * @param ${minDoName} ${bigDoName}
     * @return ResponseDO<${bigDoName}>
     */
     @Override
     @CachePut(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #${minDoName}.id")
-    public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
+    public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}){
         try {
             // Validate
             validateForAdd(${minDoName});
@@ -95,8 +114,15 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
             }
             logger.info("新增ID=>[" + ${minDoName}.getId() + "]的${bigDoName}成功");
             return newStaticResponseDO(${minDoName});
+        } catch (IllegalArgumentException e) {
+            logger.warn("新增${bigDoName}校验参数异常!",e);
+            return new ResponseDO<>(Errors.PARAMETER_ERROR.getErrorCode(),e.getMessage());
+        } catch (DuplicateKeyException e) {
+            logger.error("新增ID=>[" + ${minDoName}.getId() + "]${bigDoName}已存在!",e);
+            return new ResponseDO<>(Errors.REPEAT_SUBMIT.getErrorCode(),Errors.REPEAT_SUBMIT.getErrorMsg());
         } catch (Exception e) {
-            throw new BusinessException("新增ID=>[" + ${minDoName}.getId() + "]的${bigDoName}信息异常",e);
+            logger.error("新增ID=>[" + ${minDoName}.getId() + "]${bigDoName}异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR.getErrorCode(),Errors.DEFAULT_ERROR.getErrorMsg());
         }
     }
 
@@ -116,7 +142,7 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     */
     @Override
     @CacheEvict(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #${minDoName}.id",beforeInvocation = true)
-    public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException{
+    public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}){
         try {
 
             // validate
@@ -130,9 +156,12 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
             }
             logger.info("修改ID=>[" + ${minDoName}.getId() + "]的${minDoName}成功!");
             return newStaticResponseDO(${minDoName});
-        }catch (Exception e){
-            logger.error("修改ID=>[" + ${minDoName}.getId() + "]的${minDoName}异常!");
-            throw new BusinessException("修改ID=>[" + ${minDoName}.getId() +"]的${bigDoName}信息异常",e);
+        } catch (IllegalArgumentException e) {
+            logger.warn("修改${bigDoName}校验参数异常!",e);
+            return new ResponseDO<>(Errors.PARAMETER_ERROR.getErrorCode(),e.getMessage());
+        } catch (Exception e) {
+            logger.error("修改ID=>[" + ${minDoName}.getId() + "]${bigDoName}异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR.getErrorCode(),Errors.DEFAULT_ERROR.getErrorMsg());
         }
     }
 
@@ -143,12 +172,12 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     */
     private ${bigDoName} validateForUpdate(${bigDoName} ${minDoName}) {
 
-        Assert.isTrue(${minDoName} != null,"${minDoName}不能为空!");
-        #if(${idType} != "String")
+        Assert.notNull(${minDoName},"${minDoName}不能为空!");
+#if(${idType} != "String")
         Assert.isTrue(${minDoName}.getId() != null,"查询Id不能为空!");
-        #else
+#else
         Assert.isTrue(StringUtils.isBanlk(${minDoName}.getId()),"查询Id不能为空!");
-        #end
+#end
         // TODO Validate
         ${bigDoName} old${bigDoName} = ${minDaoName}.selectById(${minDoName}.getId());
         Assert.notNull(old${bigDoName},"查询不到ID=>[" + ${minDoName}.getId() + "]的信息!");
@@ -159,21 +188,20 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
     * 删除(逻辑删除)
     * @param id Long
     * @return ResponseDO<${bigDoName}>
-    * @throws BusinessException
     */
     @Override
     @CacheEvict(value = "common:${minDoName}",key = "'common:${minDoName}:id:' + #id",beforeInvocation = true)
-    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id) throws BusinessException{
+    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id){
         try {
-            // validate
-            #if(${idType} != "String")
-            Assert.isTrue(id != null,"查询Id不能为空!");
-            #else
-            Assert.isTrue(StringUtils.isBanlk(id),"查询Id不能为空!");
-            #end
 
+            // validate
+#if(${idType} != "String")
+            Assert.notNull(id,"缺少必要参数!");
+#else
+            Assert.hasText(id,"缺少必要参数!");
+#end
             ${bigDoName} old${minDoName} = ${minDaoName}.selectById(id);
-            Assert.isTrue(old${minDoName} != null,"查询不到ID=>" + id + "的信息!");
+            Assert.notNull(old${minDoName},"传入参数有误!");
             ${bigDoName} ${minDoName} = new ${bigDoName}();
             ${minDoName}.setId(id);
             ${minDoName}.setIsDeleted(1);
@@ -185,9 +213,12 @@ public class ${bigServiceImplName} extends LoggerService implements ${bigService
             }
             logger.info("删除ID=>[" + id + "]的${minDoName}成功!");
             return newStaticResponseDO(${minDoName});
-        }catch (Exception e){
-            logger.error("删除ID=>[" + id + "]的${minDoName}异常!");
-            throw new BusinessException("删除ID=>[" + id +"]的${bigDoName}异常",e);
+        } catch (IllegalArgumentException e) {
+            logger.warn("删除${bigDoName}校验参数异常!",e);
+            return new ResponseDO<>(Errors.PARAMETER_ERROR.getErrorCode(),e.getMessage());
+        } catch (Exception e) {
+            logger.error("删除ID=>[" + id + "]${bigDoName}异常!",e);
+            return new ResponseDO<>(Errors.DEFAULT_ERROR.getErrorCode(),Errors.DEFAULT_ERROR.getErrorMsg());
         }
     }
 }

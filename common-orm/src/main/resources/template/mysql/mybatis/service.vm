@@ -1,18 +1,15 @@
 package ${servicePackage};
 
 import ${pojoPackage}.${bigDoName};
-import org.springframework.stereotype.Service;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.support.beans.OptionsResponseDO;
-import org.wsh.common.support.exception.BusinessException;
 import org.wsh.common.support.response.ResponseDO;
-import static org.wsh.common.support.beans.BeansUtil.newOptionsResponseDO;
 import java.util.List;
 
 /**
 * author: wsh
 * JDK-version:  JDK1.8
-* comments:  ${headName}服务层
+* comments:  ${headName}服务层接口
 * since Date： ${date}
 */
 @Service
@@ -24,34 +21,40 @@ public interface ${bigServiceName} {
 	* @param pagination  Pagination
 	* @return OptionsResponseDO<List<${bigDoName}>>
     */
-    public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination) throws BusinessException;
+    public OptionsResponseDO<List<${bigDoName}>> query${bigDoName}ListForPage(${bigDoName} ${minDoName}, Pagination pagination);
 
     /**
     * 根据用户ID查询
     * @param id Long
     * @return ResponseDO<${bigDoName}>
     */
-    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id) throws BusinessException;
+    public ResponseDO<${bigDoName}> get${bigDoName}ById(${idType} id);
+
+    /**
+    * 多条件查询信息
+    * @param ${minDoName} ${bigDoName}
+    * @return ResponseDO<${bigDoName}>
+    */
+    public ResponseDO<${bigDoName}> get${bigDoName}ByParams(${bigDoName} ${minDoName});
 
     /**
     * 添加
     * @param ${minDoName} ${bigDoName}
     * @return ResponseDO<${bigDoName}>
     */
-    public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException;
+    public ResponseDO<${bigDoName}> add${bigDoName}(${bigDoName} ${minDoName});
 
     /**
     * 修改
     * @param ${minDoName} ${bigDoName}
 	* @return ResponseDO<${bigDoName}>
     */
-    public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName}) throws BusinessException;
+    public ResponseDO<${bigDoName}> modify${bigDoName}(${bigDoName} ${minDoName});
 
     /**
     * 删除(逻辑删除)
     * @param id Long
     * @return ResponseDO<${bigDoName}>
-    * @throws BusinessException
     */
-    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id) throws BusinessException;
+    public ResponseDO<${bigDoName}> del${bigDoName}(${idType} id);
 }

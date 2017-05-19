@@ -23,6 +23,18 @@ $!{xmlBo.columnName}
         SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE id = #{value} AND is_deleted = 0 LIMIT 1
     </select>
 
+    <!-- 多条件查询实体数据 -->
+    <select id="selectByParams" parameterType="${tableName}DO" resultMap="${tableName}Map">
+        SELECT <include refid="allSelectionColumn"/> FROM ${table_name}
+        <where>
+            <if test="id != null and id !=''">
+                id = #{id}
+            </if>
+            AND is_deleted = 0
+        </where>
+        LIMIT 1
+    </select>
+
     <!--多条件查询表信息(分页) -->
     <select id="selectListByParams" parameterType="${tableName}DO" resultMap="${tableName}Map">
         SELECT <include refid="allSelectionColumn"/> FROM ${table_name} WHERE is_deleted = 0
