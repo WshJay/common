@@ -50,7 +50,7 @@ public class RedisMessageListenerTest {
             OrderTask order = new OrderTask("" + i);
             redisService.getJedis().publish("order".getBytes(),jdkSerializer.serialize(order));
 
-            redisService.getJedis().publish("credit","" + i);
+//            redisService.getJedis().publish("credit","" + i);
             Thread.sleep(1000);
         }
 

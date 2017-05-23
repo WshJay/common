@@ -32,14 +32,13 @@ public class DefaultMessageDelegate implements MessageDelegate {
 
     @Override
     public void handleMessage(Serializable message) {
-        System.out.println("handleMessage(Serializable message):"
+         System.out.println("handleMessage(Serializable message):"
                 + message.toString());
     }
 
     @Override
     public void handleMessage(Serializable message, String channel) {
-        System.out
-                .println("handleMessage(Serializable message, String channel):"
+        System.out.println("handleMessage(Serializable message, String channel):"
                         + message.toString() + ", channel:" + channel);
     }
 }

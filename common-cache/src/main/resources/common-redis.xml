@@ -76,10 +76,10 @@
     <bean id="redisMessageListener" class="org.wsh.common.cache.message.listener.RedisMessageListener"/>
     <bean id="defaultMessageDelegate" class="org.wsh.common.cache.message.DefaultMessageDelegate"/>
     <!-- Redis实现消息发布订阅模式 -->
-    <!--<redis:listener-container connection-factory="jedisConnectionFactory">-->
-        <!--&lt;!&ndash; the method attribute can be skipped as the default method name is "handleMessage" &ndash;&gt;-->
-        <!--<redis:listener ref="redisMessageListener" serializer="jdkSerializer" method="handleMessage" topic="java" />-->
-    <!--</redis:listener-container>-->
+    <redis:listener-container connection-factory="jedisConnectionFactory">
+        <!-- the method attribute can be skipped as the default method name is "handleMessage" -->
+        <redis:listener ref="redisMessageListener" serializer="jdkSerializer" method="handleMessage" topic="order" />
+    </redis:listener-container>
 
     <!-- Bean Configuration -->
     <bean id="messageListener"
@@ -87,6 +87,7 @@
         <constructor-arg>
             <bean class="org.wsh.common.cache.message.DefaultMessageDelegate" />
         </constructor-arg>
+        <constructor-arg value="handleMessage"/>
         <property name="serializer" ref="jdkSerializer"/>
     </bean>
 
