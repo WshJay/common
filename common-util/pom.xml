@@ -21,11 +21,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- QrCode -->
-		<dependency>
-			<groupId>QrCode</groupId>
-			<artifactId>com.QrCode.util</artifactId>
-			<version>1.0</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>QrCode</groupId>-->
+			<!--<artifactId>com.QrCode.util</artifactId>-->
+			<!--<version>1.0</version>-->
+		<!--</dependency>-->
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
