@@ -14,6 +14,7 @@ import org.wsh.common.model.flow.FileDO;
 import org.wsh.common.model.message.MessageDO;
 import org.wsh.common.pager.pagination.Pagination;
 import org.wsh.common.service.api.MenuService;
+import org.wsh.common.service.api.basic.UserBasicService;
 import org.wsh.common.service.api.flow.FileService;
 import org.wsh.common.service.api.message.MessageService;
 import org.wsh.common.service.api.mysql.lock.OptimisticLockService;
@@ -29,6 +30,7 @@ import org.wsh.common.util.logger.LoggerService;
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * author: wsh
@@ -43,8 +45,8 @@ public class ServiceTest extends LoggerService{
     @Resource
     private MenuService menuService;
 
-//    @Resource
-//    private UserBasicService userBasicService;
+    @Resource
+    private UserBasicService userBasicService;
 
     @Autowired
     private CacheManager cacheManager;
@@ -71,10 +73,10 @@ public class ServiceTest extends LoggerService{
 //            logger.info("menuName==>" + menuDO.getName());
 //        }
 //
-        FileDO fileParamDO = new FileDO();
-        fileParamDO.setType(FileType.IMG);
-        fileParamDO.setUserId(2L);
-          fileService.queryFileDOListForPage(fileParamDO,new Pagination(100));
+//        FileDO fileParamDO = new FileDO();
+//        fileParamDO.setType(FileType.IMG);
+//        fileParamDO.setUserId(2L);
+//          fileService.queryFileDOListForPage(fileParamDO,new Pagination(100));
 //        Cache comMessageCache = cacheManager.getCache("common_messageDO");
 //        Cache fundsMessageCache = cacheManager.getCache("funds_messageDO");
 //        System.out.println(comMessageCache.get("message_id:12").get());
@@ -89,7 +91,7 @@ public class ServiceTest extends LoggerService{
 //        userBasicService.modifyUserBasicDO(responseDO.getData());
 
 //        optimisticLockUpdate();
-//        pessimisticLockUpdate();
+        pessimisticLockUpdate();
 
     }
 
@@ -109,7 +111,7 @@ public class ServiceTest extends LoggerService{
         try {
             UserBasicDO user = new UserBasicDO();
             user.setId(6L);
-            user.setFaceUrl("123");
+            user.setFaceUrl("http://img.wangsh.top/image/" + UUID.randomUUID());
             int count = 3;
             ConcurrentUtil.start(new Task(count,pessimisticLockService,"updateForLock",user), count);
         } catch (Exception e) {
@@ -186,8 +188,8 @@ public class ServiceTest extends LoggerService{
     }
 
     @Test
-    public void getUserById(){
-        ResponseDO<UserBasicDO> responseDO = cglibService.queryById(1L);
+    public void getUserById() throws Exception{
+        ResponseDO<UserBasicDO> responseDO = userBasicService.getUserBasicDOById(6L);
         logger.info(responseDO.toJsonString());
     }
 }

@@ -14,4 +14,8 @@ public interface CacheService {
     public String getById(Long Id);
 
     public String getDemoDOById(Long id);
+
+    boolean setCache(String key, String value);
+
+    Object getCache(String key);
 }

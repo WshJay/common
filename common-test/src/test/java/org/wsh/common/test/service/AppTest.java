@@ -2,6 +2,8 @@ package org.wsh.common.test.service;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -35,10 +37,20 @@ public class AppTest {
 //			e.printStackTrace();
 //		}
 
-		for (int i = 26; i < 45; i++) {
-			System.out.println("INSERT INTO file (`name`, `cover_path`, `file_path`, `type`, `user_id`, `tags_id`, `description`, `version`, `is_deleted`, `gmt_created`, `gmt_modified`) VALUES ('MM-" + i + "', 'upload/images/" + i + ".jpg', 'upload/images/" + i + ".jpg', 'IMG', '2', '2', '電影海報!', '0', '0', '2017-02-12 15:50:39', '2017-02-12 15:50:41');");
+//		for (int i = 26; i < 45; i++) {
+//			System.out.println("INSERT INTO file (`name`, `cover_path`, `file_path`, `type`, `user_id`, `tags_id`, `description`, `version`, `is_deleted`, `gmt_created`, `gmt_modified`) VALUES ('MM-" + i + "', 'upload/images/" + i + ".jpg', 'upload/images/" + i + ".jpg', 'IMG', '2', '2', '電影海報!', '0', '0', '2017-02-12 15:50:39', '2017-02-12 15:50:41');");
+//		}
+
+		List<String> list = new ArrayList<>();
+		list.add("abc");
+		String s1 = "abc";
+		while (list.contains(s1)){
+			s1 = "abc";
 		}
-		
+		list.add(s1);
+		for (String s : list) {
+			System.out.println(s);
+		}
 	}
 }
 
